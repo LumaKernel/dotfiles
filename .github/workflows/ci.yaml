@@ -11,9 +11,16 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 30
     steps:
+      - name: echo path
+        run: echo ${env:PATH}
+
       - name: script
         run: |
           Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/LumaKernel/dotfiles/master/install-win.ps1')
+
+      - name: scoop version
+        run:
+          scoop --version
 
       - name: test vim
         run:
