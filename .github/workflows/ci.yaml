@@ -16,6 +16,12 @@ jobs:
       - name: echo path
         run: echo ${env:PATH}
 
+      - name: which vim
+        run: which vim
+
+      - name: which gvim
+        run: which gvim || echo "no gvim"
+
       - name: script
         run: |
           Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/LumaKernel/dotfiles/master/install-win.ps1')
