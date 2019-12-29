@@ -9,6 +9,8 @@ on:
 jobs:
   windows:
     runs-on: windows-latest
+    env:
+      exit-not-admin: 1
     timeout-minutes: 30
     steps:
       - name: echo path
