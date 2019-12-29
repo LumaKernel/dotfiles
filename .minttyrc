@@ -1,0 +1,19 @@
+BoldAsFont=-1
+FontHeight=12
+Columns=100
+Rows=37
+BellType=0
+MiddleClickAction=enter
+RightClickAction=paste
+Font=Myrica M
+CtrlShiftShortcuts=yes
+Term=xterm-256color
+ThemeFile=xterm
+Transparency=high
+CursorType=block
+CursorBlinks=yes
+Locale=ja_JP
+Charset=UTF-8
+BellTaskbar=no
+Scrollbar=none
+

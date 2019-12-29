@@ -1,0 +1,17 @@
+name: GitHub Actions CI
+
+on:
+  push:
+      branches:
+      - master
+
+
+jobs:
+  windows:
+    env:
+      URI: https://github.com/lumakernel/dotfiles
+    steps:
+      - name: script
+        run: |
+          Invoke-Expression (New-Object System.Net.WebClient).DownloadString('${{ env.URI }}/')
+
