@@ -19,9 +19,6 @@ jobs:
       - name: which vim
         run: which vim
 
-      - name: which gvim
-        run: which gvim
-
       - name: script
         run: |
           Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/LumaKernel/dotfiles/master/install-win.ps1')
