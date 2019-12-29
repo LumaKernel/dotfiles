@@ -2,23 +2,6 @@
 Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
 
 scoop install sudo
-sudo powershell.exe
 
-scoop install 7zip git --global
-scoop bucket add extras
-scoop install ag
-scoop install extras/googlechrome
-scoop install msys2
-start msys2
-
-scoop install vim
-scoop install wsl-terminal
-scoop install python
-
-cd ~
-git clone https://github.com/LumaKernel/dotfiles
-
-ln.ps1 -s ~/dotfiles/.vimrc ~/.vimrc
-ln.ps1 -s ~/dotfiles/.mintty ~/.minttyrc
-
+sudo Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/LumaKernel/dotfiles/master/install-win-after-sudo.ps1')
 

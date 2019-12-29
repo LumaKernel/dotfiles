@@ -7,9 +7,9 @@ let g:mapleader = "\<SPACE>"
 "   ぶっちゃけ理解したものは消す
 "   :help を，見ろ
 
-source ~/dotfiles/vimfiles/dein-setting.vim
 source ~/dotfiles/vimfiles/option-basic.vim
 source ~/dotfiles/vimfiles/mapping.vim
+source ~/dotfiles/vimfiles/dein-setting.vim
 
 " 全角スペース・行末のスペース・タブの可視化
 " 全角スペース可視化のみ抜粋
@@ -38,11 +38,11 @@ elseif has('win32') || has('win64')
     nnoremap <silent> <Leader>o :silent !start cmd<CR>
     nnoremap <silent> <expr> <Leader>i ":silent !start " . $LocalAppData . "\\wsltty\\bin\\mintty.exe --WSL=\"Ubuntu\" --configdir=\"" . $AppData . "\\wsltty\"\<CR>"
 
-    let s:msys_path = "C:/msys64/msys2_shell.cmd"
+    let s:msys_path = expand("~/scoop/apps/msys2/current/msys2_shell.cmd")
     if executable(s:msys_path)
       let s:to_reset = ["VIM", "VIMRUNTIME", "MYVIMRC", "MYGVIMRC"]
       let s:env_reset = join(map(s:to_reset, '"set \"" . v:val . "=\" && "'), "")
-      let g:msys_run_cmd = ":silent !start cmd /k " . s:env_reset . s:msys_path . " -where . -mingw64 -mintty -no-start && exit" . "\<CR>"
+      let g:msys_run_cmd = ":silent !start cmd /k " . s:env_reset . s:msys_path . " -where . -full-path -mingw64 -mintty -no-start && exit" . "\<CR>"
       nnoremap <silent> <expr> <Leader>b g:msys_run_cmd
     endif
   endif

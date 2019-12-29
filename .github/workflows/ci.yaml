@@ -9,8 +9,13 @@ on:
 jobs:
   windows:
     runs-on: windows-latest
+    timeout-minutes: 30
     steps:
       - name: script
         run: |
           Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/LumaKernel/dotfiles/master/install-win.ps1')
+
+      - name: test vim
+        run:
+          vim --cmd "try | so ~/.vimrc | catch /.*/ | qa! | endtry | qa!" -u NONE
 
