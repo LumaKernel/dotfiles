@@ -20,7 +20,7 @@ jobs:
         run: which vim
 
       - name: which gvim
-        run: which gvim || echo "no gvim"
+        run: which gvim
 
       - name: script
         run: |
@@ -29,6 +29,12 @@ jobs:
       - name: scoop version
         run:
           scoop --version
+
+      - name: which vim
+        run: which vim
+
+      - name: which gvim
+        run: which gvim
 
       - name: test vim
         run:
