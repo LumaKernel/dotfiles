@@ -1,4 +1,6 @@
 
+echo install-win-after-sudo.ps1
+
 scoop install 7zip git --global
 scoop bucket add extras
 scoop install ag
