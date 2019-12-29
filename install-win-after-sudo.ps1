@@ -1,5 +1,5 @@
 
-echo install-win-after-sudo.ps1
+echo "from install-win-after-sudo.ps1"
 
 scoop install 7zip git --global
 scoop bucket add extras
