@@ -8,10 +8,9 @@ on:
 
 jobs:
   windows:
-    env:
-      URI: https://github.com/lumakernel/dotfiles
+    runs-on: windows-latest
     steps:
       - name: script
         run: |
-          Invoke-Expression (New-Object System.Net.WebClient).DownloadString('${{ env.URI }}/')
+          Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/LumaKernel/dotfiles/master/install-win.ps1')
 
