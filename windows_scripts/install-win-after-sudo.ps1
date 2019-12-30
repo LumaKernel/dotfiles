@@ -14,8 +14,7 @@ scoop install python
 cd ~
 git clone https://github.com/LumaKernel/dotfiles ~/dotfiles
 
-ln.ps1 -s ~/dotfiles/.vimrc ~/.vimrc
-ln.ps1 -s ~/dotfiles/.mintty ~/.minttyrc
-
 msys2
+
+~/dotfiles/windows_scripts/symlinks.ps1
 

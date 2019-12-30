@@ -11,6 +11,7 @@ source ~/dotfiles/vimfiles/option-basic.vim
 source ~/dotfiles/vimfiles/mapping.vim
 source ~/dotfiles/vimfiles/dein-setting.vim
 
+
 " 全角スペース・行末のスペース・タブの可視化
 " 全角スペース可視化のみ抜粋
 if has("syntax")
@@ -320,14 +321,16 @@ endfunction
 
 " }}}
 
-" debug commands
+
 " VimShowHlGroup: Show highlight group name under a cursor
 command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 " VimShowHlItem: Show highlight item name under a cursor
 command! VimShowHlItem echo synIDattr(synID(line("."), col("."), 1), "name")
 
+
 nnoremap <Leader>; :VimShowHlGroup<CR>
 nnoremap <Leader>: :VimShowHlItem<CR>
+
 
 function! s:setup_my_colo()
   if g:colors_name ==? 'hybrid'
@@ -346,6 +349,13 @@ augroup my_colo
 augroup END
 
 
+
+if has('win32unix')
+  let g:coquille_coq_executable = '/c/Coq8.10/bin/coqidetop'
+elseif has('win32') || has('win64')
+  let g:coquille_coq_executable = 'C:/Coq8.10/bin/coqidetop'
+endif
+
 " debug
 
 finish
@@ -360,18 +370,6 @@ GO
 let g:coquille_strict_check = 0
 let g:coquille_cursor_ceiling = 1
 let g:coquille_update_status_always = 1
-
-if has('win32unix')
-  " let g:coquille_coq_executable = '/c/Coq/bin/coqtop.exe'
-  let g:coquille_coq_executable = '/c/Coq8.10/bin/coqidetop'
-elseif has('win32') || has('win64')
-  " let g:coquille_coq_executable = 'C:/Coq8.9/bin/coqidetop.opt'
-  " let g:coquille_coq_executable = 'C:/Coq8.9/bin/coqidetop'
-  let g:coquille_coq_executable = 'C:/Coq8.10/bin/coqidetop'
-  " let g:coquille_coq_executable = 'C:/Coq8.5pl3/bin/coqtop'
-  " let g:coquille_coq_executable = 'C:/Coq8.11beta/bin/coqidetop'
-  " let g:coquille_coq_executable = 'C:/Coq8.11beta/bin/coqidetop.opt'
-endif
 
 let g:PowerAssert = vital#vital#import('Vim.PowerAssert')
 let g:Assert = g:PowerAssert.assert
@@ -392,28 +390,6 @@ endfunction
 
 
 
-
-
-
-
-
-
-function! Dev()
-  " silent! edit ~/hoge.v
-  silent! edit ./nasty_notations.v
-  call coquille#register()
-  hi CheckedByCoq guibg=#111130
-  hi SentToCoq guibg=#336633
-
-  let g:coquille_debug = 1
-
-  " call coquille#launch()
-  " let g:IDE = b:coquilleIDE
-  " let g:CT = b:coquilleIDE.coqtop_handler
-
-endfunction
-
-call Dev()
 
 call coquille#test#runTest()
 

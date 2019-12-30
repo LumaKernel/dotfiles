@@ -7,7 +7,7 @@ let &runtimepath = s:dein_repo_dir .. ',' .. &runtimepath
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
     call dein#add('~/.cache/dein')
-    call dein#load_toml('~/vimfiles/dein.toml')
+    call dein#load_toml('~/dotfiles/vimfiles/dein.toml')
   call dein#end()
 
   call dein#save_state()
