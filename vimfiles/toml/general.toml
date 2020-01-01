@@ -189,19 +189,19 @@ repo = 'Shougo/neosnippet-snippets'
 
 
 [[plugins]]
-if = '!has("nvim")'
+if = '!has("nvim") && !has("win32unix")'
 repo = 'roxma/nvim-yarp'
 
 
 [[plugins]]
 # NOTE : pip insetall --user pynvim
-if = '!has("nvim")'
+if = '!has("nvim") && !has("win32unix")'
 repo = 'roxma/vim-hug-neovim-rpc'
 
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
-if = 'has("nvim") || has("python3")'
+if = '(has("nvim") || has("python3")) && !has("win32unix")'
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
 '''
