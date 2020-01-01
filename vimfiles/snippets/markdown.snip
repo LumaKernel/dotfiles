@@ -1,0 +1,23 @@
+# jekyll特化
+
+snippet     url
+options     word
+  [${2}]({{ "${1}" | absolute_url }})
+
+snippet     abs
+options     word
+  {{ "${1}" | absolute_url }}
+
+snippet     out
+options     word
+  [${2}](${1}){:target="_blank"}<!--_-->
+
+snippet     href
+options     word
+  {:target="_blank"}<!--_-->
+
+snippet     escape
+alias       break
+options     word
+  <!--_-->
+

@@ -1,0 +1,69 @@
+include cp-cpp/*
+
+snippet     p
+options     word
+  cout << ${0:TARGET} << endl;
+
+snippet     emp options     word
+  emplace_back
+
+snippet     pb
+options     word
+  push_back
+
+snippet     s
+options     word
+  std::
+
+snippet     all
+options     word
+  (${1}).begin(), ($1).end()
+
+snippet     input
+alias       iterator
+options     word
+  template<class InputIter, class = typename iterator_traits<InputIter>::value_type>
+
+snippet     lib
+options     head
+  // @import header
+  #include <bits/stdc++.h>
+  using namespace std;
+  using ll = long long;
+  
+  // @@
+  // @ ${1}
+  // @snippet ${2}
+  ${0}
+
+snippet     random
+options     head
+  random_device rnd;
+  mt19937 mt(rnd());
+  uniform_int_distribution<ull> rd(0, ull(-1));
+
+snippet     random_discard
+options     head
+  discard_block_engine<mt19937, 100, 97> dis(rnd());
+
+snippet     bigfloat_boost
+alias       boost_bigfloat
+options     head
+  #include <boost/multiprecision/cpp_dec_float.hpp>
+  namespace mp = boost::multiprecision;
+  using float100 = mp::cpp_dec_float_100;
+  // using float1000 = mp::number< mp::cpp_dec_float< 1000 > >;
+  // using float1000ex = mp::number< mp::cpp_dec_float< 1000, std::uint64_t > >;
+
+snippet     time_test
+options     head
+  // TIME test {{{
+  #define TIME(label, T, procedure) {\
+    std::cout << #label << " : ";\
+    clock_t beg = clock();\
+    for(int i = 0; i < T; i++) procedure;\
+    clock_t las = clock();\
+    std::cout << double(las - beg) / CLOCKS_PER_SEC << "s" << std::endl;\
+    }
+  // }}}
+

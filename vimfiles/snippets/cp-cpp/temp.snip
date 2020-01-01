@@ -1,0 +1,134 @@
+snippet     includes
+options     head
+  // includes {{{
+  #include<iostream>
+  #include<iomanip>
+  #include<algorithm>
+  #include<vector>
+  #include<stack>
+  #include<queue>
+  #include<map>
+  #include<set>
+  #include<tuple>
+  #include<cmath>
+  #include<random>
+  #include<cassert>
+  #include<bitset>
+  #include<cstdlib>
+  // #include<deque>
+  // #include<multiset>
+  // #include<cstring>
+  // #include<bits/stdc++.h>
+  // }}}
+
+snippet     temp
+options     head
+  // includes {{{
+  #include<iostream>
+  #include<iomanip>
+  #include<algorithm>
+  #include<vector>
+  #include<stack>
+  #include<queue>
+  #include<map>
+  #include<set>
+  #include<tuple>
+  #include<cmath>
+  #include<random>
+  #include<cassert>
+  #include<bitset>
+  #include<cstdlib>
+  // #include<deque>
+  // #include<multiset>
+  // #include<cstring>
+  // #include<bits/stdc++.h>
+  // }}}
+  using namespace std;
+  using ll = long long;
+  
+  int main() {
+    std::ios::sync_with_stdio(false), std::cin.tie(0);
+    return 0;
+  }
+
+snippet     temptree
+options     head
+  // includes {{{
+  #include<iostream>
+  #include<iomanip>
+  #include<algorithm>
+  #include<vector>
+  #include<stack>
+  #include<queue>
+  #include<map>
+  #include<set>
+  #include<tuple>
+  #include<cmath>
+  #include<random>
+  #include<cassert>
+  #include<bitset>
+  #include<cstdlib>
+  // #include<deque>
+  // #include<multiset>
+  // #include<cstring>
+  // #include<bits/stdc++.h>
+  // }}}
+  using namespace std;
+  using ll = long long;
+  
+  const int N = 1e5${0};
+  std::vector<std::vector<int>> g;
+  int n;
+  int main() {
+    std::ios::sync_with_stdio(false), std::cin.tie(0);
+    cin >> n;
+    g.resize(n);
+    for(int i = 0; i < n - 1; i++) {
+      int a, b; std::cin >> a >> b;
+      a--; b--;
+      g[a].emplace_back(b);
+      g[b].emplace_back(a);
+    }
+    return 0;
+  }
+
+snippet     tempgraph
+options     head
+  // includes {{{
+  #include<iostream>
+  #include<iomanip>
+  #include<algorithm>
+  #include<vector>
+  #include<stack>
+  #include<queue>
+  #include<map>
+  #include<set>
+  #include<tuple>
+  #include<cmath>
+  #include<random>
+  #include<cassert>
+  // #include<deque>
+  // #include<multiset>
+  // #include<bitset>
+  // #include<cstring>
+  // #include<bits/stdc++.h>
+  // }}}
+  using namespace std;
+  using ll = long long;
+  
+  const int N = 1e5${0};
+  std::vector<std::vector<int>> g;
+  int n, m;
+  int main() {
+    std::ios::sync_with_stdio(false), std::cin.tie(0);
+    cin >> n >> m;
+    g.resize(n);
+    for(int i = 0; i < m; i++) {
+      int a, b; std::cin >> a >> b;
+      a--; b--;
+      g[a].emplace_back(b);
+      g[b].emplace_back(a);
+    }
+    return 0;
+  }
+

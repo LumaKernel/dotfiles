@@ -1,0 +1,37 @@
+# vimrc
+# Vim プラグイン
+# を書くためのプラグイン
+
+hook_add = """
+  " ALE
+  " TODO
+  " let g:ale_linters["vim"] = ["vint"]
+
+
+"""
+
+[[plugins]]
+repo = 'vim-jp/vital.vim'
+merged = 0
+
+[[plugins]]
+repo = 'haya14busa/vital-vimlcompiler'
+depends = ["vital.vim"]
+
+[[plugins]]
+repo = 'haya14busa/vital-power-assert'
+depends = ["vital.vim"]
+hook_add = """
+  let g:__vital_power_assert_config = {
+  \   '__debug__': 1
+  \ }
+"""
+
+[[plugins]]
+repo = 'haya14busa/vital-safe-string'
+depends = ["vital.vim"]
+
+[[plugins]]
+# NOTE : :XtermColorTable
+repo = 'guns/xterm-color-table.vim'
+

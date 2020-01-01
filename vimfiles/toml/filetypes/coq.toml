@@ -1,0 +1,47 @@
+[[plugins]]
+repo = "LumaKernel/coquille"
+on_ft = "coq"
+hook_source = """
+  let g:coquille_auto_move=1
+  let g:coquille_one_window=1
+
+  function! MyCoqMaps()
+    nnoremap <silent> <C-C> :CoqLaunch<CR>
+    nnoremap <silent> <Leader>j :CoqNext<CR>
+    nnoremap <silent> <Leader>k :CoqBack<CR>
+    nnoremap <silent> <Leader>l :CoqToCursor<CR>
+    nnoremap <silent> <Leader>g :CoqToLast<CR>
+    nnoremap <silent> <Leader>t :MoveToTop<CR>
+
+    nnoremap <Leader>compute :CoqQuery Compute .<Left>
+    nnoremap <Leader>print :CoqQuery Print .<Left>
+    nnoremap <Leader>check :CoqQuery Check .<Left>
+    nnoremap <Leader>search :CoqQuery Search ().<Left><Left>
+  endfunction
+
+  augroup my_coq
+    au!
+    au FileType coq :call MyCoqMaps()
+  augroup END
+
+  function! s:setup_my_coq_colo()
+    if !has('gui')
+      if g:colors_name ==? 'hybrid'
+        hi CoqChecked      ctermbg=17
+        hi CoqCheckedAxiom ctermbg=58
+        hi CoqQueued       ctermbg=22
+        hi CoqMarkedWarn   ctermbg=64
+        hi CoqCheckedWarn  ctermbg=64
+        hi CoqMarkedError  ctermbg=160
+        hi CoqCheckedError ctermbg=160
+      endif
+    endif
+  endfunction
+
+  augroup my_coq_colo
+    au!
+    autocmd ColorScheme * :call <SID>setup_my_coq_colo()
+  augroup END
+
+"""
+

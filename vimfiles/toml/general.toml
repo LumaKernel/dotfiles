@@ -1,0 +1,315 @@
+# プラグイン追加時のあれこれ
+# 
+# - ファイルタイプ専用のものであれば，専用TOMLファイルに追加
+# - Lazy にする場合 (on_ft なども含まれる) は，
+#   dein#check_lazy_plugins() でチェック
+#   この設定は，基本いらないとすら思っていい
+
+
+[[tplugins]]
+repo = 'Shougo/dein.vim'
+
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+
+[[plugins]]
+repo = 'jacoborus/tender.vim'
+hook_source = """
+  colorscheme tender
+"""
+
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+hook_add = """
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#show_buffers = 1
+  let g:airline#extensions#tabline#show_splits = 1
+  let g:airline#extensions#tabline#left_alt_sep = '|'
+  let g:airline_powerline_fonts = 1
+
+  "
+  " " バッファ切り替え
+  let g:airline#extensions#tabline#buffer_idx_mode = 1
+  nmap <unique><silent> H <Plug>AirlineSelectPrevTab
+  nmap <unique><silent> L <Plug>AirlineSelectNextTab
+
+  let g:airline#extensions#ale#enabled = 1
+  let g:airline#extensions#ale#error_symbol = 'E:'
+  let g:airline#extensions#ale#warning_symbol = 'W:'
+"""
+
+
+[[plugins]]
+repo = 'itchyny/vim-parenmatch'
+
+
+[[plugins]]
+repo = 'itchyny/vim-cursorword'
+
+
+[[plugins]]
+repo = 'tyru/caw.vim'
+
+
+
+[[plugins]]
+# TODO : denite.vim に乗り換える ?
+repo = 'Shougo/unite.vim' # {{{
+hook_add = '''
+  let g:unite_enable_start_insert = 1
+  augroup MyUnite
+    au!
+    autocmd Filetype unite imap <buffer><silent> <ESC> <ESC>q
+    autocmd Filetype unite imap <buffer><silent> <C-J> <C-N>
+    autocmd Filetype unite imap <buffer><silent> <C-K> <C-P>
+  augroup END
+
+  nnoremap <silent> <Leader>b :Unite buffer<CR>
+  nnoremap <unique><silent> <Leader>a :Unite outline<CR>
+
+  " unite grep
+  let g:unite_enable_ignore_case = 1
+  let g:unite_enable_smart_case = 1
+
+  nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+  " TODO うまくうごかない
+  " nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+  nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+
+  " use ripgrep
+  if executable('rg')
+    let g:unite_source_grep_command = 'rg'
+    let g:unite_source_grep_default_opts = '--vimgrep'
+    let g:unite_source_grep_recursive_opt = ''
+  endif
+''' # }}}
+
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+
+# NERDTree
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+depends = ['vimproc.vim']
+hook_add = '''
+  let g:NERDTreeShowHidden=1
+  nnoremap <silent> <Leader>s :NERDTree<CR>
+  augroup MyNerdTree
+    au!
+    au FileType nerdtree nmap <buffer> za o
+  augroup END
+'''
+
+
+[[plugins]]
+repo = 'Xuyuanp/nerdtree-git-plugin'
+depends = ['nerdtree']
+
+
+[[plugins]]
+repo = 'Shougo/vimshell.vim'
+depends = ['vimproc.vim']
+hook_add = '''
+  nnoremap <silent> <Leader>h :VimShell<CR>
+'''
+
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim' # {{{
+depends = ['neosnippet-snippets']
+hook_add = '''
+  let g:neosnippet#snippets_directory = ['~/lib-cpp/', '~/dotfiles/vimfiles/snippets/']
+
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_or_target)
+''' # }}}
+
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+
+[[plugins]]
+if = '!has("nvim")'
+repo = 'roxma/nvim-yarp'
+
+
+[[plugins]]
+# NOTE : pip insetall --user pynvim
+if = '!has("nvim")'
+repo = 'roxma/vim-hug-neovim-rpc'
+
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+if = 'has("nvim") || has("python3")'
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+'''
+
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+  let g:indentLine_setConceal = 0
+'''
+
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim' # {{{
+hook_add = '''
+  let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20,results:50'
+  let g:ctrlp_show_hidden = 1
+
+  " ファイルのみ
+  let g:ctrlp_types = ['fil']
+  " ワーキングディレクトリ として pwd から上に上がって .git
+  " があるディレクトリを探す
+  let g:ctrlp_working_path_mode = 'w'
+  let g:ctrlp_lazy_update = 200
+  let g:ctrlp_custom_ignore = {
+    \   'dir':  '\v([\/]\.(git|hg|svn)$|node_modules)',
+    \   'file': '\v\.(exe|so|dll|o|vo|aux|glob)$',
+    \   'link': '',
+    \ }
+  if executable('ag')
+    " CtrlPのキャッシュを使わない
+    let g:ctrlp_use_caching=0
+    let g:ctrlp_user_command='ag %s -i --nogroup --nocolor -g ""'
+  endif
+''' # }}}
+
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+hook_add = '''
+let g:quickrun_config['_'] = {
+  \ 'outputter' : 'quickfix',
+  \ 'runner' : 'job'
+  \ }
+  nnoremap <expr> <Leader>0 ":ccl\|QuickRun\<CR>"
+'''
+
+[[plugins]]
+repo = 'w0rp/ale' # {{{
+if = '0'
+hook_add = '''
+  エラー行に表示するマーク
+  let g:ale_sign_error = '>>'
+  let g:ale_sign_warning = '>>'
+  
+  let g:ale_list_window_size = 1
+  
+  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+  " エラー表示の列を常時表示
+  let g:ale_sign_column_always = 1
+  
+  let g:ale_lint_on_enter = 1
+  let g:ale_lint_on_save = 1
+  let g:ale_lint_on_text_changed = 'always'
+  let g:ale_lint_on_filetype_changed = 1
+  let g:ale_lint_on_insert_leave = 1
+  
+  let g:ale_set_loclist = 1
+  let g:ale_set_quickfix = 0
+  let g:ale_open_list = 0
+  let g:ale_keep_list_window_open = 0
+  
+  let g:ale_linters = get(g:, 'ale_linters', {})
+  let g:ale_fixers = get(g:, 'ale_fixers', {})
+  
+  let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
+  
+  nmap <unique><silent> <Leader>p <Plug>(ale_previous_wrap)
+  nmap <unique><silent> <Leader>n <Plug>(ale_next_wrap)
+'''
+# }}}
+
+
+
+
+
+[[plugins]]
+repo='prabirshrestha/async.vim'
+
+[[plugins]]
+repo='prabirshrestha/vim-lsp'
+hook_add='''
+  if executable('clangd')
+      au User lsp_setup call lsp#register_server({
+          \ 'name': 'clangd',
+          \ 'cmd': {server_info->['clangd']},
+          \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+          \ })
+  endif
+
+  let g:lsp_signs_enabled = 1         " enable signs
+  let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+
+  let g:lsp_signs_error = {'text': '✗'}
+  let g:lsp_signs_warning = {'text': '‼'}
+'''
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete.vim'
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete-neosnippet.vim'
+hook_add='''
+  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k>     <Plug>(neosnippet_expand_target)
+'''
+hook_source='''
+  " call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+  "    \ 'name': 'neosnippet',
+  "    \ 'whitelist': ['*'],
+  "    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+  "    \ }))
+'''
+
+
+
+
+
+
+
+
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+hook_add = '''
+  let g:tagbar_width = 60
+  let g:tagbar_autoshowtag = 1
+'''
+
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+
+[[plugins]]
+repo = 'luochen1990/rainbow'
+
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+hook_add = """
+  xmap ga <Plug>(EasyAlign)
+  nmap ga <Plug>(EasyAlign)
+"""
+

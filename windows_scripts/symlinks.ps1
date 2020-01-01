@@ -1,16 +1,18 @@
 
 Param([switch]$f, [switch]$force)
 
-
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole(`
         [Security.Principal.WindowsBuiltInRole] "Administrator")) {
-  $params = $PsBoundParameters
-  sudo iex -Command "$PSCommandPath @args @params"
+  sudo iex "$PsCommandPath @Args @PsBoundParameters"
   exit
 }
 
-$dotfiles = @(
-  ".vimrc",
+$force = $f -or $force
+
+$files = @(
+  @{target="init.vim"; path=""; name=".vimrc"},
+  @{target="init.vim"; path="AppData/Local/nvim"},
+  @{target="ginit.vim"; path="AppData/Local/nvim"},
   ".minttyrc",
   ".bash_profile",
   ".bashrc",
@@ -18,11 +20,29 @@ $dotfiles = @(
   ".bash_functions",
 "")
 
-foreach($file in $dotfiles) {
-  if($file -eq "") { continue }
-  if(Test-Path ("${env:UserProfile}/" + $file)) {
-    rm ("${env:UserProfile}/" + $file)
+foreach($file in $files) {
+  if($file.GetType() -eq [string]) {
+    if($file -eq "") { continue }
+
+    $file = @{target=$file; path=""}
   }
-  ln.ps1 -s ("${env:UserProfile}/dotfiles/" + $file) ("${env:UserProfile}/" + $file)
+
+  if (-not $file.ContainsKey("name")) { $file.name = $file.target }
+  $file.target = "~/dotfiles/" + $file.target
+  if ($file.path -eq "") { $file.path = "~" }
+  else { $file.path = "~/" + $file.path }
+
+  if (-not (Test-Path $file.path)) {
+    mkdir $file.path
+  }
+
+  if (-not (Test-Path ($file.path + "/" + $file.name)) -or $force) {
+    if($force) {
+      rm ($file.path + "/" + $file.name)
+    }
+    New-Item -ItemType SymbolicLink @file
+  } else {
+    echo "already exists: $($file.path + "/" + $file.name)"
+  }
 }
 

@@ -37,8 +37,10 @@ nnoremap <silent> <Leader>r :reg<CR>
 inoremap <C-L> <DEL>
 cnoremap <C-D> <DEL>
 
-" バッファ切り替え
-nnoremap <silent> H :bprevious<CR>
-nnoremap <silent> L :bnext<CR>
 " C-L をmap
 nnoremap <silent> <C-K> <C-L>
+
+noremap <F1> <Nop>
+noremap! <F1> <Nop>
+xnoremap <F1> <Nop>
+

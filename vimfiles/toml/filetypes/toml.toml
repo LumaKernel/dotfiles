@@ -1,0 +1,24 @@
+
+# 設定は主に dein の toml を編集するため
+
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+dapends = ['context_filetype.vim']
+on_ft = ['toml']
+hook_add = '''
+let g:precious_enable_switch_CursorMoved = {
+  \  "*" : 0,
+  \  "toml" : 1,
+  \}
+'''
+
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+on_ft = ['toml']
+
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+
