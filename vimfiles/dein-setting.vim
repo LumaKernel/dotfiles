@@ -7,7 +7,7 @@ let &runtimepath = s:dein_repo_dir .. ',' .. &runtimepath
 let g:quickrun_config = get(g:, 'quickrun_config', {})
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-    call dein#add('~/.cache/dein')
+    call dein#add(s:dein_dir)
     call dein#load_toml('~/dotfiles/vimfiles/toml/general.toml')
     call dein#load_toml('~/dotfiles/vimfiles/toml/airline.toml')
 
@@ -19,7 +19,7 @@ if dein#load_state(s:dein_dir)
 
   call dein#save_state()
   if has('vim_starting') && dein#check_install()
-    silent call dein#install()
+    call dein#install()
   endif
 endif
 
@@ -43,11 +43,5 @@ function! DeinClean() abort
   endfor
 endfunction
 
-function! DeinCleanAll() abort
-  echoerr "TODO"
-endfunction
-
 command! DeinClean call DeinClean()
-command! DeinCleanAll call DeinCleanAll()
-
 
