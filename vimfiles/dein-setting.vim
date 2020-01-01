@@ -21,8 +21,33 @@ if dein#load_state(s:dein_dir)
   if has('vim_starting') && dein#check_install()
     silent call dein#install()
   endif
-  augroup my_dein_hook
-    autocmd VimEnter * call dein#call_hook('post_source')
-  augroup END
 endif
+
+augroup my_dein_hook
+  au!
+  if v:vim_did_enter
+    echom "not enter" | call dein#call_hook('post_source')
+  else
+    autocmd VimEnter * echom "enter" | call dein#call_hook('post_source')
+  endif
+augroup END
+
 filetype plugin indent on
+
+
+let s:F = vital#vital#import('System.File')
+
+function! DeinClean() abort
+  for l:dir in dein#check_clean()
+    call s:F.rmdir(l:dir, 'r')
+  endfor
+endfunction
+
+function! DeinCleanAll() abort
+  echoerr "TODO"
+endfunction
+
+command! DeinClean call DeinClean()
+command! DeinCleanAll call DeinCleanAll()
+
+

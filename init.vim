@@ -21,8 +21,13 @@ source ~/dotfiles/vimfiles/vimscript.vim
 
 
 
+cd ~/work
+
+edit hoge.vim
+
 new a | set buftype=nofile
 new b | set buftype=nofile
+
 
 
 
