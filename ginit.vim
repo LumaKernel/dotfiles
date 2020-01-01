@@ -1,2 +1,2 @@
 GuiTabline 0
-GuiFont RictyDiminished\ NF:h11
+GuiFont! RictyDiminished\ NF:h10

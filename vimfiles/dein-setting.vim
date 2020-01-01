@@ -15,13 +15,14 @@ if dein#load_state(s:dein_dir)
       call dein#load_toml(s:toml)
     endfor
   call dein#end()
+  call dein#call_hook('source')
 
   call dein#save_state()
   if has('vim_starting') && dein#check_install()
     silent call dein#install()
   endif
+  augroup my_dein_hook
+    autocmd VimEnter * call dein#call_hook('post_source')
+  augroup END
 endif
-augroup my_dein_hook
-  autocmd VimEnter * call dein#call_hook('post_source')
-augroup END
 filetype plugin indent on

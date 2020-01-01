@@ -16,7 +16,7 @@ repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
 repo = 'jacoborus/tender.vim'
-hook_source = """
+hook_post_source = """
   colorscheme tender
 """
 
