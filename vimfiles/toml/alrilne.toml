@@ -1,0 +1,70 @@
+
+[[plugins]]
+repo = 'vim-airline/vim-airline' # {{{
+hook_add = """
+  let g:airline_powerline_fonts = 1
+  " Powerline Extra Symbols も使っている
+  " https://github.com/ryanoasis/powerline-extra-symbols
+
+
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#show_buffers = 1
+
+  " " バッファ切り替え
+  let g:airline#extensions#tabline#buffer_idx_mode = 1
+  nmap <unique><silent> H <Plug>AirlineSelectPrevTab
+  nmap <unique><silent> L <Plug>AirlineSelectNextTab
+
+
+  let g:airline#extensions#tabline#buffer_idx_format = {
+        \ '0': '0 ',
+        \ '1': '1 ',
+        \ '2': '2 ',
+        \ '3': '3 ',
+        \ '4': '4 ',
+        \ '5': '5 ',
+        \ '6': '6 ',
+        \ '7': '7 ',
+        \ '8': '8 ',
+        \ '9': '9 '
+        \}
+
+  " let g:airline#extensions#ale#enabled = 1
+  " let g:airline#extensions#ale#error_symbol = 'E:'
+  " let g:airline#extensions#ale#warning_symbol = 'W:'
+
+  " モード説明の表示を変える
+  let g:airline_mode_map = {
+      \ '__'     : '-',
+      \ 'c'      : 'C',
+      \ 'i'      : 'I',
+      \ 'ic'     : 'I',
+      \ 'ix'     : 'I',
+      \ 'n'      : 'N',
+      \ 'multi'  : 'M',
+      \ 'ni'     : 'N',
+      \ 'no'     : 'N',
+      \ 'R'      : 'R',
+      \ 'Rv'     : 'R',
+      \ 's'      : 'S',
+      \ 'S'      : 'S',
+      \ ''     : 'S',
+      \ 't'      : 'T',
+      \ 'v'      : 'V',
+      \ 'V'      : 'V',
+      \ ''     : 'V',
+      \ }
+
+
+  " スペース入れて調整
+  let g:airline_left_sep = "\uE0B8 "
+  let g:airline_left_alt_sep = "\uE0B9 "
+  let g:airline_right_sep = "\uE0BE "
+  let g:airline_right_alt_sep = "\uE0BF "
+
+
+  " Zセクションを設定
+  " %3p% は 空白埋め パーセンテージ を表示
+  let g:airline_section_z = airline#section#create(["%3p%%", '%4{line(".")}', "\uE0A1", '%3{col(".")}', "\uE0A3"])
+""" # }}}
+

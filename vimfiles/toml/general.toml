@@ -6,27 +6,6 @@
 #   この設定は，基本いらないとすら思っていい
 
 
-
-# [[plugins]]
-# # NOTE : Always load the vim-devicons as the very last one.
-# #        と書かれているので一番上で
-# repo = 'ryanoasis/vim-devicons'
-# if = '0'
-# hook_add = """
-#   let g:webdevicons_enable_airline_tabline = 0
-#   let g:webdevicons_enable_airline_statusline = 0
-#
-#   let g:webdevicons_conceal_nerdtree_brackets = 1
-#   let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-#
-#   " dir-icons
-#   let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-#   let g:DevIconsEnableFoldersOpenClose = 1
-#   let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
-#   let g:DevIconsDefaultFolderOpenSymbol = ''
-# """
-
-
 [[tplugins]]
 repo = 'Shougo/dein.vim'
 
@@ -44,83 +23,12 @@ hook_post_source = """
 
 
 [[plugins]]
-repo = 'vim-airline/vim-airline'
-hook_add = """
-  let g:airline_powerline_fonts = 1
-  " Powerline Extra Symbols も使っている
-  " https://github.com/ryanoasis/powerline-extra-symbols
-
-
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#show_buffers = 1
-
-  " " バッファ切り替え
-  let g:airline#extensions#tabline#buffer_idx_mode = 1
-  nmap <unique><silent> H <Plug>AirlineSelectPrevTab
-  nmap <unique><silent> L <Plug>AirlineSelectNextTab
-
-
-  let g:airline#extensions#tabline#buffer_idx_format = {
-        \ '0': '0 ',
-        \ '1': '1 ',
-        \ '2': '2 ',
-        \ '3': '3 ',
-        \ '4': '4 ',
-        \ '5': '5 ',
-        \ '6': '6 ',
-        \ '7': '7 ',
-        \ '8': '8 ',
-        \ '9': '9 '
-        \}
-
-  " let g:airline#extensions#ale#enabled = 1
-  " let g:airline#extensions#ale#error_symbol = 'E:'
-  " let g:airline#extensions#ale#warning_symbol = 'W:'
-
-  " モード説明の表示を変える
-  let g:airline_mode_map = {
-      \ '__'     : '-',
-      \ 'c'      : 'C',
-      \ 'i'      : 'I',
-      \ 'ic'     : 'I',
-      \ 'ix'     : 'I',
-      \ 'n'      : 'N',
-      \ 'multi'  : 'M',
-      \ 'ni'     : 'N',
-      \ 'no'     : 'N',
-      \ 'R'      : 'R',
-      \ 'Rv'     : 'R',
-      \ 's'      : 'S',
-      \ 'S'      : 'S',
-      \ ''     : 'S',
-      \ 't'      : 'T',
-      \ 'v'      : 'V',
-      \ 'V'      : 'V',
-      \ ''     : 'V',
-      \ }
-
-
-  " スペース入れて調整
-  let g:airline_left_sep = "\uE0B8 "
-  let g:airline_left_alt_sep = "\uE0B9 "
-  let g:airline_right_sep = "\uE0BE "
-  let g:airline_right_alt_sep = "\uE0BF "
-
-
-  " Zセクションを設定
-  " %3p% は 空白埋め パーセンテージ を表示
-  let g:airline_section_z = airline#section#create(["%3p%%", '%4{line(".")}', "\uE0A1", '%3{col(".")}', "\uE0A3"])
-"""
-
-
-[[plugins]]
 repo = 'skanehira/translate.vim'
 hook_add = """
 let g:translate_source = "en"
 let g:translate_target = "ja"
 let g:translate_winsize = 10
 """
-
 
 [[plugins]]
 repo = 'itchyny/vim-parenmatch'
@@ -179,9 +87,9 @@ depends = ['vimproc.vim']
 hook_add = '''
   let g:NERDTreeShowHidden=1
 
-  " 最小限．これだけでいい
-  let g:NERDTreeDirArrowExpandable=""
-  let g:NERDTreeDirArrowCollapsible=""
+  " 最小限，とてもいい
+  let g:NERDTreeDirArrowExpandable="\uf114"
+  let g:NERDTreeDirArrowCollapsible="\uf115"
   let g:NERDTreeWinSize=24
 
   nnoremap <silent> <Leader>s :NERDTree<CR>
@@ -190,34 +98,6 @@ hook_add = '''
     au FileType nerdtree nmap <buffer> za o
   augroup END
 '''
-
-
-# [[plugins]]
-# repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
-# if = '0'
-# depends = ['nerdtree']
-# hook_add = """
-#   " Web... は devicons の設定
-#   let g:NERDTreeExtensionHighlightColor = {} 
-#   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-#
-#   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
-#   let g:NERDTreeExtensionHighlightColor['html'] = 'F7BE00'
-#
-#   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = ''
-#   let g:NERDTreeExtensionHighlightColor['css'] = '2424ff'
-#
-#   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
-#   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['markdown'] = ''
-#
-#   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['txt'] = ''
-#
-#   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['snip'] = ''
-#   let g:NERDTreeExtensionHighlightColor['html'] = 'D44300'
-#
-#   let g:NERDTreeExtensionHighlightColor['gitignore'] = 'F54D27'
-#   let g:NERDTreeExtensionHighlightColor['ps1'] = '3440EB'
-# """
 
 
 [[plugins]]
@@ -347,8 +227,6 @@ hook_add = '''
 
 
 
-
-
 [[plugins]]
 repo='prabirshrestha/async.vim'
 
@@ -390,13 +268,6 @@ hook_source='''
   "    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
   "    \ }))
 '''
-
-
-
-
-
-
-
 
 
 [[plugins]]
