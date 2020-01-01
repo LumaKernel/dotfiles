@@ -13,3 +13,11 @@ if [ -f "${HOME}/.bash_functions" ]; then
   source "${HOME}/.bash_functions"
 fi
 
+
+export path="${home}/scoop/apps/python36/current/:$path"
+export path="${home}/scoop/apps/python36/current/scripts:$path"
+
+
+alias python=/usr/bin/python
+alias python3=/usr/bin/python3
+

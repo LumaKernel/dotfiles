@@ -99,6 +99,7 @@ augroup my_colo
   autocmd ColorScheme * :call <SID>setup_my_colo()
 augroup END
 
+
 if has('nvim')
   if has('win32unix')
     let g:python3_host_prog = system('which python3')
@@ -106,12 +107,15 @@ if has('nvim')
     let g:python3_host_prog = split(system('where python'), "\n")[0]
   endif
 else
-  if (has('win32') || has('win64'))
+  if has('win32unix')
+    " TODO : MSYS2 のpython 対応をどうするかはなやましい
+    " Win 側の python に即席でパスを通すのもありかもしれないけど…
+  elseif (has('win32') || has('win64'))
     set pythonthreedll=~/scoop/apps/python36/current/python36.dll
     if !has('python3')
-      echom 'Not found python37 dll.'
-      echom 'NOTE: scoop install python37'
-      echom 'NOTE: and scoop reset python37 to use pip of this version'
+      echom 'Not found python36 dll.'
+      echom 'NOTE: scoop install python36'
+      echom 'NOTE: and scoop reset python36 to use pip of this version'
     endif
   endif
 endif

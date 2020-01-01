@@ -26,9 +26,9 @@ endif
 augroup my_dein_hook
   au!
   if v:vim_did_enter
-    echom "not enter" | call dein#call_hook('post_source')
+    call dein#call_hook('post_source')
   else
-    autocmd VimEnter * echom "enter" | call dein#call_hook('post_source')
+    autocmd VimEnter * call dein#call_hook('post_source')
   endif
 augroup END
 

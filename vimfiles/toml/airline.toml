@@ -63,8 +63,22 @@ hook_add = """
   let g:airline_right_alt_sep = "\uE0BF "
 
 
+  function! g:GetCursorCharcode() abort
+    return printf('%x', char2nr(matchstr(getline('.'), '\\%' . col('.') . 'c.')))
+  endfunction
+
+  " Parts とは何だったのか，ｗかありませｎ
+
   " Zセクションを設定
   " %3p% は 空白埋め パーセンテージ を表示
-  let g:airline_section_z = airline#section#create(["%3p%%", '%4{line(".")}', "\uE0A1", '%3{col(".")}', "\uE0A3"])
+  let g:airline_section_z = airline#section#create([
+        \   '\uF471 %4{g:GetCursorCharcode()}',
+        \   " %3p%%",
+        \   '%4{line(".")}',
+        \   "\uE0A1",
+        \   '%3{col(".")}',
+        \   "\uE0A3"
+        \ ])
+
 """ # }}}
 

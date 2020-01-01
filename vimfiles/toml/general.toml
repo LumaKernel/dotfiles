@@ -15,20 +15,79 @@ repo = 'vim-jp/vimdoc-ja'
 
 
 [[plugins]]
-repo = 'jacoborus/tender.vim'
-hook_post_source = """
-  echom "tender"
-  colorscheme tender
+repo = 'mhinz/vim-startify'
+hook_add = """
+
+  let g:my_startify_message = [
+        \   "\uf120  Welcome to \ue7c5",
+        \   "",
+        \   "Sessions.vim をプロジェクトフォルダ内に置くことでセッションを保存",
+        \   "もしくは :SSave を使う",
+        \   "",
+        \ ]
+
+  let g:startify_enable_special = 0
+  let g:startify_session_dir = '~/.tmp/vim/startify-session'
+
+  let g:startify_custom_header = 'startify#pad(g:my_startify_message)'
+
+  " .git とか (VCS) が見つかるまで上に登って change directory する
+  let g:startify_change_to_dir = 1
+  let g:startify_change_to_vcs_root = 1
+
+
+  " 最新の状態にする
+  let g:startify_update_oldfiles = 0
+
+  let g:startify_session_persistence = 1
+
+  let g:startify_bookmarks = [
+        \   '~/cp',
+        \   '~/mystudy',
+        \   '~/work',
+        \   '~/dotfiles',
+        \   '~/.cache/dein/repos',
+        \]
+
+  function! s:MyColorSelections()
+    return [
+          \   { 'line': 'tender' , 'cmd': 'colo tender' },
+          \   { 'line': 'darkblue' , 'cmd': 'colo darkblue' },
+          \ ]
+  endfunction
+
+
+  let g:startify_commands = [
+      \ ':DeinClean'
+      \ ]
+
+  let g:startify_lists = [
+        \ { 'type': 'bookmarks', 'header': ['   \uf461 ブックマーク'] },
+        \ { 'type': 'files',     'header': ['   \uf490 最近開いたファイル'] },
+        \ { 'type': 'dir',       'header': ['   \uf490 最近開いたファイル in ' .. getcwd()] },
+        \ { 'type': 'sessions',  'header': ['   \ue706 セッション'] },
+        \ { 'type': 'commands',  'header': ['   \uf489 コマンド'] },
+        \ { 'type': function('s:MyColorSelections'),  'header': ['   \u26a1 カラーテーマ'] },
+        \ ]
+
 """
+
+hook_post_source = """
+  augroup MyStartifyConfig
+    au User StartifyReady nunmap <buffer> q
+    au User StartifyReady nunmap <buffer> t
+    au User StartifyReady nunmap <buffer> T
+  augroup END
+"""
+
 
 
 [[plugins]]
-repo = 'skanehira/translate.vim'
-hook_add = """
-let g:translate_source = "en"
-let g:translate_target = "ja"
-let g:translate_winsize = 10
+repo = 'jacoborus/tender.vim'
+hook_post_source = """
+  colorscheme tender
 """
+
 
 [[plugins]]
 repo = 'itchyny/vim-parenmatch'
