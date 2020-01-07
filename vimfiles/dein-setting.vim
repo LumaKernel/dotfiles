@@ -41,7 +41,9 @@ function! DeinClean() abort
   for l:dir in dein#check_clean()
     call s:F.rmdir(l:dir, 'r')
   endfor
+  call dein#update()
 endfunction
 
 command! DeinClean call DeinClean()
+
 

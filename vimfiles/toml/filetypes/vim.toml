@@ -2,14 +2,6 @@
 # Vim プラグイン
 # を書くためのプラグイン
 
-hook_add = """
-  " ALE
-  " TODO
-  " let g:ale_linters["vim"] = ["vint"]
-
-
-"""
-
 [[plugins]]
 repo = 'vim-jp/vital.vim'
 merged = 0

@@ -31,7 +31,8 @@ set noswapfile
 set autoread
 set hidden
 set showcmd
-set wildmode=list:full
+set wildmode=list:longest
+set wildignorecase
 
 set foldmethod=marker
 
@@ -120,5 +121,7 @@ else
   endif
 endif
 
+
+au FileType help if &buftype ==# 'help' | set buftype= | endif
 
 

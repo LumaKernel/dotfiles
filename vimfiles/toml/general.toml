@@ -58,7 +58,8 @@ hook_add = """
 
 
   let g:startify_commands = [
-      \ ':DeinClean'
+      \ ':DeinClean',
+      \ ':CocConfig',
       \ ]
 
   let g:startify_lists = [
@@ -74,9 +75,9 @@ hook_add = """
 
 hook_post_source = """
   augroup MyStartifyConfig
-    au User StartifyReady nunmap <buffer> q
-    au User StartifyReady nunmap <buffer> t
-    au User StartifyReady nunmap <buffer> T
+    au User StartifyReady silent! nunmap <buffer> q
+    au User StartifyReady silent! nunmap <buffer> t
+    au User StartifyReady silent! nunmap <buffer> T
   augroup END
 """
 
@@ -201,7 +202,8 @@ repo = 'roxma/vim-hug-neovim-rpc'
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
-if = '(has("nvim") || has("python3")) && !has("win32unix")'
+# if = '(has("nvim") || has("python3")) && !has("win32unix")'
+if = '0'
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
 '''
@@ -242,10 +244,10 @@ hook_add = '''
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_add = '''
-let g:quickrun_config['_'] = {
-  \ 'outputter' : 'quickfix',
-  \ 'runner' : 'job'
-  \ }
+  let g:quickrun_config['_'] = {
+      \   'outputter' : 'quickfix',
+      \   'runner' : 'job'
+      \ }
   nnoremap <expr> <Leader>0 ":ccl\|QuickRun\<CR>"
 '''
 
@@ -253,7 +255,7 @@ let g:quickrun_config['_'] = {
 repo = 'w0rp/ale' # {{{
 if = '0'
 hook_add = '''
-  エラー行に表示するマーク
+  " エラー行に表示するマーク
   let g:ale_sign_error = '>>'
   let g:ale_sign_warning = '>>'
   
@@ -290,28 +292,77 @@ hook_add = '''
 repo='prabirshrestha/async.vim'
 
 [[plugins]]
+if = '0'
 repo='prabirshrestha/vim-lsp'
 hook_add='''
   if executable('clangd')
-      au User lsp_setup call lsp#register_server({
-          \ 'name': 'clangd',
-          \ 'cmd': {server_info->['clangd']},
-          \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-          \ })
+    au User lsp_setup call lsp#register_server({
+        \   'name': 'clangd',
+        \   'cmd': {server_info->['clangd', '-background-index']},
+        \   'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
   endif
 
-  let g:lsp_signs_enabled = 1         " enable signs
-  let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+  let g:lsp_signs_enabled = 1
+  let g:lsp_diagnostics_echo_cursor = 1
+
+	let g:lsp_preview_float = 1
 
   let g:lsp_signs_error = {'text': '✗'}
   let g:lsp_signs_warning = {'text': '‼'}
+
+  nnoremap 
 '''
 
 [[plugins]]
+if = '0'
 repo='prabirshrestha/asyncomplete.vim'
 
 [[plugins]]
+if = '0'
 repo='prabirshrestha/asyncomplete-lsp.vim'
+
+
+[[plugins]]
+repo = 'neoclide/coc-snippets'
+
+
+[[plugins]]
+if = '1'
+rev = 'release'
+repo = 'neoclide/coc.nvim'
+hook_add = '''
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return col < 1 || getline('.')[col - 1] =~# '\s'
+  endfunction
+
+  inoremap <silent><expr> <TAB>
+    \ pumvisible() ? coc#_select_confirm() :
+    \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+
+  inoremap <silent><expr> <S-TAB>
+    \ pumvisible() ? "\<C-p>" :
+    \ "\<S-TAB>"
+
+  let g:coc_snippet_next = '<tab>'
+
+  inoremap <silent><expr> <C-SPACE>
+    \ coc#refresh()
+
+'''
+
+
+[[plugins]]
+if = '0'
+repo = 'Shougo/deoplete.nvim'
+
+
+[[plugins]]
+repo = 'unblevable/quick-scope'
+
 
 [[plugins]]
 repo='prabirshrestha/asyncomplete-neosnippet.vim'

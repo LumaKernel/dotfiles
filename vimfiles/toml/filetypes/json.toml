@@ -1,7 +1,17 @@
+# json 系も一緒に管理
+
+hook_add = '''
+  augroup my_json
+    au User CocNvimInit call coc#add_extension('coc-json')
+  augroup END
+'''
+
 [[plugins]]
 repo = 'elzr/vim-json'
 hook_add = '''
   let g:vim_json_syntax_conceal = 0
 '''
 
+[[plugins]]
+repo = 'neoclide/jsonc.vim'
 

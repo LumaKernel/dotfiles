@@ -18,13 +18,3 @@ source ~/dotfiles/vimfiles/competitive-programming.vim
 
 source ~/dotfiles/vimfiles/vimscript.vim
 
-
-
-
-
-
-
-
-
-
-
