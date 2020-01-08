@@ -102,6 +102,7 @@ hook_post_source = """
 
 [[plugins]]
 repo = 'jacoborus/tender.vim'
+if = '!g:from_pwsh'
 hook_post_source = """
   colorscheme tender
 """
@@ -113,6 +114,7 @@ repo = 'itchyny/vim-parenmatch'
 
 [[plugins]]
 repo = 'itchyny/vim-cursorword'
+if = '!g:from_pwsh'
 
 
 [[plugins]]
@@ -213,7 +215,7 @@ repo = 'roxma/nvim-yarp'
 
 [[plugins]]
 # NOTE : pip insetall --user pynvim
-if = '!has("nvim") && !has("win32unix")'
+if = '!has("nvim") && !has("win32unix") && !g:from_pwsh'
 repo = 'roxma/vim-hug-neovim-rpc'
 
 
@@ -345,7 +347,7 @@ repo = 'neoclide/coc-snippets'
 
 
 [[plugins]]
-if = '1'
+if = '1 && !g:from_pwsh'
 rev = 'release'
 repo = 'neoclide/coc.nvim'
 hook_add = '''

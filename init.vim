@@ -5,6 +5,7 @@ scriptencoding utf-8
 "   ぶっちゃけ理解したものは消す
 "   :help を，見ろ
 
+let g:from_pwsh = $RunFromPowershell ==# '1'
 
 let g:mapping_descriptions = []
 
@@ -14,6 +15,8 @@ source ~/dotfiles/vimfiles/dein-setting.vim
 source ~/dotfiles/vimfiles/show-whitespace.vim
 source ~/dotfiles/vimfiles/openapps.vim
 source ~/dotfiles/vimfiles/gvim.vim
+
+source ~/dotfiles/vimfiles/setup-powershell.vim
 
 source ~/dotfiles/vimfiles/cpp.vim
 source ~/dotfiles/vimfiles/competitive-programming.vim
