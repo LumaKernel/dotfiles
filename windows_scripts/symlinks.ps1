@@ -1,13 +1,13 @@
 
 Param([switch]$f, [switch]$force)
 
+$force = $f.IsPresent -or $force.IsPresent
+
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole(`
         [Security.Principal.WindowsBuiltInRole] "Administrator")) {
-  sudo iex "$PsCommandPath @Args @PsBoundParameters"
-  exit
+  iex "sudo $PsCommandPath $(if ($force) {"-force"})"
+  exit $?
 }
-
-$force = $f -or $force
 
 $files = @(
   @{target="init.vim"; path=""; name=".vimrc"},
@@ -18,9 +18,10 @@ $files = @(
   ".bashrc",
   ".bash_aliases",
   ".bash_functions",
+  @{target="Microsoft.PowerShell_profile.ps1"; path="Documents/WindowsPowerShell"},
 "")
 
-foreach($file in $files) {
+foreach ($file in $files) {
   if($file.GetType() -eq [string]) {
     if($file -eq "") { continue }
 
@@ -35,14 +36,23 @@ foreach($file in $files) {
   if (-not (Test-Path $file.path)) {
     mkdir $file.path
   }
-
-  if (-not (Test-Path ($file.path + "/" + $file.name)) -or $force) {
+  
+  echo ""
+  echo "now: $($file.path + "/" + $file.name)"
+  if (Test-Path ($file.path + "/" + $file.name)) {
+    echo "already exists"
     if($force) {
+      echo "deleting"
       rm ($file.path + "/" + $file.name)
+    } else {
+      continue
     }
-    New-Item -ItemType SymbolicLink @file
-  } else {
-    echo "already exists: $($file.path + "/" + $file.name)"
+  }
+
+  if (-not (Test-Path ($file.path + "/" + $file.name))) {
+    echo "making symbolic link"
+    New-Item -ItemType SymbolicLink @file | Out-Null
+    if (-not $?) { echo "failed1" }
   }
 }
 

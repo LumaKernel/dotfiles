@@ -7,14 +7,15 @@ command! VimShowHlItem echo synIDattr(synID(line("."), col("."), 1), "name")
 nnoremap <Leader>; :VimShowHlGroup<CR>
 nnoremap <Leader>: :VimShowHlItem<CR>
 
+call add(g:mapping_descriptions, ['<Leader>;', ':VimShowHlGroup'])
+call add(g:mapping_descriptions, ['<Leader>:', ':VimShowHlItem'])
 
 
 " debug
 
 finish
 
-command! GO cd ~/.cache/dein/repos/github.com/LumaKernel/coquille/dev/coq-examples
-command! MES :new | :put =execute('mes') | :only
-command! M :new | :put =g:mymes | :only
+command! MES :new | set buftype=nofile | :put =execute('mes') | :only
+command! M :new | set buftype=nofile | :put =g:mymes | :only
 command! MC :let g:mymes=[]
 

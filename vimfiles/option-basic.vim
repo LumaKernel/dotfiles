@@ -57,6 +57,9 @@ set mouse=
 
 set viewdir=$HOME/.vim_view/
 
+set splitbelow
+set splitright
+
 
 augroup my_IME_setting
   autocmd!
@@ -82,6 +85,9 @@ set expandtab
 " 行頭以外のTab文字の表示幅(スペースいくつ分)
 set tabstop=2
 set shiftwidth=2 " 行頭でのTab文字の表示幅
+
+" K でカーソル下のワードを :help
+set keywordprg=:help
 
 function! s:setup_my_colo()
   if !exists('g:colors_name') | return | endif
@@ -120,8 +126,4 @@ else
     endif
   endif
 endif
-
-
-au FileType help if &buftype ==# 'help' | set buftype= | endif
-
 

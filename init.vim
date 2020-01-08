@@ -6,6 +6,8 @@ scriptencoding utf-8
 "   :help を，見ろ
 
 
+let g:mapping_descriptions = []
+
 source ~/dotfiles/vimfiles/option-basic.vim
 source ~/dotfiles/vimfiles/mapping.vim
 source ~/dotfiles/vimfiles/dein-setting.vim

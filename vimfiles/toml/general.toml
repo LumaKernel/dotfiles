@@ -18,6 +18,23 @@ repo = 'vim-jp/vimdoc-ja'
 repo = 'mhinz/vim-startify'
 hook_add = """
 
+  function s:repeat(str, num)
+    return join(map(range(a:num), 'a:str'), '')
+  endfunction
+
+  function! g:MappingDescriptions()
+    let s:S = vital#vital#import('Data.String')
+    let left_width = max(map(deepcopy(g:mapping_descriptions), 'strlen(v:val[0])')) + 4
+    let width = max(map(deepcopy(g:mapping_descriptions), 'l:left_width + strlen(v:val[1])'))
+    let strs = map(deepcopy(g:mapping_descriptions), '"|  " .. s:S.pad_right(s:S.pad_right(v:val[0], l:left_width) .. v:val[1], l:width) .. "  |"')
+
+    return [
+      \   '+' .. s:repeat('-', 2 + width + 2) .. '+',
+      \ ] + strs + [
+      \   '+' .. s:repeat('-', 2 + width + 2) .. '+',
+      \ ]
+  endfunction
+
   let g:my_startify_message = [
         \   "\uf120  Welcome to \ue7c5",
         \   "",
@@ -29,7 +46,7 @@ hook_add = """
   let g:startify_enable_special = 0
   let g:startify_session_dir = '~/.tmp/vim/startify-session'
 
-  let g:startify_custom_header = 'startify#pad(g:my_startify_message)'
+  let g:startify_custom_header = 'startify#pad(g:my_startify_message + g:MappingDescriptions())'
 
   " .git とか (VCS) が見つかるまで上に登って change directory する
   let g:startify_change_to_dir = 1
@@ -378,6 +395,10 @@ hook_source='''
   "    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
   "    \ }))
 '''
+
+
+[[plugins]]
+repo = 'AndrewRadev/linediff.vim'
 
 
 [[plugins]]

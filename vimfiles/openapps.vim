@@ -6,25 +6,36 @@ scriptencoding utf-8
 " ターミナルでやるのが理想 ?
 
 if has('mac')
-  nnoremap <silent> <Leader>u :!open .<CR>
-  nnoremap <silent> <Leader>o :!open -a Terminal.app .<CR>
-elseif has('win32') || has('win64')
-  if has('gui')
-    nnoremap <silent> <expr> <Leader>u ":silent !start explorer .\<CR>"
-    nnoremap <silent> <Leader>o :silent !start cmd<CR>
-    nnoremap <silent> <expr> <Leader>i ":silent !start " .. $LocalAppData .. "\\wsltty\\bin\\mintty.exe --WSL=\"Ubuntu\" --configdir=\"" .. $AppData .. "\\wsltty\"\<CR>"
+  nnoremap <silent> <Leader>exp :!open .<CR>
+  nnoremap <silent> <Leader>cmd :!open -a Terminal.app .<CR>
 
-    let s:msys_path = expand('~/scoop/apps/msys2/current/msys2_shell.cmd')
-    if executable(s:msys_path)
-      let s:to_reset = ['VIM', 'VIMRUNTIME', 'MYVIMRC', 'MYGVIMRC']
-      let s:env_reset = join(map(s:to_reset, '"set \"" .. v:val .. "=\" && "'), '')
-      let g:msys_run_cmd = ':silent !start cmd /k ' .. s:env_reset .. s:msys_path .. ' -where . -full-path -mingw64 -mintty -no-start && exit' .. "\<CR>"
-      nnoremap <silent> <expr> <Leader>b g:msys_run_cmd
+  call add(g:mapping_descriptions, ['<Leader>exp', 'open Finder'])
+  call add(g:mapping_descriptions, ['<Leader>cmd', 'open Terminal'])
+elseif has('win32') || has('win64')
+  if has('gui') || has('nvim')
+    nnoremap <unique><silent> <expr> <Leader>exp ":silent !start explorer .\<CR>"
+    nnoremap <unique><silent> <Leader>cmd :silent !start cmd<CR>
+    nnoremap <unique><silent> <Leader>pws :silent !start powershell<CR>
+    nnoremap <unique><silent> <expr> <Leader>ubu ":silent !start " .. $LocalAppData .. "\\wsltty\\bin\\mintty.exe --WSL=\"Ubuntu\" --configdir=\"" .. $AppData .. "\\wsltty\"\<CR>"
+    call add(g:mapping_descriptions, ['<Leader>exp', 'open explorer'])
+    call add(g:mapping_descriptions, ['<Leader>cmd', 'open cmd'])
+    call add(g:mapping_descriptions, ['<Leader>pws', 'open powershell'])
+
+    let s:msys_exe = 'msys2'
+    if executable(s:msys_exe)
+      let s:to_unset = ['VIM', 'VIMRUNTIME', 'MYVIMRC', 'MYGVIMRC']
+      let s:env_unset = join(map(s:to_unset, '"set \"" .. v:val .. "=\" && "'), '')
+      let g:msys_run_cmd = ':silent !start cmd /k ' .. s:env_unset .. s:msys_exe .. ' -where . -full-path -mingw64 -mintty -no-start && exit' .. "\<CR>"
+      nnoremap <silent> <expr> <Leader>bas g:msys_run_cmd
+
+      call add(g:mapping_descriptions, ['<Leader>bas', 'open msys2'])
     endif
   endif
 elseif has('unix')
   " --working-directory=は必要なし
-  nnoremap <silent> <Leader>u :!xdg-open .<CR>
-  nnoremap <silent> <Leader>o :!gnome-terminal<CR>
+  nnoremap <silent> <Leader>exp :!xdg-open .<CR>
+  nnoremap <silent> <Leader>cmd :!gnome-terminal<CR>
+  call add(g:mapping_descriptions, ['<Leader>exp', 'xdg-open'])
+  call add(g:mapping_descriptions, ['<Leader>cmd', 'open gnome-terminal'])
 endif
 
