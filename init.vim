@@ -11,20 +11,20 @@ let g:from_pwsh = !has('nvim') && $RunFromPowershell ==# '1'
 
 let g:mapping_descriptions = []
 
-source ~/dotfiles/vimfiles/option-basic.vim
-source ~/dotfiles/vimfiles/mapping.vim
-source ~/dotfiles/vimfiles/dein-setting.vim
-source ~/dotfiles/vimfiles/show-whitespace.vim
-source ~/dotfiles/vimfiles/openapps.vim
-source ~/dotfiles/vimfiles/colors.vim
+source ~/dotfiles/vim/option-basic.vim
+source ~/dotfiles/vim/mapping.vim
+source ~/dotfiles/vim/dein-setting.vim
+source ~/dotfiles/vim/show-whitespace.vim
+source ~/dotfiles/vim/openapps.vim
+source ~/dotfiles/vim/colors.vim
 
-source ~/dotfiles/vimfiles/gvim.vim
+source ~/dotfiles/vim/gvim.vim
 
-source ~/dotfiles/vimfiles/setup-powershell.vim
+source ~/dotfiles/vim/setup-powershell.vim
 
-source ~/dotfiles/vimfiles/cpp.vim
-source ~/dotfiles/vimfiles/competitive-programming.vim
+source ~/dotfiles/vim/cpp.vim
+source ~/dotfiles/vim/competitive-programming.vim
 
-source ~/dotfiles/vimfiles/vimscript.vim
+source ~/dotfiles/vim/vimscript.vim
 
 

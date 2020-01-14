@@ -13,6 +13,7 @@ $files = @(
   @{target="init.vim"; path=""; name=".vimrc"},
   @{target="init.vim"; path="AppData/Local/nvim"},
   @{target="ginit.vim"; path="AppData/Local/nvim"},
+  @{target="vim/coc-setting.json"; path="AppData/Local/nvim"},
   ".minttyrc",
   ".bash_profile",
   ".bashrc",
@@ -28,17 +29,21 @@ foreach ($file in $files) {
     $file = @{target=$file; path=""}
   }
 
-  if (-not $file.ContainsKey("name")) { $file.name = $file.target }
   $file.target = "~/dotfiles/" + $file.target
 
   if (!$file.path) { $file.path = "~" }
   else { $file.path = Resolve-Path $("~/" + $file.path) }
 
   if ($file.fullpath) {
-    $file.path = $file.fullpath
+    $file.path = Split-Path -Path $file.fullpath
+    $name = Split-Path -Leaf $file.fullpath
+    if ($name) {
+      $file.name = $name
+    }
     $file.Remove("fullpath")
   }
 
+  if (!$file.ContainsKey("name")) { $file.name = $file.target }
 
   if (-not (Test-Path $file.path)) {
     mkdir $file.path
