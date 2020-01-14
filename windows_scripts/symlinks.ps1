@@ -33,7 +33,7 @@ foreach ($file in $files) {
   $file.target = "~/dotfiles/" + $file.target
 
   if (!$file.path) { $file.path = "~" }
-  else { $file.path = (Resolve-Path $("~/" + $file.path)).Path }
+  else { $file.path = (Resolve-Path ("~/" + $file.path)).Path }
 
   if ($file.fullpath) {
     $file.path = Split-Path $file.fullpath
@@ -64,7 +64,11 @@ foreach ($file in $files) {
 
   if (!(Test-Path ($file.path + "/" + $file.name))) {
     echo "making symbolic link"
-    mkdir $file.path
+
+    if (!(Test-Path ($file.path))) {
+      mkdir ($file.path)
+    }
+
     New-Item -ItemType SymbolicLink @file | Out-Null
     if (!$?) { echo "failed1" }
   }
