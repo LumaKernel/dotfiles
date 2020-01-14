@@ -8,10 +8,10 @@ let g:quickrun_config = get(g:, 'quickrun_config', {})
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
     call dein#add(s:dein_dir)
-    call dein#load_toml('~/dotfiles/vimfiles/toml/general.toml')
-    call dein#load_toml('~/dotfiles/vimfiles/toml/airline.toml')
+    call dein#load_toml('~/dotfiles/vim/toml/general.toml')
+    call dein#load_toml('~/dotfiles/vim/toml/airline.toml')
     
-    for s:toml in glob('~/dotfiles/vimfiles/toml/filetypes/*.toml', 1, 1)
+    for s:toml in glob('~/dotfiles/vim/toml/filetypes/*.toml', 1, 1)
       call dein#load_toml(s:toml)
     endfor
   call dein#end()
