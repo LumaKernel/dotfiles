@@ -15,8 +15,6 @@ hook_add = '''
 [[plugins]]
 repo = 'neoclide/jsonc.vim'
 # 設定されてるんだけど，順番の関係か，設定しないとうまく動かない
-hook_add = '''
-  augroup init_vim
-    au BufNewFile,BufRead coc-settings.json setlocal ft=jsonc
-  augroup END
+hook_post_source = '''
+  au init_vim BufNewFile,BufRead coc-settings.json setlocal ft=jsonc
 '''
