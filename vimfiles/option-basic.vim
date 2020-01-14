@@ -113,7 +113,7 @@ if has('nvim')
   elseif (has('win32') || has('win64'))
     let g:python3_host_prog = split(system('where python'), "\n")[0]
   endif
-else
+elseif !g:from_pwsh
   if has('win32unix')
     " TODO : MSYS2 のpython 対応をどうするかはなやましい
     " Win 側の python に即席でパスを通すのもありかもしれないけど…

@@ -1,5 +1,11 @@
 echo '.bashrc'
 
+unset VIM
+unset VIMRUNTIME
+unset MYVIMRC
+unset MYGVIMRC
+
+
 source /c/msys64/usr/share/git/completion/git-prompt.sh
 source /c/msys64/usr/share/git/completion/git-completion.bash
 GIT_PS1_SHOWDIRTYSTATE=true

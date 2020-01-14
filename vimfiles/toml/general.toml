@@ -75,8 +75,9 @@ hook_add = """
 
 
   let g:startify_commands = [
-      \ ':DeinClean',
-      \ ':CocConfig',
+      \   ':DeinClean',
+      \   ':call dein#recache_runtimepath()',
+      \   ':CocConfig',
       \ ]
 
   let g:startify_lists = [
@@ -165,17 +166,22 @@ repo = 'scrooloose/nerdtree'
 depends = ['vimproc.vim']
 hook_add = '''
   let g:NERDTreeShowHidden=1
-
+  
   " 最小限，とてもいい
   let g:NERDTreeDirArrowExpandable="\uf114"
   let g:NERDTreeDirArrowCollapsible="\uf115"
   let g:NERDTreeWinSize=24
-
+  
   nnoremap <silent> <Leader>s :NERDTree<CR>
   augroup MyNerdTree
     au!
     au FileType nerdtree nmap <buffer> za o
   augroup END
+'''
+
+hook_post_source = '''
+  " TODO
+  au! NERDTree WinLeave,BufLeave
 '''
 
 
@@ -209,13 +215,13 @@ repo = 'Shougo/neosnippet-snippets'
 
 
 [[plugins]]
-if = '!has("nvim") && !has("win32unix")'
+if = 'has("python3") && !has("nvim") && !has("win32unix")'
 repo = 'roxma/nvim-yarp'
 
 
 [[plugins]]
 # NOTE : pip insetall --user pynvim
-if = '!has("nvim") && !has("win32unix") && !g:from_pwsh'
+if = 'has("python3") && !has("nvim") && !has("win32unix")'
 repo = 'roxma/vim-hug-neovim-rpc'
 
 
@@ -344,10 +350,11 @@ repo='prabirshrestha/asyncomplete-lsp.vim'
 
 [[plugins]]
 repo = 'neoclide/coc-snippets'
+depends = 'coc.nvim'
 
 
 [[plugins]]
-if = '1 && !g:from_pwsh'
+if = 'has("python3")'
 rev = 'release'
 repo = 'neoclide/coc.nvim'
 hook_add = '''
@@ -357,8 +364,7 @@ hook_add = '''
   endfunction
 
   inoremap <silent><expr> <TAB>
-    \ pumvisible() ? coc#_select_confirm() :
-    \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+    \ pumvisible() ? "\<C-n>" :
     \ <SID>check_back_space() ? "\<TAB>" :
     \ coc#refresh()
 
@@ -371,6 +377,53 @@ hook_add = '''
   inoremap <silent><expr> <C-SPACE>
     \ coc#refresh()
 
+
+  nmap <silent> [g <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+
+  nmap <silent> <F8> <Plug>(coc-format)
+
+
+  function! CocNvimHiDef()
+    hi CocUnderline    cterm=underline gui=underline
+    hi CocErrorSign    ctermfg=Red     guifg=#ff0000
+    hi CocWarningSign  ctermfg=Brown   guifg=#ff922b
+    hi CocInfoSign     ctermfg=Yellow  guifg=#fab005
+    hi CocHintSign     ctermfg=Blue    guifg=#15aabf
+    hi CocSelectedText ctermfg=Red     guifg=#fb4934
+    hi CocCodeLens     ctermfg=Gray    guifg=#999999
+    hi link cocerrorfloat       CocFloating
+    hi link cocwarningfloat     CocFloating
+    hi link cocinfofloat        CocFloating
+    hi link cochintfloat        CocFloating
+    hi link CocErrorHighlight   Error
+    hi link CocWarningHighlight Warning
+    hi link CocInfoHighlight    CocUnderline
+    hi link CocHintHighlight    CocUnderline
+    hi link CocListMode ModeMsg
+    hi link CocListPath Comment
+    hi link CocHighlightText  CursorColumn
+
+    if has('nvim')
+      hi link CocFloating NormalFloat
+    else
+      hi link CocFloating Pmenu
+    endif
+
+    hi link CocHoverRange     Search
+    hi link CocCursorRange    Search
+    hi link CocHighlightRead  CocHighlightText
+    hi link CocHighlightWrite CocHighlightText
+  endfunction
+  augroup my_coc_nvim_hi
+    autocmd Syntax * :call CocNvimHiDef()
+  augroup END
+  call CocNvimHiDef()
 '''
 
 

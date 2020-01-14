@@ -18,20 +18,27 @@ $files = @(
   ".bashrc",
   ".bash_aliases",
   ".bash_functions",
-  @{target="Microsoft.PowerShell_profile.ps1"; path="Documents/WindowsPowerShell"},
+  @{target="Microsoft.PowerShell_profile.ps1"; fullpath=$profile},
 "")
 
 foreach ($file in $files) {
   if($file.GetType() -eq [string]) {
-    if($file -eq "") { continue }
+    if(!$file) { continue }
 
     $file = @{target=$file; path=""}
   }
 
   if (-not $file.ContainsKey("name")) { $file.name = $file.target }
   $file.target = "~/dotfiles/" + $file.target
-  if ($file.path -eq "") { $file.path = "~" }
-  else { $file.path = "~/" + $file.path }
+
+  if (!$file.path) { $file.path = "~" }
+  else { $file.path = Resolve-Path $("~/" + $file.path) }
+
+  if ($file.fullpath) {
+    $file.path = $file.fullpath
+    $file.Remove("fullpath")
+  }
+
 
   if (-not (Test-Path $file.path)) {
     mkdir $file.path

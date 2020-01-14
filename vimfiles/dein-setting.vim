@@ -10,7 +10,7 @@ if dein#load_state(s:dein_dir)
     call dein#add(s:dein_dir)
     call dein#load_toml('~/dotfiles/vimfiles/toml/general.toml')
     call dein#load_toml('~/dotfiles/vimfiles/toml/airline.toml')
-
+    
     for s:toml in glob('~/dotfiles/vimfiles/toml/filetypes/*.toml', 1, 1)
       call dein#load_toml(s:toml)
     endfor
