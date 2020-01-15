@@ -1,0 +1,4 @@
+[[plugins]]
+repo = 'neoclide/coc-snippets'
+depends = 'coc.nvim'
+

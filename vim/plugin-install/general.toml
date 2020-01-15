@@ -15,90 +15,7 @@ repo = 'vim-jp/vimdoc-ja'
 
 
 [[plugins]]
-repo = 'mhinz/vim-startify'
-hook_add = """
-
-  function s:repeat(str, num)
-    return join(map(range(a:num), 'a:str'), '')
-  endfunction
-
-  function! g:MappingDescriptions()
-    let s:S = vital#vital#import('Data.String')
-    let left_width = max(map(deepcopy(g:mapping_descriptions), 'strlen(v:val[0])')) + 4
-    let width = max(map(deepcopy(g:mapping_descriptions), 'l:left_width + strlen(v:val[1])'))
-    let strs = map(deepcopy(g:mapping_descriptions), '"|  " .. s:S.pad_right(s:S.pad_right(v:val[0], l:left_width) .. v:val[1], l:width) .. "  |"')
-
-    return [
-      \   '+' .. s:repeat('-', 2 + width + 2) .. '+',
-      \ ] + strs + [
-      \   '+' .. s:repeat('-', 2 + width + 2) .. '+',
-      \ ]
-  endfunction
-
-  let g:my_startify_message = [
-        \   "\uf120  Welcome to \ue7c5",
-        \   "",
-        \   "Sessions.vim をプロジェクトフォルダ内に置くことでセッションを保存",
-        \   "もしくは :SSave を使う",
-        \   "",
-        \ ]
-
-  let g:startify_enable_special = 0
-  let g:startify_session_dir = '~/.tmp/vim/startify-session'
-
-  let g:startify_custom_header = 'startify#pad(g:my_startify_message + g:MappingDescriptions())'
-
-  " .git とか (VCS) が見つかるまで上に登って change directory する
-  let g:startify_change_to_dir = 1
-  let g:startify_change_to_vcs_root = 1
-
-
-  " 最新の状態にする
-  let g:startify_update_oldfiles = 0
-
-  let g:startify_session_persistence = 1
-
-  let g:startify_bookmarks = [
-        \   '~/cp',
-        \   '~/mystudy',
-        \   '~/work',
-        \   '~/dotfiles',
-        \   '~/.cache/dein/repos',
-        \]
-
-  function! s:MyColorSelections()
-    return [
-          \   { 'line': 'tender' , 'cmd': 'colo tender' },
-          \   { 'line': 'darkblue' , 'cmd': 'colo darkblue' },
-          \ ]
-  endfunction
-
-
-  let g:startify_commands = [
-      \   ':DeinClean',
-      \   ':call dein#recache_runtimepath()',
-      \   ':CocConfig',
-      \ ]
-
-  let g:startify_lists = [
-        \ { 'type': 'bookmarks', 'header': ['   \uf461 ブックマーク'] },
-        \ { 'type': 'files',     'header': ['   \uf490 最近開いたファイル'] },
-        \ { 'type': 'dir',       'header': ['   \uf490 最近開いたファイル in ' .. getcwd()] },
-        \ { 'type': 'sessions',  'header': ['   \ue706 セッション'] },
-        \ { 'type': 'commands',  'header': ['   \uf489 コマンド'] },
-        \ { 'type': function('s:MyColorSelections'),  'header': ['   \u26a1 カラーテーマ'] },
-        \ ]
-
-"""
-
-hook_post_source = """
-  augroup MyStartifyConfig
-    au User StartifyReady silent! nunmap <buffer> q
-    au User StartifyReady silent! nunmap <buffer> t
-    au User StartifyReady silent! nunmap <buffer> T
-  augroup END
-"""
-
+repo = 'tyru/open-browser.vim'
 
 
 [[plugins]]
@@ -194,7 +111,8 @@ depends = ['nerdtree']
 repo = 'Shougo/vimshell.vim'
 depends = ['vimproc.vim']
 hook_add = '''
-  nnoremap <silent> <Leader>h :VimShell<CR>
+  nnoremap <unique><silent> <Leader>h :VimShell<CR>
+  let g:mapping_descriptions = ['<Leader>h', ':VimShell']
 '''
 
 
@@ -318,113 +236,11 @@ repo='prabirshrestha/async.vim'
 
 [[plugins]]
 if = '0'
-repo='prabirshrestha/vim-lsp'
-hook_add='''
-  if executable('clangd')
-    au User lsp_setup call lsp#register_server({
-        \   'name': 'clangd',
-        \   'cmd': {server_info->['clangd', '-background-index']},
-        \   'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ })
-  endif
-
-  let g:lsp_signs_enabled = 1
-  let g:lsp_diagnostics_echo_cursor = 1
-
-	let g:lsp_preview_float = 1
-
-  let g:lsp_signs_error = {'text': '✗'}
-  let g:lsp_signs_warning = {'text': '‼'}
-
-  nnoremap 
-'''
-
-[[plugins]]
-if = '0'
 repo='prabirshrestha/asyncomplete.vim'
 
 [[plugins]]
 if = '0'
 repo='prabirshrestha/asyncomplete-lsp.vim'
-
-
-[[plugins]]
-repo = 'neoclide/coc-snippets'
-depends = 'coc.nvim'
-
-
-[[plugins]]
-if = 'has("python3")'
-rev = 'release'
-repo = 'neoclide/coc.nvim'
-hook_add = '''
-  function! s:check_back_space() abort
-    let col = col('.') - 1
-    return col < 1 || getline('.')[col - 1] =~# '\s'
-  endfunction
-
-  inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-
-  inoremap <silent><expr> <S-TAB>
-    \ pumvisible() ? "\<C-p>" :
-    \ "\<S-TAB>"
-
-  let g:coc_snippet_next = '<tab>'
-
-  inoremap <silent><expr> <C-SPACE>
-    \ coc#refresh()
-
-
-  nmap <silent> [g <Plug>(coc-diagnostic-prev)
-  nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-  nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> gi <Plug>(coc-implementation)
-  nmap <silent> gr <Plug>(coc-references)
-
-  nmap <silent> <F8> <Plug>(coc-format)
-
-
-  function! CocNvimHiDef()
-    hi CocUnderline    cterm=underline gui=underline
-    hi CocErrorSign    ctermfg=Red     guifg=#ff0000
-    hi CocWarningSign  ctermfg=Brown   guifg=#ff922b
-    hi CocInfoSign     ctermfg=Yellow  guifg=#fab005
-    hi CocHintSign     ctermfg=Blue    guifg=#15aabf
-    hi CocSelectedText ctermfg=Red     guifg=#fb4934
-    hi CocCodeLens     ctermfg=Gray    guifg=#999999
-    hi link cocerrorfloat       CocFloating
-    hi link cocwarningfloat     CocFloating
-    hi link cocinfofloat        CocFloating
-    hi link cochintfloat        CocFloating
-    hi link CocErrorHighlight   Error
-    hi link CocWarningHighlight Warning
-    hi link CocInfoHighlight    CocUnderline
-    hi link CocHintHighlight    CocUnderline
-    hi link CocListMode ModeMsg
-    hi link CocListPath Comment
-    hi link CocHighlightText  CursorColumn
-
-    if has('nvim')
-      hi link CocFloating NormalFloat
-    else
-      hi link CocFloating Pmenu
-    endif
-
-    hi link CocHoverRange     Search
-    hi link CocCursorRange    Search
-    hi link CocHighlightRead  CocHighlightText
-    hi link CocHighlightWrite CocHighlightText
-  endfunction
-  augroup my_coc_nvim_hi
-    autocmd Syntax * :call CocNvimHiDef()
-  augroup END
-  call CocNvimHiDef()
-'''
 
 
 [[plugins]]
