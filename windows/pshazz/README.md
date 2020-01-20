@@ -4,10 +4,14 @@ pshazz/ 配下を Public Domain とします．
 
 別のリポジトリにしたほうがいいかもしれない，需要があればそうする．
 
+concfg で [lumc-vs-code-dark-plus.json](https://github.com/LumaKernel/dotfiles/master/windows/concfg/lumc-vs-code-dark-plus.json) を使うことを想定．
+
+あまり色々なスタイルに対応するのもなあ，という感じ．one-dark とかかっこいいけど．
+
 
 # 使い方
 
-dotfiles とは別に，独立で使う方法
+dotfiles とは別に，独立で使う方法．
 
 
 ### 前提
@@ -38,6 +42,4 @@ function global:pshazz_rightarrow {
   return (([char]0xe0b8) + " ")
 }
 ```
-
-
 

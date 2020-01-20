@@ -23,11 +23,11 @@ $files = @(
 )
 
 if( (gcm pwsh -ea 0) -and (pwsh -NoProfile -Command "`$profile")) {
-  $files += @(@{target="Microsoft.PowerShell_profile.ps1"; fullpath=@($(pwsh -NoProfile -Command "`$profile"))[0]})
+  $files += @(@{target="windows/profile.ps1"; fullpath=@($(pwsh -NoProfile -Command "`$profile"))[0]})
 }
 
 if( (gcm powershell -ea 0) -and (powershell -NoProfile -Command "`$profile")) {
-  $files += @(@{target="Microsoft.PowerShell_profile.ps1"; fullpath=@($(powershell -NoProfile -Command "`$profile"))[0]})
+  $files += @(@{target="windows/profile.ps1"; fullpath=@($(powershell -NoProfile -Command "`$profile"))[0]})
 }
 
 # -- pshazz
@@ -56,7 +56,6 @@ foreach ($file in $files) {
   else { $file.path = (Resolve-Path ("~/" + $file.path)).Path }
 
   if ($file.fullpath) {
-    Set-PSDebug -Step
     $file.path = Split-Path $file.fullpath
     $name = Split-Path $file.fullpath -Leaf
     if ($name) {
@@ -77,7 +76,7 @@ foreach ($file in $files) {
     echo "already exists"
     if($force) {
       echo "deleting"
-      rm -recurse ($file.path + "/" + $file.name)
+      (Get-Item ($file.path + "/" + $file.name)).Delete()
     } else {
       continue
     }

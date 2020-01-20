@@ -18,21 +18,21 @@
     },
     "prompt": [
         ["Black", "Cyan", " PS$(if($PSVersionTable.PSEdition -eq 'Core'){'Core'}else{}) $($PSVersionTable.PSVersion.Major) "],
-        ["Cyan", "Blue", "$rightarrow"],
+        ["Cyan", "DarkBlue", "$rightarrow"],
 
-        ["White", "Blue", "$time "],
-        ["Blue", "DarkBlue", "$rightarrow"],
+        ["Black", "DarkBlue", "$time "],
+        ["DarkBlue", "Blue", "$rightarrow"],
 
-        ["White", "DarkBlue", "$path "],
-        ["DarkBlue", "", "$rightarrow", "$no_git"],
+        ["Black", "Blue", "$path "],
+        ["Blue", "", "$rightarrow", "$no_git"],
 
-        [ "DarkBlue", "Green", "$rightarrow",         "$(if(  $is_git -and !$git_dirty  ){1}else{})" ],
+        [ "Blue", "Green", "$rightarrow",         "$(if(  $is_git -and !$git_dirty  ){1}else{})" ],
         [ "Black",    "Green", "\ue0a0 $git_branch ", "$(if(  $is_git -and !$git_dirty  ){1}else{})" ],
         [ "Black",    "Green", "\u2713 ",             "$(if(  $is_git -and !$git_dirty  ){1}else{})" ],
         [ "Black",    "Green", "$git_remote_state ",  "$(if(  $is_git -and !$git_dirty  ){1}else{})" ],
         [ "Green",    "",      "$rightarrow",         "$(if(  $is_git -and !$git_dirty  ){1}else{})" ],
 
-        [ "DarkBlue", "Yellow", "$rightarrow",                            "$(if(  $is_git -and $git_dirty  ){1}else{})" ],
+        [ "Blue", "Yellow", "$rightarrow",                            "$(if(  $is_git -and $git_dirty  ){1}else{})" ],
         [ "Black",    "Yellow", "\ue0a0 $git_branch ",                    "$(if(  $is_git -and $git_dirty  ){1}else{})" ],
         [ "Red",      "Yellow", "$(if($git_unstaged){\"\u00d7\"}else{})", "$(if(  $is_git -and $git_dirty  ){1}else{})" ],
         [ "Black",    "Yellow", "$git_remote_state ",                     "$(if(  $is_git -and $git_dirty  ){1}else{})" ],

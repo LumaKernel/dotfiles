@@ -1,6 +1,6 @@
 $env:RunFromPowershell = 1
 
-try{ if ( gcm chcp -ea 0 ) { chcp 65001 | Out-Null } } catch { }
+# try{ if ( gcm chcp -ea 0 ) { chcp 65001 | Out-Null } } catch { }
 
 $env_to_del = @(
   "VIM"
@@ -14,18 +14,26 @@ foreach ($var in $env_to_del) {
 }
 
 
-# Console の設定
+
+# -- PowerShell Core 向け
+# 黒いやつを起動した時に HOME に移動するように
+
+if ( $PSVersionTable.PSEdition -eq 'Core' ) {
+  if ( !$env:PS_DoNotCDHOME ) {
+    if ((pwd).Path -eq $PSHOME) {
+      cd $HOME
+    }
+  }
+}
+
+$env:PS_DoNotCDHOME = 1
+
+
+
+# -- Console の設定
 
 try {
   [console]::BufferHeight = [math]::Max(3000, [console]::BufferHeight)
-} catch { }
-
-
-# GUI の設定
-
-try {
-  $Host.UI.RawUI.BackgroundColor = "Black"
-  $Host.UI.RawUI.ForegroundColor = "White"
 } catch { }
 
 
@@ -55,9 +63,10 @@ if (gcm pshazz -ea 0) {
     }
   }
 
+  # return
   try {
-    pshazz use lumc-shell
     pshazz init
+    pshazz use lumc-shell
     Init-Pshazz
   } catch { }
 

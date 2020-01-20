@@ -12,7 +12,12 @@ scoop install vim
 scoop install neovim
 scoop install wsl-terminal
 scoop install python36
-scoop install llvm
+# scoop install llvm
+
+scoop install concfg
+scoop install pshazz
+
+concfg import ~/dotifles/ -n
 
 cd ~
 git clone https://github.com/LumaKernel/dotfiles ~/dotfiles

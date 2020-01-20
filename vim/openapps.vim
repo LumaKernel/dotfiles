@@ -19,7 +19,11 @@ elseif has('win32') || has('win64')
 
     nnoremap <unique><silent> <Leader>exp :silent !start explorer .<CR>
     exe 'nnoremap <unique><silent> <Leader>cmd :silent !start ' .. s:env_unset .. "\<CR>"
-    nnoremap <unique><silent> <Leader>pws :silent !start powershell<CR>
+    if executable('pwsh')
+      nnoremap <unique><silent> <Leader>pws :silent !start pwsh<CR>
+    elseif executable('powershell')
+      nnoremap <unique><silent> <Leader>pws :silent !start powershell<CR>
+    endif
     nnoremap <unique><silent><expr> <Leader>ubu ":silent !start " .. $LocalAppData .. "\\wsltty\\bin\\mintty.exe --WSL=\"Ubuntu\" --configdir=\"" .. $AppData .. "\\wsltty\"\<CR>"
     call add(g:mapping_descriptions, ['<Leader>exp', 'open explorer'])
     call add(g:mapping_descriptions, ['<Leader>cmd', 'open cmd'])
