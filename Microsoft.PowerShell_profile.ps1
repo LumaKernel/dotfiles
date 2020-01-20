@@ -12,4 +12,6 @@ foreach ($var in $env_to_del) {
 
 Set-Alias checkvers ~/scoop/apps/scoop/current/bin/checkver.ps1
 
-[console]::BufferHeight = [math]::Max(3000, [console]::BufferHeight)
+try {
+  [console]::BufferHeight = [math]::Max(3000, [console]::BufferHeight)
+} catch { }

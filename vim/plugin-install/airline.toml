@@ -1,6 +1,6 @@
 
 [[plugins]]
-repo = 'vim-airline/vim-airline' # {{{
+repo = 'vim-airline/vim-airline'
 hook_add = """
   let g:airline_powerline_fonts = 1
   " Powerline Extra Symbols も使っている
@@ -48,11 +48,11 @@ hook_add = """
       \ 'Rv'     : 'R',
       \ 's'      : 'S',
       \ 'S'      : 'S',
-      \ ''     : 'S',
+      \ "\<C-s>" : 'S',
       \ 't'      : 'T',
       \ 'v'      : 'V',
       \ 'V'      : 'V',
-      \ ''     : 'V',
+      \ "\<C-v>" : 'V',
       \ }
 
 
@@ -80,5 +80,5 @@ hook_add = """
         \   "\uE0A3"
         \ ])
 
-""" # }}}
+"""
 

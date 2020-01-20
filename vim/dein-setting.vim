@@ -8,24 +8,23 @@ let s:dir = expand('<sfile>:h')
 
 let g:quickrun_config = get(g:, 'quickrun_config', {})
 if dein#load_state(s:dein_dir)
+
   call dein#begin(s:dein_dir)
+
     call dein#add(s:dein_dir)
-    call dein#load_toml(s:dir .. '/plugin-install/general.toml')
-    call dein#load_toml(s:dir .. '/plugin-install/airline.toml')
-    
+
+    call dein#add(resolve(s:dir .. '/vimfiles'), { 'merged' : 0 })
+
     for s:toml in glob(s:dir .. '/plugin-install/*.toml', 1, 1)
       call dein#load_toml(s:toml)
     endfor
-    
-    for s:vim in glob(s:dir .. '/plugin-install/*.vim', 1, 1)
-      execute 'source ' .. s:vim
-    endfor
-    
+
     for s:toml in glob(s:dir .. '/plugin-install/filetypes/*.toml', 1, 1)
       call dein#load_toml(s:toml)
     endfor
 
   call dein#end()
+
   call dein#call_hook('source')
 
   call dein#save_state()
@@ -34,8 +33,7 @@ if dein#load_state(s:dein_dir)
   endif
 endif
 
-augroup my_dein_hook
-  au!
+augroup init_vim
   if v:vim_did_enter
     call dein#call_hook('post_source')
   else

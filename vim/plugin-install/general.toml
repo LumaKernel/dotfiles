@@ -96,11 +96,6 @@ hook_add = '''
   augroup END
 '''
 
-hook_post_source = '''
-  " TODO
-  au! NERDTree WinLeave,BufLeave
-'''
-
 
 [[plugins]]
 repo = 'Xuyuanp/nerdtree-git-plugin'
@@ -112,7 +107,7 @@ repo = 'Shougo/vimshell.vim'
 depends = ['vimproc.vim']
 hook_add = '''
   nnoremap <unique><silent> <Leader>h :VimShell<CR>
-  let g:mapping_descriptions = ['<Leader>h', ':VimShell']
+  let g:mapping_descriptions = [['<Leader>h', ':VimShell']]
 '''
 
 
@@ -141,15 +136,6 @@ repo = 'roxma/nvim-yarp'
 # NOTE : pip insetall --user pynvim
 if = 'has("python3") && !has("nvim") && !has("win32unix")'
 repo = 'roxma/vim-hug-neovim-rpc'
-
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-# if = '(has("nvim") || has("python3")) && !has("win32unix")'
-if = '0'
-hook_add = '''
-  let g:deoplete#enable_at_startup = 1
-'''
 
 
 [[plugins]]
@@ -230,24 +216,6 @@ hook_add = '''
 # }}}
 
 
-
-[[plugins]]
-repo='prabirshrestha/async.vim'
-
-[[plugins]]
-if = '0'
-repo='prabirshrestha/asyncomplete.vim'
-
-[[plugins]]
-if = '0'
-repo='prabirshrestha/asyncomplete-lsp.vim'
-
-
-[[plugins]]
-if = '0'
-repo = 'Shougo/deoplete.nvim'
-
-
 [[plugins]]
 repo = 'unblevable/quick-scope'
 
@@ -270,13 +238,12 @@ hook_source='''
 
 [[plugins]]
 repo = 'AndrewRadev/linediff.vim'
+# Visual モードで :Linediff
 
 
 [[plugins]]
-repo = 'majutsushi/tagbar'
+repo = 'liuchengxu/vista.vim'
 hook_add = '''
-  let g:tagbar_width = 60
-  let g:tagbar_autoshowtag = 1
 '''
 
 
@@ -296,7 +263,7 @@ repo = 'luochen1990/rainbow'
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 hook_add = """
-  xmap ga <Plug>(EasyAlign)
-  nmap ga <Plug>(EasyAlign)
+  xmap ga <Plug>(LiveEasyAlign)
+  nmap ga <Plug>(LiveEasyAlign)
 """
 

@@ -1,11 +1,13 @@
 function! DefineColors() abort
   let bg_tup = s:toTuple(synIDattr(hlID('Normal'), 'bg#'))
 
-  let warning_bg       = s:toString(s:col_mult(bg_tup, [2, 2, 1]))
-  let error_bg       = s:toString(s:col_mult(bg_tup, [3, 1, 1]))
+  let warning_bg = s:toString(s:col_mult(bg_tup, [2, 2, 1]))
+  let error_bg   = s:toString(s:col_mult(bg_tup, [3, 1, 1]))
+  let info_bg    = s:toString(s:col_mult(bg_tup, [1, 1, 3]))
 
   exe 'hi Warning ctermbg=58  guibg=' .. warning_bg
   exe 'hi Error   cterm=NONE ctermbg=160 ctermfg=NONE gui=NONE guifg=NONE guibg=' .. error_bg
+  exe 'hi Info    cterm=NONE ctermbg=18 ctermfg=NONE gui=NONE guifg=NONE guibg=' .. info_bg
 endfunction
 
 

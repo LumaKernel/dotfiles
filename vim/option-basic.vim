@@ -8,7 +8,7 @@ syntax enable
 set number
 set cursorline
 set cursorcolumn
-set virtualedit=onemore
+set virtualedit=block,onemore
 set smartindent
 set laststatus=2
 set notitle
@@ -88,6 +88,19 @@ set shiftwidth=2 " 行頭でのTab文字の表示幅
 
 " K でカーソル下のワードを :help
 set keywordprg=:help
+
+
+
+if has('nvim')
+  set pumblend=20
+  set winblend=20
+endif
+
+
+
+
+
+
 
 function! s:setup_my_colo()
   if !exists('g:colors_name') | return | endif
