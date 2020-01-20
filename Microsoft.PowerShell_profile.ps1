@@ -1,5 +1,7 @@
 $env:RunFromPowershell = 1
 
+try{ if ( gcm chcp -ea 0 ) { chcp 65001 | Out-Null } } catch { }
+
 $env_to_del = @(
   "VIM"
   "VIMRUNTIME"
@@ -11,8 +13,19 @@ foreach ($var in $env_to_del) {
   Remove-Item env:$var -ErrorAction SilentlyContinue
 }
 
+
+# Console の設定
+
 try {
   [console]::BufferHeight = [math]::Max(3000, [console]::BufferHeight)
+} catch { }
+
+
+# GUI の設定
+
+try {
+  $Host.UI.RawUI.BackgroundColor = "Black"
+  $Host.UI.RawUI.ForegroundColor = "White"
 } catch { }
 
 
