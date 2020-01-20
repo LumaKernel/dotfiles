@@ -1,0 +1,51 @@
+{
+    "plugins": ["git", "hg", "z", "aliases", "dircolors"],
+    "dircolors": {
+        "dirs": [[".*", "cyan", ""]],
+        "files": [
+            ["(?ix).(7z|zip|tar|gz|rar)$", "darkcyan", ""],
+            [
+                "(?ix).(exe|bat|cmd|py|pl|ps1|psm1|vbs|rb|reg|md|txt|tex)$",
+                "darkgreen",
+                ""
+            ],
+            ["(?ix).(doc|docx|ppt|pptx|xls|xlsx|mdb|mdf|ldf|lock)$", "magenta", ""],
+            ["(?ix).(txt|cfg|conf|config|yml|ini|csv|log|json)$", "darkyellow", ""],
+            ["(?ix).(sln|csproj|sqlproj|proj|targets|rc|ignore)$", "red", ""],
+            ["(?ix).env.*", "white", ""],
+            [".*", "darkgray", ""]
+        ]
+    },
+    "prompt": [
+        ["Black", "Cyan", " PS$(if($PSVersionTable.PSEdition -eq 'Core'){'Core'}else{}) $($PSVersionTable.PSVersion.Major) "],
+        ["Cyan", "Blue", "$rightarrow"],
+
+        ["White", "Blue", "$time "],
+        ["Blue", "DarkBlue", "$rightarrow"],
+
+        ["White", "DarkBlue", "$path "],
+        ["DarkBlue", "", "$rightarrow", "$no_git"],
+
+        [ "DarkBlue", "Green", "$rightarrow",         "$(if(  $is_git -and !$git_dirty  ){1}else{})" ],
+        [ "Black",    "Green", "\ue0a0 $git_branch ", "$(if(  $is_git -and !$git_dirty  ){1}else{})" ],
+        [ "Black",    "Green", "\u2713 ",             "$(if(  $is_git -and !$git_dirty  ){1}else{})" ],
+        [ "Black",    "Green", "$git_remote_state ",  "$(if(  $is_git -and !$git_dirty  ){1}else{})" ],
+        [ "Green",    "",      "$rightarrow",         "$(if(  $is_git -and !$git_dirty  ){1}else{})" ],
+
+        [ "DarkBlue", "Yellow", "$rightarrow",                            "$(if(  $is_git -and $git_dirty  ){1}else{})" ],
+        [ "Black",    "Yellow", "\ue0a0 $git_branch ",                    "$(if(  $is_git -and $git_dirty  ){1}else{})" ],
+        [ "Red",      "Yellow", "$(if($git_unstaged){\"\u00d7\"}else{})", "$(if(  $is_git -and $git_dirty  ){1}else{})" ],
+        [ "Black",    "Yellow", "$git_remote_state ",                     "$(if(  $is_git -and $git_dirty  ){1}else{})" ],
+        [ "Yellow",   "",       "$rightarrow",                            "$(if(  $is_git -and $git_dirty  ){1}else{})" ],
+
+        ["", "", "`n$('>' * ($NestedPromptLevel + 1))"]
+    ],
+    "git": {
+        "prompt_dirty": "*",
+        "prompt_remote_push": "\uf403",
+        "prompt_remote_pull": "\uf404"
+    },
+    "hg": {
+        "prompt_dirty": "*"
+    }
+}

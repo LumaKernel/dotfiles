@@ -26,7 +26,7 @@ augroup END
 
 let g:loaded_matchparen = 1
 
-set fileencodings=utf-8,cp932,euc-jp,sjis
+set fileencodings=utf-8,cp932,utf-16le,euc-jp,sjis
 set noswapfile
 set autoread
 set hidden

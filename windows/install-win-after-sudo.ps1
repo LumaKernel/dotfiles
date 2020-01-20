@@ -18,5 +18,5 @@ cd ~
 git clone https://github.com/LumaKernel/dotfiles ~/dotfiles
 
 
-~/dotfiles/windows_scripts/symlinks.ps1
+~/dotfiles/windows/symlinks.ps1
 
