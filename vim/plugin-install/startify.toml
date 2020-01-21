@@ -66,6 +66,8 @@ hook_add = '''
         \   ':call dein#recache_runtimepath()',
         \   ':CocConfig',
         \   ':CocPlugins',
+        \   ':History',
+        \   ':Colors',
         \ ]
 
   let g:startify_lists = [
@@ -76,6 +78,22 @@ hook_add = '''
         \ { 'type': 'commands',  'header': ["   \uf489 コマンド"] },
         \ { 'type': function('s:MyColorSelections'),  'header': ["   \u26a1 カラーテーマ"] },
         \ ]
+
+
+  " TODO : NERDTree を一緒に開く設定，微妙
+  if 0
+    augroup init_vim
+      au VimEnter * if !argc()
+      au VimEnter *   Startify
+      au VimEnter *   NERDTree
+      au VimEnter *   wincmd w
+      au VimEnter * endif
+
+      au VimEnter * silent! nunmap <buffer> q
+      au VimEnter * silent! nunmap <buffer> t
+      au VimEnter * silent! nunmap <buffer> T
+    augroup END
+  endif
 
 '''
 

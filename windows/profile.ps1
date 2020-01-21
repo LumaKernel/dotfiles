@@ -14,6 +14,14 @@ foreach ($var in $env_to_del) {
 }
 
 
+# -- fzf の設定
+if ( gcm bat -ea 0 ) {
+  $env:FZF_DEFAULT_OPTS = "--tabstop=4 --preview `"bat --pager=never --color=always --style=numbers --line-range :300 {}`""
+} else {
+  $env:FZF_DEFAULT_OPTS = "--tabstop=4 --preview `"cat {}`""
+}
+
+
 
 # -- PowerShell Core 向け
 # 黒いやつを起動した時に HOME に移動するように

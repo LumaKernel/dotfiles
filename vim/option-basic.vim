@@ -31,7 +31,7 @@ set noswapfile
 set autoread
 set hidden
 set showcmd
-set wildmode=list:longest
+set wildmode=list:full
 set wildignorecase
 
 set foldmethod=marker
@@ -69,7 +69,7 @@ set iminsert=0
 
 
 set ignorecase
-set smartcase
+set nosmartcase
 set incsearch
 set wrapscan
 set hlsearch

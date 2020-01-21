@@ -34,8 +34,8 @@ hook_add = '''
   nmap <silent><unique> gn <Plug>(coc-rename)
 
   nmap <silent> <F8> <Plug>(coc-format)
+  vmap <silent> <F8> <Plug>(coc-format-selected)
   nmap <silent> <F9> <Plug>(coc-fix-current)
-  nmap <silent> <Leader>p <Plug>(coc-format-selected)
 
   nmap <silent><unique> go <Plug>(coc-openlink)
 

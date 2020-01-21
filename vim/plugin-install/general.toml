@@ -89,11 +89,17 @@ hook_add = '''
   let g:NERDTreeDirArrowCollapsible="\uf115"
   let g:NERDTreeWinSize=24
   
-  nnoremap <silent> <Leader>s :NERDTree<CR>
+  nnoremap <silent> <Leader>a :NERDTree<CR>
+  let g:mapping_descriptions += [['<Leader>a', ':NERDTree']]
+
   augroup MyNerdTree
     au!
     au FileType nerdtree nmap <buffer> za o
+    au FileType nerdtree nunmap <buffer> q
+    au FileType nerdtree setlocal conceallevel=3
   augroup END
+
+  let g:NERDTreeShowBookmarks = 1
 '''
 
 
@@ -107,7 +113,8 @@ repo = 'Shougo/vimshell.vim'
 depends = ['vimproc.vim']
 hook_add = '''
   nnoremap <unique><silent> <Leader>h :VimShell<CR>
-  let g:mapping_descriptions = [['<Leader>h', ':VimShell']]
+
+  let g:mapping_descriptions += [['<Leader>h', ':VimShell']]
 '''
 
 
@@ -171,6 +178,55 @@ hook_add = '''
 
 
 [[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
+merged = 0
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+merged = 0
+hook_add = '''
+  if has('win32')
+    " WIndows: preview は相性があまりよくない
+    let $FZF_DEFAULT_OPTS = ''
+  else
+    if $FZF_DEFAULT_OPTS ==# ''
+      if executable('bat')
+        let $FZF_DEFAULT_OPTS = '--tabstop=4 --preview "bat --pager=never --color=always --style=numbers --line-range :300 {}"'
+      else
+        let $FZF_DEFAULT_OPTS = '--tabstop=4 --preview "cat {}"'
+      endif
+    endif
+  endif
+
+  command! -bang Colors call fzf#vim#colors({'options': '--preview ""'}, <bang>0)
+
+  command! -bang LS Buffers<bang>
+
+  nnoremap <unique><silent> <Leader>p :Files<CR>
+  nnoremap <unique><silent> <Leader>gf :GFiles<CR>
+  nnoremap <unique><silent> <Leader>gg :GFiles?<CR>
+  nnoremap <unique><silent> <Leader>buf :Buffers<CR>
+  nnoremap <unique><silent> <Leader>col :Colors<CR>
+
+  let g:mapping_descriptions += [['<Leader>p', ':Files']]
+  let g:mapping_descriptions += [['<Leader>gf', ':GFiles']]
+  let g:mapping_descriptions += [['<Leader>gg', ':GFiles?']]
+  let g:mapping_descriptions += [['<Leader>buf', ':Buffers']]
+  let g:mapping_descriptions += [['<Leader>col', ':Colors']]
+
+  let g:mapping_descriptions += [[':LS', ':Buffers']]
+
+  let g:mapping_descriptions += [[':BLines', '']]
+  let g:mapping_descriptions += [[':History', '']]
+  let g:mapping_descriptions += [[':Marks', '']]
+'''
+
+
+
+
+[[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_add = '''
   let g:quickrun_config['_'] = {
@@ -182,7 +238,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'w0rp/ale' # {{{
-if = '0'
+if = 0
 hook_add = '''
   " エラー行に表示するマーク
   let g:ale_sign_error = '>>'
@@ -241,9 +297,33 @@ repo = 'AndrewRadev/linediff.vim'
 # Visual モードで :Linediff
 
 
+# 微妙に動かない
+# foldenable の時に
+# TODO : Issue 出すかも
 [[plugins]]
+if = '0'
 repo = 'liuchengxu/vista.vim'
 hook_add = '''
+  " let $FZF_DEFAULT_OPTS = '--layout=reverse'
+
+  let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
+
+  function! OpenFloatingWin()
+    let height = &lines - 3
+    let width = float2nr(&columns - (&columns * 2 / 10))
+    let col = float2nr((&columns - width) / 2)
+
+    let opts = {
+          \ 'relative': 'editor',
+          \ 'row': height * 0.3,
+          \ 'col': col + 30,
+          \ 'width': width * 2 / 3,
+          \ 'height': height / 2
+          \ }
+
+    let buf = nvim_create_buf(v:false, v:true)
+    let win = nvim_open_win(buf, v:true, opts)
+  endfunction
 '''
 
 
