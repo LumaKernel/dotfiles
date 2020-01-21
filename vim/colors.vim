@@ -1,3 +1,5 @@
+let g:my_color_fixes = get(g:, 'g:my_color_fixes', {})
+
 function! DefineColors() abort
   let bg_tup = s:toTuple(synIDattr(hlID('Normal'), 'bg#'))
 
@@ -8,6 +10,11 @@ function! DefineColors() abort
   exe 'hi Warning ctermbg=58  guibg=' .. warning_bg
   exe 'hi Error   cterm=NONE ctermbg=160 ctermfg=NONE gui=NONE guifg=NONE guibg=' .. error_bg
   exe 'hi Info    cterm=NONE ctermbg=18 ctermfg=NONE gui=NONE guifg=NONE guibg=' .. info_bg
+
+  if exists('g:colors_name') && has_key(g:my_color_fixes, g:colors_name)
+    call g:my_color_fixes[g:colors_name]()
+  endif
+
 endfunction
 
 
@@ -24,6 +31,21 @@ endfunction
 function! s:toString(tup) abort
   return '#' .. printf('%02x', a:tup[0]) .. printf('%02x', a:tup[1]) .. printf('%02x', a:tup[2])
 endfunction
+
+
+" カラースキームごとの設定
+" 量が増えたら外部ファイルへ
+
+
+" tender {{{
+
+function! g:my_color_fixes.tender()
+  hi Comment guifg=#999999
+  hi Ignore ctermfg=125 guifg=#994444
+endfunction
+
+" }}}
+
 
 
 autocmd init_vim Syntax * :call DefineColors()

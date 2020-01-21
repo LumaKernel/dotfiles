@@ -13,7 +13,7 @@
     "load_console_IME":  true,
     "fullscreen":  false,
     "num_history_buffers":  4,
-    "window_alpha":  220,
+    "window_alpha":  255,
 
     "black":  "#1e1e1e",
     "dark_blue":  "#6796e6",

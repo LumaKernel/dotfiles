@@ -1,5 +1,5 @@
 {
-    "plugins": ["git", "hg", "z", "aliases", "dircolors"],
+    "plugins": ["git", "hg", "z", "aliases", "dircolors", "admin"],
     "dircolors": {
         "dirs": [[".*", "cyan", ""]],
         "files": [
@@ -17,7 +17,10 @@
         ]
     },
     "prompt": [
-        ["Black", "Cyan", " PS$(if($PSVersionTable.PSEdition -eq 'Core'){'Core'}else{}) $($PSVersionTable.PSVersion.Major) "],
+        ["Black", "Red", " ADMIN ", "$is_admin"],
+        ["Red", "Cyan", "$rightarrow", "$is_admin"],
+
+        ["Black", "Cyan", "$(if($isnot_admin){' '})PS$(if($PSVersionTable.PSEdition -eq 'Core'){'Core'}else{}) $($PSVersionTable.PSVersion.Major) "],
         ["Cyan", "DarkBlue", "$rightarrow"],
 
         ["Black", "DarkBlue", "$time "],

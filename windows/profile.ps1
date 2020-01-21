@@ -49,6 +49,17 @@ Set-Alias checkvers ~/scoop/apps/scoop/current/bin/checkver.ps1
 Set-Alias vim nvim -Force
 
 
+# -- su
+
+function su {
+  if ( gcm pwsh -ea 0 ) {
+    Start-Process pwsh -Verb RunAs
+  } elseif ( gcm powershell -ea 0 ) {
+    Start-Process powershell -Verb RunAs
+  }
+}
+
+
 
 # -- pshazz の設定
 # エンコーディングを破壊されるので，pshazz 向けにわざとスタイルを壊す
