@@ -75,6 +75,8 @@ set wrapscan
 set hlsearch
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
 
+set diffopt+=vertical
+
 
 " 不可視文字表示
 set list

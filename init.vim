@@ -29,6 +29,6 @@ source ~/dotfiles/vim/vimscript.vim
 
 
 if !g:from_pwsh
-  colorscheme iceberg
+  colorscheme onedark
 endif
 
