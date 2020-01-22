@@ -96,6 +96,7 @@ hook_add = '''
     au FileType nerdtree nmap <buffer> za o
     au FileType nerdtree nunmap <buffer> q
     au FileType nerdtree setlocal conceallevel=3
+    au FileType nerdtree nnoremap <silent><buffer> CD :execute ':NERDTree ' .. getcwd(-1)<CR>
   augroup END
 
   let g:NERDTreeShowBookmarks = 1
