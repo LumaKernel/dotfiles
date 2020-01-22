@@ -3,7 +3,7 @@ let g:my_color_fixes = get(g:, 'g:my_color_fixes', {})
 function! DefineColors() abort
   let bg_tup = s:toTuple(synIDattr(hlID('Normal'), 'bg#'))
 
-  let warning_bg = s:toString(s:col_mult(bg_tup, [2, 2, 1]))
+  let warning_bg = s:toString(s:col_mult(bg_tup, [3, 2, 1]))
   let error_bg   = s:toString(s:col_mult(bg_tup, [3, 1, 1]))
   let info_bg    = s:toString(s:col_mult(bg_tup, [1, 1, 3]))
 
@@ -46,6 +46,15 @@ endfunction
 
 " }}}
 
+" iceberg {{{
+
+function! g:my_color_fixes.iceberg()
+  hi Comment guifg=#999999
+  hi Ignore ctermfg=125 guifg=#994444
+  hi Constant guifg=#cc99cc
+endfunction
+
+" }}}
 
 
 autocmd init_vim Syntax * :call DefineColors()

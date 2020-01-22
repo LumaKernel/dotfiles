@@ -20,10 +20,9 @@ repo = 'tyru/open-browser.vim'
 
 [[plugins]]
 repo = 'jacoborus/tender.vim'
-if = '!g:from_pwsh'
-hook_post_source = """
-  colorscheme tender
-"""
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
 
 
 [[plugins]]

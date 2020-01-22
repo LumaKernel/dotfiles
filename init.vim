@@ -28,3 +28,7 @@ source ~/dotfiles/vim/competitive-programming.vim
 source ~/dotfiles/vim/vimscript.vim
 
 
+if !g:from_pwsh
+  colorscheme iceberg
+endif
+
