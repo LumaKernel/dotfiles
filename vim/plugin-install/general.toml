@@ -341,22 +341,16 @@ hook_add = '''
   call gina#custom#mapping#map(
         \  'status', "<s-lt><s-lt>",
         \  ':call gina#action#call("index:stage")<CR>',
-        \ {'noremap': 1, 'silent': 1})
+        \  {'noremap': 1, 'silent': 1})
 
   " -- status の設定
   call gina#custom#command#option('status', '--opener', 'vsplit')
   call gina#custom#command#option('status', '--short')
-  call gina#custom#command#alias('status', 's')
 
-  nmap <silent><unique> <Leader>sta :Gina status<CR>
-  nmap <silent><unique> <Leader>com :Gina compare<CR>
-'''
-
-
-[[plugins]]
-repo = 'skanehira/translate.vim'
-hook_add = '''
-  xmap <Leader>tr <Plug>(VTranslate)
+  nnoremap <silent><unique> <Leader>sta :Gina status<CR>
+  nnoremap <silent><unique> <Leader>com :Gina compare<CR>
+  nnoremap <silent><unique> <Leader>log :Gina log<CR>
+  nnoremap <silent><unique> <Leader>bla :Gina blame<CR>
 '''
 
 

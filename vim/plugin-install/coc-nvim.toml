@@ -70,8 +70,6 @@ hook_add = '''
     hi link CocHighlightRead  CocHighlightText
     hi link CocHighlightWrite CocHighlightText
   endfunction
-
-  command! CocPlugins OpenBrowser https://www.npmjs.com/search?q=keywords%3Acoc.nvim
 '''
 
 hook_post_source = '''

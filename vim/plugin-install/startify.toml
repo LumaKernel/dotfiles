@@ -61,12 +61,29 @@ hook_add = '''
           \ ]
   endfunction
 
+  function! s:MyLinks()
+    let l:res = [
+          \   { 'line': 'coc.nvim 拡張検索' , 'url': 'https://www.npmjs.com/search?q=keywords%3Acoc.nvim' },
+          \   { 'line': 'カラースキーム一覧' , 'url': 'http://colorswat.ch/vim/list?p=2&o=star' },
+          \   { 'line': 'Nerd Fonts チートシート' , 'url': 'https://www.nerdfonts.com/cheat-sheet' },
+          \ ]
+
+    for el in l:res
+      if has_key(el, 'url')
+        let el.line ..= ' : ' .. el.url
+        let el.cmd = ':OpenBrowser ' .. el.url
+        unlet el.url
+      endif
+    endfor
+
+    return l:res
+  endfunction
+
 
   let g:startify_commands = [
         \   ':DeinClean',
         \   ':call dein#recache_runtimepath()',
         \   ':CocConfig',
-        \   ':CocPlugins',
         \   ':History',
         \   ':Colors',
         \ ]
@@ -78,6 +95,7 @@ hook_add = '''
         \ { 'type': 'sessions',  'header': ["   \ue706 セッション"] },
         \ { 'type': 'commands',  'header': ["   \uf489 コマンド"] },
         \ { 'type': function('s:MyColorSelections'),  'header': ["   \u26a1 カラーテーマ"] },
+        \ { 'type': function('s:MyLinks'),  'header': ["   \u26a1 便利リンク"] },
         \ ]
 
 
