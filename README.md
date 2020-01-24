@@ -16,3 +16,9 @@ ln -sf /mnt/c/Users/`cmd.exe /c echo %UserName% | tr -d '\r'`/dotfils ~
 sudo ~/install-wsl.sh
 ```
 
+# License
+
+[Unlicense](https://unlicense.org/)
+
+ただし，`README.md` がおいてあるところ以下はそれに従う．
+
