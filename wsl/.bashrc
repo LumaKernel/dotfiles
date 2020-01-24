@@ -88,7 +88,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # -- WSL 特有の設定
 
-export WinUserName=`cmd.exe /c echo %UserName% 2>/dev/null`
+export WinUserName=`cmd.exe /c echo %UserName% 2>/dev/null | tr -d '\n' | tr -d '\r'`
 export WinHome="/mnt/c/Users/$WinUserName"
 alias cdwin="cd $WinHome"
 
