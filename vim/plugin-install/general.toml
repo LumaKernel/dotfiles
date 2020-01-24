@@ -56,10 +56,10 @@ hook_add = '''
   let g:unite_enable_ignore_case = 1
   let g:unite_enable_smart_case = 1
 
-  nnoremap <silent><unique> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+  nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
   " TODO うまくうごかない
-  nnoremap <silent><unique> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
-  nnoremap <silent><unique> ,r  :<C-u>UniteResume search-buffer<CR>
+  nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
+  nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
 
   " use ripgrep
   if executable('rg')
@@ -110,7 +110,7 @@ depends = ['nerdtree']
 repo = 'Shougo/vimshell.vim'
 depends = ['vimproc.vim']
 hook_add = '''
-  nnoremap <unique><silent> <Leader>h :VimShell<CR>
+  nnoremap <silent> <Leader>h :VimShell<CR>
 
   let g:mapping_descriptions += [['<Leader>h', ':VimShell']]
 '''
@@ -202,11 +202,11 @@ hook_add = '''
 
   command! -bang LS Buffers<bang>
 
-  nnoremap <unique><silent> <Leader>p :Files<CR>
-  nnoremap <unique><silent> <Leader>gf :GFiles<CR>
-  nnoremap <unique><silent> <Leader>gg :GFiles?<CR>
-  nnoremap <unique><silent> <Leader>buf :Buffers<CR>
-  nnoremap <unique><silent> <Leader>col :Colors<CR>
+  nnoremap <silent> <Leader>p :Files<CR>
+  nnoremap <silent> <Leader>gf :GFiles<CR>
+  nnoremap <silent> <Leader>gg :GFiles?<CR>
+  nnoremap <silent> <Leader>buf :Buffers<CR>
+  nnoremap <silent> <Leader>col :Colors<CR>
 
   let g:mapping_descriptions += [['<Leader>p', ':Files']]
   let g:mapping_descriptions += [['<Leader>gf', ':GFiles']]
@@ -264,8 +264,8 @@ hook_add = '''
   
   let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
   
-  nmap <unique><silent> <Leader>p <Plug>(ale_previous_wrap)
-  nmap <unique><silent> <Leader>n <Plug>(ale_next_wrap)
+  nmap <silent> <Leader>p <Plug>(ale_previous_wrap)
+  nmap <silent> <Leader>n <Plug>(ale_next_wrap)
 '''
 # }}}
 
@@ -344,10 +344,10 @@ hook_add = '''
   call gina#custom#command#option('status', '--opener', 'vsplit')
   call gina#custom#command#option('status', '--short')
 
-  nnoremap <silent><unique> <Leader>sta :Gina status<CR>
-  nnoremap <silent><unique> <Leader>com :Gina compare<CR>
-  nnoremap <silent><unique> <Leader>log :Gina log<CR>
-  nnoremap <silent><unique> <Leader>bla :Gina blame<CR>
+  nnoremap <silent> <Leader>sta :Gina status<CR>
+  nnoremap <silent> <Leader>com :Gina compare<CR>
+  nnoremap <silent> <Leader>log :Gina log<CR>
+  nnoremap <silent> <Leader>bla :Gina blame<CR>
 '''
 
 

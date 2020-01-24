@@ -26,18 +26,18 @@ hook_add = '''
   nmap <silent> [g <Plug>(coc-diagnostic-prev)
   nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-  nmap <silent><unique> gd <Plug>(coc-definition)
-  nmap <silent><unique> gu <Plug>(coc-declaration)
-  nmap <silent><unique> gy <Plug>(coc-type-definition)
-  nmap <silent><unique> gi <Plug>(coc-implementation)
-  nmap <silent><unique> gr <Plug>(coc-references)
-  nmap <silent><unique> gn <Plug>(coc-rename)
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gu <Plug>(coc-declaration)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+  nmap <silent> gn <Plug>(coc-rename)
 
   nmap <silent> <F8> <Plug>(coc-format)
   vmap <silent> <F8> <Plug>(coc-format-selected)
   nmap <silent> <F9> <Plug>(coc-fix-current)
 
-  nmap <silent><unique> go <Plug>(coc-openlink)
+  nmap <silent> go <Plug>(coc-openlink)
 
   function! CocNvimHiDef()
     hi CocUnderline    cterm=underline   gui=underline

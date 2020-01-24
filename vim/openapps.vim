@@ -16,14 +16,14 @@ elseif has('win32') || has('win64')
     let s:to_unset = ['VIM', 'VIMRUNTIME', 'MYVIMRC', 'MYGVIMRC']
     let s:env_unset = join(map(s:to_unset, '"set \"" .. v:val .. "=\""'), ' && ')
 
-    nnoremap <unique><silent> <Leader>exp :silent !start explorer .<CR>
-    exe 'nnoremap <unique><silent> <Leader>cmd :silent !start ' .. s:env_unset .. "\<CR>"
+    nnoremap <silent> <Leader>exp :silent !start explorer .<CR>
+    exe 'nnoremap <silent> <Leader>cmd :silent !start ' .. s:env_unset .. "\<CR>"
     if executable('pwsh')
-      nnoremap <unique><silent> <Leader>sh :silent !start pwsh<CR>
+      nnoremap <silent> <Leader>sh :silent !start pwsh<CR>
     elseif executable('powershell')
-      nnoremap <unique><silent> <Leader>sh :silent !start powershell<CR>
+      nnoremap <silent> <Leader>sh :silent !start powershell<CR>
     endif
-    nnoremap <unique><silent><expr> <Leader>ubu ":silent !start " .. $LocalAppData .. "\\wsltty\\bin\\mintty.exe --WSL=\"Ubuntu\" --configdir=\"" .. $AppData .. "\\wsltty\"\<CR>"
+    nnoremap <silent><expr> <Leader>ubu ":silent !start " .. $LocalAppData .. "\\wsltty\\bin\\mintty.exe --WSL=\"Ubuntu\" --configdir=\"" .. $AppData .. "\\wsltty\"\<CR>"
     call add(g:mapping_descriptions, ['<Leader>exp', 'open explorer'])
     call add(g:mapping_descriptions, ['<Leader>cmd', 'open cmd'])
     call add(g:mapping_descriptions, ['<Leader>sh', 'open powershell'])

@@ -12,8 +12,8 @@ hook_add = """
 
   " " バッファ切り替え
   let g:airline#extensions#tabline#buffer_idx_mode = 1
-  nmap <unique><silent> H <Plug>AirlineSelectPrevTab
-  nmap <unique><silent> L <Plug>AirlineSelectNextTab
+  nmap <silent> H <Plug>AirlineSelectPrevTab
+  nmap <silent> L <Plug>AirlineSelectNextTab
 
 
   let g:airline#extensions#tabline#buffer_idx_format = {

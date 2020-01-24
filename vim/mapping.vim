@@ -46,35 +46,35 @@ noremap <F1> <Nop>
 noremap! <F1> <Nop>
 xnoremap <F1> <Nop>
 
-nnoremap <unique> <A-:> :
-inoremap <unique> <A-:> <C-o>:
-tnoremap <unique> <A-:> <C-\><C-n>:
+nnoremap <A-:> :
+inoremap <A-:> <C-o>:
+tnoremap <A-:> <C-\><C-n>:
 
-nnoremap <unique> <A-/> /
-inoremap <unique> <A-/> <C-o>/
-tnoremap <unique> <A-/> <C-\><C-n>/
+nnoremap <A-/> /
+inoremap <A-/> <C-o>/
+tnoremap <A-/> <C-\><C-n>/
 
-nnoremap <unique> <A-q>: q:
-inoremap <unique> <A-q>: <C-o>q:
-tnoremap <unique> <A-q>: <C-\><C-n>q:
+nnoremap <A-q>: q:
+inoremap <A-q>: <C-o>q:
+tnoremap <A-q>: <C-\><C-n>q:
 
-nnoremap <unique> <A-q>/ q/
-inoremap <unique> <A-q>/ <C-o>q/
-tnoremap <unique> <A-q>/ <C-\><C-n>q/
+nnoremap <A-q>/ q/
+inoremap <A-q>/ <C-o>q/
+tnoremap <A-q>/ <C-\><C-n>q/
 
-nnoremap <unique> <A-ESC> <ESC>
-inoremap <unique> <A-ESC> <ESC>
-tnoremap <unique> <A-ESC> <C-\><C-n>
+nnoremap <A-ESC> <ESC>
+inoremap <A-ESC> <ESC>
+tnoremap <A-ESC> <C-\><C-n>
 
-nnoremap <unique> <A-]> <ESC>
-inoremap <unique> <A-]> <ESC>
-tnoremap <unique> <A-]> <C-\><C-n>
+nnoremap <A-]> <ESC>
+inoremap <A-]> <ESC>
+tnoremap <A-]> <C-\><C-n>
 
 for s:wincmd in s:wincmds
-  exe 'nnoremap <unique> <A-' .. s:wincmd .. '> <C-w>' .. s:wincmd
-  exe 'inoremap <unique> <A-' .. s:wincmd .. '> <ESC><C-w>' .. s:wincmd 
-  exe 'tnoremap <unique> <A-' .. s:wincmd .. '> <C-\><C-n><C-w>' .. s:wincmd 
+  exe 'nnoremap <A-' .. s:wincmd .. '> <C-w>' .. s:wincmd
+  exe 'inoremap <A-' .. s:wincmd .. '> <ESC><C-w>' .. s:wincmd 
+  exe 'tnoremap <A-' .. s:wincmd .. '> <C-\><C-n><C-w>' .. s:wincmd 
 endfor
 
-tnoremap <unique> <A-p> <C-\><C-n>pi
+tnoremap <A-p> <C-\><C-n>pi
 
