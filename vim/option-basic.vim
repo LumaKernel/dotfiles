@@ -110,7 +110,7 @@ set keywordprg=:help
 
 
 
-if has('nvim')
+if has('nvim') && !g:is_wsl
   set pumblend=20
   set winblend=20
 endif

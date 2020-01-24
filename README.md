@@ -16,4 +16,3 @@ cd dotifles
 sudo ./install-wsl.sh
 ```
 
-

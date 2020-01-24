@@ -15,7 +15,6 @@ echo '.bashrc'
 echo '- cdwin : Go to win home.'
 
 # ---- vim の環境変数を削除
-
 unset VIM
 unset VIMRUNTIME
 unset MYVIMRC
@@ -23,14 +22,9 @@ unset MYGVIMRC
 
 
 # ---- パスを追加
-
 # pip のライブラリなど
 export PATH=$PATH:~/.local/bin
 
-
-
-# GIT_PS1_SHOWDIRTYSTATE=true
-# export PS1='\[\033[32m\]\u@ \[\033[1;33m\]\w\[\033[34m\]$(__git_ps1)\[\033[00m\]'$'\n\$ '
 
 [ -f "${HOME}/dotfiles/wsl/.bash_aliases" ] && source "${HOME}/dotfiles/wsl/.bash_aliases"
 
@@ -78,9 +72,9 @@ if [[ -n $? ]] ; then
     PS1=$(powerline-shell $?)
   }
 
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-  PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
+  if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+  fi
 
 fi
 

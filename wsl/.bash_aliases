@@ -3,6 +3,7 @@ echo '.bash_aliases'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias -- -='cd -'
+alias ~='cd ~'
 
 alias ls='ls --color=auto --show-control-chars --time-style=long-iso -FH'
 alias ll='ls -lA'
