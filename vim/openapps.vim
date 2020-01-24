@@ -43,3 +43,17 @@ elseif has('unix')
   call add(g:mapping_descriptions, ['<Leader>sh', 'open gnome-terminal'])
 endif
 
+
+" -- ターミナル
+
+if has('terminal') || has('nvim')
+  if has('win32') || has('win64') || g:is_wsl
+    if executable('pwsh.exe')
+      command! Pwsh :vertical new | :term pwsh.exe
+      call add(g:mapping_descriptions, [':Pwsh', 'open pwsh in +terminal'])
+    elseif executable('powershell.exe')
+      command! Pwsh :vertical new | :term powershell.exe
+      call add(g:mapping_descriptions, [':Pwsh', 'open powershell in +terminal'])
+    endif
+  endif
+endif
