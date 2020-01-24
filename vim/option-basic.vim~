@@ -38,25 +38,22 @@ set foldmethod=marker
 
 set backup
 
-let s:backupdir = expand('~/.tmp/vim/backup')
-if !isdirectory(s:backupdir)
-  silent! call mkdir(s:backupdir, 'p')
+if !isdirectory('~/.tmp/vim/backup')
+  silent! call mkdir('~/.tmp/vim/backup', 'p')
 endif
 
-if isdirectory(s:backupdir)
-  let &backupdir = s:backupdir
+if isdirectory('~/.tmp/vim/backup')
+  set backupdir=~/.tmp/vim/backup
 endif
 
 set undofile
 
-let s:undofiledir = expand('~/.tmp/vim/undofile')
-
-if !isdirectory(s:undofiledir)
-  silent! call mkdir(s:undofiledir, 'p')
+if !isdirectory('~/.tmp/vim/undofile')
+  mkdir('~/.tmp/vim/undofile', 'p')
 endif
 
-if isdirectory(s:undofiledir)
-  let &undodir = s:undofiledir
+if isdirectory('~/.tmp/vim/undofile')
+  set undodir=~/.tmp/vim/undofile
 endif
 
 set matchpairs+=<:>
@@ -116,22 +113,7 @@ if has('nvim')
 endif
 
 
-" -- WSL でのクリップボード
 
-if g:is_wsl && has('nvim') && executable('win32yank.exe')
-  let g:clipboard = {
-        \   'name': 'myClipboard',
-        \   'copy': {
-        \      '+': 'win32yank.exe -i',
-        \      '*': 'win32yank.exe -i',
-        \    },
-        \   'paste': {
-        \      '+': 'win32yank.exe -o',
-        \      '*': 'win32yank.exe -o',
-        \   },
-        \   'cache_enabled': 1,
-        \ }
-endif
 
 
 

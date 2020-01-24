@@ -15,11 +15,9 @@ $files = @(
   @{target="init.vim"; path="AppData/Local/nvim"}
   @{target="ginit.vim"; path="AppData/Local/nvim"}
   @{target="vim/coc-settings.json"; path="AppData/Local/nvim"}
-  ".minttyrc"
-  ".bash_profile"
-  ".bashrc"
-  ".bash_aliases"
-  ".bash_functions"
+  "windows/.minttyrc"
+  "windows/.bash_profile"
+  "windows/.bashrc"
 )
 
 if( (gcm pwsh -ea 0) -and (pwsh -NoProfile -Command "`$profile")) {
