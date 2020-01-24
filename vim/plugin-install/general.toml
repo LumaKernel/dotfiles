@@ -331,6 +331,16 @@ build = 'make'
 
 
 [[plugins]]
+# Windows ではバグあり，どうしよう
+# TODO : たまに修正とかやってみようかなあ
+
+# TODO : :Gina commit ができない
+# TODO : custom#command#alais, 設定が引き継がれない
+# TODO : エラー時のバッファーが残る
+# TODO : 2つ以上 vsplit したときとかの微妙な挙動
+
+# たまにね，たまに
+
 repo = 'lambdalisue/gina.vim'
 hook_add = '''
   " TODO : 一時的な対応
@@ -340,8 +350,9 @@ hook_add = '''
         \  ':call gina#action#call("index:stage")<CR>',
         \  {'noremap': 1, 'silent': 1})
 
+  call gina#custom#command#option('/\(status\|commit\|log\)', '--opener', 'vsplit')
+
   " -- status の設定
-  call gina#custom#command#option('status', '--opener', 'vsplit')
   call gina#custom#command#option('status', '--short')
 
   nnoremap <silent> <Leader>sta :Gina status<CR>

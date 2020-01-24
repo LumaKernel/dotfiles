@@ -1,5 +1,5 @@
 
-echo "from install-win-after-sudo.ps1"
+echo "install-win-after-sudo.ps1"
 
 scoop install 7zip git --global
 scoop bucket add extras
@@ -37,8 +37,9 @@ scoop install pshazz
 concfg import ~/dotifles/windows/concfg/lumc-vs-code-dark-plus.json -n
 
 
-# install dein.vim
+# -- install dein.vim
 git clone https://github.com/Shougo/dein.vim ~/.cache/dein/repos/github.com/Shougo/dein.vim
+
 
 echo "以下を自分で実行してください"
 echo "git config --global user.name <name>"

@@ -48,7 +48,8 @@ endif
 
 if has('terminal') || has('nvim')
   if has('win32') || has('win64') || g:is_wsl
-    if executable('pwsh.exe')
+    if executable('pwsh.exe') && !g:is_wsl
+      " WSL で pwsh.exe を起動するとなぜか $PWD がセットされない
       command! Pwsh :vertical new | :term pwsh.exe
       call add(g:mapping_descriptions, [':Pwsh', 'open pwsh in +terminal'])
     elseif executable('powershell.exe')

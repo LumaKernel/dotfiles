@@ -108,6 +108,7 @@ set shiftwidth=2 " 行頭でのTab文字の表示幅
 " K でカーソル下のワードを :help
 set keywordprg=:help
 
+if exists('+autochdir') | set autochdir | endif
 
 
 if has('nvim') && !g:is_wsl
