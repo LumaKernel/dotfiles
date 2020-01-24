@@ -7,7 +7,10 @@ scriptencoding utf-8
 
 augroup init_vim | au! | augroup END
 
-let g:from_pwsh = !has('nvim') && $RunFromPowershell ==# '1'
+let g:from_pwsh = 0
+let g:is_wsl = 0
+silent! let g:from_pwsh = !has('nvim') && $RunFromPowershell ==# '1'
+silent! let g:is_wsl = !has('unix') && system('uname -a') =~? 'microsoft'
 
 let g:mapping_descriptions = []
 
