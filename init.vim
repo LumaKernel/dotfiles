@@ -21,6 +21,7 @@ source ~/dotfiles/vim/show-whitespace.vim
 source ~/dotfiles/vim/openapps.vim
 source ~/dotfiles/vim/colors.vim
 
+
 source ~/dotfiles/vim/gvim.vim
 
 source ~/dotfiles/vim/setup-powershell.vim

@@ -80,11 +80,11 @@ repo = 'scrooloose/nerdtree'
 depends = ['vimproc.vim']
 hook_add = '''
   let g:NERDTreeShowHidden=1
+  let g:NERDTreeShowBookmarks = 1
   
-  " 最小限，とてもいい
   let g:NERDTreeDirArrowExpandable="\uf114"
   let g:NERDTreeDirArrowCollapsible="\uf115"
-  let g:NERDTreeWinSize=24
+  let g:NERDTreeWinSize=31
   
   nnoremap <silent> <Leader>a :NERDTree<CR>
   let g:mapping_descriptions += [['<Leader>a', ':NERDTree']]
@@ -92,12 +92,12 @@ hook_add = '''
   augroup MyNerdTree
     au!
     au FileType nerdtree nmap <buffer> za o
-    au FileType nerdtree nunmap <buffer> q
+    au FileType nerdtree silent! nunmap <buffer> q
     au FileType nerdtree setlocal conceallevel=3
     au FileType nerdtree nnoremap <silent><buffer> CD :execute ':NERDTree ' .. getcwd(-1)<CR>
+    au FileType nerdtree echom 'ft;' string([getcwd(), getcwd(-1), getcwd(-1, 0), haslocaldir()])
+    au BufEnter nerdtree echom 'be;' string([getcwd(), getcwd(-1), getcwd(-1, 0), haslocaldir()])
   augroup END
-
-  let g:NERDTreeShowBookmarks = 1
 '''
 
 

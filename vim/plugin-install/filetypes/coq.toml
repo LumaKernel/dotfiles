@@ -43,5 +43,7 @@ hook_source = """
     autocmd ColorScheme * :call <SID>setup_my_coq_colo()
   augroup END
 
+  let g:coquille_coq_executable = 'C:\Coq8.11beta\bin\coqidetop'
+
 """
 

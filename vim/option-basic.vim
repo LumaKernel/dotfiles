@@ -95,6 +95,7 @@ nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
 set diffopt+=vertical
 
 
+
 " 不可視文字表示
 set list
 " 不可視文字を可視化
@@ -107,8 +108,6 @@ set shiftwidth=2 " 行頭でのTab文字の表示幅
 
 " K でカーソル下のワードを :help
 set keywordprg=:help
-
-if exists('+autochdir') | set autochdir | endif
 
 
 if has('nvim') && !g:is_wsl
@@ -161,16 +160,16 @@ if has('nvim')
   elseif (has('win32') || has('win64'))
     let g:python3_host_prog = split(system('where python'), "\n")[0]
   endif
-elseif !g:from_pwsh
+else
   if has('win32unix')
     " TODO : MSYS2 のpython 対応をどうするかはなやましい
     " Win 側の python に即席でパスを通すのもありかもしれないけど…
   elseif (has('win32') || has('win64'))
-    set pythonthreedll=~/scoop/apps/python36/current/python36.dll
+    let &pythonthreedll = expand('~\scoop\apps\python36\current\python36.dll')
     if !has('python3')
       echom 'Not found python36 dll.'
-      echom 'NOTE: scoop install python36'
-      echom 'NOTE: and scoop reset python36 to use pip of this version'
+      echom 'NOTE: "scoop install python36"'
+      echom 'NOTE: and "scoop reset python36" to use pip of this version'
     endif
   endif
 endif
@@ -179,5 +178,19 @@ endif
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
       \ | diffthis | wincmd p | diffthis
 
+
+
+" 自分で入れた win32yank があると壊れてしまうので
+" 調整する…
+
+let s:scoop_dir = expand('~/scoop')
+let s:global_scoop_dir = expand('~/scoop')
+
+if has('nvim') && has('win32')
+  let l:paths = split($PATH, ';')
+
+
+  let $PATH = join(l:paths, ';')
+endif
 
 
