@@ -85,6 +85,9 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # ---- fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# ---- less
+export LESS='-R --no-init -g -j10 --quit-if-one-screen'
+export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
 
 # -- WSL 特有の設定
 
