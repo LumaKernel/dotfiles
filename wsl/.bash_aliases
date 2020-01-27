@@ -23,5 +23,8 @@ export GREP_OPTINS="--color=auto"
 
 alias vi="vim -u NONE"
 alias g+='g++ -Wall -Wextra -Wpedantic -fsanitize=undefined -g'
-alias vi='vim -u NONE'
+alias vim="nvim"
+
+man_vim() { vim "+runtime! ftplugin/man.vim | Man $* | only"; }
+alias man=man_vim
 

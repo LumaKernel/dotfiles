@@ -153,23 +153,37 @@ augroup my_colo
   autocmd ColorScheme * :call <SID>setup_my_colo()
 augroup END
 
+if has('win32')
+  let g:scoop_dir = exists('$SCOOP') ? $SCOOP : expand('~\scoop')
+  let g:scoop_global_apps = exists('$SCOOP_GLOBAL') ? $SCOOP_GLOBAL : expand('C:\ProgramData\scoop\apps')
+endif
+
+
 
 if has('nvim')
   if has('win32unix')
     let g:python3_host_prog = system('which python3')
-  elseif (has('win32') || has('win64'))
+  elseif has('win32')
     let g:python3_host_prog = split(system('where python'), "\n")[0]
   endif
 else
   if has('win32unix')
-    " TODO : MSYS2 のpython 対応をどうするかはなやましい
-    " Win 側の python に即席でパスを通すのもありかもしれないけど…
-  elseif (has('win32') || has('win64'))
-    let &pythonthreedll = expand('~\scoop\apps\python36\current\python36.dll')
+    " 対応しない！
+  elseif has('win32')
+    let s:candidates = [
+          \   expand(g:scoop_dir .. '\apps\python36\current\python36.dll'),
+          \   expand(g:scoop_global_apps .. '\python36\current\python36.dll'),
+          \ ]
+    for s:candidate in s:candidates
+      if has('python3') | break | endif
+      let &pythonthreedll = s:candidate
+    endfor
+
     if !has('python3')
       echom 'Not found python36 dll.'
       echom 'NOTE: "scoop install python36"'
       echom 'NOTE: and "scoop reset python36" to use pip of this version'
+      echom 'NOTE: Use neovim.'
     endif
   endif
 endif
@@ -177,20 +191,4 @@ endif
 
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
       \ | diffthis | wincmd p | diffthis
-
-
-
-" 自分で入れた win32yank があると壊れてしまうので
-" 調整する…
-
-let s:scoop_dir = expand('~/scoop')
-let s:global_scoop_dir = expand('~/scoop')
-
-if has('nvim') && has('win32')
-  let l:paths = split($PATH, ';')
-
-
-  let $PATH = join(l:paths, ';')
-endif
-
 

@@ -94,9 +94,7 @@ hook_add = '''
     au FileType nerdtree nmap <buffer> za o
     au FileType nerdtree silent! nunmap <buffer> q
     au FileType nerdtree setlocal conceallevel=3
-    au FileType nerdtree nnoremap <silent><buffer> CD :execute ':NERDTree ' .. getcwd(-1)<CR>
-    au FileType nerdtree echom 'ft;' string([getcwd(), getcwd(-1), getcwd(-1, 0), haslocaldir()])
-    au BufEnter nerdtree echom 'be;' string([getcwd(), getcwd(-1), getcwd(-1, 0), haslocaldir()])
+    " au FileType nerdtree nnoremap <silent><buffer> CD :execute ':NERDTree ' .. getcwd(-1)<CR>
   augroup END
 '''
 
@@ -146,6 +144,7 @@ repo = 'roxma/vim-hug-neovim-rpc'
 [[plugins]]
 repo = 'Yggdroot/indentLine'
 hook_add = '''
+  " TODO : これ設定してたら何もなくない．．．？
   let g:indentLine_setConceal = 0
 '''
 
@@ -186,7 +185,8 @@ depends = 'fzf'
 merged = 0
 hook_add = '''
   if has('win32')
-    " WIndows: preview は相性があまりよくない
+    " Windows: preview は相性があまりよくない
+    " TODO : 日本語が残念になる
     let $FZF_DEFAULT_OPTS = ''
   else
     if $FZF_DEFAULT_OPTS ==# ''
@@ -232,6 +232,7 @@ hook_add = '''
       \   'runner' : 'job'
       \ }
   nnoremap <expr> <Leader>0 ":ccl\|QuickRun\<CR>"
+  nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 '''
 
 [[plugins]]
