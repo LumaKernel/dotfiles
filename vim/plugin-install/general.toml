@@ -6,7 +6,7 @@
 #   この設定は，基本いらないとすら思っていい
 
 
-[[tplugins]]
+[[plugins]]
 repo = 'Shougo/dein.vim'
 
 
@@ -52,21 +52,6 @@ hook_add = '''
     autocmd Filetype unite imap <buffer><silent> <C-K> <C-P>
   augroup END
 
-  " unite grep
-  let g:unite_enable_ignore_case = 1
-  let g:unite_enable_smart_case = 1
-
-  nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
-  " TODO うまくうごかない
-  nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
-  nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
-
-  " use ripgrep
-  if executable('rg')
-    let g:unite_source_grep_command = 'rg'
-    let g:unite_source_grep_default_opts = '--vimgrep'
-    let g:unite_source_grep_recursive_opt = ''
-  endif
 ''' # }}}
 
 
@@ -186,32 +171,46 @@ merged = 0
 hook_add = '''
   if has('win32')
     " Windows: preview は相性があまりよくない
-    " TODO : 日本語が残念になる
+    "   UTF-8 と CP932 を両方見れるようにするのがまず難しいそう
     let $FZF_DEFAULT_OPTS = ''
   else
-    if $FZF_DEFAULT_OPTS ==# ''
-      if executable('bat')
-        let $FZF_DEFAULT_OPTS = '--tabstop=4 --preview "bat --pager=never --color=always --style=numbers --line-range :300 {}"'
-      else
-        let $FZF_DEFAULT_OPTS = '--tabstop=4 --preview "cat {}"'
-      endif
+    if executable('bat')
+      let $FZF_DEFAULT_OPTS = '--tabstop=4 --reverse --preview "bat --pager=never --color=always --style=numbers --line-range :300 {}"'
+    else
+      let $FZF_DEFAULT_OPTS = '--tabstop=4 --reverse --preview "cat {}"'
     endif
+  endif
+
+  if has('nvim')
+    let g:fzf_layout = { 'window': 'call my#CreateCenteredFloatingWindow()' }
   endif
 
   command! -bang Colors call fzf#vim#colors({'options': '--preview ""'}, <bang>0)
 
   command! -bang LS Buffers<bang>
 
-  nnoremap <silent> <Leader>p :Files<CR>
-  nnoremap <silent> <Leader>gf :GFiles<CR>
-  nnoremap <silent> <Leader>gg :GFiles?<CR>
-  nnoremap <silent> <Leader>buf :Buffers<CR>
-  nnoremap <silent> <Leader>col :Colors<CR>
+  function! s:SaveR() abort
+  endfunction
 
-  let g:mapping_descriptions += [['<Leader>p', ':Files']]
-  let g:mapping_descriptions += [['<Leader>gf', ':GFiles']]
-  let g:mapping_descriptions += [['<Leader>gg', ':GFiles?']]
-  let g:mapping_descriptions += [['<Leader>buf', ':Buffers']]
+  function! s:RestoreR() abort
+  endfunction
+
+  nnoremap <silent> ,f  :<C-u>Files<CR>
+  nnoremap <silent> ,df :<C-u>GFiles<CR>
+  nnoremap <silent> ,dd :<C-u>GFiles?<CR>
+  nnoremap <silent><expr> ,cf ':<C-u>Files<CR>' .. expand('<cword>')
+  nnoremap <silent><expr> ,cdf ':<C-u>GFiles<CR>' .. expand('<cword>')
+  nnoremap <silent><expr> ,cdd ':<C-u>GFiles?<CR>' .. expand('<cword>')
+  nnoremap <silent> <Leader>i :<C-u>History<CR>
+  nnoremap <silent> <Leader>ls :<C-u>Buffers<CR>
+  nnoremap <silent> <Leader>col :<C-u>Colors<CR>
+
+  let g:mapping_descriptions += [[',f', ':Files']]
+  let g:mapping_descriptions += [[',df', ':GFiles']]
+  let g:mapping_descriptions += [[',dd', ':GFiles?']]
+  let g:mapping_descriptions += [[',cf ,cdf ,cdd', 'cursor ver.']]
+  let g:mapping_descriptions += [['<Leader>i', ':History']]
+  let g:mapping_descriptions += [['<Leader>ls', ':Buffers']]
   let g:mapping_descriptions += [['<Leader>col', ':Colors']]
 
   let g:mapping_descriptions += [[':LS', ':Buffers']]
@@ -277,12 +276,13 @@ repo = 'unblevable/quick-scope'
 
 [[plugins]]
 repo='prabirshrestha/asyncomplete-neosnippet.vim'
+if = 0
 hook_add='''
   imap <C-k>     <Plug>(neosnippet_expand_or_jump)
   smap <C-k>     <Plug>(neosnippet_expand_or_jump)
   xmap <C-k>     <Plug>(neosnippet_expand_target)
 '''
-hook_source='''
+hook_post_source='''
   " call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
   "    \ 'name': 'neosnippet',
   "    \ 'whitelist': ['*'],
@@ -303,8 +303,6 @@ repo = 'AndrewRadev/linediff.vim'
 if = '0'
 repo = 'liuchengxu/vista.vim'
 hook_add = '''
-  " let $FZF_DEFAULT_OPTS = '--layout=reverse'
-
   let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
 
   function! OpenFloatingWin()
@@ -360,6 +358,28 @@ hook_add = '''
   nnoremap <silent> <Leader>com :Gina compare<CR>
   nnoremap <silent> <Leader>log :Gina log<CR>
   nnoremap <silent> <Leader>bla :Gina blame<CR>
+'''
+
+
+[[plugins]]
+repo = 'mhinz/vim-grepper'
+hook_add = '''
+  let g:grepper = {}
+  let g:grepper.tools = ['git', 'ag']
+  let g:grepper.prompt_mapping_tool = '<tab>'
+
+  nmap gs <plug>(GrepperOperator)
+  xmap gs <plug>(GrepperOperator)
+
+  nnoremap <silent> ,g :Grepper<CR>
+  nnoremap <silent> ,cg :Grepper -cword -noprompt<CR>
+
+  let g:mapping_descriptions += [[',g', ':Grepper']]
+  let g:mapping_descriptions += [[',cg', 'Grep word under the cursor.']]
+  let g:mapping_descriptions += [['gs', 'Grep with operator.']]
+
+  let g:grepper = { 'open': 0 }
+  autocmd User Grepper copen
 '''
 
 

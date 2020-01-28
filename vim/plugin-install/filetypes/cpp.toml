@@ -1,5 +1,6 @@
 hook_add = """
-  " ALE
+"
+  " -- ALE
   " let g:ale_linters['cpp'] = ['gcc']
   " let g:ale_linters['cmake'] = ['cmakelint']
   " let g:ale_fixers['cpp'] = [
@@ -11,7 +12,8 @@ hook_add = """
   " let g:ale_cpp_gcc_options = '-std=c++14 -Wall -Wextra -Wpedantic -DDEBUG -DDEBUG_OUT=std::cout'
 
 
-  " QuickRun
+
+  " -- QuickRun
   " 'type' : 'cpp/g++' とすることで明示的に 'cpp/g++' の設定を継承する
 
   " -w : Inhibit all warning messages. : すべての警告を禁止する
@@ -26,9 +28,11 @@ hook_add = """
   \ 'cmdopt' : '-DNDEBUG -w -std=c++17',
   \ }
 
-  augroup MyAutoCmd
-    autocmd FileType cpp nnoremap <buffer><expr> <Leader>l ':ccl\|QuickRun -type "cpp-no-debug"' . "\<CR>"
-  augroup END
+  autocmd init_vim FileType cpp nnoremap <buffer><expr> <Leader>l ':ccl\|QuickRun -type "cpp-no-debug"' . "\<CR>"
+
+
+  " -- coc.nvim
+
 
 """
 

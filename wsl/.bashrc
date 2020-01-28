@@ -12,7 +12,8 @@ case $- in
 esac
 
 echo '.bashrc'
-echo '- cdwin : Go to win home.'
+echo '    - for WSL'
+echo '    - cdwin : Go to win home.'
 
 # ---- vim の環境変数を削除
 unset VIM
@@ -89,6 +90,16 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 export LESS='-R --no-init -g -j10 --quit-if-one-screen'
 export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
 
+
+# ---- nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+
+# ---- cquery
+export PATH=$PATH:$HOME/cquery/build/release/bin
+
+
 # -- WSL 特有の設定
 
 export WinUserName=`cmd.exe /c echo %UserName% 2>/dev/null | tr -d '\n' | tr -d '\r'`
@@ -96,3 +107,5 @@ export WinHome="/mnt/c/Users/$WinUserName"
 alias cdwin="cd $WinHome"
 
 
+
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

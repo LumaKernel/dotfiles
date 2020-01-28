@@ -5,9 +5,8 @@ alias ...='cd ../..'
 alias -- -='cd -'
 alias ~='cd ~'
 
-alias ls='ls --color=auto --show-control-chars --time-style=long-iso -FH'
+alias ls='ls --color=auto --show-control-chars --time-style=long-iso -FH -A'
 alias ll='ls -lA'
-alias la='ls -A'
 alias l='ls -CF'
 
 alias relogin='exec $SHELL -l'
@@ -27,4 +26,11 @@ alias vim="nvim"
 
 man_vim() { vim "+runtime! ftplugin/man.vim | Man $* | only"; }
 alias man=man_vim
+
+# -- git
+alias gs="git status --short"
+alias gsta="git status"
+alias gp="git push"
+alias ga="git add ."
+alias gc="git commit -m"
 

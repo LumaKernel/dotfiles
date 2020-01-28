@@ -23,7 +23,7 @@ hook_add = '''
   endfunction
 
   let g:my_startify_message = [
-        \   "\uf120  Welcome to \ue7c5",
+        \   "\uf120  Welcome to \ue7c5 !",
         \   "",
         \   "Sessions.vim をプロジェクトフォルダ内に置くことでセッションを保存",
         \   "もしくは :SSave を使う",
@@ -47,7 +47,7 @@ hook_add = '''
 
   let g:startify_bookmarks = [
         \   '~/cp',
-        \   '~/mystudy',
+        \   '~/mynote',
         \   '~/work',
         \   '~/dotfiles',
         \   '~/.cache/dein/repos',
@@ -55,6 +55,7 @@ hook_add = '''
 
   function! s:MyColorSelections()
     return [
+          \   { 'line': 'onedark' , 'cmd': 'colo onedark' },
           \   { 'line': 'tender' , 'cmd': 'colo tender' },
           \   { 'line': 'iceberg' , 'cmd': 'colo iceberg' },
           \   { 'line': 'darkblue' , 'cmd': 'colo darkblue' },
@@ -99,20 +100,20 @@ hook_add = '''
         \ ]
 
 
-  " TODO : NERDTree を一緒に開く設定，微妙
-  if 0
-    augroup init_vim
+  augroup init_vim
+    " TODO : NERDTree を一緒に開く設定，微妙
+    if 0
       au VimEnter * if !argc()
       au VimEnter *   Startify
       au VimEnter *   NERDTree
       au VimEnter *   wincmd w
       au VimEnter * endif
+    endif
 
-      au VimEnter * silent! nunmap <buffer> q
-      au VimEnter * silent! nunmap <buffer> t
-      au VimEnter * silent! nunmap <buffer> T
-    augroup END
-  endif
+    au VimEnter * silent! nunmap <buffer> q
+    au VimEnter * silent! nunmap <buffer> t
+    au VimEnter * silent! nunmap <buffer> T
+  augroup END
 
 '''
 
