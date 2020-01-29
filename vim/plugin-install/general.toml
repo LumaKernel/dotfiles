@@ -181,6 +181,10 @@ hook_add = '''
     endif
   endif
 
+  if executable('ag')
+    let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+  endif
+
   if has('nvim')
     let g:fzf_layout = { 'window': 'call my#CreateCenteredFloatingWindow()' }
   endif
@@ -188,12 +192,6 @@ hook_add = '''
   command! -bang Colors call fzf#vim#colors({'options': '--preview ""'}, <bang>0)
 
   command! -bang LS Buffers<bang>
-
-  function! s:SaveR() abort
-  endfunction
-
-  function! s:RestoreR() abort
-  endfunction
 
   nnoremap <silent> ,f  :<C-u>Files<CR>
   nnoremap <silent> ,df :<C-u>GFiles<CR>
@@ -300,7 +298,7 @@ repo = 'AndrewRadev/linediff.vim'
 # foldenable の時に
 # TODO : Issue 出すかも
 [[plugins]]
-if = '0'
+if = 'g:is_wsl'
 repo = 'liuchengxu/vista.vim'
 hook_add = '''
   let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }

@@ -11,10 +11,11 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 
 
 $files = @(
-  @{target="init.vim"; path=""; name=".vimrc"}
-  @{target="init.vim"; path="AppData/Local/nvim"}
-  @{target="ginit.vim"; path="AppData/Local/nvim"}
-  @{target="vim/coc-settings.json"; path="AppData/Local/nvim"}
+  @{ target="init.vim"; path=""; name=".vimrc" }
+  @{ target="init.vim"; path="AppData/Local/nvim" }
+  @{ target="ginit.vim"; path="AppData/Local/nvim" }
+  @{ target="vim/coc-settings.json"; path="AppData/Local/nvim" }
+  @{ target="windows/wsltty-config"; fullpath="$env:AppData/wsltty/config" }
   "windows/.minttyrc"
   "windows/.bash_profile"
   "windows/.bashrc"
@@ -50,7 +51,7 @@ foreach ($file in $files) {
   $target_name = Split-Path $file.target -Leaf
   $file.target = "~/dotfiles/" + $file.target
 
-  if (!$file.path) { $file.path = "~" }
+  if ( !$file.path ) { $file.path = "~" }
   else { $file.path = (Resolve-Path ("~/" + $file.path)).Path }
 
   if ($file.fullpath) {

@@ -15,6 +15,7 @@ echo '.bashrc'
 echo '    - for WSL'
 echo '    - cdwin : Go to win home.'
 
+
 # ---- vim の環境変数を削除
 unset VIM
 unset VIMRUNTIME
@@ -67,7 +68,7 @@ function I {
 #   pip3 install powerline-shell
 
 command -v powerline-shell >/dev/null 2>&1
-if [[ -n $? ]] ; then
+if (( ! $? )) ; then
 
   function _update_ps1() {
     PS1=$(powerline-shell $?)
@@ -98,6 +99,11 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 # ---- cquery
 export PATH=$PATH:$HOME/cquery/build/release/bin
+
+
+# ---- thefuck
+eval $(thefuck --alias) >/dev/null 2>&1
+alias nyan=fuck
 
 
 # -- WSL 特有の設定

@@ -1,0 +1,5 @@
+# To use common configuration in %APPDATA%\mintty, simply remove this file
+Language=ja
+Columns=132
+Rows=48
+Transparency=off

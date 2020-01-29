@@ -1,0 +1,19 @@
+{
+  "segments": [
+    {
+      "type": "stdout",
+      "command": ["echo", "hi"],
+      "fg_color": 22,
+      "bg_color": 161
+    },
+    "virtual_env",
+    "username",
+    "ssh",
+    "cwd",
+    "git",
+    "hg",
+    "jobs",
+    "root"
+  ],
+  "mode": "flat"
+}

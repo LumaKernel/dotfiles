@@ -29,7 +29,7 @@ git config --global core.autocrlf false
 cd ~
 git clone https://github.com/LumaKernel/dotfiles ~/dotfiles
 
-~/dotfiles/windows/symlinks.ps1
+~/dotfiles/windows/symlink.ps1
 
 scoop install concfg
 scoop install pshazz

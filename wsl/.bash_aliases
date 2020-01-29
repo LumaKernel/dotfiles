@@ -20,10 +20,12 @@ alias du1='du -d1'
 
 export GREP_OPTINS="--color=auto"
 
+# -- vim
 alias vi="vim -u NONE"
 alias g+='g++ -Wall -Wextra -Wpedantic -fsanitize=undefined -g'
 alias vim="nvim"
 
+# -- man
 man_vim() { vim "+runtime! ftplugin/man.vim | Man $* | only"; }
 alias man=man_vim
 
