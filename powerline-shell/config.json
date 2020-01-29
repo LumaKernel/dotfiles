@@ -1,19 +1,22 @@
 {
   "segments": [
     {
-      "type": "stdout",
-      "command": ["echo", "hi"],
-      "fg_color": 22,
-      "bg_color": 161
+      "type": "~/dotfiles/powerline-shell/wsl.py",
+      "bg_color": 17
     },
     "virtual_env",
-    "username",
+    "time",
     "ssh",
     "cwd",
     "git",
     "hg",
     "jobs",
+    "newline",
     "root"
   ],
-  "mode": "flat"
+  "mode": "flat",
+  "cwd": {
+    "mode": "plain"
+  },
+  "theme": "default"
 }

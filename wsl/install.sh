@@ -42,4 +42,5 @@ fi
 pip install powerline-shell
 pip install pylint flake8
 pip install thefuck
+pip install jedi
 

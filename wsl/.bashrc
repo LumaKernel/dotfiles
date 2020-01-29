@@ -95,6 +95,7 @@ export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
 # ---- nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
 # ---- cquery
@@ -108,10 +109,14 @@ alias nyan=fuck
 
 # -- WSL 特有の設定
 
-export WinUserName=`cmd.exe /c echo %UserName% 2>/dev/null | tr -d '\n' | tr -d '\r'`
-export WinHome="/mnt/c/Users/$WinUserName"
-alias cdwin="cd $WinHome"
+which cmd.exe >/dev/null 2>&1
+if (( ! $? )); then
+  export is_WSL=1
+fi
 
+if [[ $is_WSL ]]; then
+  export WinUserName=`cmd.exe /c echo %UserName% 2>/dev/null | tr -d '\n' | tr -d '\r'`
+  export WinHome="/mnt/c/Users/$WinUserName"
+  alias cdwin="cd $WinHome"
+fi
 
-
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
