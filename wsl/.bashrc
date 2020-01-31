@@ -100,7 +100,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 # ---- cquery
 command -v cquery >/dev/null 2>&1 ||
-  export PATH=$PATH:$HOME/cquery/build/release/bin
+  export PATH=$PATH:$HOME/bin/cquery/build/release/bin
 
 
 # ---- thefuck
@@ -113,8 +113,13 @@ command -v themis >/dev/null 2>&1 ||
   export PATH=$PATH:$HOME/.cache/dein/repos/github.com/thinca/vim-themis/bin
 
 
+# ---- bashmarks
+[ -f "${HOME}/.local/bin/bashmarks.sh" ] && source "${HOME}/.local/bin/bashmarks.sh"
+
+
 # ---- user installed bin
 export PATH=$PATH:$HOME/bin
+
 
 
 # -- WSL 特有の設定

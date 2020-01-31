@@ -7,7 +7,6 @@ alias ~='cd ~'
 
 alias ls='ls --color=auto --show-control-chars --time-style=long-iso -FH -A'
 alias ll='ls -lA'
-alias l='ls -CF'
 
 alias relogin='exec $SHELL -l'
 alias re=relogin

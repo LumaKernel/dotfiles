@@ -19,6 +19,8 @@ ln -sf ~/dotfiles/vim/coc-settings.json ~/.config/nvim
 ln -sf ~/dotfiles/wsl/.bash_profile ~/.bash_profile
 ln -sf ~/dotfiles/wsl/.bashrc ~/.bashrc
 
+ln -sf ~/dotfiles/.gitignore_global ~/.gitignore_global
+
 mkdir -p ~/.config/powerline-shell
 ln -sf ~/dotfiles/powerline-shell/config.json ~/.config/powerline-shell/config.json
 
