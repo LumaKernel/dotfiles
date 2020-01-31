@@ -99,12 +99,22 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 
 # ---- cquery
-export PATH=$PATH:$HOME/cquery/build/release/bin
+command -v cquery >/dev/null 2>&1 ||
+  export PATH=$PATH:$HOME/cquery/build/release/bin
 
 
 # ---- thefuck
 eval $(thefuck --alias) >/dev/null 2>&1
 alias nyan=fuck
+
+
+# ---- themis
+command -v themis >/dev/null 2>&1 ||
+  export PATH=$PATH:$HOME/.cache/dein/repos/github.com/thinca/vim-themis/bin
+
+
+# ---- user installed bin
+export PATH=$PATH:$HOME/bin
 
 
 # -- WSL 特有の設定

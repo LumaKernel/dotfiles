@@ -1,7 +1,7 @@
 [[plugins]]
 repo = "LumaKernel/coquille"
 on_ft = "coq"
-hook_source = """
+hook_source = '''
   let g:coquille_auto_move=1
   let g:coquille_one_window=1
 
@@ -43,7 +43,9 @@ hook_source = """
     autocmd ColorScheme * :call <SID>setup_my_coq_colo()
   augroup END
 
-  let g:coquille_coq_executable = 'C:\Coq8.11beta\bin\coqidetop'
+  if has('win32')
+    let g:coquille_coq_executable = 'C:\Coq8.10\bin\coqidetop.exe'
+  endif
 
-"""
+'''
 

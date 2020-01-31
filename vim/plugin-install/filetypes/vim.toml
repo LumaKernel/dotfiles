@@ -6,9 +6,11 @@
 repo = 'vim-jp/vital.vim'
 merged = 0
 
+
 [[plugins]]
 repo = 'haya14busa/vital-vimlcompiler'
 depends = ["vital.vim"]
+
 
 [[plugins]]
 repo = 'haya14busa/vital-power-assert'
@@ -19,11 +21,26 @@ hook_add = """
   \ }
 """
 
+
 [[plugins]]
 repo = 'haya14busa/vital-safe-string'
 depends = ["vital.vim"]
 
+
 [[plugins]]
 # NOTE : :XtermColorTable
 repo = 'guns/xterm-color-table.vim'
+
+
+[[plugins]]
+repo = 'thinca/vim-themis'
+hook_add = '''
+  if !executable('themis')
+    if has('win32')
+      let $PATH ..= ';' .. expand('~') .. '/.cache/dein/repos/github.com/thinca/vim-themis/bin'
+    else
+      let $PATH ..= ':' .. expand('~') .. '/.cache/dein/repos/github.com/thinca/vim-themis/bin'
+    endif
+  endif
+'''
 

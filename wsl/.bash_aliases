@@ -18,7 +18,7 @@ alias df='df -h'
 alias du='du -h'
 alias du1='du -d1'
 
-export GREP_OPTINS="--color=auto"
+alias grep='grep --color'
 
 # -- vim
 alias vi="vim -u NONE"

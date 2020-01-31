@@ -28,6 +28,7 @@ git config --global core.ignorecase false
 git config --global core.quotepath false
 git config --global core.safecrlf true
 git config --global core.autocrlf false
+git config --global "url.`"git@github.com:`".insteadOf" "https://github.com/"
 
 echo ""
 echo "以下を自分で実行してください"
