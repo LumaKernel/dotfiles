@@ -19,7 +19,7 @@ set conceallevel=0
 " modeline の後
 augroup MyConcealLevel
   au!
-  au FileType help au BufEnter * ++once set conceallevel=0
+  au BufEnter * if &buftype == 'help' | setlocal conceallevel=0 | endif
 augroup END
 
 let g:loaded_matchparen = 1

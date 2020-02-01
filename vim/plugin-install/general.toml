@@ -341,6 +341,7 @@ hook_add = '''
 '''
 
 
+# TODO cmdwin があんま動かない，クォーテーションで変に?
 [[plugins]]
 repo = 'mhinz/vim-grepper'
 hook_add = '''
