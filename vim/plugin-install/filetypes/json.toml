@@ -1,6 +1,7 @@
 # json 系も一緒に管理
 
 hook_add = '''
+  let g:vim_json_conceal = 0
   augroup my_json
     au User CocNvimInit call coc#add_extension('coc-json')
   augroup END

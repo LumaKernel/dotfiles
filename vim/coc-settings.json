@@ -17,6 +17,7 @@
   ],
 
 
+  // TODO : TextLint のほうがよくないか
   "cSpell.enabledLanguageIds": [
     "asciidoc",
     "c",
@@ -28,7 +29,6 @@
     "git-commit",
     "go",
     "handlebars",
-    "haskell",
     "haskell",
     "html",
     "jade",

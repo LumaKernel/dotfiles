@@ -114,7 +114,6 @@ if has('nvim') && !g:is_wsl
   set winblend=20
 endif
 
-
 " -- WSL でのクリップボード
 
 if g:is_wsl && has('nvim') && executable('win32yank.exe')

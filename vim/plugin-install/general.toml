@@ -129,10 +129,46 @@ repo = 'roxma/vim-hug-neovim-rpc'
 [[plugins]]
 repo = 'Yggdroot/indentLine'
 hook_add = '''
-  " TODO : これ設定してたら何もなくない．．．？
-  let g:indentLine_setConceal = 0
+  " after で色々やられ，競合しやすいのでホワイトリストで管理
+  let g:indentLine_fileType = [
+      \   'c',
+      \   'cmake',
+      \   'coq',
+      \   'cpp',
+      \   'csharp',
+      \   'css',
+      \   'go',
+      \   'haskell',
+      \   'html',
+      \   'javascript',
+      \   'javascriptreact',
+      \   'json',
+      \   'jsonc',
+      \   'latex',
+      \   'less',
+      \   'make',
+      \   'markdown',
+      \   'ocaml',
+      \   'perl',
+      \   'php',
+      \   'powershell',
+      \   'pug',
+      \   'python',
+      \   'ruby',
+      \   'rust',
+      \   'scala',
+      \   'scss',
+      \   'sml',
+      \   'toml',
+      \   'typescript',
+      \   'typescriptreact',
+      \   'vim',
+      \   'vue',
+      \   'xml',
+      \   'yaml',
+      \   'yml',
+      \ ]
 '''
-
 
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim' # {{{
@@ -329,16 +365,25 @@ hook_add = '''
         \  ':call gina#action#call("index:stage")<CR>',
         \  {'noremap': 1, 'silent': 1})
 
-  call gina#custom#command#option('/\(status\|commit\|log\)', '--opener', 'vsplit')
+  call gina#custom#command#option('/\(status\|commit\|log\|branch\|diff\|s\|lg\)', '--opener', 'vsplit')
 
   " -- status の設定
-  call gina#custom#command#option('status', '--short')
+  call gina#custom#command#alias('status', 's')
+  call gina#custom#command#option('s', '--short')
 
-  nnoremap <silent> <Leader>sta :Gina status<CR>
-  nnoremap <silent> <Leader>com :Gina compare<CR>
-  nnoremap <silent> <Leader>log :Gina log<CR>
+  call gina#custom#command#alias('log', 'lg')
+  call gina#custom#command#option('lg', '--graph')
+
+  nnoremap <silent> <Leader>st :Gina s<CR>
+  nnoremap <silent> <Leader>cc :Gina compare<CR>
+  nnoremap <silent> <Leader>com :Gina commit<CR>
+  nnoremap <silent> <Leader>dd :Gina diff HEAD<CR>
+  nnoremap <silent> <Leader>lg :Gina lg<CR>
   nnoremap <silent> <Leader>bla :Gina blame<CR>
 '''
+
+[[plugins]]
+repo = 'kshenoy/vim-signature'
 
 
 # TODO cmdwin があんま動かない，クォーテーションで変に?
