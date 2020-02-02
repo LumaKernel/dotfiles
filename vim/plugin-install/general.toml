@@ -66,6 +66,8 @@ hook_add = '''
   let g:fern#default_hidden = 1
   let g:fern#default_exclude = '\.git$'
 
+  let g:fern#scheme#file#provider#impl = 'ls'
+
   function! s:init_fern() abort
     nmap <buffer><expr><silent>
           \ B
@@ -75,12 +77,35 @@ hook_add = '''
           \     'bookmark': "B",
           \   },
           \ )
+    silent! nunmap <buffer> t
   endfunction
+
+  nnoremap <Leader>a :Fern . -reveal=%<CR>
 
   augroup my-fern
     autocmd! *
     autocmd FileType fern call s:init_fern()
+
   augroup END
+
+  let g:loaded_netrw             = 1
+  let g:loaded_netrwPlugin       = 1
+  let g:loaded_netrwSettings     = 1
+  let g:loaded_netrwFileHandlers = 1
+
+  augroup my-fern-hijack
+    autocmd!
+    autocmd BufEnter * ++nested call s:hijack_directory()
+  augroup END
+
+  function! s:hijack_directory() abort
+    let path = expand('%')
+    if !isdirectory(path)
+      return
+    endif
+    exe 'Fern' path
+  endfunction
+
 '''
 
 
