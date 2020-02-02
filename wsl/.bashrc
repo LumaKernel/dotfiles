@@ -46,11 +46,6 @@ shopt -s no_empty_cmd_completion  # 何も入力してないなら補完しな�
 shopt -s nocaseglob  # glob で ignorecase
 
 
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-
 # ---- hisotry 向上
 
 # i: 直前の履歴 30件を表示する。引数がある場合は過去 1000件を検索
