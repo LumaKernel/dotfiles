@@ -9,12 +9,14 @@ fi
 # -- apt でのインストール
 apt-get update -y
 apt-get upgrade -y
+apt-get autoremove -y
 
 apt-get install python -y
 apt-get install clang -y
 apt-get install source-highlight -y
 apt-get install exuberant-ctags -y
 apt-get install silversearcher-ag -y
+apt-get install tmux -y
 
 
 # -- install cquery
@@ -47,6 +49,15 @@ if [[ ! -e "$HOME/.local/bin/bashmarks.sh" ]] ; then
     pushd bashmarks
       cp bashmarks.sh $HOME/.local/bin
     popd
+  popd
+fi
+
+
+# -- install tmux-powerline
+if [[ ! -d "$HOME/bin/tmux-powerline" ]] ; then
+  mkdir -p $HOME/bin
+  pushd $HOME/bin
+    git clone git://github.com/erikw/tmux-powerline.git
   popd
 fi
 
