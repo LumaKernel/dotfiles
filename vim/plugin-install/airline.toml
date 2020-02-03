@@ -1,7 +1,7 @@
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
-hook_post_source = '''
+hook_add = '''
   let g:airline_powerline_fonts = 1
   " Powerline Extra Symbols も使っている
   " https://github.com/ryanoasis/powerline-extra-symbols
@@ -9,6 +9,7 @@ hook_post_source = '''
 
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#show_buffers = 1
+  let g:airline#extensions#tabline#show_tabs = 0
 
   " " バッファ切り替え
   let g:airline#extensions#tabline#buffer_idx_mode = 1

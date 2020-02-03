@@ -21,6 +21,7 @@ apt-get install ripgrep -y
 
 apt-get install tmux -y
 apt-get install fish -y
+apt-get install translate-shell -y
 
 
 

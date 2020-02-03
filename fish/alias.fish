@@ -44,3 +44,8 @@ alias gl="git lg"
 thefuck --alias | source
 alias nyan=fuck
 
+
+# ---- trans
+alias trans2ja="trans -t ja --shell --brief"
+alias trans2en="trans -t en --shell --brief"
+
