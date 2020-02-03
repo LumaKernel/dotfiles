@@ -15,11 +15,11 @@ depends = ["vital.vim"]
 [[plugins]]
 repo = 'haya14busa/vital-power-assert'
 depends = ["vital.vim"]
-hook_add = """
+hook_add = '''
   let g:__vital_power_assert_config = {
   \   '__debug__': 1
   \ }
-"""
+'''
 
 
 [[plugins]]

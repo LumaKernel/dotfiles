@@ -10,7 +10,7 @@ function relogin
 end
 alias re=relogin
 
-alias c=clear
+alias c 'clear; tmux clear-history'
 
 alias df='df -h'
 alias du='du -h'

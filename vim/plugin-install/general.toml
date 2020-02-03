@@ -374,7 +374,7 @@ build = 'make'
 # たまにね，たまに
 
 repo = 'lambdalisue/gina.vim'
-hook_add = '''
+hook_post_source = '''
   call gina#custom#command#option('/\(status\|commit\|log\|branch\|s\|lg\)', '--opener', 'vsplit')
 
   " -- status の設定
@@ -424,9 +424,24 @@ repo = 'luochen1990/rainbow'
 
 
 [[plugins]]
+repo = 'haya14busa/vim-asterisk'
+hook_add = '''
+  let g:asterisk#keeppos = 1
+  map *  <Plug>(asterisk-z*)
+  map #  <Plug>(asterisk-z#)
+  map g* <Plug>(asterisk-gz*)
+  map g# <Plug>(asterisk-gz#)
+  xmap *  <Plug>(asterisk-z*)
+  xmap #  <Plug>(asterisk-z#)
+  xmap g* <Plug>(asterisk-gz*)
+  xmap g# <Plug>(asterisk-gz#)
+'''
+
+
+[[plugins]]
 repo = 'junegunn/vim-easy-align'
-hook_add = """
+hook_add = '''
   xmap ga <Plug>(LiveEasyAlign)
   nmap ga <Plug>(LiveEasyAlign)
-"""
+'''
 

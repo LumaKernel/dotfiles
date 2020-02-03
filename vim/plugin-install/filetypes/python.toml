@@ -1,4 +1,4 @@
-hook_add = """
+hook_add = '''
   " ALE
   " let g:ale_linters['python'] = [
   "      \   'flake8',
@@ -29,5 +29,5 @@ hook_add = """
     \   "hook/output_encode/encoding" : "cp932",
     \}
   endif
-"""
+'''
 

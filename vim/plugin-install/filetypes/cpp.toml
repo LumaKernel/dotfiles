@@ -1,4 +1,4 @@
-hook_add = """
+hook_add = '''
 "
   " -- ALE
   " let g:ale_linters['cpp'] = ['gcc']
@@ -34,7 +34,7 @@ hook_add = """
   " -- coc.nvim
 
 
-"""
+'''
 
 [[plugins]]
 repo = 'Mizuchi/STL-Syntax'
