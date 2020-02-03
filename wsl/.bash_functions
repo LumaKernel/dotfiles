@@ -1,14 +1,5 @@
 echo '.bash_functions'
 
-function pinst()
-{
-    pacman -S "mingw-w64-i686-$1"
-}
-function puninst()
-{
-    pacman -Rs "mingw-w64-i686-$1"
-}
-
 function color()
 {
   for fore in `seq 30 37`

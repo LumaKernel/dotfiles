@@ -130,3 +130,9 @@ if [[ $is_WSL ]]; then
   alias cdwin="cd $WinHome"
 fi
 
+# -- fish
+if [[ -z $BASH_NO_FISH ]] ; then
+  export BASH_NO_FISH=1
+  command -v fish >/dev/null 2>&1 && exec fish
+fi
+

@@ -1,5 +1,13 @@
 let g:my_color_fixes = get(g:, 'g:my_color_fixes', {})
 
+let g:miss_spells = [
+      \   'functoin',
+      \   'funciton',
+      \   'functino',
+      \   'ehco',
+      \   'itn',
+      \ ]
+
 function! DefineColors() abort
   let bg_tup = s:toTuple(synIDattr(hlID('Normal'), 'bg#'))
 
@@ -17,6 +25,8 @@ function! DefineColors() abort
 
 endfunction
 
+hi link MySpellError Error
+exe 'match MySpellError ' .. '/' .. join(g:miss_spells, '\|') .. '/'
 
 " string to tuple
 function! s:toTuple(text) abort
@@ -52,6 +62,16 @@ function! g:my_color_fixes.iceberg()
   hi Comment guifg=#999999
   hi Ignore ctermfg=125 guifg=#994444
   hi Constant guifg=#cc99cc
+endfunction
+
+" }}}
+
+" onedark {{{
+
+function! g:my_color_fixes.onedark()
+  hi Comment guifg=#999999
+  hi Comment ctermfg=244
+  hi Error ctermbg=52
 endfunction
 
 " }}}

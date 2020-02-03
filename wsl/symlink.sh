@@ -22,6 +22,10 @@ ln -sf ~/dotfiles/wsl/.bashrc ~/.bashrc
 ln -sf ~/dotfiles/.gitignore_global ~/.gitignore_global
 
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/.tmux-powerlinerc ~/.tmux-powerlinerc
+
+
+ln -sf ~/dotfiles/fish/config.fish ~/.config/fish/config.fish
 
 mkdir -p ~/.config/powerline-shell
 ln -sf ~/dotfiles/powerline-shell/config.json ~/.config/powerline-shell/config.json

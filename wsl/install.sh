@@ -17,6 +17,7 @@ apt-get install source-highlight -y
 apt-get install exuberant-ctags -y
 apt-get install silversearcher-ag -y
 apt-get install tmux -y
+apt-get install fish -y
 
 
 # -- install cquery
@@ -45,7 +46,7 @@ if [[ ! -e "$HOME/.local/bin/bashmarks.sh" ]] ; then
   mkdir -p $HOME/.tmp
   pushd $HOME/.tmp
     [[ -d "bashmarks" ]] && rm -r bashmarks
-    git clone git://github.com/huyng/bashmarks.git
+    git clone https://github.com/huyng/bashmarks.git
     pushd bashmarks
       cp bashmarks.sh $HOME/.local/bin
     popd
@@ -57,8 +58,22 @@ fi
 if [[ ! -d "$HOME/bin/tmux-powerline" ]] ; then
   mkdir -p $HOME/bin
   pushd $HOME/bin
-    git clone git://github.com/erikw/tmux-powerline.git
+    git clone https://github.com/erikw/tmux-powerline.git
   popd
+fi
+
+
+# -- install tmux-plugins
+if [[ ! -d "$HOME/.tmux/plugins/tpm" ]] ; then
+  mkdir -p $HOME/.tmux/plugins
+  pushd $HOME/.tmux/plugins
+    git clone https://github.com/tmux-plugins/tpm.git
+  popd
+fi
+
+# -- install fisher
+if [[ ! -e "$HOME/.config/fish/functions/fisher.fish" ]]
+  curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 fi
 
 

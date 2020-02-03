@@ -1,16 +1,13 @@
-#!/bin/bash
 
-echo '.bash_aliases'
-
-alias ..='cd ..'
-alias ...='cd ../..'
-alias -- -='cd -'
-alias ~='cd ~'
+echo "fish/alias.fish"
 
 alias ls='ls --color=auto --show-control-chars --time-style=long-iso -FH -A'
 alias ll='ls -lA'
 
-alias relogin='exec $SHELL -l'
+function relogin
+  export BASH_NO_FISH=
+  exec /bin/bash
+end
 alias re=relogin
 
 alias c=clear
@@ -27,9 +24,9 @@ alias g+='g++ -Wall -Wextra -Wpedantic -fsanitize=undefined -g'
 alias vim="nvim"
 
 # -- man
-function man_vim() {
-  vim "+runtime! ftplugin/man.vim | Man $* | only"
-}
+function man_vim
+  vim "+runtime! ftplugin/man.vim | Man $argv | only"
+end
 alias man=man_vim
 
 # -- git

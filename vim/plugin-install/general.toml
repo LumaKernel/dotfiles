@@ -66,8 +66,6 @@ hook_add = '''
   let g:fern#default_hidden = 1
   let g:fern#default_exclude = '\.git$'
 
-  let g:fern#scheme#file#provider#impl = 'ls'
-
   function! s:init_fern() abort
     nmap <buffer><expr><silent>
           \ B
