@@ -375,14 +375,7 @@ build = 'make'
 
 repo = 'lambdalisue/gina.vim'
 hook_add = '''
-  " TODO : 一時的な対応
-  " TODO : https://github.com/equalsraf/neovim-qt/pull/612
-  call gina#custom#mapping#map(
-        \  'status', "<s-lt><s-lt>",
-        \  ':call gina#action#call("index:stage")<CR>',
-        \  {'noremap': 1, 'silent': 1})
-
-  call gina#custom#command#option('/\(status\|commit\|log\|branch\|diff\|s\|lg\)', '--opener', 'vsplit')
+  call gina#custom#command#option('/\(status\|commit\|log\|branch\|s\|lg\)', '--opener', 'vsplit')
 
   " -- status の設定
   call gina#custom#command#alias('status', 's')
