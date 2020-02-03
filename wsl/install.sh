@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "`whoami`" != "root" ]; then
-  echo "Run with 'sudo'"
+  echo "sudo ~/wsl/install.sh"
   exit 1
 fi
 
@@ -72,10 +72,12 @@ if [[ ! -d "$HOME/.tmux/plugins/tpm" ]] ; then
 fi
 
 # -- install fisher
-if [[ ! -e "$HOME/.config/fish/functions/fisher.fish" ]]
+if [[ ! -e "$HOME/.config/fish/functions/fisher.fish" ]] ; then
   curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 fi
 
+# ---- fisher plugins
+fish ~/dotfiles/wsl/install.fish
 
 # -- pip でのインストール
 pip install powerline-shell

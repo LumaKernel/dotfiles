@@ -37,3 +37,7 @@ alias ga="git add ."
 alias gc="git commit -m"
 alias gl="git lg"
 
+# ---- thefuck
+thefuck --alias | source
+alias nyan=fuck
+
