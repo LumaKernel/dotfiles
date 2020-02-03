@@ -403,13 +403,13 @@ hook_add = '''
   let g:grepper = {}
   let g:grepper.tools = ['git', 'ag']
   let g:grepper.prompt_mapping_tool = '<tab>'
-
+  
   nmap gs <plug>(GrepperOperator)
   xmap gs <plug>(GrepperOperator)
-
+  
   nnoremap <silent> ,g :Grepper<CR>
   nnoremap <silent> ,cg :Grepper -cword -noprompt<CR>
-
+  
   let g:mapping_descriptions += [[',g', ':Grepper']]
   let g:mapping_descriptions += [[',cg', 'Grep word under the cursor.']]
   let g:mapping_descriptions += [['gs', 'Grep with operator.']]

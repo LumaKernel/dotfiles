@@ -15,9 +15,13 @@ apt-get install python -y
 apt-get install clang -y
 apt-get install source-highlight -y
 apt-get install exuberant-ctags -y
+
 apt-get install silversearcher-ag -y
+apt-get install ripgrep -y
+
 apt-get install tmux -y
 apt-get install fish -y
+
 
 
 # -- install cquery

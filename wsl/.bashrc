@@ -131,8 +131,13 @@ if [[ $is_WSL ]]; then
 fi
 
 # -- fish
-if [[ -z $BASH_NO_FISH ]] ; then
-  export BASH_NO_FISH=1
+if [[ -z $NO_TMUX ]] ; then
+  export NO_TMUX=1
+  command -v fish >/dev/null 2>&1 && exec tmux
+fi
+
+if [[ -z $NO_FISH ]] ; then
+  export NO_FISH=
   command -v fish >/dev/null 2>&1 && exec fish
 fi
 

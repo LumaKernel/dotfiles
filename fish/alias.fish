@@ -1,14 +1,17 @@
 
 echo "fish/alias.fish"
 
+set -e NO_FISH
+
 alias ls='ls --color=auto --show-control-chars --time-style=long-iso -FH -A'
 alias ll='ls -lA'
 
 function relogin
-  export BASH_NO_FISH=
   exec /bin/bash
 end
 alias re=relogin
+
+alias bash='set -x NO_FISH 1; /bin/bash'
 
 alias c 'clear; tmux clear-history'
 
