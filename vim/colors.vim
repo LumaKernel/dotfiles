@@ -13,7 +13,7 @@ function! DefineColors() abort
   let bg_tup = s:toTuple(synIDattr(hlID('Normal'), 'bg#'))
 
   let warning_bg = s:toString(s:col_mult(bg_tup, [3, 2, 1]))
-  let error_bg   = s:toString(s:col_mult(bg_tup, [3, 1, 1]))
+  let error_bg   = s:toString(s:col_mult(bg_tup, [3, 0.6, 0.6]))
   let info_bg    = s:toString(s:col_mult(bg_tup, [1, 1, 3]))
 
   exe 'hi Warning ctermbg=58  guibg=' .. warning_bg
@@ -72,7 +72,7 @@ endfunction
 function! g:my_color_fixes.onedark()
   hi Comment guifg=#999999
   hi Comment ctermfg=244
-  hi Error ctermbg=52
+  " hi Error ctermbg=52
 endfunction
 
 " }}}
