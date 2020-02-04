@@ -22,7 +22,6 @@ hook_add = '''
   inoremap <silent><expr> <C-SPACE>
         \ coc#refresh()
 
-
   nmap <silent> [g <Plug>(coc-diagnostic-prev)
   nmap <silent> ]g <Plug>(coc-diagnostic-next)
 

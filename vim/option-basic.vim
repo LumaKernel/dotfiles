@@ -109,9 +109,13 @@ set shiftwidth=2 " 行頭でのTab文字の表示幅
 set keywordprg=:help
 
 
-if has('nvim') && !g:is_wsl
-  set pumblend=20
-  set winblend=20
+if !has('guirunning') && exists('&termguicolors')
+  set termguicolors
+endif
+
+if has('guirunning') || exists('&termguicolors')
+  if exists('&pumblend') | set pumblend=20 | endif
+  if exists('&winblend') | set winblend=20 | endif
 endif
 
 " -- WSL でのクリップボード
