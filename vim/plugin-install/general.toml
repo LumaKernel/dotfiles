@@ -161,7 +161,6 @@ hook_add = '''
       \   'latex',
       \   'less',
       \   'make',
-      \   'markdown',
       \   'ocaml',
       \   'perl',
       \   'php',
