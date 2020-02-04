@@ -70,10 +70,10 @@ nnoremap <A-]> <ESC>
 inoremap <A-]> <ESC>
 tnoremap <A-]> <C-\><C-n>
 
-for s:wincmd in s:wincmds
-  exe 'nnoremap <A-' .. s:wincmd .. '> <C-w>' .. s:wincmd
-  exe 'inoremap <A-' .. s:wincmd .. '> <ESC><C-w>' .. s:wincmd 
-  exe 'tnoremap <A-' .. s:wincmd .. '> <C-\><C-n><C-w>' .. s:wincmd 
+for s:wincmd in split('hjkl', '\zs')
+  exe 'nnoremap <A-' .. s:wincmd .. "> :silent! call TmuxMove('" .. s:wincmd .. "')<CR>"
+  exe 'inoremap <A-' .. s:wincmd .. "> <ESC>:silent! call TmuxMove('" .. s:wincmd .. "')<CR>"
+  exe 'tnoremap <A-' .. s:wincmd .. "> <C-\><C-n>:silent! call TmuxMove('" .. s:wincmd .. "')<CR>"
 endfor
 
 tnoremap <A-p> <C-\><C-n>pi
