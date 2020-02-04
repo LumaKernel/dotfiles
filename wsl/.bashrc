@@ -116,6 +116,14 @@ command -v themis >/dev/null 2>&1 ||
 export PATH=$PATH:$HOME/bin
 
 
+# ---- delete my fish envs
+export fish_key_bindings=
+export fish_bind_mode=
+
+
+# ---- dircolors
+eval $(dircolors "$HOME/dotfiles/.dircolors")
+
 
 # -- WSL 特有の設定
 
