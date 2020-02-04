@@ -26,6 +26,7 @@ ln -sf ~/dotfiles/.tmux-powerlinerc ~/.tmux-powerlinerc
 
 
 ln -sf ~/dotfiles/fish/config.fish ~/.config/fish/config.fish
+ln -sf ~/dotfiles/fish/functions/*.fish ~/.config/fish/functions
 
 mkdir -p ~/.config/powerline-shell
 ln -sf ~/dotfiles/powerline-shell/config.json ~/.config/powerline-shell/config.json
