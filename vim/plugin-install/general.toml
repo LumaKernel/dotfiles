@@ -427,13 +427,13 @@ repo = 'haya14busa/vim-asterisk'
 hook_add = '''
   let g:asterisk#keeppos = 1
   map *  <Plug>(asterisk-z*)
-  map #  <Plug>(asterisk-z#)
+  map #  <Plug>(asterisk-z*)N
   map g* <Plug>(asterisk-gz*)
-  map g# <Plug>(asterisk-gz#)
+  map g# <Plug>(asterisk-gz*)N
   xmap *  <Plug>(asterisk-z*)
-  xmap #  <Plug>(asterisk-z#)
+  xmap #  <Plug>(asterisk-z*)N
   xmap g* <Plug>(asterisk-gz*)
-  xmap g# <Plug>(asterisk-gz#)
+  xmap g# <Plug>(asterisk-gz*)N
 '''
 
 
