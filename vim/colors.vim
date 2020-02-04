@@ -6,6 +6,7 @@ let g:miss_spells = [
       \   'functino',
       \   'ehco',
       \   'itn',
+      \   'teh',
       \ ]
 
 function! DefineColors() abort
