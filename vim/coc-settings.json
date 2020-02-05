@@ -151,5 +151,15 @@
       "command": "lua-lsp",
       "filetypes": ["lua"]
     },
-  }
+    /* "ocaml-language-server": {                                            */
+    /* "command": "opam",                                                    */
+    /* "args": ["config", "exec", "--", "ocaml-language-server", "--stdio"], */
+    /* "filetypes": ["ocaml", "reason"],                                     */
+    /* },                                                                    */
+    "ocaml-lsp": {
+    "command": "opam",
+    "args": ["config", "exec", "--", "ocamllsp"],
+    "filetypes": ["ocaml", "reason"],
+    },
+  },
 }

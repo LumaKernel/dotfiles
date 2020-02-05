@@ -40,12 +40,15 @@ alias ga="git add ."
 alias gc="git commit -m"
 alias gl="git lg"
 
-# ---- thefuck
+# -- thefuck
 thefuck --alias | source
 alias nyan=fuck
 
 
-# ---- trans
+# -- trans
 alias trans2ja="trans -t ja --shell --brief"
 alias trans2en="trans -t en --shell --brief"
+
+# -- ocaml
+alias ocamlrepl="rlwrap ocaml"
 

@@ -25,7 +25,7 @@ unset MYGVIMRC
 
 # ---- パスを追加
 # pip のライブラリなど
-export PATH=$PATH:~/.local/bin
+export PATH=~/.local/bin:$PATH
 
 
 [ -f "${HOME}/dotfiles/wsl/.bash_aliases" ] && source "${HOME}/dotfiles/wsl/.bash_aliases"
@@ -138,7 +138,11 @@ if [[ $is_WSL ]]; then
   alias cdwin="cd $WinHome"
 fi
 
-# -- fish
+# -- opam
+$HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+eval `opam env`
+
+# -- tmux and fish
 if [[ -z $NO_TMUX ]] ; then
   export NO_TMUX=1
   command -v fish >/dev/null 2>&1 && exec tmux

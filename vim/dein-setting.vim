@@ -1,7 +1,12 @@
 
 filetype plugin indent off
-let s:dein_dir = '~/.cache/dein'
+let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir .. '/repos/github.com/Shougo/dein.vim'
+
+if !isdirectory(s:dein_repo_dir)
+  exe '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+endif
+
 let &runtimepath = s:dein_repo_dir .. ',' .. &runtimepath
 
 let s:dir = expand('<sfile>:h')
@@ -22,6 +27,16 @@ if dein#load_state(s:dein_dir)
     for s:toml in glob(s:dir .. '/plugin-install/filetypes/*.toml', 1, 1)
       call dein#load_toml(s:toml)
     endfor
+
+    " if executable('opam')
+    "   silent! let s:opam_share = system('opam config var share')
+    "   let s:merlin_dir = substitute(s:opam_share, '\n$', '', '') .. '/merlin/vim'
+    "   let g:merlin_dir = s:merlin_dir
+    "   if isdirectory(s:merlin_dir)
+    "     call dein#add(s:merlin_dir, { 'merged' : 0 })
+    "     sil! exe 'helptags ' .. s:merlin_dir .. '/doc'
+    "   endif
+    " endif
 
   call dein#end()
 
@@ -51,6 +66,7 @@ function! DeinClean() abort
     call s:F.rmdir(l:dir, 'r')
   endfor
   call dein#update()
+  call dein#recache_runtimepath()
 endfunction
 
 command! DeinClean call DeinClean()

@@ -78,12 +78,12 @@ hook_add = '''
     silent! nunmap <buffer> t
   endfunction
 
-  nnoremap <Leader>a :Fern . -reveal=%<CR>
+  nnoremap <Leader>ai :Fern . -reveal=%<CR>
+  nnoremap <Leader>aa :Fern . -drawer -reveal=%<CR>
 
   augroup my-fern
     autocmd! *
     autocmd FileType fern call s:init_fern()
-
   augroup END
 
   let g:loaded_netrw             = 1

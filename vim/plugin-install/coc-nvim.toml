@@ -38,6 +38,13 @@ hook_add = '''
 
   nmap <silent> go <Plug>(coc-openlink)
 
+  nmap <silent> <Leader>ld :<C-u>CocList diagnostics<CR>
+  nmap <silent> <Leader>le :<C-u>CocList extensions<CR>
+  nmap <silent> <Leader>lc :<C-u>CocList commands<CR>
+  nmap <silent> <Leader>lo :<C-u>CocList outline<CR>
+  nmap <silent> <Leader>ls :<C-u>CocList -I symbols<CR>
+  nmap <silent> <Leader>ll :<C-u>CocListResume<CR>
+
   function! CocNvimHiDef()
     hi CocUnderline    cterm=underline   gui=underline
     hi CocErrorSign    ctermfg=Red       guifg=#ff0000

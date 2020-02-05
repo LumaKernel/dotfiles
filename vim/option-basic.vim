@@ -118,6 +118,9 @@ if has('guirunning') || exists('&termguicolors')
   if exists('&winblend') | set winblend=20 | endif
 endif
 
+
+if exists('&inccommand') | set inccommand=nosplit | endif
+
 " -- WSL でのクリップボード
 
 if g:is_wsl && has('nvim') && executable('win32yank.exe')
