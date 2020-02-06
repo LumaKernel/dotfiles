@@ -2,6 +2,8 @@
 function! VimAndTmuxMove(direction, skipvim)
   if $TMUX ==# ''
     silent! exe 'wincmd ' .. a:direction
+  elseif system("tmux display -p '#{window_zoomed_flag}'") !=# '0'
+    silent! exe 'wincmd ' .. a:direction
   elseif a:skipvim
     silent! call TmuxMove(a:direction)
   else
