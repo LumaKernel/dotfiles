@@ -30,7 +30,11 @@ set noswapfile
 set autoread
 set hidden
 set showcmd
-set wildmode=list:full
+if has('nvim')
+  set wildmode=full
+else
+  set wildmode=list:full
+endif
 set wildignorecase
 
 set foldmethod=marker
@@ -117,6 +121,7 @@ if has('guirunning') || exists('&termguicolors')
   if exists('&pumblend') | set pumblend=20 | endif
   if exists('&winblend') | set winblend=20 | endif
 endif
+
 
 
 if exists('&inccommand') | set inccommand=nosplit | endif

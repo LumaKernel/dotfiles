@@ -28,16 +28,6 @@ if dein#load_state(s:dein_dir)
       call dein#load_toml(s:toml)
     endfor
 
-    " if executable('opam')
-    "   silent! let s:opam_share = system('opam config var share')
-    "   let s:merlin_dir = substitute(s:opam_share, '\n$', '', '') .. '/merlin/vim'
-    "   let g:merlin_dir = s:merlin_dir
-    "   if isdirectory(s:merlin_dir)
-    "     call dein#add(s:merlin_dir, { 'merged' : 0 })
-    "     sil! exe 'helptags ' .. s:merlin_dir .. '/doc'
-    "   endif
-    " endif
-
   call dein#end()
 
   call dein#call_hook('source')
@@ -48,6 +38,27 @@ if dein#load_state(s:dein_dir)
   endif
 endif
 
+
+" プラグイン開発用
+let s:make_plugin_dir = expand('~/vim-make-plugin')
+for s:path in glob(s:make_plugin_dir .. '/*', 0, 1)
+  let s:skip = 0
+  let s:skipfile = s:path .. '/' .. ',skip'
+  if filereadable(s:skipfile)
+    let s:skip = 1
+    let s:file = ''
+    sil! let s:file = readfile(s:skipfile)[0]
+    if s:file =~# '0'
+      let s:skip = 0
+    endif
+  endif
+  if !s:skip && isdirectory(s:path)
+    let &rtp = s:path .. ',' .. &rtp
+    let &rtp ..= ',' .. s:path .. '/after'
+  endif
+endfor
+
+
 augroup init_vim
   if v:vim_did_enter
     call dein#call_hook('post_source')
@@ -57,7 +68,6 @@ augroup init_vim
 augroup END
 
 filetype plugin indent on
-
 
 let s:F = vital#vital#import('System.File')
 

@@ -50,6 +50,7 @@ hook_add = '''
         \   '~/mynote',
         \   '~/work',
         \   '~/dotfiles',
+        \   '~/vim-make-plugin',
         \   '~/.cache/dein/repos',
         \]
 

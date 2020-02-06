@@ -9,7 +9,6 @@ merged = 0
 
 [[plugins]]
 repo = 'haya14busa/vital-vimlcompiler'
-depends = ["vital.vim"]
 
 
 [[plugins]]
@@ -24,7 +23,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'haya14busa/vital-safe-string'
-depends = ["vital.vim"]
+
+[[plugins]]
+repo = 'lambdalisue/vital-Whisky'
 
 
 [[plugins]]
