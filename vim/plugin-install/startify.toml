@@ -63,6 +63,28 @@ hook_add = '''
           \ ]
   endfunction
 
+  function! s:MyRefs()
+    return [
+          \   { 'line': 'GNU Make' , 'cmd': 'call LynxCache("https://www.gnu.org/software/make/manual/make.html")' },
+          \ ]
+  endfunction
+
+  function g:LynxCache(url) abort
+    let URI = vital#vital#import('Web.URI')
+    let HTTP = vital#vital#import('Web.HTTP')
+    let filename = expand('~/docs') .. '/' .. URI.encode(a:url)
+    try
+      if !filereadable(filename)
+        call HTTP.request({'url': a:url, 'method': 'GET', 'outputFile': filename})
+      endif
+    catch /.*/
+      echom '[LynxCache] Something wrong. Couldn''t make cache.'
+      exe 'Ref lynx' a:url
+      return
+    endtry
+    exe 'Ref lynx' filename
+  endfunction
+
   function! s:MyLinks()
     let l:res = [
           \   { 'line': 'coc.nvim 拡張検索' , 'url': 'https://www.npmjs.com/search?q=keywords%3Acoc.nvim' },
@@ -97,32 +119,20 @@ hook_add = '''
         \ { 'type': 'sessions',  'header': ["   \ue706 セッション"] },
         \ { 'type': 'commands',  'header': ["   \uf489 コマンド"] },
         \ { 'type': function('s:MyColorSelections'),  'header': ["   \u26a1 カラーテーマ"] },
+        \ { 'type': function('s:MyRefs'),  'header': ["   \uf002 リファレンス"] },
         \ { 'type': function('s:MyLinks'),  'header': ["   \u26a1 便利リンク"] },
         \ ]
 
-
-  augroup init_vim
-    " TODO : NERDTree を一緒に開く設定，微妙
-    if 0
-      au VimEnter * if !argc()
-      au VimEnter *   Startify
-      au VimEnter *   NERDTree
-      au VimEnter *   wincmd w
-      au VimEnter * endif
-    endif
-
-    au VimEnter * silent! nunmap <buffer> q
-    au VimEnter * silent! nunmap <buffer> t
-    au VimEnter * silent! nunmap <buffer> T
-  augroup END
-
+  nnoremap <silent> ,s :<C-u>Startify \| only<CR>
 '''
 
 
 hook_post_source = '''
   augroup init_vim
     au User StartifyReady silent! nunmap <buffer> q
+    au User StartifyReady silent! nunmap <buffer> q
     au User StartifyReady silent! nunmap <buffer> t
+    au User StartifyReady silent! nunmap <buffer> T
     au User StartifyReady silent! nunmap <buffer> T
   augroup END
 '''

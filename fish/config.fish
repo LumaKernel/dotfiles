@@ -16,3 +16,5 @@ fish_vi_key_bindings
 
 source ~/dotfiles/fish/alias.fish
 
+bash "$NVM_DIR/nvm.sh"
+

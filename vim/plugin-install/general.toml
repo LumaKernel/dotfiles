@@ -16,6 +16,10 @@ repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
+hook_add = '''
+	nmap gx <Plug>(openbrowser-smart-search)
+	vmap gx <Plug>(openbrowser-smart-search)
+'''
 
 
 [[plugins]]
@@ -448,4 +452,11 @@ hook_add = '''
   xmap ga <Plug>(LiveEasyAlign)
   nmap ga <Plug>(LiveEasyAlign)
 '''
+
+[[plugins]]
+repo = 'thinca/vim-ref.git'
+
+[[plugins]]
+repo = 'osyo-manga/ref-lynx'
+
 
