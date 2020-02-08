@@ -8,6 +8,7 @@ fi
 
 # -- apt でのインストール
 add-apt-repository ppa:avsm/ppa -y
+add-apt-repository ppa:gophers/go -y
 
 apt-get update -y
 apt-get upgrade -y
@@ -18,8 +19,13 @@ apt-get install clang -y
 apt-get install source-highlight -y
 apt-get install exuberant-ctags -y
 
+# ---- ocaml
 apt-get install opam -y
 su $SUDO_USER -c "opam init -n >/dev/null --disable-sandboxing"
+
+# ---- go
+apt-get install python-software-properties -y
+apt-get install golang-stable -y
 
 apt-get install silversearcher-ag -y
 apt-get install ripgrep -y

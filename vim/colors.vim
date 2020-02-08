@@ -4,6 +4,7 @@ let g:miss_spells = [
       \   'functoin',
       \   'funciton',
       \   'functino',
+      \   'optino',
       \   'ehco',
       \   'itn',
       \   'teh',

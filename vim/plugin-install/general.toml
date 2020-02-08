@@ -68,7 +68,7 @@ repo = 'airblade/vim-gitgutter'
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
   let g:fern#default_hidden = 1
-  let g:fern#default_exclude = '\.git$'
+  let g:fern#default_exclude = '^\.git$'
 
   function! s:init_fern() abort
     nmap <buffer><expr><silent>
@@ -82,8 +82,8 @@ hook_add = '''
     silent! nunmap <buffer> t
   endfunction
 
-  nnoremap <Leader>ai :Fern . -reveal=%<CR>
-  nnoremap <Leader>aa :Fern . -drawer -reveal=%<CR>
+  nnoremap <Leader>ai :<C-u>Fern . -reveal=%<CR>
+  nnoremap <Leader>aa :<C-u>Fern . -drawer -reveal=%<CR>
 
   augroup my-fern
     autocmd! *
@@ -118,8 +118,13 @@ depends = 'fern.vim'
 
 
 [[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
 repo = 'Shougo/neosnippet.vim' # {{{
-depends = ['neosnippet-snippets']
 hook_add = '''
   let g:neosnippet#snippets_directory = ['~/lib-cpp/', '~/dotfiles/vim/snippets/']
 
@@ -127,12 +132,6 @@ hook_add = '''
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
   xmap <C-k> <Plug>(neosnippet_expand_or_target)
 ''' # }}}
-
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-
-
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
@@ -218,6 +217,10 @@ hook_add = '''
 
 [[plugins]]
 repo = 't9md/vim-choosewin'
+hook_add = '''
+  nnoremap <Leader>cw :<C-u>ChooseWin<CR>
+  nnoremap <Leader>cs :<C-u>ChooseWinSwap<CR>
+'''
 
 
 [[plugins]]
@@ -371,16 +374,6 @@ build = 'make'
 
 
 [[plugins]]
-# Windows ではバグあり，どうしよう
-# TODO : たまに修正とかやってみようかなあ
-
-# TODO : :Gina commit ができない
-# TODO : custom#command#alais, 設定が引き継がれない
-# TODO : エラー時のバッファーが残る
-# TODO : 2つ以上 vsplit したときとかの微妙な挙動
-
-# たまにね，たまに
-
 repo = 'lambdalisue/gina.vim'
 hook_post_source = '''
   call gina#custom#command#option('/\(status\|commit\|log\|branch\|s\|lg\)', '--opener', 'vsplit')
