@@ -5,6 +5,7 @@ let g:miss_spells = [
       \   'funciton',
       \   'functino',
       \   'optino',
+      \   'optoin',
       \   'ehco',
       \   'itn',
       \   'teh',
@@ -17,9 +18,13 @@ function! DefineColors() abort
   let error_bg   = s:toString(s:col_mult(bg_tup, [3, 0.6, 0.6]))
   let info_bg    = s:toString(s:col_mult(bg_tup, [1, 1, 3]))
 
+  let qf_bg    = s:toString(s:col_mult(bg_tup, [1.8, 1.8, 0.8]))
+
   exe 'hi Warning ctermbg=58  guibg=' .. warning_bg
   exe 'hi Error   cterm=NONE ctermbg=160 ctermfg=NONE gui=NONE guifg=NONE guibg=' .. error_bg
   exe 'hi Info    cterm=NONE ctermbg=18 ctermfg=NONE gui=NONE guifg=NONE guibg=' .. info_bg
+
+  exe 'hi QuickFixLine    cterm=NONE ctermbg=17 ctermfg=NONE gui=NONE guifg=NONE guibg=' .. qf_bg
 
   if exists('g:colors_name') && has_key(g:my_color_fixes, g:colors_name)
     call g:my_color_fixes[g:colors_name]()

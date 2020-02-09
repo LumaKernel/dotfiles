@@ -31,3 +31,4 @@ ClipShortcuts=no
 WindowShortcuts=no
 SwitchShortcuts=no
 ScrollMod=ctrl
+CtrlShiftShortcuts=no
