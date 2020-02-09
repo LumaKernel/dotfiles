@@ -27,7 +27,7 @@ BoldCyan=90,162,152
 White=197,200,198
 BoldWhite=255,255,255
 
-ClipShortcuts=no
+ClipShortcuts=yes
 WindowShortcuts=no
 SwitchShortcuts=no
 ScrollMod=ctrl
