@@ -1,4 +1,3 @@
-finish
 function! s:cedit() abort
   let tnr = tabpagenr()
   tabnew

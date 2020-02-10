@@ -416,7 +416,7 @@ hook_add = '''
   let g:mapping_descriptions += [['gs', 'Grep with operator.']]
 
   let g:grepper = { 'open': 0 }
-  autocmd User Grepper copen
+  autocmd User Grepper Cedit
 '''
 
 
