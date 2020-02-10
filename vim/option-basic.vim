@@ -144,8 +144,6 @@ if g:is_wsl && has('nvim') && executable('win32yank.exe')
 endif
 
 
-
-
 function! s:setup_my_colo()
   if !exists('g:colors_name') | return | endif
   if g:colors_name ==? 'hybrid'
