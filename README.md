@@ -25,6 +25,7 @@ sudo ~/install-wsl.sh
 
 # スクリーンショット
 
+![image](https://user-images.githubusercontent.com/29811106/74127514-37f8bf00-4c1e-11ea-932c-2f6e15e44cd3.png)
 ![image](https://user-images.githubusercontent.com/29811106/73509583-f3517480-4422-11ea-979a-f62898945d96.png)
 ![image](https://user-images.githubusercontent.com/29811106/73509629-1c720500-4423-11ea-961b-47ff9c3391b4.png)
 
