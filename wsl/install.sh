@@ -104,6 +104,7 @@ pip install pylint flake8
 pip install thefuck
 pip install pynvim
 pip install jedi
+pip install trash-cli
 
 # -- ocaml
 # su $SUDO_USER -c npm install -g ocaml-language-server

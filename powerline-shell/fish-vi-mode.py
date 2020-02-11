@@ -31,10 +31,12 @@ vi_modes = {
 class Segment(ThreadedSegment):
     def add_to_powerline(self):
         self.join()
-        if not( 'fish_key_bindings' in os.environ and 'fish_bind_mode' in os.environ ):
+        if not(
+                'powerline_fish_key_bindings' in os.environ
+                and 'powerline_fish_bind_mode' in os.environ ):
             return
-        fish_key_bindings = os.environ['fish_key_bindings']
-        fish_bind_mode = os.environ['fish_bind_mode']
+        fish_key_bindings = os.environ['powerline_fish_key_bindings']
+        fish_bind_mode = os.environ['powerline_fish_bind_mode']
         if fish_key_bindings != 'fish_vi_key_bindings':
             return
         if not( fish_bind_mode in vi_modes ):

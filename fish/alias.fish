@@ -21,10 +21,16 @@ alias du1='du -d1'
 
 alias grep='grep --color'
 
+function rm
+  echo "rm is disabled, use trash or /bin/rm instead."
+end
+
 # -- vim
 alias vi="vim -u NONE"
-alias g+='g++ -Wall -Wextra -Wpedantic -fsanitize=undefined -g'
 alias vim="nvim"
+
+# -- c++
+alias g+='g++ -Wall -Wextra -Wpedantic -fsanitize=undefined -g'
 
 # -- man
 function man_vim
@@ -43,7 +49,6 @@ alias gl="git lg"
 # -- thefuck
 thefuck --alias | source
 alias nyan=fuck
-
 
 # -- trans
 alias trans2ja="trans -t ja --shell --brief"
