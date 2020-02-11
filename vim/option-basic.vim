@@ -113,7 +113,7 @@ set shiftwidth=2 " 行頭でのTab文字の表示幅
 set keywordprg=:help
 
 
-if !has('guirunning') && exists('&termguicolors')
+if !has('guirunning') && exists('&termguicolors') && has('nvim')
   set termguicolors
 endif
 

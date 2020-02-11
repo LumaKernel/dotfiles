@@ -107,6 +107,7 @@ hook_add = '''
   let g:startify_commands = [
         \   ':DeinClean',
         \   ':call dein#recache_runtimepath()',
+        \   ':call dein#remote_plugins()',
         \   ':CocConfig',
         \   ':History',
         \   ':Colors',

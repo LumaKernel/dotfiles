@@ -17,13 +17,13 @@ if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
     call dein#add(s:dein_dir)
-
+    
     call dein#add(resolve(s:dir .. '/vimfiles'), { 'merged' : 0 })
-
+    
     for s:toml in glob(s:dir .. '/plugin-install/*.toml', 1, 1)
       call dein#load_toml(s:toml)
     endfor
-
+    
     for s:toml in glob(s:dir .. '/plugin-install/filetypes/*.toml', 1, 1)
       call dein#load_toml(s:toml)
     endfor
