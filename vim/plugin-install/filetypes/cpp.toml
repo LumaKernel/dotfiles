@@ -33,6 +33,17 @@ hook_add = '''
 
   " -- coc.nvim
 
+  call coc#config('languageserver', {
+        \   "cquery": {
+        \     "command": "cquery",
+        \     "args": ["--log-file=" . expand("~/.tmp/cquery.log")],
+        \     "filetypes": ["c", "cpp"],
+        \     "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+        \     "initializationOptions": {
+        \       "cacheDirectory": expand("~/.tmp/cquery")
+        \     }
+        \   }
+        \ })
 
 '''
 
