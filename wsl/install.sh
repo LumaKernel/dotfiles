@@ -9,6 +9,7 @@ fi
 # -- apt でのインストール
 add-apt-repository ppa:avsm/ppa -y
 add-apt-repository ppa:gophers/go -y
+apt-add-repository ppa:fish-shell/release-3 -y
 
 apt-get update -y
 apt-get upgrade -y
