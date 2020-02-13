@@ -16,9 +16,9 @@ function s:confirm_quit() abort
 endfunction
 
 function s:set_confirm_quit(...) abort
-  augroup vim_init
-    au CmdlineEnter : cnoremap <CR> <C-r>=<SID>cache()<CR><C-e><C-u><C-r>=<SID>confirm_quit()<CR><CR>
-    au CmdlineLeave : cunmap <CR>
+  augroup my-confirm-quit
+    au CmdlineEnter : cnoremap <silent> <CR> <C-r>=<SID>cache()<CR><C-e><C-u><C-r>=<SID>confirm_quit()<CR><CR>
+    au CmdlineLeave : silent! cunmap <CR>
   augroup END
 endfunction
 
