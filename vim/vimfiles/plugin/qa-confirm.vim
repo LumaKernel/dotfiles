@@ -17,6 +17,7 @@ endfunction
 
 function s:set_confirm_quit(...) abort
   augroup my-confirm-quit
+    au!
     au CmdlineEnter : cnoremap <silent> <CR> <C-r>=<SID>cache()<CR><C-e><C-u><C-r>=<SID>confirm_quit()<CR><CR>
     au CmdlineLeave : silent! cunmap <CR>
   augroup END
