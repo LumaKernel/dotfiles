@@ -2,8 +2,6 @@
 echo "fish/config.fish"
 
 # -- powerline-shell
-function fish_mode_prompt
-end
 function fish_prompt
   set -x powerline_fish_key_bindings $fish_key_bindings
   set -x powerline_fish_bind_mode $fish_bind_mode

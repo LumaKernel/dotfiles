@@ -1,0 +1,17 @@
+snippet     vital
+abbr        temp_vital
+options     head
+  function! s:_vital_created(module) abort
+  endfunction
+  function! s:_vital_depends() abort
+    return [
+          \ 'Data.List',
+          \]
+  endfunction
+  function! s:_vital_loaded(V) abort
+    let s:L = a:V.import('Data.List')
+  endfunction
+
+  function! s:new() abort
+  endfunction
+
