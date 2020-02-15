@@ -25,6 +25,7 @@ function! DefineColors() abort
   exe 'hi Info    cterm=NONE ctermbg=18 ctermfg=NONE gui=NONE guifg=NONE guibg=' .. info_bg
 
   exe 'hi QuickFixLine    cterm=NONE ctermbg=17 ctermfg=NONE gui=NONE guifg=NONE guibg=' .. qf_bg
+  exe 'hi ColorColumn    cterm=NONE ctermbg=17 ctermfg=NONE gui=NONE guifg=NONE guibg=' .. warning_bg
 
   if exists('g:colors_name') && has_key(g:my_color_fixes, g:colors_name)
     call g:my_color_fixes[g:colors_name]()
