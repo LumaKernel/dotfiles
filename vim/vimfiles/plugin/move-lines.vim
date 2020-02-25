@@ -104,9 +104,9 @@ vmap <silent> <Plug>(move-multi-lines-down) :<C-u>silent execute v:count1 .. 'Mo
 
 " --- my settings ---
 
-nmap <C-k> <Plug>(move-line-up)
-nmap <C-j> <Plug>(move-line-down)
-
-vmap <C-k> <Plug>(move-multi-lines-up)
-vmap <C-j> <Plug>(move-multi-lines-down)
+" nmap <C-k> <Plug>(move-line-up)
+" nmap <C-j> <Plug>(move-line-down)
+"
+" vmap <C-k> <Plug>(move-multi-lines-up)
+" vmap <C-j> <Plug>(move-multi-lines-down)
 

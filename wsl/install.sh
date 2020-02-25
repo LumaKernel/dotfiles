@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "`whoami`" != "root" ]; then
+if [ "`whoami`" != "root" || "$SUDO_USER" = "" ]; then
   echo "sudo ~/wsl/install.sh"
   exit 1
 fi
@@ -10,11 +10,13 @@ fi
 add-apt-repository ppa:avsm/ppa -y
 add-apt-repository ppa:gophers/go -y
 apt-add-repository ppa:fish-shell/release-3 -y
+apt-add-repository ppa:git-core/ppa -y
 
 apt-get update -y
 apt-get upgrade -y
 apt-get autoremove -y
 
+apt-get install git -y
 apt-get install python -y
 apt-get install clang -y
 apt-get install source-highlight -y

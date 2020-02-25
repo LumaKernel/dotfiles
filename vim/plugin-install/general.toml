@@ -64,6 +64,9 @@ repo = 'airblade/vim-gitgutter'
 
 
 
+# 考え中のプラグイン
+# - パスをヤンク
+# - 選んだパスをcheckout master -- 
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
@@ -456,5 +459,11 @@ repo = 'thinca/vim-ref.git'
 
 [[plugins]]
 repo = 'osyo-manga/ref-lynx'
+
+[[plugins]]
+repo = 'HiPhish/info.vim'
+
+[[plugins]]
+repo = 'pcostasgr/red_alert_vim_theme'
 
 

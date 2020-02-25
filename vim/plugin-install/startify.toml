@@ -60,6 +60,7 @@ hook_add = '''
           \   { 'line': 'tender' , 'cmd': 'colo tender' },
           \   { 'line': 'iceberg' , 'cmd': 'colo iceberg' },
           \   { 'line': 'darkblue' , 'cmd': 'colo darkblue' },
+          \   { 'line': 'red_alert' , 'cmd': 'colo red_alert' },
           \ ]
   endfunction
 
@@ -89,6 +90,7 @@ hook_add = '''
     let l:res = [
           \   { 'line': 'coc.nvim 拡張検索' , 'url': 'https://www.npmjs.com/search?q=keywords%3Acoc.nvim' },
           \   { 'line': 'カラースキーム一覧' , 'url': 'http://colorswat.ch/vim/list?p=2&o=star' },
+          \   { 'line': 'カラースキーム一覧' , 'url': 'http://vimcolors.com/' },
           \   { 'line': 'Nerd Fonts チートシート' , 'url': 'https://www.nerdfonts.com/cheat-sheet' },
           \ ]
 

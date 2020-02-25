@@ -10,3 +10,20 @@ command! -bar LoadMes call setqflist(json_decode(readfile(expand('~/.cache/vim.m
 
 command! -bar SaveMesThemis call message_qf#util#dump('~/.cache/vim.messages.themis.json') | Cedit
 
+command! -bar LoadMesDebug call setqflist(json_decode(readfile(expand('.dev/debug.json')))) | Cedit
+
+
+
+
+
+finish
+
+try
+  echom v:throwpoint
+  echom v:exception
+  set rtp+=~/vim-make-plugin/vim-messages-qf
+  call mkdir('.dev', 'p')
+  call messages_qf#util#dump('.dev/debug.json')
+catch
+endtry
+

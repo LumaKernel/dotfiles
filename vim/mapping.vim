@@ -74,3 +74,6 @@ endfor
 nnoremap <Leader>sw :<C-u>SSave!__1<CR>
 nnoremap <Leader>sp :<C-u>SLoad __1<CR>
 
+
+noremap <expr> 0 getline('.')[: col('.') - 2] =~# '^\s\+$' ? '0' : '^'
+

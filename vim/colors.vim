@@ -1,14 +1,17 @@
 let g:my_color_fixes = get(g:, 'g:my_color_fixes', {})
 
-let g:miss_spells = [
+let g:misspell = [
       \   'functoin',
       \   'funciton',
       \   'functino',
       \   'optino',
       \   'optoin',
+      \   'optin',
       \   'ehco',
       \   'itn',
       \   'teh',
+      \   'stirng',
+      \   'stiring',
       \ ]
 
 function! DefineColors() abort
@@ -34,7 +37,7 @@ function! DefineColors() abort
 endfunction
 
 hi link MySpellError Error
-exe 'match MySpellError ' .. '/' .. join(g:miss_spells, '\|') .. '/'
+exe 'match MySpellError ' .. '/' .. join(g:misspell, '\|') .. '/'
 
 " string to tuple
 function! s:toTuple(text) abort
