@@ -48,7 +48,10 @@ function open-browser
   set OPEN_BROWSER_PATH ~/.cache/dein/repos/github.com/tyru/open-browser.vim
   nvim -u NONE -i NONE -N -n --headless --cmd "set rtp+=$OPEN_BROWSER_PATH" "+runtime! plugin/openbrowser.vim | sil! OpenBrowser $argv"
 end
-alias open=open-browser
+
+if [ $is_wsl = 1 ]
+  alias open=open-browser
+endi
 
 # -- git
 alias gs="git status --short"

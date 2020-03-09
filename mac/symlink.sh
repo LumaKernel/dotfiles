@@ -14,8 +14,6 @@ ln -sf ~/dotfiles/init.vim ~/.vimrc
 mkdir -p ~/.config/nvim
 ln -sf ~/dotfiles/init.vim ~/.config/nvim/init.vim
 ln -sf ~/dotfiles/ginit.vim ~/.config/nvim/ginit.vim
-# ln -sf ~/dotfiles/vim/coc-settings.json ~/.config/nvim
-# TODO
 
 ln -sf ~/dotfiles/mac/.bash_profile ~/.bash_profile
 ln -sf ~/dotfiles/mac/.bashrc ~/.bashrc
