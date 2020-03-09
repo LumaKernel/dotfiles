@@ -104,7 +104,6 @@ fish ~/dotfiles/wsl/install.fish
 # -- pip でのインストール
 pip install powerline-shell
 pip install pylint flake8
-pip install thefuck
 pip install pynvim
 pip install jedi
 pip install trash-cli

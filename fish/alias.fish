@@ -3,8 +3,12 @@ echo "fish/alias.fish"
 
 set -e NO_FISH
 
-alias ls='ls --color=auto --show-control-chars --time-style=long-iso -FH -A'
-alias ll='ls -lA'
+switch (uname)
+  case Linux
+    alias ls='ls --color=auto --show-control-chars --time-style=long-iso -FH -A'
+    alias ll='ls -lA'
+end
+
 
 function relogin
   exec /bin/bash
@@ -53,10 +57,6 @@ alias gp="git push"
 alias ga="git add ."
 alias gc="git commit -m"
 alias gl="git lg"
-
-# -- thefuck
-thefuck --alias | source
-alias nyan=fuck
 
 # -- trans
 alias trans2ja="trans -t ja --shell --brief"

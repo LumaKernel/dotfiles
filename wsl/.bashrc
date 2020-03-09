@@ -138,13 +138,20 @@ if [[ $is_WSL ]]; then
   alias cdwin="cd $WinHome"
 fi
 
-# -- opam
-$HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-eval `opam env`
+# -- opam TODO
+# $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+# eval `opam env`
+
 
 # -- tmux and fish
+if [[ -z $TMUX_RESET ]] ; then
+  export TMUX_RESET=
+  tmux source-file ~/.tmux.conf
+fi
+
 if [[ -z $NO_TMUX ]] ; then
   export NO_TMUX=1
+  export TMUX_RESET=1
   command -v fish >/dev/null 2>&1 && exec tmux
 fi
 

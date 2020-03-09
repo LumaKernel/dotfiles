@@ -70,7 +70,7 @@ hook_add = '''
           \ ]
   endfunction
 
-  function g:LynxCache(url) abort
+  function! g:LynxCache(url) abort
     let URI = vital#vital#import('Web.URI')
     let HTTP = vital#vital#import('Web.HTTP')
     let filename = expand('~/docs') .. '/' .. URI.encode(a:url)
