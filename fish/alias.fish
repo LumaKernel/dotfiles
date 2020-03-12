@@ -49,9 +49,9 @@ function open-browser
   nvim -u NONE -i NONE -N -n --headless --cmd "set rtp+=$OPEN_BROWSER_PATH" "+runtime! plugin/openbrowser.vim | sil! OpenBrowser $argv"
 end
 
-if [ $is_wsl = 1 ]
+if [ "$is_wsl" = 1 ]
   alias open=open-browser
-endi
+end
 
 # -- git
 alias gs="git status --short"
@@ -61,10 +61,21 @@ alias ga="git add ."
 alias gc="git commit -m"
 alias gl="git lg"
 
-# -- trans
-alias trans2ja="trans -t ja --shell --brief"
-alias trans2en="trans -t en --shell --brief"
-
 # -- ocaml
 alias ocamlrepl="rlwrap ocaml"
+
+function g
+  set where (ghq list | fzf --reverse)
+  if [ -n "$where" ]
+    cd (ghq root)/$where
+  end
+end
+
+function dein
+  set where (find ~/.cache/dein/repos/ -mindepth 2 -maxdepth 2 -type d | fzf --reverse)
+  if [ -n "$where" ]
+    cd $where
+  end
+
+end
 

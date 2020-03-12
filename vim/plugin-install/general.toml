@@ -466,4 +466,6 @@ repo = 'HiPhish/info.vim'
 [[plugins]]
 repo = 'pcostasgr/red_alert_vim_theme'
 
+[[plugins]]
+repo = 'mattn/emmet-vim'
 

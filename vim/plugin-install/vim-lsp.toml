@@ -1,0 +1,40 @@
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+hook_add = '''
+  function! MyRef() abort
+    if &ft == 'vim' || &ft == 'help'
+      return 'K'
+    else
+      return ":\<C-u>LspHover\<CR>"
+    endif
+  endfunction
+
+  nnoremap <silent><expr> K MyRef()
+  nnoremap <silent> gd :<C-u>LspDefinition<CR>
+  nnoremap <silent> gtd :<C-u>LspTypeDefinition<CR>
+  nnoremap <silent> gi :<C-u>LspImplementation<CR>
+  nnoremap <silent> ]g :LspNextDiagnostic<CR>
+  nnoremap <silent> [g :LspPreviousDiagnostic<CR>
+  nnoremap <silent> ]e :LspNextError<CR>
+  nnoremap <silent> [e :LspPreviousError<CR>
+  nnoremap <silent> gr :LspRename<CR>
+
+  
+'''
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+hook_add = '''
+  let g:lsp_settings_filetype_typescript = ['typescript-language-server', 'eslint-language-server']
+  let g:lsp_settings_filetype_vue = ['vls', 'eslint-language-server']
+'''
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+[[plugins]]
+repo = 'lighttiger2505/deoplete-vim-lsp'
+
