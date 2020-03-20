@@ -14,7 +14,6 @@ $files = @(
   @{ target="init.vim"; path=""; name=".vimrc" }
   @{ target="init.vim"; path="AppData/Local/nvim" }
   @{ target="ginit.vim"; path="AppData/Local/nvim" }
-  @{ target="vim/coc-settings.json"; path="AppData/Local/nvim" }
   @{ target="windows/wsltty-config"; fullpath="$env:AppData/wsltty/config" }
   "windows/.minttyrc"
   "windows/.bash_profile"

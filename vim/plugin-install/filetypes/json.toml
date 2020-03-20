@@ -2,9 +2,6 @@
 
 hook_add = '''
   let g:vim_json_conceal = 0
-  augroup my_json
-    au User CocNvimInit call coc#add_extension('coc-json')
-  augroup END
 '''
 
 [[plugins]]
@@ -15,7 +12,4 @@ hook_add = '''
 
 [[plugins]]
 repo = 'neoclide/jsonc.vim'
-# 設定されてるんだけど，順番の関係か，設定しないとうまく動かない
-hook_post_source = '''
-  au init_vim BufNewFile,BufRead coc-settings.json setlocal ft=jsonc
-'''
+
