@@ -71,7 +71,7 @@ repo = 'airblade/vim-gitgutter'
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
   let g:fern#default_hidden = 1
-  let g:fern#default_exclude = '^\.git$'
+  " let g:fern#default_exclude = '^\.git$'
 
   function! s:init_fern() abort
     nmap <buffer><expr><silent>
@@ -465,5 +465,12 @@ repo = 'HiPhish/info.vim'
 
 [[plugins]]
 repo = 'pcostasgr/red_alert_vim_theme'
+
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
 
 
