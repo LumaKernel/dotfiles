@@ -459,12 +459,6 @@ hook_add = '''
   xmap g# <Plug>(asterisk-gz*)N
 '''
 
-
-[[plugins]]
-repo = 'rbtnn/vim-vimscript_lasterror'
-# :VimscriptLastError
-
-
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 hook_add = '''
