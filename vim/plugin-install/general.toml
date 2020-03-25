@@ -485,19 +485,30 @@ repo = 'mattn/emmet-vim'
 repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
-repo = 'tpope/vim-surround'
-
-[[plugins]]
-repo = 'tpope/vim-repeat'
-
-[[plugins]]
 repo = 'mattn/vim-sonictemplate'
 
 [[plugins]]
 repo = 'Quramy/tsuquyomi'
+# メインは LSP でやる
 hook_add = '''
   let g:tsuquyomi_disable_default_mappings = 1
   let g:tsuquyomi_disable_quickfix = 1
 '''
 
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+# [s]urround ([a]dd/[d]elete/[r]ename)
+# [i]nner [b]races
+# [a] [b]raced text
+
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+# + : expand
+# _ : shrink
+# TODO: 設定が下手くそかも，html でおもったより一気に expand される
+
+[[plugins]]
+repo = 'AndrewRadev/splitjoin.vim'
+# gS : split
+# gJ : join
 
