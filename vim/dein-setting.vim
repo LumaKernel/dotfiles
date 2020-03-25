@@ -77,6 +77,7 @@ function! DeinClean() abort
   endfor
   call dein#update()
   call dein#recache_runtimepath()
+  call dein#remote_plugins()
 endfunction
 
 command! DeinClean call DeinClean()

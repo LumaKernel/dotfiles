@@ -34,7 +34,5 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-[[plugins]]
 repo = 'lighttiger2505/deoplete-vim-lsp'
 

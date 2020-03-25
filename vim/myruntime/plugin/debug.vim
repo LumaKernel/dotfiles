@@ -12,6 +12,18 @@ command! -bar SaveMesThemis call message_qf#util#dump('~/.cache/vim.messages.the
 
 command! -bar LoadMesDebug call setqflist(json_decode(readfile(expand('.dev/debug.json')))) | Cedit
 
+function! CloseRemainedFloat() abort
+  for win_id in nvim_tabpage_list_wins(0)
+    let config = nvim_win_get_config(win_id)
+    if get(config, 'relative') isnot ''
+      call nvim_win_close(win_id, 1)
+    endif
+  endfor
+endfunction
+
+if has('nvim')
+  nnoremap <silent> <C-L> :<C-U>call CloseRemainedFloat()<CR><C-L>
+endif
 
 
 

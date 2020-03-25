@@ -33,7 +33,10 @@ source ~/dotfiles/vim/vimscript.vim
 
 
 if !g:from_pwsh
-  colorscheme onedark
+  try
+    colorscheme onedark
+  catch
+  endtry
 endif
 
 function! CoqSwitchStyle() abort

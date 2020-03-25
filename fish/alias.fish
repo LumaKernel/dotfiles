@@ -72,7 +72,7 @@ function g
 end
 
 function dein
-  set where (find ~/.cache/dein/repos/ -mindepth 2 -maxdepth 2 -type d | fzf --reverse)
+  set where (find ~/.cache/dein/repos/ -mindepth 3 -maxdepth 3 -type d | fzf --reverse)
   if [ -n "$where" ]
     cd $where
   end

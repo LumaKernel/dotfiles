@@ -9,7 +9,7 @@ function! s:copyall()
   let @+ = join(getbufline(bufnr('%'), 1, '$'), "\n")
 endfunction
 
-nnoremap <silent> <Leader>c :call <SID>copyall()<CR>
+nnoremap <silent> <Leader>y :call <SID>copyall()<CR>
 exe 'nnoremap <silent> <Leader>v ggVGs<ESC>"' .. s:creg .. 'P:w!<CR>'
 
 nmap <Leader>t ggVGstemp
