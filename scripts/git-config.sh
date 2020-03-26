@@ -25,9 +25,9 @@ git config --global alias.please "push --force-with-lease"
 git config --global alias.commend 'commit --amend --no-edit'
 git config --global alias.it '!git init && git commit -m “root” --allow-empty'
 
-$ git config --global alias.stsh 'stash --keep-index'
-$ git config --global alias.staash 'stash --include-untracked'
-$ git config --global alias.staaash 'stash --all'
+git config --global alias.stsh 'stash --keep-index'
+git config --global alias.staash 'stash --include-untracked'
+git config --global alias.staaash 'stash --all'
 
 # git stsh      # stash only unstaged changes to tracked files
 # git stash     # stash any changes to tracked files
@@ -35,4 +35,7 @@ $ git config --global alias.staaash 'stash --all'
 # git staaash   # stash ignored, untracked, and tracked files
 
 git config --global alias.merc 'merge --no-ff'
+
+git config --global alias.me !'git config --list | grep "^user\\."'
+git config --global alias.dish "diff --cached"
 
