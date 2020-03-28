@@ -3,7 +3,7 @@
 repo = 'prabirshrestha/async.vim'
 
 [[plugins]]
-repo = 'prabirshrestha/vim-lsp'
+repo = 'LumaKernel/vim-lsp'
 hook_add = '''
   function! MyRef() abort
     if &ft == 'vim' || &ft == 'help'
@@ -14,8 +14,10 @@ hook_add = '''
   endfunction
 
   nnoremap <silent><expr> K MyRef()
+  nnoremap <silent> Q :<C-u>LspCodeAction<CR>
+  xnoremap <silent> Q :<C-u>'<,'>LspCodeAction<CR>
   nnoremap <silent> gd :<C-u>LspDefinition<CR>
-  nnoremap <silent> gtd :<C-u>LspTypeDefinition<CR>
+  nnoremap <silent> gt :<C-u>LspTypeDefinition<CR>
   nnoremap <silent> gi :<C-u>LspImplementation<CR>
   nnoremap <silent> ]g :LspNextDiagnostic<CR>
   nnoremap <silent> [g :LspPreviousDiagnostic<CR>
@@ -23,15 +25,10 @@ hook_add = '''
   nnoremap <silent> [e :LspPreviousError<CR>
   nnoremap <silent> gr :LspRename<CR>
 
-  
 '''
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
-hook_add = '''
-  let g:lsp_settings_filetype_typescript = ['typescript-language-server', 'eslint-language-server']
-  let g:lsp_settings_filetype_vue = ['vls', 'eslint-language-server']
-'''
 
 [[plugins]]
 repo = 'lighttiger2505/deoplete-vim-lsp'

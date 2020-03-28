@@ -495,6 +495,8 @@ hook_add = '''
   let g:tsuquyomi_disable_quickfix = 1
 '''
 
+
+
 [[plugins]]
 repo = 'machakann/vim-sandwich'
 # [s]urround ([a]dd/[d]elete/[r]ename)
@@ -511,4 +513,21 @@ repo = 'terryma/vim-expand-region'
 repo = 'AndrewRadev/splitjoin.vim'
 # gS : split
 # gJ : join
+
+[[plugins]]
+repo = 'rhysd/conflict-marker.vim'
+# [x, ]x : jumps
+
+[[plugins]]
+repo = 'rhysd/accelerated-jk'
+# 重いときに j/k を叩きまくった後の硬直を緩和してくれる
+hook_add = '''
+  " nmap j g<Plug>(accelerated_jk_gj)
+  " nmap k g<Plug>(accelerated_jk_gk)
+'''
+
+[[plugins]]
+repo = 'rhysd/reply.vim'
+on_cmd = ['Repl', 'ReplAuto']
+# :ReplSend : 現在行を Repl で開いたバッファに送る
 

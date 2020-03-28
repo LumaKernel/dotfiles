@@ -1,6 +1,7 @@
 
-nnoremap j gj
-nnoremap k gk
+" @see rhysd/accelerated-jk
+" nnoremap j gj
+" nnoremap k gk
 
 noremap <LEFT> <NOP>
 noremap <RIGHT> <NOP>
