@@ -487,15 +487,6 @@ repo = 'editorconfig/editorconfig-vim'
 [[plugins]]
 repo = 'mattn/vim-sonictemplate'
 
-[[plugins]]
-repo = 'Quramy/tsuquyomi'
-# メインは LSP でやる
-hook_add = '''
-  let g:tsuquyomi_disable_default_mappings = 1
-  let g:tsuquyomi_disable_quickfix = 1
-'''
-
-
 
 [[plugins]]
 repo = 'machakann/vim-sandwich'
