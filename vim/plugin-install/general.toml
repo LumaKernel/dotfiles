@@ -487,7 +487,6 @@ repo = 'editorconfig/editorconfig-vim'
 [[plugins]]
 repo = 'mattn/vim-sonictemplate'
 
-
 [[plugins]]
 repo = 'machakann/vim-sandwich'
 # [s]urround ([a]dd/[d]elete/[r]ename)
@@ -521,4 +520,10 @@ hook_add = '''
 repo = 'rhysd/reply.vim'
 on_cmd = ['Repl', 'ReplAuto']
 # :ReplSend : 現在行を Repl で開いたバッファに送る
+
+[[plugins]]
+repo = 'HerringtonDarkholme/yats.vim'
+
+[[plugins]]
+repo = 'othree/yajs.vim'
 
