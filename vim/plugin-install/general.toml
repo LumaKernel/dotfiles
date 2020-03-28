@@ -489,6 +489,7 @@ repo = 'mattn/vim-sonictemplate'
 
 [[plugins]]
 repo = 'machakann/vim-sandwich'
+# TODO: s をマッピングしてるのが微妙
 # [s]urround ([a]dd/[d]elete/[r]ename)
 # [i]nner [b]races
 # [a] [b]raced text
@@ -512,8 +513,10 @@ repo = 'rhysd/conflict-marker.vim'
 repo = 'rhysd/accelerated-jk'
 # 重いときに j/k を叩きまくった後の硬直を緩和してくれる
 hook_add = '''
-  " nmap j g<Plug>(accelerated_jk_gj)
-  " nmap k g<Plug>(accelerated_jk_gk)
+  nmap j <Plug>(accelerated_jk_gj)
+  nmap k <Plug>(accelerated_jk_gk)
+  nmap gj <Plug>(accelerated_jk_j)
+  nmap gk <Plug>(accelerated_jk_k)
 '''
 
 [[plugins]]

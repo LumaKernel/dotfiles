@@ -4,6 +4,7 @@ repo = 'prabirshrestha/async.vim'
 
 [[plugins]]
 repo = 'LumaKernel/vim-lsp'
+rev = "dev"
 hook_add = '''
   function! MyRef() abort
     if &ft == 'vim' || &ft == 'help'
