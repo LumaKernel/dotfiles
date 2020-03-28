@@ -530,3 +530,6 @@ repo = 'HerringtonDarkholme/yats.vim'
 [[plugins]]
 repo = 'othree/yajs.vim'
 
+[[plugins]]
+repo = 'rhysd/committia.vim'
+
