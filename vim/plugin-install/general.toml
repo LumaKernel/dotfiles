@@ -87,8 +87,9 @@ hook_add = '''
       return ''
     endif
     let F = vital#vital#import('System.Filepath')
-    let dir = resolve(expand('%:p:h'))
-    if F.contains(expand('%:p:h'), getcwd())
+    " XXX: VCS まで登ってもいいかも
+    let dir = expand('%:p:h')
+    if F.contains(dir, getcwd())
       let dir = getcwd()
     endif
     exe printf('Fern %s -reveal=%s', dir, expand('%'))
@@ -148,6 +149,9 @@ depends = 'fern.vim'
 repo = 'Shougo/deoplete.nvim'
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
+
+  " XXX: まだ設定中
+  "      そもそも vim の completion がわかっていない
 
   inoremap <silent><expr> <C-n>
     \ pumvisible() ? "\<C-n>" :
