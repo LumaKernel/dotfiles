@@ -12,6 +12,9 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
+hook_add = '''
+  set helplang=ja
+'''
 
 
 [[plugins]]
@@ -28,6 +31,8 @@ repo = 'jacoborus/tender.vim'
 repo = 'cocopon/iceberg.vim'
 [[plugins]]
 repo = 'joshdick/onedark.vim'
+[[plugins]]
+repo = 'pcostasgr/red_alert_vim_theme'
 
 
 [[plugins]]
@@ -41,7 +46,6 @@ if = '!g:from_pwsh'
 
 [[plugins]]
 repo = 'tyru/caw.vim'
-
 
 
 [[plugins]]
@@ -63,7 +67,6 @@ hook_add = '''
 repo = 'airblade/vim-gitgutter'
 
 
-
 # 考え中のプラグイン
 # - パスをヤンク
 # - 選んだパスをcheckout master -- 
@@ -71,7 +74,8 @@ repo = 'airblade/vim-gitgutter'
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
   let g:fern#default_hidden = 1
-  let g:fern#default_exclude = '^\(\.git\|\.DS_Store\)$'
+  let s:fern_default_exclude_0 = '^\(\.git\|\.DS_Store\|node_modules\)$'
+  let g:fern#default_exclude = s:fern_default_exclude_0
 
   function! s:init_fern() abort
     nmap <buffer><expr><silent>
@@ -85,8 +89,36 @@ hook_add = '''
     silent! nunmap <buffer> t
   endfunction
 
-  nnoremap <Leader>ai :<C-u>Fern . -reveal=%<CR>
-  nnoremap <Leader>aa :<C-u>Fern . -drawer -reveal=%<CR>
+  function! FernRevealPwdOrThere() abort
+    if !filereadable(expand('%'))
+      Fern .
+      return ''
+    endif
+    let F = vital#vital#import('System.Filepath')
+    let dir = resolve(expand('%:p:h'))
+    if F.contains(expand('%:p:h'), getcwd())
+      let dir = getcwd()
+    endif
+    exe printf('Fern %s -reveal=%s', dir, expand('%'))
+    return ''
+  endfunction
+
+  function! s:fern_default() abort
+    let exclude_save = g:fern#default_exclude
+    let g:fern#default_exclude = s:fern_default_exclude_0
+    call FernRevealPwdOrThere()
+    let g:fern#default_exclude = exclude_save
+  endfunction
+
+  function! s:fern_all() abort
+    let exclude_save = g:fern#default_exclude
+    let g:fern#default_exclude = ''
+    call FernRevealPwdOrThere()
+    let g:fern#default_exclude = exclude_save
+  endfunction
+
+  nnoremap <silent> <Leader>ai :<C-u>call <SID>fern_default()<CR>
+  nnoremap <silent> <Leader>aa :<C-u>call <SID>fern_all()<CR>
 
   augroup my-fern
     autocmd! *
@@ -260,7 +292,7 @@ hook_add = '''
     let $FZF_DEFAULT_OPTS = ''
   else
     if executable('bat')
-      let $FZF_DEFAULT_OPTS = '--tabstop=4 --reverse --preview "bat --pager=never --color=always --style=numbers --line-range :300 {}"'
+      let $FZF_DEFAULT_OPTS = '--tabstop=4 --reverse --preview "bat --pager=never --color=always --style=numbers {}"'
     else
       let $FZF_DEFAULT_OPTS = '--tabstop=4 --reverse --preview "cat {}"'
     endif
@@ -476,9 +508,6 @@ repo = 'osyo-manga/ref-lynx'
 repo = 'HiPhish/info.vim'
 
 [[plugins]]
-repo = 'pcostasgr/red_alert_vim_theme'
-
-[[plugins]]
 repo = 'mattn/emmet-vim'
 
 [[plugins]]
@@ -486,6 +515,9 @@ repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
 repo = 'mattn/vim-sonictemplate'
+hook_add = '''
+  let g:sonictemplate_vim_template_dir = expand("~/dotfiles/vim/sonictemplate")
+'''
 
 [[plugins]]
 repo = 'machakann/vim-sandwich'
@@ -533,23 +565,45 @@ repo = 'othree/yajs.vim'
 [[plugins]]
 repo = 'rhysd/committia.vim'
 hook_add = '''
-let g:committia_hooks = {}
-function! g:committia_hooks.edit_open(info)
-  " Additional settings
-  setlocal spell
+  let g:committia_hooks = {}
+  function! g:committia_hooks.edit_open(info)
+    " Additional settings
+    setlocal spell
 
-  " If no commit message, start with insert mode
-  if a:info.vcs ==# 'git' && getline(1) ==# ''
-    startinsert
-  endif
+    " If no commit message, start with insert mode
+    if a:info.vcs ==# 'git' && getline(1) ==# ''
+      startinsert
+    endif
 
-  " Scroll the diff window from insert mode
-  " Map <C-n> and <C-p>
-  imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
-  imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
-endfunction
+    " Scroll the diff window from insert mode
+    " Map <C-n> and <C-p>
+    imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+    imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
+  endfunction
 '''
 
 [[plugins]]
 repo = 'jeffkreeftmeijer/vim-numbertoggle'
+
+[[plugins]]
+# GitHub Favored Markdown Syntax
+repo = 'rhysd/vim-gfm-syntax'
+
+[[plugins]]
+repo = 'yardnsm/vim-import-cost'
+build = 'npm install'
+hook_add = '''
+  let g:import_cost_silent = 1
+  " import の後ろにコメント書かないので
+  hi link ImportCostVirtualText Comment
+  augroup import_cost_auto_run
+    autocmd!
+    autocmd InsertLeave *.js,*.jsx,*.ts,*.tsx ImportCost
+    autocmd BufEnter *.js,*.jsx,*.ts,*.tsx ImportCost
+    autocmd CursorHold *.js,*.jsx,*.ts,*.tsx ImportCost
+  augroup END
+'''
+
+[[plugins]]
+repo = 'skywind3000/asyncrun.vim'
 
