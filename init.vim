@@ -17,7 +17,6 @@ let g:mapping_descriptions = []
 source ~/dotfiles/vim/option-basic.vim
 source ~/dotfiles/vim/mapping.vim
 source ~/dotfiles/vim/dein-setting.vim
-source ~/dotfiles/vim/show-whitespace.vim
 source ~/dotfiles/vim/openapps.vim
 source ~/dotfiles/vim/colors.vim
 

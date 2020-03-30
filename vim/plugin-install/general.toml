@@ -661,3 +661,6 @@ hook_add = '''
   augroup END
 '''
 
+[[plugins]]
+repo = 'thinca/vim-zenspace'
+
