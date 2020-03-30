@@ -446,6 +446,25 @@ hook_post_source = '''
   nnoremap <silent> <Leader>dd :Gina diff HEAD<CR>
   nnoremap <silent> <Leader>lg :Gina lg<CR>
   nnoremap <silent> <Leader>bla :Gina blame<CR>
+
+  function! s:Browse(line1, line2) abort
+    let save = @@
+    let @@ = ''
+    if filereadable(expand('%'))
+      execute printf('%d,%dGina browse --yank :', a:line1, a:line2)
+    else
+      Gina browse --yank
+    endif
+    if !empty(@@)
+      execute "OpenBrowser" @@
+    endif
+    let @@ = save
+  endfunction
+
+  command! -range Browse call <SID>Browse(<line1>, <line2>)
+  command! -range GitHubBrowse call <SID>Borwse(<line1>, <line2>)
+  nnoremap <silent> <Leader>bro :Browse<CR>
+  xnoremap <silent> <Leader>bro :Browse<CR>
 '''
 
 [[plugins]]
