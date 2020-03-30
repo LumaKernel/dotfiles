@@ -116,6 +116,10 @@ command -v themis >/dev/null 2>&1 ||
 export PATH=$PATH:$HOME/bin
 
 
+# ---- cargo
+export PATH=$PATH:$HOME/.cargo/bin
+
+
 # ---- delete my fish envs
 export fish_key_bindings=
 export fish_bind_mode=
