@@ -602,4 +602,5 @@ hook_add = '''
 
 [[plugins]]
 repo = 'skywind3000/asyncrun.vim'
+# XXX: まだ
 
