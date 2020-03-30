@@ -54,6 +54,7 @@ hook_add = '''
         \   '~/.cache/dein/repos',
         \]
 
+  " TODO: 永続化したい
   function! s:MyColorSelections()
     return [
           \   { 'line': 'onedark' , 'cmd': 'colo onedark' },
@@ -108,6 +109,7 @@ hook_add = '''
   let g:startify_commands = [
         \   ':DeinClean',
         \   ':call dein#recache_runtimepath()',
+        \   ':call dein#build()',
         \   ':call dein#remote_plugins()',
         \   ':CocConfig',
         \   ':History',
