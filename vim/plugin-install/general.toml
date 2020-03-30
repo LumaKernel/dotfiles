@@ -78,14 +78,6 @@ hook_add = '''
   let g:fern#default_exclude = s:fern_default_exclude_0
 
   function! s:init_fern() abort
-    nmap <buffer><expr><silent>
-          \ B
-          \ fern#smart#scheme(
-          \   ":\<C-u>Fern bookmark:///\<CR>",
-          \   {
-          \     'bookmark': "B",
-          \   },
-          \ )
     silent! nunmap <buffer> t
   endfunction
 
