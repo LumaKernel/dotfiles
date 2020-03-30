@@ -285,13 +285,17 @@ hook_add = '''
   if has('win32')
     " Windows: preview は相性があまりよくない
     "   UTF-8 と CP932 を両方見れるようにするのがまず難しいそう
-    let $FZF_DEFAULT_OPTS = ''
+    let $FZF_DEFAULT_OPTS = '--tabstop=4 --reverse'
   else
+    let file_viewer = 'cat {} 2>/dev/null'
+    let dir_viewer = 'ls {}'
     if executable('bat')
-      let $FZF_DEFAULT_OPTS = '--tabstop=4 --reverse --preview "bat --pager=never --color=always --style=numbers {}"'
-    else
-      let $FZF_DEFAULT_OPTS = '--tabstop=4 --reverse --preview "cat {}"'
+      let file_viewer = 'bat --pager=never --color=always --style=numbers {} 2>/dev/null'
     endif
+    if executable('exa')
+      let dir_viewer = 'exa --tree --color always {}'
+    endif
+    let $FZF_DEFAULT_OPTS = printf('--tabstop=4 --reverse --preview "%s || %s"', file_viewer, dir_viewer)
   endif
 
   if executable('ag')
@@ -603,4 +607,19 @@ hook_add = '''
 [[plugins]]
 repo = 'skywind3000/asyncrun.vim'
 # XXX: まだ
+# vim-dispatchのほうがいいかな，むずかしい
+
+[[plugins]]
+repo = 'LumaKernel/fern-mapping-fzf.vim'
+depends = ['fzf', 'fern.vim']
+merged = 0
+hook_add = '''
+  function! s:reveal(dict) abort
+    echom string(a:dict)
+    let g:A = a:dict
+    execute printf("Fern %s -reveal=%s", a:dict.root_path, a:dict.full_path)
+  endfunction
+  let g:Fern_mapping_fzf_file_sink = function('s:reveal')
+  let g:Fern_mapping_fzf_dir_sink = function('s:reveal')
+'''
 
