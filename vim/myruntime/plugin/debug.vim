@@ -25,9 +25,6 @@ if has('nvim')
   nnoremap <silent> <C-L> :<C-U>call CloseRemainedFloat()<CR><C-L>
 endif
 
-
-
-
 finish
 
 try
