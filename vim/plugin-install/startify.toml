@@ -59,6 +59,7 @@ hook_add = '''
     return [
           \   { 'line': 'onedark' , 'cmd': 'colo onedark' },
           \   { 'line': 'tender' , 'cmd': 'colo tender' },
+          \   { 'line': 'sprint-night' , 'cmd': 'colo spring-night' },
           \   { 'line': 'iceberg' , 'cmd': 'colo iceberg' },
           \   { 'line': 'darkblue' , 'cmd': 'colo darkblue' },
           \   { 'line': 'red_alert' , 'cmd': 'colo red_alert' },
