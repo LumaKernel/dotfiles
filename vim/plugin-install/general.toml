@@ -628,3 +628,17 @@ hook_add = '''
 [[plugins]]
 repo = 'cohama/lexima.vim'
 
+[[plugins]]
+repo = 'LumaKernel/fern-mapping-reload-all.vim'
+depends = ['fern.vim']
+merged = 0
+hook_add = '''
+  function! s:init_fern_mapping_reload_all() abort
+    nmap <buffer> R <Plug>(fern-action-reload:all)
+  endfunction
+  augroup my-fern-mapping-reload-all
+    autocmd! *
+    autocmd FileType fern call s:init_fern_mapping_reload_all()
+  augroup END
+'''
+
