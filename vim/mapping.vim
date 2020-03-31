@@ -11,8 +11,6 @@ noremap <DOWN> <NOP>
 noremap ZZ <NOP>
 noremap ZQ <NOP>
 
-let s:wincmds = split('hjklwHJKLr=><+-', '\zs')
-
 nnoremap th <C-W>h
 nnoremap tj <C-W>j
 nnoremap tk <C-W>k
@@ -36,12 +34,8 @@ nnoremap tt <Nop>
 
 nnoremap <silent> <Leader>r :reg<CR>
 
-" + Delキー
 inoremap <C-L> <DEL>
 cnoremap <C-D> <DEL>
-
-" C-L をmap
-nnoremap <silent> <C-K> <C-L>
 
 noremap <F1> <Nop>
 noremap! <F1> <Nop>
@@ -71,10 +65,11 @@ for s:wincmd in split('hjkl', '\zs')
   exe 'tnoremap <silent> <A-' .. s:wincmd .. "> <C-\><C-n>:<C-u>silent! call VimAndTmuxMove('" .. s:wincmd .. "', 0)<CR>"
 endfor
 
-
 nnoremap <Leader>sw :<C-u>SSave!__1<CR>
 nnoremap <Leader>sp :<C-u>SLoad __1<CR>
 
+nnoremap <silent> <Leader>y :<C-u>%y+<CR>
+nnoremap <silent> <Leader>v ggVGs<ESC>"+P
 
 noremap <expr> 0 getline('.')[: col('.') - 2] =~# '^\s\+$' ? '0' : '^'
 

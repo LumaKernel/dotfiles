@@ -26,7 +26,6 @@ source ~/dotfiles/vim/gvim.vim
 source ~/dotfiles/vim/setup-powershell.vim
 
 source ~/dotfiles/vim/cpp.vim
-source ~/dotfiles/vim/competitive-programming.vim
 
 source ~/dotfiles/vim/vimscript.vim
 
