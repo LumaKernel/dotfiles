@@ -52,7 +52,7 @@ foreach ($file in $files) {
   $file.target = "~/dotfiles/" + $file.target
 
   if ( !$file.path ) { $file.path = "~" }
-  else { $file.path = "~/" + $file.path) }
+  else { $file.path = "~/" + $file.path }
 
   if ($file.fullpath) {
     $file.path = Split-Path $file.fullpath
