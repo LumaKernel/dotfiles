@@ -39,39 +39,20 @@ repo = 'pcostasgr/red_alert_vim_theme'
 
 [[plugins]]
 repo = 'itchyny/vim-parenmatch'
-
-
 [[plugins]]
 repo = 'itchyny/vim-cursorword'
 if = '!g:from_pwsh'
 
 
+# TODO: vimscript でバグる気がする
+# " aaa#bbb とかでうまくいかない
+# しようかもなあ
 [[plugins]]
 repo = 'tyru/caw.vim'
-
-
-[[plugins]]
-# TODO : denite.vim に乗り換える ?
-repo = 'Shougo/unite.vim' # {{{
-hook_add = '''
-  let g:unite_enable_start_insert = 1
-  augroup MyUnite
-    au!
-    autocmd Filetype unite imap <buffer><silent> <ESC> <ESC>q
-    autocmd Filetype unite imap <buffer><silent> <C-J> <C-N>
-    autocmd Filetype unite imap <buffer><silent> <C-K> <C-P>
-  augroup END
-
-''' # }}}
-
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
-
-# 考え中のプラグイン
-# - パスをヤンク
-# - 選んだパスをcheckout master -- 
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
@@ -137,7 +118,6 @@ hook_add = '''
     endif
     exe 'Fern' path
   endfunction
-
 '''
 
 
@@ -542,7 +522,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'machakann/vim-sandwich'
-# TODO: s をマッピングしてるのが微妙
 # [s]urround ([a]dd/[d]elete/[r]ename)
 # [i]nner [b]races
 # [a] [b]raced text

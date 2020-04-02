@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "`whoami`" != "root" ]; then
-  echo "Run with 'sudo'"
+  echo "[Error] Run with sudo."
   exit 1
 fi
 
@@ -15,8 +15,8 @@ mkdir -p ~/.config/nvim
 ln -sf ~/dotfiles/init.vim ~/.config/nvim/init.vim
 ln -sf ~/dotfiles/ginit.vim ~/.config/nvim/ginit.vim
 
-ln -sf ~/dotfiles/wsl/.bash_profile ~/.bash_profile
-ln -sf ~/dotfiles/wsl/.bashrc ~/.bashrc
+ln -sf ~/dotfiles/linux/.bash_profile ~/.bash_profile
+ln -sf ~/dotfiles/linux/.bashrc ~/.bashrc
 
 ln -sf ~/dotfiles/.gitignore_global ~/.gitignore_global
 
@@ -29,4 +29,3 @@ ln -sf ~/dotfiles/fish/functions/*.fish ~/.config/fish/functions
 
 mkdir -p ~/.config/powerline-shell
 ln -sf ~/dotfiles/powerline-shell/config.json ~/.config/powerline-shell/config.json
-

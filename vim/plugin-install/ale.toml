@@ -1,16 +1,14 @@
 [[plugins]]
 repo = 'dense-analysis/ale'
 hook_add = '''
-  " 各種 filetype の設定は vim/myruntime/ftplugin 配下に
+  " 各種 filetype の設定は myruntime/ftplugin 配下に
 
   let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace']
       \ }
 
-  " 性能の良いPCを手に入れたら設定してください
-  " let g:ale_fix_on_save = 1
+  let g:ale_fix_on_save = 1
 
   nnoremap <Leader>8 :<C-u>ALEFix<CR>
-
 '''
 

@@ -3,18 +3,16 @@
 # http://www.unixuser.org/~euske/doc/bashtips/bashrc.html
 
 
-# -- WSL と Linux 共通，後で分けるかも
-
 # インタラクティブではない場合，終了
 case $- in
     *i*) ;;
       *) return;;
 esac
 
-echo '.bashrc'
-echo '    - for WSL'
-echo '    - cdwin : Go to win home.'
-
+  echo '.bashrc'
+  echo '    - for Ubuntu'
+[ "$is_wsl" == "1" ] &&
+  echo '    - cdwin : Go to win home.'
 
 # ---- vim の環境変数を削除
 unset VIM
@@ -22,8 +20,6 @@ unset VIMRUNTIME
 unset MYVIMRC
 unset MYGVIMRC
 
-
-# 
 # TODO: どうにかする
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -106,11 +102,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # ---- cquery
 command -v cquery >/dev/null 2>&1 ||
   export PATH=$PATH:$HOME/bin/cquery/build/release/bin
-
-
-# ---- thefuck
-eval $(thefuck --alias) >/dev/null 2>&1
-alias nyan=fuck
 
 
 # ---- themis

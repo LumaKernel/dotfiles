@@ -50,24 +50,27 @@ function open-browser
 end
 
 if [ "$is_wsl" = 1 ]
+  alias cdwin='cd $WinHome'
   alias open=open-browser
 end
 
 # -- git
 alias gs="git status --short"
-alias gsta="git status"
 alias gp="git push"
-alias ga="git add ."
-alias gc="git commit -m"
+alias ga="git add"
+alias gc="git commit"
 alias gl="git lg"
 
 # -- ocaml
 alias ocamlrepl="rlwrap ocaml"
 
-function g
-  set where (ghq list | fzf --reverse)
-  if [ -n "$where" ]
-    cd (ghq root)/$where
+# TODO: 使ってない
+if false
+  function g
+    set where (ghq list | fzf --reverse)
+    if [ -n "$where" ]
+      cd (ghq root)/$where
+    end
   end
 end
 

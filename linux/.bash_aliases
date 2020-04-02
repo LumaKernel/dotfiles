@@ -6,6 +6,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias -- -='cd -'
 alias ~='cd ~'
+[ "$is_wsl" == "1" ] && alias cdwin='cd $WinHome'
 
 alias ls='ls --color=auto --show-control-chars --time-style=long-iso -FH -A'
 alias ll='ls -lA'
@@ -34,7 +35,6 @@ alias man=man_vim
 
 # -- git
 alias gs="git status --short"
-alias gsta="git status"
 alias gp="git push"
 alias ga="git add ."
 alias gc="git commit -m"

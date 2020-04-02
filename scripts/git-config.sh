@@ -39,3 +39,9 @@ git config --global alias.merc 'merge --no-ff'
 git config --global alias.me !'git config --list | grep "^user\\."'
 git config --global alias.dish "diff --cached"
 
+
+echo "以下を自分で実行してください"
+echo "git config --global user.name <name>"
+echo "git config --global user.email <email>"
+echo "git config --global core.editor nvim"
+

@@ -2,8 +2,10 @@
 # 設定は主に dein の toml を編集するため
 
 
+# TODO: 微妙
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
+if = 0
 dapends = ['context_filetype.vim']
 on_ft = ['toml']
 hook_add = '''
@@ -13,9 +15,9 @@ let g:precious_enable_switch_CursorMoved = {
   \}
 '''
 
-
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
+if = 0
 on_ft = ['toml']
 
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "`whoami`" == "root" ]; then
-  echo "Do NOT run with sudo."
+  echo "[Error] Do NOT run with sudo."
   exit 1
 fi
 
@@ -11,4 +11,3 @@ pip install pylint flake8
 pip install pynvim
 pip install jedi
 pip install trash-cli
-

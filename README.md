@@ -1,29 +1,39 @@
 # dotfiles
 
-Vim などの関連ファイル
-
 ## Windows
 
-```powershell
-iwr -useb https://git.io/JvLc6 | iex
-```
+まず WSL からやる
 
 ### WSL
 
+WSLのインストールは頑張る．
+
 ```bash
-# Windows 側で dotfiles を導入してから，WSL 上で，
-ln -sf /mnt/c/Users/`cmd.exe /c echo %UserName% | tr -d '\r'`/dotfils ~
-sudo ~/install-wsl.sh
+# 気合で git を準備，バージョンアップは後でやる
+# GitHub ssh セットアップ : https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+cd ~
+git clone git@github.com:LumaKernel/dotfiles
+cd dotfiles
+sudo ./install-wsl.sh
 ```
 
+### PowerShell
 
+適当，スクリプトの破片にとどめて，いい感じにする
 
+```powershell
+iwr -useb https://get.scoop.sh | iex
+scoop install git 7zip
+# 気合
+```
 
 # License
 
 [Unlicense](https://unlicense.org/)
 
-ただし，`README.md` がおいてあるところ以下はそれに従う．
+ただし，`README.md` がおいてあるところ以下はそれに従う．  
+ファイル内に注釈があるものもそれに従う．  
+あまり信用してはいけない
 
 
 # スクリーンショット
