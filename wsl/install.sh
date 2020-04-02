@@ -23,8 +23,8 @@ apt-get install source-highlight -y
 apt-get install exuberant-ctags -y
 
 # ---- ocaml
-apt-get install opam -y
-su $SUDO_USER -c "opam init -n >/dev/null --disable-sandboxing"
+# apt-get install opam -y
+# su $SUDO_USER -c "opam init -n >/dev/null --disable-sandboxing"
 
 # ---- go
 apt-get install python-software-properties -y
@@ -35,42 +35,41 @@ apt-get install ripgrep -y
 
 apt-get install tmux -y
 apt-get install fish -y
-apt-get install translate-shell -y
 
 
 
 # -- install cquery
-if [[ ! -d "$HOME/bin/cquery" ]] ; then
-  echo "install cquery!"
-  apt-get install clang clang-tools llvm llvm-6.0-tools libclang-6.0-dev -y
-  
-  mkdir -p $HOME/bin
-  pushd $HOME/bin
-    git clone --recursive https://github.com/cquery-project/cquery.git
-    cd cquery
-    git submodule update --init
-  
-    mkdir build
-    pushd build
-      cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=release -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
-      cmake --build .
-      cmake --build . --target install
-    popd
-  popd
-fi
+# if [[ ! -d "$HOME/bin/cquery" ]] ; then
+#   echo "install cquery!"
+#   apt-get install clang clang-tools llvm llvm-6.0-tools libclang-6.0-dev -y
+#   
+#   mkdir -p $HOME/bin
+#   pushd $HOME/bin
+#     git clone --recursive https://github.com/cquery-project/cquery.git
+#     cd cquery
+#     git submodule update --init
+#   
+#     mkdir build
+#     pushd build
+#       cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=release -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
+#       cmake --build .
+#       cmake --build . --target install
+#     popd
+#   popd
+# fi
 
 
 # -- install bashmarks
-if [[ ! -e "$HOME/.local/bin/bashmarks.sh" ]] ; then
-  mkdir -p $HOME/.tmp
-  pushd $HOME/.tmp
-    [[ -d "bashmarks" ]] && rm -r bashmarks
-    git clone https://github.com/huyng/bashmarks.git
-    pushd bashmarks
-      cp bashmarks.sh $HOME/.local/bin
-    popd
-  popd
-fi
+# if [[ ! -e "$HOME/.local/bin/bashmarks.sh" ]] ; then
+#   mkdir -p $HOME/.tmp
+#   pushd $HOME/.tmp
+#     [[ -d "bashmarks" ]] && rm -r bashmarks
+#     git clone https://github.com/huyng/bashmarks.git
+#     pushd bashmarks
+#       cp bashmarks.sh $HOME/.local/bin
+#     popd
+#   popd
+# fi
 
 
 # -- install tmux-powerline
@@ -112,7 +111,7 @@ pip install trash-cli
 # su $SUDO_USER -c npm install -g ocaml-language-server
 # su $SUDO_USER -c "opam install merlin -y"
 # opam user-setup install -y
-su $SUDO_USER -c "opam pin add ocaml-lsp-server https://github.com/ocaml/ocaml-lsp.git -y"
-su $SUDO_USER -c "opam install ocaml-lsp-server -y"
-su $SUDO_USER -c "opam install ocp-indent -y"
+# su $SUDO_USER -c "opam pin add ocaml-lsp-server https://github.com/ocaml/ocaml-lsp.git -y"
+# su $SUDO_USER -c "opam install ocaml-lsp-server -y"
+# su $SUDO_USER -c "opam install ocp-indent -y"
 

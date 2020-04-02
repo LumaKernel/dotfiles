@@ -22,7 +22,7 @@ fi
 bash ~/dotfiles/wsl/symlink.sh
 
 # -- git の設定
-bash ~/dotfiles/wsl/install.sh
+bash ~/dotfiles/wsl/git-config.sh
 
 # -- aptなどでのインストール
 bash ~/dotfiles/wsl/install.sh
