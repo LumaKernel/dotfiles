@@ -1,6 +1,8 @@
 
 echo "fish/config.fish"
 
+pyenv init - | source
+
 # -- powerline-shell
 function fish_prompt
   set -x powerline_fish_key_bindings $fish_key_bindings

@@ -1,19 +1,19 @@
 #!/bin/bash
 
-if [ "`whoami`" != "root" ]; then
+if [ "`whoami`" != "root" -a "$SUDO_USER" != "" ]; then
   echo "Run with 'sudo'"
   exit 1
 fi
 
-if [ -n -d ~/dotfiles ]; then
+if [ ! -d ~/dotfiles ]; then
   echo "Not found ~/dotfiles/ dirctory."
   exit 1
 fi
 
-which cmd.exe >/dev/null 2>&1
+uname -a | grep microsoft >/dev/null 2>/dev/null
 is_wsl=$(( ! $? ))
 
-if [[ -n $is_wsl ]]; then
+if (( ! $is_wsl )); then
   echo "This installer is for WSL!"
   exit 1
 fi
@@ -22,7 +22,7 @@ fi
 bash ~/dotfiles/wsl/symlink.sh
 
 # -- git の設定
-bash ~/dotfiles/wsl/git-config.sh
+bash ~/dotfiles/scripts/git-config.sh
 
 # -- aptなどでのインストール
 bash ~/dotfiles/wsl/install.sh
@@ -30,4 +30,5 @@ bash ~/dotfiles/wsl/install.sh
 echo "以下を自分で実行してください"
 echo "git config --global user.name <name>"
 echo "git config --global user.email <email>"
+
 

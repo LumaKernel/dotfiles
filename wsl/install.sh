@@ -1,10 +1,9 @@
 #!/bin/bash
 
-if [ "`whoami`" != "root" || "$SUDO_USER" = "" ]; then
+if [ "`whoami`" != "root" -o "$SUDO_USER" = "" ]; then
   echo "sudo ~/wsl/install.sh"
   exit 1
 fi
-
 
 # -- apt でのインストール
 add-apt-repository ppa:avsm/ppa -y
@@ -17,7 +16,6 @@ apt-get upgrade -y
 apt-get autoremove -y
 
 apt-get install git -y
-apt-get install python -y
 apt-get install clang -y
 apt-get install source-highlight -y
 apt-get install exuberant-ctags -y
@@ -36,7 +34,7 @@ apt-get install ripgrep -y
 apt-get install tmux -y
 apt-get install fish -y
 
-
+mkdir -p $HOME/.local/bin
 
 # -- install cquery
 # if [[ ! -d "$HOME/bin/cquery" ]] ; then
@@ -73,15 +71,16 @@ apt-get install fish -y
 
 
 # -- install tmux-powerline
-if [[ ! -d "$HOME/bin/tmux-powerline" ]] ; then
-  mkdir -p $HOME/bin
-  pushd $HOME/bin
+
+if [[ ! -d "$HOME/.local/bin/tmux-powerline" ]] ; then
+  pushd $HOME/.local/bin
     git clone https://github.com/erikw/tmux-powerline.git
   popd
 fi
 
 
 # -- install tmux-plugins
+mkdir -p $HOME/.tmux/plugins
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]] ; then
   mkdir -p $HOME/.tmux/plugins
   pushd $HOME/.tmux/plugins
