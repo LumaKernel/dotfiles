@@ -2,6 +2,10 @@
 - [x] WSL と Ubuntu のファイルは統一しよう
 - [ ] pyenv installer
 - [ ] init.reg
+- [ ] wintermの設定も管理
+
+- [ ] TMUX整理
+- [ ] Tmux, 3 ペイン分割や，ペイン同じ大きさにするやつなど
 
 - [ ] sonic-template, postfix部分だけ自作したい
 - [ ] filetypes わかれてる toml が微妙なのでどうにかする
