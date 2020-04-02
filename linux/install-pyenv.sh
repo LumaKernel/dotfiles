@@ -17,6 +17,14 @@ if [ ! -d .git ]; then
   git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 else
   echo "[Info] pyenv is already installed."
+  echo "[Info] Updating..."
+  git pull
+  if [[ "$?" == "0" ]]; then
+    echo "[Info] Update is done."
+  else
+    echo "[Error] Update is failed."
+    exit 1
+  fi
 fi
 
 popd

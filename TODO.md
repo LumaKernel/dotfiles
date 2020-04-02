@@ -1,6 +1,6 @@
 
 - [x] WSL と Ubuntu のファイルは統一しよう
-- [ ] pyenv installer
+- [x] pyenv installer
 - [ ] init.reg
 - [ ] wintermの設定も管理
 
