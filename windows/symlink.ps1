@@ -14,6 +14,7 @@ $files = @(
   @{ target="init.vim"; path=""; name=".vimrc" }
   @{ target="init.vim"; path="AppData/Local/nvim" }
   @{ target="ginit.vim"; path="AppData/Local/nvim" }
+  @{ target="windows/profiles.json"; path="AppData/Local/Microsoft/Windows Terminal" }
   @{ target="windows/wsltty-config"; fullpath="$env:AppData/wsltty/config" }
   "windows/.minttyrc"
   "windows/.bash_profile"
@@ -51,7 +52,7 @@ foreach ($file in $files) {
   $file.target = "~/dotfiles/" + $file.target
 
   if ( !$file.path ) { $file.path = "~" }
-  else { $file.path = (Resolve-Path ("~/" + $file.path)).Path }
+  else { $file.path = "~/" + $file.path) }
 
   if ($file.fullpath) {
     $file.path = Split-Path $file.fullpath
@@ -67,7 +68,7 @@ foreach ($file in $files) {
   if (!(Test-Path $file.path)) {
     mkdir $file.path
   }
-  
+
   echo ""
   echo "now: $($file.path + "/" + $file.name)"
   if (Test-Path ($file.path + "/" + $file.name)) {
@@ -91,4 +92,3 @@ foreach ($file in $files) {
     if (!$?) { echo "failed" }
   }
 }
-

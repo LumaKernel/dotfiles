@@ -11,8 +11,6 @@ esac
 
   echo '.bashrc'
   echo '    - for Ubuntu'
-[ "$is_wsl" == "1" ] &&
-  echo '    - cdwin : Go to win home.'
 
 # ---- vim の環境変数を削除
 unset VIM
@@ -130,14 +128,15 @@ export fish_bind_mode=
 eval $(dircolors "$HOME/dotfiles/.dircolors")
 
 
-# -- WSL 特有の設定
+# -- WSL
 
 which cmd.exe >/dev/null 2>&1
 if (( ! $? )); then
   export is_WSL=1
 fi
 
-if [[ $is_WSL ]]; then
+if [[ -n "$is_WSL" ]]; then
+  echo '    - cdwin : Go to win home.'
   export WinUserName=`cmd.exe /c echo %UserName% 2>/dev/null | tr -d '\n' | tr -d '\r'`
   export WinHome="/mnt/c/Users/$WinUserName"
   alias cdwin="cd $WinHome"
@@ -164,4 +163,3 @@ if [[ -z $NO_FISH ]] ; then
   export NO_FISH=
   command -v fish >/dev/null 2>&1 && exec fish
 fi
-

@@ -4,6 +4,8 @@
 - [x] init.reg
 - [ ] wintermの設定も管理
 
+- [ ] installer nvm
+
 - [ ] TMUX整理
 - [ ] Tmux, 3 ペイン分割や，ペイン同じ大きさにするやつなど
 
