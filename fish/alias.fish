@@ -5,8 +5,17 @@ set -e NO_FISH
 
 switch (uname)
   case Linux
-    alias ls='ls --color=auto --show-control-chars --time-style=long-iso -FH -A'
-    alias ll='ls -lA'
+    functions --copy ls standard_ls
+    function ls
+      command -v exa >/dev/null 2>/dev/null
+        and exa --all
+        or standard_ls --color=auto --show-control-chars --time-style=long-iso -FH -A
+    end
+    function ll
+      command -v exa >/dev/null 2>/dev/null
+        and exa --tree --long --all --level 1
+        or ls -lA
+    end
 end
 
 

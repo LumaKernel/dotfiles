@@ -38,6 +38,11 @@ command -v themis >/dev/null 2>&1
 command -v pyenv >/dev/null 2>&1
   and source (pyenv init -|psub)
 
+# --
+functions --copy cd standard_cd
+function cd
+  standard_cd $argv; and ls
+end
 
 # TODO: dircolors は必要？
 # TODO: opam env
