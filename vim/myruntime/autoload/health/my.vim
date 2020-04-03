@@ -32,6 +32,7 @@ function! health#my#check() abort
   call s:check('vim', ['vim', '--version'], '^VIM - Vi IMproved \(\d\+\.\d\+\)')
   call s:check('nvim', ['nvim', '--version'], '^NVIM v\(\d\+\.\d\+\.\d\+\)')
   call s:check('git', ['git', '--version'], '^git version \(\d\+\.\d\+\.\d\+\)')
+  call s:check('hub', ['hub', '--version'], 'hub version \(\d\+\.\d\+\.\d\+\)')
   call s:check('fzf', ['fzf', '--version'], '^\(\d\+\.\d\+\.\d\+\)')
   call s:check('npm', ['npm', '--version'], '^\(\d\+\.\d\+\.\d\+\)')
   call s:check('yarn', ['yarn', '--version'], '^\(\d\+\.\d\+\.\d\+\)')
