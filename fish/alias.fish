@@ -73,6 +73,9 @@ alias gl="git lg"
 # -- ocaml
 alias ocamlrepl="rlwrap ocaml"
 
+#
+alias checkhealth="nvim +checkhealth"
+
 # TODO: 使ってない
 if false
   function g

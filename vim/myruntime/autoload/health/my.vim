@@ -37,6 +37,7 @@ function! health#my#check() abort
   call s:check('yarn', ['yarn', '--version'], '^\(\d\+\.\d\+\.\d\+\)')
   call s:check('pyenv', ['pyenv', '--version'], '^pyenv \(\d\+\.\d\+\.\d\+\)')
   call s:check('pip', ['pip', '--version'], '^pip \(\d\+\.\d\+\.\d\+\)')
+  call s:check('brew', ['brew', '--version'], '^Homebrew \(\d\+\.\d\+\.\d\+\)')
   call s:check('cargo', ['cargo', '--version'], '^cargo \(\d\+\.\d\+\.\d\+\)')
 
   call health#report_start('my: Additional Commands')

@@ -128,6 +128,12 @@ export fish_bind_mode=
 eval $(dircolors "$HOME/dotfiles/.dircolors")
 
 
+# --
+test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+
+test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+
 # -- WSL
 
 which cmd.exe >/dev/null 2>&1
