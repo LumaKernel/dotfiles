@@ -2,9 +2,11 @@
 - [x] WSL と Ubuntu のファイルは統一しよう
 - [x] pyenv installer
 - [x] init.reg
-- [ ] wintermの設定も管理
+- [x] wintermの設定も管理
+- [x] installer nvm
 
-- [ ] installer nvm
+- [ ] ansible
+- [ ] 通常時のfzfが変
 
 - [ ] TMUX整理
 - [ ] Tmux, 3 ペイン分割や，ペイン同じ大きさにするやつなど

@@ -15,7 +15,7 @@ apt-get update -y
 apt-get upgrade -y
 apt-get autoremove -y
 
-apt-get install git -y
+apt-get install git zip cargo -y
 apt-get install clang -y
 apt-get install source-highlight -y
 apt-get install exuberant-ctags -y
@@ -53,6 +53,9 @@ fish $HOME/dotfiles/wsl/install.fish
 
 # -- pip でのインストール
 su $SUDO_USER -c bash $HOME/dotfiles/linux/pip-install.sh
+
+# -- cargo でのインストール
+su $SUDO_USER -c bash $HOME/dotfiles/linux/cargo-install.sh
 
 # -- ocaml
 # TODO: 使うときになったら
