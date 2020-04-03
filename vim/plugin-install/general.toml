@@ -35,7 +35,9 @@ hook_add = 'let g:switch_color_scheme_default = "onedark"'
 [[plugins]]
 repo = 'rhysd/vim-color-spring-night'
 [[plugins]]
-repo = 'pcostasgr/red_alert_vim_theme'
+repo = 'dracula/vim'
+[[plugins]]
+repo = 'jpo/vim-railscasts-theme'
 
 
 [[plugins]]
