@@ -31,10 +31,10 @@ source ~/dotfiles/vim/vimscript.vim
 
 
 if !g:from_pwsh
-  try
-    colorscheme onedark
-  catch
-  endtry
+  let g:switch_color_scheme_default = 'onedark'
+  augroup init-vim
+    autocmd VimEnter * ++once LoadColorScheme
+  augroup END
 endif
 
 function! CoqSwitchStyle() abort

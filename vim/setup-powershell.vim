@@ -1,6 +1,6 @@
 
 function! g:SetupPwsh() abort
-  colo darkblue
+  colorscheme darkblue
   set nocursorline
   set nocursorcolumn
 endfunction

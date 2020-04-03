@@ -54,16 +54,16 @@ hook_add = '''
         \   '~/.cache/dein/repos',
         \]
 
-  " TODO: 永続化したい
   function! s:MyColorSelections()
-    return [
-          \   { 'line': 'onedark' , 'cmd': 'colo onedark' },
-          \   { 'line': 'tender' , 'cmd': 'colo tender' },
-          \   { 'line': 'sprint-night' , 'cmd': 'colo spring-night' },
-          \   { 'line': 'iceberg' , 'cmd': 'colo iceberg' },
-          \   { 'line': 'darkblue' , 'cmd': 'colo darkblue' },
-          \   { 'line': 'red_alert' , 'cmd': 'colo red_alert' },
+    let names = [
+          \   'onedark',
+          \   'tender',
+          \   'spring-night',
+          \   'iceberg',
+          \   'darkblue',
+          \   'red_alert',
           \ ]
+    return map(copy(names), { i, colo -> { 'line': colo, 'cmd': printf('SwitchColorScheme %s', colo) } })
   endfunction
 
   function! s:MyRefs()
@@ -141,4 +141,3 @@ hook_post_source = '''
     au User StartifyReady silent! nunmap <buffer> T
   augroup END
 '''
-

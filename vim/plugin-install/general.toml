@@ -1,5 +1,5 @@
 # プラグイン追加時のあれこれ
-# 
+#
 # - ファイルタイプ専用のものであれば，専用TOMLファイルに追加
 # - Lazy にする場合 (on_ft なども含まれる) は，
 #   dein#check_lazy_plugins() でチェック
@@ -31,6 +31,7 @@ repo = 'jacoborus/tender.vim'
 repo = 'cocopon/iceberg.vim'
 [[plugins]]
 repo = 'joshdick/onedark.vim'
+hook_add = 'let g:switch_color_scheme_default = "onedark"'
 [[plugins]]
 repo = 'rhysd/vim-color-spring-night'
 [[plugins]]
@@ -338,29 +339,29 @@ hook_add = '''
   " エラー行に表示するマーク
   let g:ale_sign_error = '>>'
   let g:ale_sign_warning = '>>'
-  
+
   let g:ale_list_window_size = 1
-  
+
   let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
   " エラー表示の列を常時表示
   let g:ale_sign_column_always = 1
-  
+
   let g:ale_lint_on_enter = 1
   let g:ale_lint_on_save = 1
   let g:ale_lint_on_text_changed = 'always'
   let g:ale_lint_on_filetype_changed = 1
   let g:ale_lint_on_insert_leave = 1
-  
+
   let g:ale_set_loclist = 1
   let g:ale_set_quickfix = 0
   let g:ale_open_list = 0
   let g:ale_keep_list_window_open = 0
-  
+
   let g:ale_linters = get(g:, 'ale_linters', {})
   let g:ale_fixers = get(g:, 'ale_fixers', {})
-  
+
   let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
-  
+
   nmap <silent> <Leader>p <Plug>(ale_previous_wrap)
   nmap <silent> <Leader>n <Plug>(ale_next_wrap)
 '''
@@ -458,13 +459,13 @@ hook_add = '''
   let g:grepper = {}
   let g:grepper.tools = ['git', 'ag']
   let g:grepper.prompt_mapping_tool = '<tab>'
-  
+
   nmap gs <plug>(GrepperOperator)
   xmap gs <plug>(GrepperOperator)
-  
+
   nnoremap <silent> ,g :Grepper<CR>
   nnoremap <silent> ,cg :Grepper -cword -noprompt<CR>
-  
+
   let g:mapping_descriptions += [[',g', ':Grepper']]
   let g:mapping_descriptions += [[',cg', 'Grep word under the cursor.']]
   let g:mapping_descriptions += [['gs', 'Grep with operator.']]
@@ -643,3 +644,9 @@ hook_add = '''
 [[plugins]]
 repo = 'thinca/vim-zenspace'
 
+[[plugins]]
+repo = 'LumaKernel/vim-messages-qf'
+meged = 0
+hook_add = '''
+  command! -bar MessagesQF call g:messages_qf#messages() | Cedit
+'''

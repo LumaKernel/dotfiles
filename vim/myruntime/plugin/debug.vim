@@ -35,4 +35,3 @@ try
   call messages_qf#util#dump('.dev/debug.json')
 catch
 endtry
-
