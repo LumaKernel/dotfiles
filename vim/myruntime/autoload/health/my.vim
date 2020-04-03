@@ -28,6 +28,7 @@ function! health#my#check() abort
   call s:check('make', ['make', '--version'], '^GNU Make \(\d\+\.\d\+\)')
   call s:check('cmake', ['cmake', '--version'], '^cmake version \(\d\+\.\d\+\.\d\+\)')
   call s:check('find', ['find', '--version'], '^find .* \(\d\+\.\d\+\.\d\+\)')
+  call s:check('zip', ['zip', '--version'], 'Zip \(\d\+\.\d\+\)')
   call s:check('vim', ['vim', '--version'], '^VIM - Vi IMproved \(\d\+\.\d\+\)')
   call s:check('nvim', ['nvim', '--version'], '^NVIM v\(\d\+\.\d\+\.\d\+\)')
   call s:check('git', ['git', '--version'], '^git version \(\d\+\.\d\+\.\d\+\)')
