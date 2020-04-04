@@ -20,3 +20,10 @@
   - いっそfunctions.fishにするか
   - なんかうまく merge する機能が fish にないか
 
+- [ ] OpenBrowser が変
+  - session 保存の影響?
+
+- [ ] Tmux いろいろ
+  - したのステータスラインとか
+  - もっとちゃんと表示してほしいとか
+
