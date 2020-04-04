@@ -61,7 +61,7 @@ for s:wincmd in split('hjkl', '\zs')
   exe 'nnoremap <silent> <A-' .. s:wincmd .. "> :<C-u>silent! call VimAndTmuxMove('" .. s:wincmd .. "', 0)<CR>"
   exe 'xnoremap <silent> <A-' .. s:wincmd .. "> <ESC>:<C-u>silent! call VimAndTmuxMove('" .. s:wincmd .. "', 0)<CR>"
   exe 'inoremap <silent> <A-' .. s:wincmd .. "> <ESC>:<C-u>silent! call VimAndTmuxMove('" .. s:wincmd .. "', 0)<CR>"
-  exe 'cnoremap <silent> <A-' .. s:wincmd .. "> <C-r>=<C-u>VimAndTmuxMove('" .. s:wincmd .. "', 1)<CR>"
+  exe 'cnoremap <silent> <A-' .. s:wincmd .. "> <C-r>=<C-u>TmuxMove('" .. s:wincmd .. "', 1)<CR>"
   exe 'tnoremap <silent> <A-' .. s:wincmd .. "> <C-\><C-n>:<C-u>silent! call VimAndTmuxMove('" .. s:wincmd .. "', 0)<CR>"
 endfor
 
@@ -72,4 +72,3 @@ nnoremap <silent> <Leader>y :<C-u>%y+<CR>
 nnoremap <silent> <Leader>v ggVGs<ESC>"+P
 
 noremap <expr> 0 getline('.')[: col('.') - 2] =~# '^\s\+$' ? '0' : '^'
-

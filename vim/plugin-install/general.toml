@@ -183,45 +183,12 @@ repo = 'roxma/vim-hug-neovim-rpc'
 
 
 [[plugins]]
-repo = 'Yggdroot/indentLine'
+repo = 'LumaKernel/indentLine'
+merged = 0
 hook_add = '''
-  " after で色々やられ，競合しやすいのでホワイトリストで管理
-  let g:indentLine_fileType = [
-      \   'c',
-      \   'cmake',
-      \   'coq',
-      \   'cpp',
-      \   'csharp',
-      \   'css',
-      \   'go',
-      \   'haskell',
-      \   'html',
-      \   'javascript',
-      \   'javascriptreact',
-      \   'json',
-      \   'jsonc',
-      \   'latex',
-      \   'less',
-      \   'make',
-      \   'ocaml',
-      \   'perl',
-      \   'php',
-      \   'powershell',
-      \   'pug',
-      \   'python',
-      \   'ruby',
-      \   'rust',
-      \   'scala',
-      \   'scss',
-      \   'sml',
-      \   'toml',
-      \   'typescript',
-      \   'typescriptreact',
-      \   'vim',
-      \   'vue',
-      \   'xml',
-      \   'yaml',
-      \   'yml',
+  let g:indentLine_fileTypeExclude = [
+      \   'startify',
+      \   'help',
       \ ]
 '''
 
