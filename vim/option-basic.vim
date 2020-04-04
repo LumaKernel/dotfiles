@@ -12,28 +12,20 @@ set laststatus=2
 set notitle
 set wrap
 
+set completeopt=menuone
+
 set noshowmatch
 set novisualbell
 
 set conceallevel=0
-" modeline の後 ???
-augroup MyConcealLevel
+set concealcursor=
+augroup my-help-conceal
   autocmd!
-  " autocmd BufNew,WinNew,WinEnter,BufWinEnter * if &buftype isnot# 'help' && &filetype is# 'help' | setlocal conceallevel=0 concealcursor= | endif
-  autocmd BufEnter,BufNew,BufRead,WinNew,WinEnter *
-        \   if &buftype is# 'help'
-        \   | echom string([&buftype, &conceallevel, &buftype, 'others'])
-        \   | setlocal conceallevel=0 concealcursor=
-        \ | endif
   autocmd BufWinEnter *
-        \   if &buftype is# 'help'
-        \   | set buftype=
-        \   | echom string([&buftype, &conceallevel, &buftype, 'BufWinEnter'])
+        \   if &filetype is# 'help'
         \   | setlocal conceallevel=0 concealcursor=
-        \   | set buftype=help
         \ | endif
 augroup END
-set concealcursor=
 
 let g:loaded_matchparen = 1
 

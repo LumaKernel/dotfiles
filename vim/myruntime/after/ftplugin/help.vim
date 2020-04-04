@@ -1,5 +1,4 @@
 
-echom "help after"
 setlocal conceallevel=0
 setlocal concealcursor=
 setlocal noexpandtab

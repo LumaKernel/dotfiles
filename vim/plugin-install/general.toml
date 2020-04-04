@@ -345,9 +345,9 @@ repo = 'unblevable/quick-scope'
 repo='prabirshrestha/asyncomplete-neosnippet.vim'
 if = 0
 hook_add='''
-  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k>     <Plug>(neosnippet_expand_target)
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
 '''
 hook_post_source='''
   " call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
@@ -576,7 +576,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'skywind3000/asyncrun.vim'
-# XXX: まだ
+# XXX: まだ未調整
 # vim-dispatchのほうがいいかな，むずかしい
 
 [[plugins]]

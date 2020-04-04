@@ -6,6 +6,8 @@
 - [x] installer nvm
 - [x] myruntime/health を管理する
 
+- [ ] `</` でたぐを閉じるやつ (iabbrev)
+
 - [ ] ansible
 - [ ] 通常時のfzfが変
   - 表示，タイプしたときがなんか
