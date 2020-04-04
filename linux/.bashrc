@@ -32,9 +32,8 @@ fi
 export PATH=~/.local/bin:$PATH
 
 
-[ -f "${HOME}/dotfiles/wsl/.bash_aliases" ] && source "${HOME}/dotfiles/wsl/.bash_aliases"
-
-[ -f "${HOME}/dotfiles/wsl/.bash_functions" ] && source "${HOME}/dotfiles/wsl/.bash_functions"
+[ -f "${HOME}/dotfiles/linux/.bash_aliases" ] && source "${HOME}/dotfiles/linux/.bash_aliases"
+[ -f "${HOME}/dotfiles/linux/.bash_functions" ] && source "${HOME}/dotfiles/linux/.bash_functions"
 
 # ヒストリーをファイルに保存
 shopt -s histappend
@@ -135,16 +134,15 @@ test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew
 
 
 # -- WSL
-
-which cmd.exe >/dev/null 2>&1
+uname -a 2>/dev/null | grep microsoft >/dev/null 2>/dev/null
 if (( ! $? )); then
   export is_WSL=1
 fi
 
-if [[ -n "$is_WSL" ]]; then
+if [[ -n "$is_WSL" ]] && command -v wslpath >/dev/null 2>/dev/null; then
   echo '    - cdwin : Go to win home.'
   export WinUserName=`cmd.exe /c echo %UserName% 2>/dev/null | tr -d '\n' | tr -d '\r'`
-  export WinHome="/mnt/c/Users/$WinUserName"
+  export WinHome="`wslpath c:/users/$WinUserName`"
   alias cdwin="cd $WinHome"
 fi
 

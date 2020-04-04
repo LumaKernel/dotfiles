@@ -6,6 +6,8 @@
 - [x] installer nvm
 - [x] myruntime/health を管理する
 
+- [ ] `</` でたぐを閉じるやつ (iabbrev)
+
 - [ ] ansible
 - [ ] 通常時のfzfが変
   - 表示，タイプしたときがなんか
@@ -19,4 +21,11 @@
 - [ ] fish の functions の管理が微妙，どうにかならないのか
   - いっそfunctions.fishにするか
   - なんかうまく merge する機能が fish にないか
+
+- [ ] OpenBrowser が変
+  - session 保存の影響?
+
+- [ ] Tmux いろいろ
+  - したのステータスラインとか
+  - もっとちゃんと表示してほしいとか
 

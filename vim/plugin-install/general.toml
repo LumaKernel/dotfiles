@@ -183,45 +183,12 @@ repo = 'roxma/vim-hug-neovim-rpc'
 
 
 [[plugins]]
-repo = 'Yggdroot/indentLine'
+repo = 'LumaKernel/indentLine'
+merged = 0
 hook_add = '''
-  " after で色々やられ，競合しやすいのでホワイトリストで管理
-  let g:indentLine_fileType = [
-      \   'c',
-      \   'cmake',
-      \   'coq',
-      \   'cpp',
-      \   'csharp',
-      \   'css',
-      \   'go',
-      \   'haskell',
-      \   'html',
-      \   'javascript',
-      \   'javascriptreact',
-      \   'json',
-      \   'jsonc',
-      \   'latex',
-      \   'less',
-      \   'make',
-      \   'ocaml',
-      \   'perl',
-      \   'php',
-      \   'powershell',
-      \   'pug',
-      \   'python',
-      \   'ruby',
-      \   'rust',
-      \   'scala',
-      \   'scss',
-      \   'sml',
-      \   'toml',
-      \   'typescript',
-      \   'typescriptreact',
-      \   'vim',
-      \   'vue',
-      \   'xml',
-      \   'yaml',
-      \   'yml',
+  let g:indentLine_fileTypeExclude = [
+      \   'startify',
+      \   'help',
       \ ]
 '''
 
@@ -378,9 +345,9 @@ repo = 'unblevable/quick-scope'
 repo='prabirshrestha/asyncomplete-neosnippet.vim'
 if = 0
 hook_add='''
-  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k>     <Plug>(neosnippet_expand_target)
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
 '''
 hook_post_source='''
   " call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
@@ -609,7 +576,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'skywind3000/asyncrun.vim'
-# XXX: まだ
+# XXX: まだ未調整
 # vim-dispatchのほうがいいかな，むずかしい
 
 [[plugins]]

@@ -8,13 +8,13 @@ switch (uname)
     functions --copy ls standard_ls
     function ls
       command -v exa >/dev/null 2>/dev/null
-        and exa --all
-        or standard_ls --color=auto --show-control-chars --time-style=long-iso -FH -A
+        and exa --all $argv
+        or standard_ls --color=auto --show-control-chars --time-style=long-iso -FH -A $argv
     end
     function ll
       command -v exa >/dev/null 2>/dev/null
-        and exa --tree --long --all --level 1
-        or ls -lA
+        and exa --tree --long --all --level 1 $argv
+        or ls -lA $argv
     end
 end
 

@@ -1,23 +1,27 @@
 
 function! VimAndTmuxMove(direction, skipvim)
   if $TMUX ==# '' || !executable('tmux')
-    silent! exe 'wincmd ' .. a:direction
-  elseif system("tmux display -p '#{window_zoomed_flag}'") =~# '1'
-    silent! exe 'wincmd ' .. a:direction
+    if !a:skipvim
+      silent! exe 'wincmd ' .. a:direction
+    endif
+  elseif system(["tmux", "display", "-p", "#{window_zoomed_flag}"]) =~# '1'
+    if !a:skipvim
+      silent! exe 'wincmd ' .. a:direction
+    endif
   elseif a:skipvim
-    silent! call TmuxMove(a:direction)
+    silent! call s:TmuxMove(a:direction)
   else
     let oldw = winnr()
     silent! exe 'wincmd ' .. a:direction
     let neww = winnr()
     if oldw == neww
-      silent! call TmuxMove(a:direction)
+      silent! call s:TmuxMove(a:direction)
     endif
   endif
   return ''
 endfunction
 
-function! TmuxMove(direction)
+function! s:TmuxMove(direction)
   if a:direction == 'j'
     call system("tmux select-pane -D")
   elseif a:direction == 'k'
@@ -27,4 +31,5 @@ function! TmuxMove(direction)
   elseif a:direction == 'l'
     call system("tmux select-pane -R")
   endif
+  return ''
 endfunction

@@ -12,14 +12,19 @@ set laststatus=2
 set notitle
 set wrap
 
+set completeopt=menuone
+
 set noshowmatch
 set novisualbell
 
 set conceallevel=0
-" modeline の後
-augroup MyConcealLevel
-  au!
-  au BufEnter * if &buftype == 'help' | setlocal conceallevel=0 | endif
+set concealcursor=
+augroup my-help-conceal
+  autocmd!
+  autocmd BufWinEnter *
+        \   if &filetype is# 'help'
+        \   | setlocal conceallevel=0 concealcursor=
+        \ | endif
 augroup END
 
 let g:loaded_matchparen = 1
@@ -27,7 +32,7 @@ let g:loaded_matchparen = 1
 set fileencodings=utf-8,cp932,utf-16le,euc-jp,sjis
 set fileformats=unix,dos
 set noswapfile
-set autoread
+set noautoread
 set hidden
 set showcmd
 if has('nvim')
@@ -93,7 +98,7 @@ set nosmartcase
 set incsearch
 set wrapscan
 set hlsearch
-nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
+nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><ESC>
 
 set diffopt+=vertical
 
@@ -107,7 +112,8 @@ set listchars=tab:\≫-,eol:$,extends:≫,precedes:≪,nbsp:%
 set expandtab
 " 行頭以外のTab文字の表示幅(スペースいくつ分)
 set tabstop=2
-set shiftwidth=2 " 行頭でのTab文字の表示幅
+" 行頭でのTab文字の表示幅
+set shiftwidth=2
 
 " K でカーソル下のワードを :help
 set keywordprg=:help
@@ -126,11 +132,11 @@ endif
 
 if exists('&inccommand') | set inccommand=nosplit | endif
 
-" -- WSL でのクリップボード
 
+" -- WSL でのクリップボード
 if g:is_wsl && has('nvim') && executable('win32yank.exe')
   let g:clipboard = {
-        \   'name': 'myClipboard',
+        \   'name': 'win32yank.exe from WSL',
         \   'copy': {
         \      '+': 'win32yank.exe -i',
         \      '*': 'win32yank.exe -i',
@@ -196,7 +202,5 @@ else
   endif
 endif
 
-
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
       \ | diffthis | wincmd p | diffthis
-
