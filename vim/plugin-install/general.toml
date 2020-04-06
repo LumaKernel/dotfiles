@@ -189,6 +189,7 @@ hook_add = '''
   let g:indentLine_fileTypeExclude = [
       \   'startify',
       \   'help',
+      \   'fern',
       \ ]
 '''
 
@@ -619,3 +620,8 @@ meged = 0
 hook_add = '''
   command! -bar MessagesQF call g:messages_qf#messages() | Cedit
 '''
+
+[[plugins]]
+repo = 'tbodt/deoplete-tabnine'
+merged = 0
+build = './install.sh'
