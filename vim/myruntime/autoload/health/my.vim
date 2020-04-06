@@ -44,4 +44,5 @@ function! health#my#check() abort
   call health#report_start('my: Additional Commands')
   call s:check('bat', ['bat', '--version'], '^bat \(\d\+\.\d\+\.\d\+\)')
   call s:check('exa', ['exa', '--version'], '^exa v\(\d\+\.\d\+\.\d\+\)')
+  call s:check('tidy', ['tidy', '--version'], '^HTML Tidy for .\+ version \(\d\+\.\d\+\.\d\+\)')
 endfunction
