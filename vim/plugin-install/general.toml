@@ -190,6 +190,8 @@ hook_add = '''
       \   'startify',
       \   'help',
       \   'fern',
+      \   'man',
+      \   'info',
       \ ]
 '''
 
