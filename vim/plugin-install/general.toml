@@ -140,7 +140,7 @@ hook_add = '''
 
   inoremap <silent><expr> <C-n>
     \ pumvisible() ? "\<C-n>" :
-    \ deoplete#manual_complete(['lsp'])
+    \ deoplete#manual_complete()
 
   " inoremap <silent><expr> <TAB>
   "  \ pumvisible() ? "\<C-n>" :

@@ -78,6 +78,7 @@ hook_add = '''
     let URI = vital#vital#import('Web.URI')
     let HTTP = vital#vital#import('Web.HTTP')
     let filename = expand('~/docs') .. '/' .. URI.encode(a:url)
+    call mkdir(fnamemodify(filename, ':h'), 'p')
     try
       if !filereadable(filename)
         call HTTP.request({'url': a:url, 'method': 'GET', 'outputFile': filename})
