@@ -60,7 +60,7 @@ repo = 'airblade/vim-gitgutter'
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
   let g:fern#default_hidden = 1
-  let s:fern_default_exclude_0 = '^\(\.git\|\.DS_Store\|node_modules\)$'
+  let s:fern_default_exclude_0 = '\%(^\.git$\|^\.DS_Store$\|^node_modules$\|:Zone\.Identifier$\)'
   let g:fern#default_exclude = s:fern_default_exclude_0
 
   function! s:init_fern() abort
@@ -627,3 +627,6 @@ hook_add = '''
 repo = 'tbodt/deoplete-tabnine'
 merged = 0
 build = './install.sh'
+
+[[plugins]]
+repo = 'briancollins/vim-jst'
