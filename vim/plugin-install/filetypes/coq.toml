@@ -19,33 +19,15 @@ hook_source = '''
     nnoremap <Leader>search :CoqQuery Search ().<Left><Left>
   endfunction
 
-  augroup my_coq
+  augroup my-coq
     au!
     au FileType coq :call MyCoqMaps()
   augroup END
 
-  function! s:setup_my_coq_colo()
-    if !has('gui')
-      if g:colors_name ==? 'hybrid'
-        hi CoqChecked      ctermbg=17
-        hi CoqCheckedAxiom ctermbg=58
-        hi CoqQueued       ctermbg=22
-        hi CoqMarkedWarn   ctermbg=64
-        hi CoqCheckedWarn  ctermbg=64
-        hi CoqMarkedError  ctermbg=160
-        hi CoqCheckedError ctermbg=160
-      endif
-    endif
-  endfunction
-
-  augroup my_coq_colo
-    au!
-    autocmd ColorScheme * :call <SID>setup_my_coq_colo()
-  augroup END
-
   if has('win32')
     let g:coquille_coq_executable = 'C:\Coq8.10\bin\coqidetop.exe'
+  elseif has('unix')
+    let g:coquille_coq_executable = expand('~/.local/bin/coq/V8.11.1/bin/coqidetop')
   endif
 
 '''
-

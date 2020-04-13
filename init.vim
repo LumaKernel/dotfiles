@@ -33,7 +33,7 @@ source ~/dotfiles/vim/vimscript.vim
 if !g:from_pwsh
   let g:switch_color_scheme_default = 'onedark'
   augroup init-vim
-    autocmd VimEnter * ++once LoadColorScheme
+    autocmd VimEnter * ++once ++nested LoadColorScheme
   augroup END
 endif
 
