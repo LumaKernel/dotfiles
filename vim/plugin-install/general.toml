@@ -38,6 +38,8 @@ repo = 'rhysd/vim-color-spring-night'
 repo = 'dracula/vim'
 [[plugins]]
 repo = 'jpo/vim-railscasts-theme'
+[[plugins]]
+repo = 'junegunn/seoul256.vim'
 
 
 [[plugins]]

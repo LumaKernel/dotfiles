@@ -57,6 +57,7 @@ hook_add = '''
   function! s:MyColorSelections()
     let names = [
           \   'onedark',
+          \   'seoul256',
           \   'tender',
           \   'spring-night',
           \   'iceberg',
