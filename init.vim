@@ -1,9 +1,14 @@
 set encoding=utf-8
 scriptencoding utf-8
 
+if v:version < 802 && !has('nvim')
+  echomsg "Version of vim is old. Update your vim."
+  finish
+endif
+
 " コメント方針 : 適当に書く．日本語で書く．
-"   ぶっちゃけ理解したものは消す
-"   :help を，見ろ
+"   理解したものは消す
+"   :help を見よう
 
 augroup init_vim | au! | augroup END
 

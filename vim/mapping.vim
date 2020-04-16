@@ -71,4 +71,7 @@ nnoremap <Leader>sp :<C-u>SLoad __1<CR>
 nnoremap <silent> <Leader>y :<C-u>%y+<CR>
 nnoremap <silent> <Leader>v ggVGs<ESC>"+P
 
+xnoremap <silent> <LT> <LT>gv
+xnoremap <silent> > >gv
+
 noremap <expr> 0 getline('.')[: col('.') - 2] =~# '^\s\+$' ? '0' : '^'

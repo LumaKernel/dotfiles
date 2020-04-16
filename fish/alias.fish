@@ -39,7 +39,8 @@ function rm
 end
 
 # -- vim
-alias vi="vim -u NONE"
+alias v="/usr/bin/vim"
+alias vi="nvim -u NONE"
 alias vim="nvim"
 
 # -- c++
