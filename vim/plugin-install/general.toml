@@ -137,9 +137,9 @@ repo = 'Shougo/deoplete.nvim'
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
 
-  call deoplete#custom#option({
-      \ 'auto_complete': 0,
-      \ })
+  " call deoplete#custom#option({
+  "     \ 'auto_complete': 0,
+  "     \ })
 
   " XXX: まだ設定中
   "      そもそも vim の completion がわかっていない
