@@ -8,6 +8,8 @@ git config --global core.autocrlf false
 
 git config --global core.excludesfile ~/.gitignore_global
 
+git config --global url."git@github.com".pushInsteadOf "https://github.com/"
+
 
 # https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
 
@@ -44,4 +46,3 @@ echo "以下を自分で実行してください"
 echo "git config --global user.name <name>"
 echo "git config --global user.email <email>"
 echo "git config --global core.editor nvim"
-
