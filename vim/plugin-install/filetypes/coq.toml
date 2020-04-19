@@ -1,9 +1,9 @@
 [[plugins]]
-repo = "LumaKernel/coquille"
+repo = "LumaKernel/coqpit.vim"
 on_ft = "coq"
 hook_source = '''
-  let g:coquille_auto_move=1
-  let g:coquille_one_window=1
+  let g:coqpit_auto_move=1
+  let g:coqpit_one_window=1
 
   function! MyCoqMaps()
     nnoremap <silent> <C-C> :CoqLaunch<CR>
@@ -25,9 +25,9 @@ hook_source = '''
   augroup END
 
   if has('win32')
-    let g:coquille_coq_executable = 'C:\Coq8.10\bin\coqidetop.exe'
+    let g:coqpit_coq_executable = 'C:\Coq8.10\bin\coqidetop.exe'
   elseif has('unix')
-    let g:coquille_coq_executable = expand('~/.local/bin/coq/V8.11.1/bin/coqidetop')
+    let g:coqpit_coq_executable = expand('~/.local/bin/coq/V8.11.1/bin/coqidetop')
   endif
 
 '''

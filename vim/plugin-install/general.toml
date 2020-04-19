@@ -40,6 +40,8 @@ repo = 'dracula/vim'
 repo = 'jpo/vim-railscasts-theme'
 [[plugins]]
 repo = 'junegunn/seoul256.vim'
+[[plugins]]
+repo = 'fcpg/vim-orbital'
 
 
 [[plugins]]
@@ -192,6 +194,7 @@ repo = 'roxma/vim-hug-neovim-rpc'
 repo = 'LumaKernel/indentLine'
 merged = 0
 hook_add = '''
+  let g:indentLine_color_gui = "Grey60"
   let g:indentLine_fileTypeExclude = [
       \   'markdown',
       \   'startify',

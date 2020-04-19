@@ -61,10 +61,10 @@ hook_add = '''
           \   'tender',
           \   'spring-night',
           \   'iceberg',
+          \   'orbital',
           \   'darkblue',
           \   'dracula',
           \   'railscasts',
-          \   'red_alert',
           \ ]
     return map(copy(names), { i, colo -> { 'line': colo, 'cmd': printf('SwitchColorScheme %s', colo) } })
   endfunction
