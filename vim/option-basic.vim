@@ -13,7 +13,7 @@ set notitle
 set wrap
 
 set completeopt=menu,preview
-autocmd CompleteDone * pclose
+autocmd CompleteDone * silent! pclose
 
 set noshowmatch
 set novisualbell

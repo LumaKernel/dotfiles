@@ -12,6 +12,7 @@ let g:misspell = [
       \   'teh',
       \   'stirng',
       \   'stiring',
+      \   'widht',
       \ ]
 
 function! DefineColors() abort
@@ -90,4 +91,3 @@ endfunction
 
 autocmd init_vim Syntax * :call DefineColors()
 call DefineColors()
-

@@ -1,5 +1,6 @@
 [[plugins]]
 repo = 'dense-analysis/ale'
+if = 0
 hook_add = '''
   " 各種 filetype の設定は myruntime/ftplugin 配下に
 
@@ -11,4 +12,3 @@ hook_add = '''
 
   nnoremap <Leader>8 :<C-u>ALEFix<CR>
 '''
-

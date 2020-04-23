@@ -63,9 +63,30 @@ repo = 'airblade/vim-gitgutter'
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
+  let s:fern_default_exclude_pats = ['^\.git$', '^\.DS_Store$', '^node_modules$', '^dist$', '^:Zone\.Identifier$']
+
+  function! s:mypat_to_pat(mypat) abort
+    " .git  ->  ^\.git$
+    " aa/*  ->  無理かな
+    " aa/** ->  ^\aa$
+    " TODO: ノードに対するマッチングしかできないのかな?
+    return printf('\%%(%s\)', escape(a:mypat, '/\.[]-'))
+  endfunction
+
+  function! s:GetFernExclude() abort
+    let ignore_pats = copy(s:fern_default_exclude_pats)
+    let ignore_file_candidates = [',project_ignore', '.project_ignore']
+    for ignore_file in ignore_file_candidates
+      if filereadable(ignore_file)
+        let ignore_pats += map(filter(readfile(ignore_file), {_,v->v !~# '\s\+'}), {_,v->s:mypat_to_pat(v)})
+      endif
+    endfor
+    return join(ignore_pats, '\|')
+  endfunction
+
+
   let g:fern#default_hidden = 1
-  let s:fern_default_exclude_0 = '\%(^\.git$\|^\.DS_Store$\|^node_modules$\|^dist$\|:Zone\.Identifier$\)'
-  let g:fern#default_exclude = s:fern_default_exclude_0
+  let g:fern#default_exclude = s:GetFernExclude()
 
   function! s:init_fern() abort
     silent! nunmap <buffer> t
@@ -88,7 +109,7 @@ hook_add = '''
 
   function! s:fern_default() abort
     let exclude_save = g:fern#default_exclude
-    let g:fern#default_exclude = s:fern_default_exclude_0
+    let g:fern#default_exclude = s:GetFernExclude()
     call FernRevealPwdOrThere()
     let g:fern#default_exclude = exclude_save
   endfunction

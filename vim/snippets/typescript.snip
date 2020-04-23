@@ -1,0 +1,57 @@
+snippet     query
+abbr        jquery
+abbr        selector
+abbr        document
+options     head
+  const $: typeof document.querySelectorAll = document.querySelectorAll.bind(document)
+  const \$1: typeof document.querySelector = document.querySelector.bind(document)
+  $0
+
+snippet     assertNonEmpty
+abbr        nonempty
+options     head
+  function assertNonEmpty<T>(value: T | null | undefined): asserts value is T {
+    if (value === null || value === void 0) {
+      throw new Error("Logic Error");
+    }
+  }
+
+snippet     assertIsHTMLTemplateElement
+abbr        ishtmltemplateelement
+abbr        htmltemplateelement
+abbr        templateelement
+abbr        elementtemplate
+options     head
+  function assertIsHTMLTemplateElement (value: Element | null | undefined): asserts value is HTMLTemplateElement {
+    if (value === null || value === void 0 || !(value instanceof HTMLTemplateElement)) {
+      throw new Error("Logic Error");
+    }
+  }
+
+snippet     assertIsHTMLElement
+abbr        ishtmlelement
+abbr        htmlelement
+options     head
+  function assertIsHTMLElement(
+    value: Element | null | undefined
+  ): asserts value is HTMLElement {
+    if (
+      value === null ||
+      value === void 0 ||
+      !(value instanceof HTMLElement)
+    ) {
+      throw new Error("Logic Error");
+    }
+  }
+
+snippet     assertIsSVGElement
+abbr        issvgelement
+abbr        svgelement
+options     head
+  function assertIsSVGElement(
+    value: Element | null | undefined
+  ): asserts value is SVGElement {
+    if (value === null || value === void 0 || !(value instanceof SVGElement)) {
+      throw new Error("Logic Error");
+    }
+  }
