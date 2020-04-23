@@ -66,11 +66,18 @@ hook_add = '''
   let s:fern_default_exclude_pats = ['^\.git$', '^\.DS_Store$', '^node_modules$', '^dist$', '^:Zone\.Identifier$']
 
   function! s:mypat_to_pat(mypat) abort
-    " .git  ->  ^\.git$
-    " aa/*  ->  無理かな
-    " aa/** ->  ^\aa$
-    " TODO: ノードに対するマッチングしかできないのかな?
-    return printf('\%%(%s\)', escape(a:mypat, '/\.[]-'))
+    " abc    -> ^abc$
+    " abc/   -> ^abc$
+    " /abc   -> ignore
+    " /abc/  -> ignore
+    " *      -> .*
+    let mypat = a:mypat
+    if mypat =~# '^\/' || mypat =~# '^\s*$'
+      return ''
+    endif
+    let mypat = escape(mypat, '/\.[]-')
+    let mypat = substitute(mypat, '\%(\\\)\@<!\*', '.*', 'g')
+    return printf('\%%(%s\)', mypat)
   endfunction
 
   function! s:GetFernExclude() abort
@@ -78,7 +85,7 @@ hook_add = '''
     let ignore_file_candidates = [',project_ignore', '.project_ignore']
     for ignore_file in ignore_file_candidates
       if filereadable(ignore_file)
-        let ignore_pats += map(filter(readfile(ignore_file), {_,v->v !~# '\s\+'}), {_,v->s:mypat_to_pat(v)})
+        let ignore_pats += filter(map(readfile(ignore_file), {_,v->s:mypat_to_pat(v)}), {_,v->v !=# ''})
       endif
     endfor
     return join(ignore_pats, '\|')
@@ -284,7 +291,7 @@ hook_add = '''
     let $FZF_DEFAULT_OPTS = printf('--tabstop=4 --reverse --preview "%s || %s"', file_viewer, dir_viewer)
   endif
 
-  if executable('ag')
+  if executable('ag') && $FZF_DEFAULT_COMMAND ==# ''
     let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
   endif
 
@@ -294,7 +301,6 @@ hook_add = '''
 
   command! -bang Colors call fzf#vim#colors({'options': '--preview ""'}, <bang>0)
 
-  command! -bang LS Buffers<bang>
 
   nnoremap <silent> ,f  :<C-u>Files<CR>
   nnoremap <silent> ,df :<C-u>GFiles<CR>
