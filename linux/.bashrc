@@ -95,6 +95,17 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # ---- fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_CTRL_T_COMMAND='fd --hidden --exclude ".git"'
+file_viewer="( \
+  command -v bat 2>&1 >/dev/null && \
+  bat --pager=never --color=always --style=numbers {} 2>/dev/null || \
+  cat {} 2>/dev/null )"
+dir_viewer="( \
+  command -v exa 2>&1 >/dev/null && \
+  exa --tree --color always {} 2>/dev/null || \
+  ls {} 2>/dev/null )"
+  export FZF_DEFAULT_OPTS="$(printf -- '--tabstop=4 --reverse --preview "%s || %s || echo \"<no preview>\""' "$file_viewer" "$dir_viewer")"
 
 # ---- less
 export LESS='-R --no-init -g -j10 --quit-if-one-screen'
@@ -163,13 +174,6 @@ if [[ -n "$is_WSL" ]] && command -v wslpath >/dev/null 2>/dev/null; then
   [[ -z "WinUserName" ]] \
     && export WinHome="`wslpath c:/users/$WinUserName`"
   alias cdwin="cd $WinHome"
-fi
-
-# -- fzf
-
-FIND_PROJECT_CMD="$HOME/dotfiles/scripts/find-project.sh"
-if test -f "$FIND_PROJECT_CMD" && command -v "$FIND_PROJECT_CMD" 2>&1 >/dev/null; then
-  export FZF_DEFAULT_COMMAND="$FIND_PROJECT_CMD"
 fi
 
 # -- opam TODO
