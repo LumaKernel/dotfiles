@@ -169,10 +169,9 @@ fi
 
 if [[ -n "$is_WSL" ]] && command -v wslpath >/dev/null 2>/dev/null; then
   echo '    - cdwin : Go to win home.'
-  [[ -z "WinUserName" ]] \
-    && export WinUserName=`cmd.exe /c echo %UserName% 2>/dev/null | tr -d '\n' | tr -d '\r'`
-  [[ -z "WinUserName" ]] \
-    && export WinHome="`wslpath c:/users/$WinUserName`"
+  [[ -z "$WinUserName" ]] && export WinUserName="$(cmd.exe /c echo %UserName% 2>/dev/null | tr -d '\n' | tr -d '\r')"
+  [[ -z "$WinHome" ]] \
+    && export WinHome="$(wslpath c:/users/$WinUserName)"
   alias cdwin="cd $WinHome"
 fi
 
@@ -182,6 +181,7 @@ fi
 
 # -- tmux and fish
 if [[ -z $TMUX ]] ; then
+  export RUN_VIM=1
   command -v fish >/dev/null 2>&1 >/dev/null \
     && command -v tmux >/dev/null 2>&1 >/dev/null \
     && exec tmux
