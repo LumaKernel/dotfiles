@@ -40,6 +40,7 @@ fi
 # ---- パスを追加
 # pip のライブラリなど
 export PATH=~/.local/bin:$PATH
+export PATH=$PATH:$HOME/shell-tools
 
 
 [ -f "${HOME}/dotfiles/linux/.bash_aliases" ] && source "${HOME}/dotfiles/linux/.bash_aliases"
