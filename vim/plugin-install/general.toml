@@ -51,9 +51,6 @@ repo = 'itchyny/vim-cursorword'
 if = '!g:from_pwsh'
 
 
-# TODO: vimscript でバグる気がする
-# " aaa#bbb とかでうまくいかない
-# しようかもなあ
 [[plugins]]
 repo = 'tyru/caw.vim'
 
@@ -167,26 +164,13 @@ repo = 'Shougo/deoplete.nvim'
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
 
-  " call deoplete#custom#option({
-  "     \ 'auto_complete': 0,
-  "     \ })
-
-  " XXX: まだ設定中
-  "      そもそも vim の completion がわかっていない
+  call deoplete#custom#option({
+      \ 'auto_complete': 0,
+      \ })
 
   inoremap <silent><expr> <C-n>
     \ pumvisible() ? "\<C-n>" :
     \ deoplete#manual_complete()
-
-  " inoremap <silent><expr> <TAB>
-  "  \ pumvisible() ? "\<C-n>" :
-  "  \ <SID>check_back_space() ? "\<TAB>" :
-  "  \ deoplete#manual_complete()
-
-  " function! s:check_back_space() abort
-  "   let col = col('.') - 1
-  "   return !col || getline('.')[col - 1]  =~ '\s'
-  " endfunction
 
   call deoplete#custom#source('_',
         \ 'matchers', ['matcher_full_fuzzy'])
@@ -328,24 +312,7 @@ hook_add = '''
   nnoremap <silent> <Leader>i :<C-u>History<CR>
   nnoremap <silent> <Leader>ls :<C-u>Buffers<CR>
   nnoremap <silent> <Leader>col :<C-u>Colors<CR>
-
-  let g:mapping_descriptions += [[',f', ':Files']]
-  let g:mapping_descriptions += [[',df', ':GFiles']]
-  let g:mapping_descriptions += [[',dd', ':GFiles?']]
-  let g:mapping_descriptions += [[',cf ,cdf ,cdd', 'cursor ver.']]
-  let g:mapping_descriptions += [['<Leader>i', ':History']]
-  let g:mapping_descriptions += [['<Leader>ls', ':Buffers']]
-  let g:mapping_descriptions += [['<Leader>col', ':Colors']]
-
-  let g:mapping_descriptions += [[':LS', ':Buffers']]
-
-  let g:mapping_descriptions += [[':BLines', '']]
-  let g:mapping_descriptions += [[':History', '']]
-  let g:mapping_descriptions += [[':Marks', '']]
 '''
-
-
-
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
@@ -419,16 +386,8 @@ hook_post_source='''
 repo = 'AndrewRadev/linediff.vim'
 # Visual モードで :Linediff
 
-
-# 微妙に動かない
-# foldenable の時に
-# TODO : Issue 出すかも
 [[plugins]]
-if = 'g:is_wsl'
 repo = 'liuchengxu/vista.vim'
-hook_add = '''
-'''
-
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
@@ -489,10 +448,6 @@ hook_add = '''
 
   nnoremap <silent> ,g :Grepper<CR>
   nnoremap <silent> ,cg :Grepper -cword -noprompt<CR>
-
-  let g:mapping_descriptions += [[',g', ':Grepper']]
-  let g:mapping_descriptions += [[',cg', 'Grep word under the cursor.']]
-  let g:mapping_descriptions += [['gs', 'Grep with operator.']]
 
   let g:grepper = { 'open': 0 }
   autocmd User Grepper Cedit
@@ -608,18 +563,15 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'jeffkreeftmeijer/vim-numbertoggle'
-
-[[plugins]]
-# GitHub Favored Markdown Syntax
 repo = 'rhysd/vim-gfm-syntax'
+# GitHub Favored Markdown Syntax
 
 [[plugins]]
 repo = 'yardnsm/vim-import-cost'
 build = 'npm install'
 hook_add = '''
   let g:import_cost_silent = 1
-  " import の後ろにコメント書かないので
+  " import の後ろにコメント書かないので Comment を利用
   hi link ImportCostVirtualText Comment
   augroup import_cost_auto_run
     autocmd!
@@ -633,6 +585,7 @@ hook_add = '''
 repo = 'skywind3000/asyncrun.vim'
 # XXX: まだ未調整
 # vim-dispatchのほうがいいかな，むずかしい
+# vim-test かな
 
 [[plugins]]
 repo = 'LumaKernel/fern-mapping-fzf.vim'
@@ -683,14 +636,11 @@ build = './install.sh'
 
 [[plugins]]
 repo = 'briancollins/vim-jst'
-
-[[plugins]]
-repo = 'tyru/notify-changed.vim'
-
-[[plugins]]
-repo = 'kana/vim-altr'
+# EJS など
 
 [[plugins]]
 repo = 'othree/html5.vim'
-on_ft=['html', 'htmldjango']
+
+[[plugins]]
+repo = 'MaxMEllon/vim-jsx-pretty'
 

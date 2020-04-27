@@ -5,35 +5,14 @@ hook_add = '''
     return join(map(range(a:num), 'a:str'), '')
   endfunction
 
-  " g:mapping_descriptions でマッピングの説明を管理
-  " let g:mapping_descriptions = ['マッピング名', '説明']
-  " で自由に追加できる
-
-  function! g:MappingDescriptions()
-    let s:S = vital#vital#import('Data.String')
-    let left_width = max(map(deepcopy(g:mapping_descriptions), 'strlen(v:val[0])')) + 4
-    let width = max(map(deepcopy(g:mapping_descriptions), 'l:left_width + strlen(v:val[1])'))
-    let strs = map(deepcopy(g:mapping_descriptions), '"|  " .. s:S.pad_right(s:S.pad_right(v:val[0], l:left_width) .. v:val[1], l:width) .. "  |"')
-
-    return [
-          \   '+' .. s:repeat('-', 2 + width + 2) .. '+',
-          \ ] + strs + [
-          \   '+' .. s:repeat('-', 2 + width + 2) .. '+',
-          \ ]
-  endfunction
-
   let g:my_startify_message = [
         \   "\uf120  Welcome to \ue7c5 !",
-        \   "",
-        \   "Sessions.vim をプロジェクトフォルダ内に置くことでセッションを保存",
-        \   "もしくは :SSave を使う",
-        \   "",
         \ ]
 
   let g:startify_enable_special = 0
   let g:startify_session_dir = '~/.tmp/vim/startify-session'
 
-  let g:startify_custom_header = 'startify#pad(g:my_startify_message + g:MappingDescriptions())'
+  let g:startify_custom_header = 'startify#pad(g:my_startify_message)'
 
   " .git とか (VCS) が見つかるまで上に登って change directory する
   let g:startify_change_to_dir = 1

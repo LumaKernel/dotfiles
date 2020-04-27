@@ -17,8 +17,6 @@ let g:is_wsl = 0
 silent! let g:from_pwsh = !has('nvim') && $RunFromPowershell ==# '1'
 silent! let g:is_wsl = has('unix') && system('uname -a') =~? 'microsoft'
 
-let g:mapping_descriptions = []
-
 source ~/dotfiles/vim/option-basic.vim
 source ~/dotfiles/vim/mapping.vim
 source ~/dotfiles/vim/dein-setting.vim
