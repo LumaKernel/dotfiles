@@ -32,6 +32,9 @@ nnoremap t- <C-W>-
 " タブで開く、を上書き
 nnoremap tt <Nop>
 
+nnoremap s <Nop>
+xnoremap s <Nop>
+
 nnoremap <silent> <Leader>r :reg<CR>
 
 inoremap <C-L> <DEL>
