@@ -4,18 +4,26 @@
 - 初期 で入ってるアプリを消す
 - 壁紙は "minimalist wallpaper" などで検索
 - 連絡用/娯楽アプリなどは都度入れる
-- 'windows の機能の有効化または無効化' > 必要なものを
-  - VM
-  - WSL
-  - telnet client
-- WSL2
-- 'sign in options' > アプリの再起動
-- 電源オプション
-- inig.reg を入れる
+- 設定系
+  - 'windows の機能の有効化または無効化' > 必要なものを
+    - VM
+    - WSL
+    - telnet client
+  - 'sign in options' > アプリの再起動
+  - 電源オプション
+  - shift 5 回のアレ無効化
+  - inig.reg を入れる
+  - 開発者向けみたいなやつ (拡張子表示など)
+  - エクスプローラーのオプション > プライバシー，非表示設定に
 - 絶対入れる
   - [PowerToys](https://github.com/microsoft/PowerToys)
     - 自動起動
+- CTRL + SHIFT での IME 切り替え無効化
+  - https://superuser.com/a/1488169
+  - キーボードの詳細設定 > 入力言語のホットキー > シーケンスの変更
 - 入れる
+  - WSL2
+  - dotfiles 内のセットアップスクリプト
   - WireShark
   - Windows Terminal
   - ScreenToGif
@@ -32,6 +40,7 @@
   - https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723
   - [scripts/WSL2-bridge.ps1](scripts/WSL2-bridge.ps1)
   - これは一般的なフォワーディングの設定ができれば問題ないはずなんだよな...
+    (とはいえ WSL2 に関して言えば事情が若干特殊っぽい, hostのwinからはループバックでアクセスできる，謎の技術)
 
 
 
