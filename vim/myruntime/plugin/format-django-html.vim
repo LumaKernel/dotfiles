@@ -1,5 +1,5 @@
-let s:django_block_start = '\%(if\|else\|block\|for\|comment\)'
-let s:django_block_end = '\%(endif\|else\|endblock\|endfor\|endcomment\)'
+let s:django_block_start = '\%(if\|else\|block\|for\|comment\|with\)'
+let s:django_block_end = '\%(endif\|else\|endblock\|endfor\|endcomment\|endwith\)'
 let s:django_oneline_start = '^\s*{%\s*' . s:django_block_start . '\s*[^%]*%}$'
 let s:django_oneline_end = '^\s*{%\s*' . s:django_block_end . '\s*[^%]*%}$'
 
