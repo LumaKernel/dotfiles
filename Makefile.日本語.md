@@ -10,9 +10,11 @@
   - telnet client
 - WSL2
 - 'sign in options' > アプリの再起動
+- 電源オプション
 - inig.reg を入れる
 - 絶対入れる
   - [PowerToys](https://github.com/microsoft/PowerToys)
+    - 自動起動
 - 入れる
   - WireShark
   - Windows Terminal
@@ -22,6 +24,7 @@
   - Screen Ruler
   - Color Picker
   - Dokcer Desktop
+    - 自動起動
   - Oracle VM VirtualBox + Vagrant
 - [CorvusSKK](https://nathancorvussolis.github.io/)
   - 試運転中...
@@ -43,7 +46,7 @@
 
 xcodeも必要であれば
 
-[GitHub に SSH で，公式解説](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
+[SSHクライアントセットアップ](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
 
 ```bash
 ssh-keygen -t rsa -b 4096 -C "tomorinao.info@gmail.com"
@@ -93,6 +96,4 @@ sudo bash mac/install.sh
   - Karabiner-Elements
     * https://ke-complex-modifications.pqrs.org/
     * Command + H や + Q などを消す
-
-
 
