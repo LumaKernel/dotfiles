@@ -567,17 +567,16 @@ repo = 'rhysd/vim-gfm-syntax'
 # GitHub Favored Markdown Syntax
 
 [[plugins]]
-repo = 'yardnsm/vim-import-cost'
-build = 'npm install'
+repo = 'LumaKernel/vim-import-cost'
+build = 'yarn'
+ref = 'mime'
 hook_add = '''
   let g:import_cost_silent = 1
   " import の後ろにコメント書かないので Comment を利用
   hi link ImportCostVirtualText Comment
   augroup import_cost_auto_run
     autocmd!
-    autocmd InsertLeave *.js,*.jsx,*.ts,*.tsx ImportCost
-    autocmd BufEnter *.js,*.jsx,*.ts,*.tsx ImportCost
-    autocmd CursorHold *.js,*.jsx,*.ts,*.tsx ImportCost
+    autocmd BufEnter,BufNew,InsertLeave *.js,*.mjs,*.jsx,*.ts,*.tsx ImportCost
   augroup END
 '''
 
