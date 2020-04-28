@@ -35,5 +35,5 @@ CtrlShiftShortcuts=no
 Font=RictyDiminished NF
 FontWeight=400
 FontIsBold=no
-ZoomShortcuts=no
+ZoomShortcuts=yes
 Scrollbar=none
