@@ -4,13 +4,21 @@
 nnoremap <silent> tt :<C-u>call translate_it#cword_or_close()<CR>
 xnoremap <silent> tt :<C-u>call translate_it#visual()<CR>
 
-command! -bar MessagesQF call g:messages_qf#messages() | Cedit
-command! -bar SaveMes call writefile([json_encode(g:messages_qf#parse_messages(split(execute('messages','silent!'),"\n")))],expand('~/.cache/vim.messages.json'))
-command! -bar LoadMes call setqflist(json_decode(readfile(expand('~/.cache/vim.messages.json')))) | Cedit
+finish
 
-command! -bar SaveMesThemis call message_qf#util#dump('~/.cache/vim.messages.themis.json') | Cedit
+function s:dump() abort
+  return string([&nu, &rnu])
+endfunction
 
-command! -bar LoadMesDebug call setqflist(json_decode(readfile(expand('.dev/debug.json')))) | Cedit
+let s:evs = ['BufLeave', 'BufEnter', 'BufNew', 'WinNew', 'WinEnter', 'WinLeave', 'InsertLeave', 'InsertEnter', 'FocusGained', 'FocusLost']
+
+augroup DEBUG-eventcheck
+  autocmd!
+  for s:ev in s:evs
+    execute printf('autocmd %s * ++nested
+              \ echom "%s" &ft s:dump()', s:ev, s:ev)
+  endfor
+augroup END
 
 function! CloseRemainedFloat() abort
   for win_id in nvim_tabpage_list_wins(0)
@@ -26,6 +34,8 @@ if has('nvim')
 endif
 
 finish
+
+command! -bar LoadMesDebug call setqflist(json_decode(readfile(expand('.dev/debug.json')))) | Cedit
 
 try
   echom v:throwpoint

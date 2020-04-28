@@ -1,9 +1,14 @@
 set encoding=utf-8
 scriptencoding utf-8
 
+if v:version < 802 && !has('nvim')
+  echomsg "Version of vim is old. Update your vim."
+  finish
+endif
+
 " コメント方針 : 適当に書く．日本語で書く．
-"   ぶっちゃけ理解したものは消す
-"   :help を，見ろ
+"   理解したものは消す
+"   :help を見よう
 
 augroup init_vim | au! | augroup END
 
@@ -11,8 +16,6 @@ let g:from_pwsh = 0
 let g:is_wsl = 0
 silent! let g:from_pwsh = !has('nvim') && $RunFromPowershell ==# '1'
 silent! let g:is_wsl = has('unix') && system('uname -a') =~? 'microsoft'
-
-let g:mapping_descriptions = []
 
 source ~/dotfiles/vim/option-basic.vim
 source ~/dotfiles/vim/mapping.vim
@@ -33,7 +36,7 @@ source ~/dotfiles/vim/vimscript.vim
 if !g:from_pwsh
   let g:switch_color_scheme_default = 'onedark'
   augroup init-vim
-    autocmd VimEnter * ++once LoadColorScheme
+    autocmd VimEnter * ++once ++nested LoadColorScheme
   augroup END
 endif
 

@@ -1,0 +1,48 @@
+snippet     tsconfig
+options     head
+  {
+    "compilerOptions": {
+      "outDir": "./dist/",
+      "noImplicitAny": true,
+      "module": "es6",
+      "target": "es6",
+      "jsx": "react",
+      "sourceMap": true,
+      "allowJs": true,
+      "moduleResolution": "node",
+      "strictNullChecks": true,
+      "strictFunctionTypes": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
+  }
+
+snippet     eslint-typescript
+abbr        eslint-ts ts-eslint typescript-eslint
+options     head
+  {
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true
+    },
+    "rules": {
+      "@typescript-eslint/camelcase": "off",
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "no-console": "error",
+      "no-debugger": "error"
+    }
+  }

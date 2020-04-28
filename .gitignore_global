@@ -3,4 +3,5 @@
 __pycache__/
 .mypy_cache/
 yarn-error.log
-*.Identifier
+*:Zone.Identifier
+.env

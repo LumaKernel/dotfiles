@@ -12,7 +12,8 @@ set laststatus=2
 set notitle
 set wrap
 
-set completeopt=menuone
+set completeopt=menu,preview
+autocmd CompleteDone * silent! pclose
 
 set noshowmatch
 set novisualbell

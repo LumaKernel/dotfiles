@@ -2,13 +2,23 @@
 # /etc/skel/.bashrc
 # http://www.unixuser.org/~euske/doc/bashtips/bashrc.html
 
+# echo ".bashrc:$$:`whoami`:`tput cols`:`tput lines`:$BASH_SOURCE:$PATH" >> ~/.log
+# echo "----" >> ~/.log
+# ps xao pid,ppid,cmd >> ~/.log
+# echo "----" >> ~/.log
+# case $- in
+#     *i*) ;;
+#       *) return;;
+# esac
+# echo "::interactive" >> ~/.log
+# return
+
 
 # インタラクティブではない場合，終了
 case $- in
     *i*) ;;
       *) return;;
 esac
-
   echo '.bashrc'
   echo '    - for Ubuntu'
 
@@ -30,10 +40,12 @@ fi
 # ---- パスを追加
 # pip のライブラリなど
 export PATH=~/.local/bin:$PATH
+export PATH=$PATH:$HOME/shell-tools
 
 
 [ -f "${HOME}/dotfiles/linux/.bash_aliases" ] && source "${HOME}/dotfiles/linux/.bash_aliases"
 [ -f "${HOME}/dotfiles/linux/.bash_functions" ] && source "${HOME}/dotfiles/linux/.bash_functions"
+
 
 # ヒストリーをファイルに保存
 shopt -s histappend
@@ -84,6 +96,17 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # ---- fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_CTRL_T_COMMAND='fd --hidden --exclude ".git"'
+file_viewer="( \
+  command -v bat 2>&1 >/dev/null && \
+  bat --pager=never --color=always --style=numbers {} 2>/dev/null || \
+  cat {} 2>/dev/null )"
+dir_viewer="( \
+  command -v exa 2>&1 >/dev/null && \
+  exa --tree --color always {} 2>/dev/null || \
+  ls {} 2>/dev/null )"
+  export FZF_DEFAULT_OPTS="$(printf -- '--tabstop=4 --reverse --preview "%s || %s || echo \"<no preview>\""' "$file_viewer" "$dir_viewer")"
 
 # ---- less
 export LESS='-R --no-init -g -j10 --quit-if-one-screen'
@@ -139,10 +162,17 @@ if (( ! $? )); then
   export is_WSL=1
 fi
 
+# Related: https://github.com/mintty/wsltty/issues/197
+if [[ -n "$is_WSL" ]]; then
+  command -v cmd.exe >/dev/null 2>&1 \
+    || return
+fi
+
 if [[ -n "$is_WSL" ]] && command -v wslpath >/dev/null 2>/dev/null; then
   echo '    - cdwin : Go to win home.'
-  export WinUserName=`cmd.exe /c echo %UserName% 2>/dev/null | tr -d '\n' | tr -d '\r'`
-  export WinHome="`wslpath c:/users/$WinUserName`"
+  [[ -z "$WinUserName" ]] && export WinUserName="$(cmd.exe /c echo %UserName% 2>/dev/null | tr -d '\n' | tr -d '\r')"
+  [[ -z "$WinHome" ]] \
+    && export WinHome="$(wslpath c:/users/$WinUserName)"
   alias cdwin="cd $WinHome"
 fi
 
@@ -150,20 +180,20 @@ fi
 # $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 # eval `opam env`
 
-
 # -- tmux and fish
-if [[ -z $TMUX_RESET ]] ; then
-  export TMUX_RESET=
-  tmux source-file ~/.tmux.conf
-fi
-
-if [[ -z $NO_TMUX ]] ; then
-  export NO_TMUX=1
-  export TMUX_RESET=1
-  command -v fish >/dev/null 2>&1 && exec tmux
+if [[ -z $TMUX ]] ; then
+  export RUN_VIM=1
+  command -v fish >/dev/null 2>&1 >/dev/null \
+    && command -v tmux >/dev/null 2>&1 >/dev/null \
+    && exec tmux
+  return
+else
+  echo tmux is running: \$TMUX=$TMUX
 fi
 
 if [[ -z $NO_FISH ]] ; then
   export NO_FISH=
-  command -v fish >/dev/null 2>&1 && exec fish
+  command -v fish >/dev/null 2>&1 \
+    && exec fish
+  return
 fi

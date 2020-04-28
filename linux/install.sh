@@ -22,7 +22,7 @@ apt-get install exuberant-ctags -y
 
 # ---- ocaml
 # TODO: sudo でやるのはとりあえずまずい
-# apt-get install opam -y
+apt-get install opam -y
 # su $SUDO_USER -c "opam init -n >/dev/null --disable-sandboxing"
 
 # ---- go
@@ -60,7 +60,7 @@ su $SUDO_USER -c bash $HOME/dotfiles/linux/cargo-install.sh
 # -- ocaml
 # TODO: 使うときになったら
 # su $SUDO_USER -c npm install -g ocaml-language-server
-# su $SUDO_USER -c "opam install merlin -y"
+# su $SUDO_USER -c "opam install ocamlfind num merlin -y"
 # opam user-setup install -y
 # su $SUDO_USER -c "opam pin add ocaml-lsp-server https://github.com/ocaml/ocaml-lsp.git -y"
 # su $SUDO_USER -c "opam install ocaml-lsp-server -y"

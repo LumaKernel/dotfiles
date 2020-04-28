@@ -38,6 +38,10 @@ repo = 'rhysd/vim-color-spring-night'
 repo = 'dracula/vim'
 [[plugins]]
 repo = 'jpo/vim-railscasts-theme'
+[[plugins]]
+repo = 'junegunn/seoul256.vim'
+[[plugins]]
+repo = 'fcpg/vim-orbital'
 
 
 [[plugins]]
@@ -47,9 +51,6 @@ repo = 'itchyny/vim-cursorword'
 if = '!g:from_pwsh'
 
 
-# TODO: vimscript でバグる気がする
-# " aaa#bbb とかでうまくいかない
-# しようかもなあ
 [[plugins]]
 repo = 'tyru/caw.vim'
 
@@ -59,9 +60,37 @@ repo = 'airblade/vim-gitgutter'
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
+  let s:fern_default_exclude_pats = ['^\.git$', '^\.DS_Store$', '^node_modules$', '^dist$', '^:Zone\.Identifier$']
+
+  function! s:mypat_to_pat(mypat) abort
+    " abc    -> ^abc$
+    " abc/   -> ^abc$
+    " /abc   -> ignore
+    " /abc/  -> ignore
+    " *      -> .*
+    let mypat = a:mypat
+    if mypat =~# '^\/' || mypat =~# '^\s*$'
+      return ''
+    endif
+    let mypat = escape(mypat, '/\.[]-')
+    let mypat = substitute(mypat, '\%(\\\)\@<!\*', '.*', 'g')
+    return printf('\%%(%s\)', mypat)
+  endfunction
+
+  function! s:GetFernExclude() abort
+    let ignore_pats = copy(s:fern_default_exclude_pats)
+    let ignore_file_candidates = [',project_ignore', '.project_ignore']
+    for ignore_file in ignore_file_candidates
+      if filereadable(ignore_file)
+        let ignore_pats += filter(map(readfile(ignore_file), {_,v->s:mypat_to_pat(v)}), {_,v->v !=# ''})
+      endif
+    endfor
+    return join(ignore_pats, '\|')
+  endfunction
+
+
   let g:fern#default_hidden = 1
-  let s:fern_default_exclude_0 = '^\(\.git\|\.DS_Store\|node_modules\)$'
-  let g:fern#default_exclude = s:fern_default_exclude_0
+  let g:fern#default_exclude = s:GetFernExclude()
 
   function! s:init_fern() abort
     silent! nunmap <buffer> t
@@ -84,7 +113,7 @@ hook_add = '''
 
   function! s:fern_default() abort
     let exclude_save = g:fern#default_exclude
-    let g:fern#default_exclude = s:fern_default_exclude_0
+    let g:fern#default_exclude = s:GetFernExclude()
     call FernRevealPwdOrThere()
     let g:fern#default_exclude = exclude_save
   endfunction
@@ -135,25 +164,16 @@ repo = 'Shougo/deoplete.nvim'
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
 
-  " XXX: まだ設定中
-  "      そもそも vim の completion がわかっていない
+  " call deoplete#custom#option({
+  "     \ 'auto_complete': 0,
+  "     \ })
 
   inoremap <silent><expr> <C-n>
     \ pumvisible() ? "\<C-n>" :
-    \ deoplete#manual_complete(['lsp'])
+    \ deoplete#manual_complete()
 
-  " inoremap <silent><expr> <TAB>
-  "  \ pumvisible() ? "\<C-n>" :
-  "  \ <SID>check_back_space() ? "\<TAB>" :
-  "  \ deoplete#manual_complete()
-
-  " function! s:check_back_space() abort
-  "   let col = col('.') - 1
-  "   return !col || getline('.')[col - 1]  =~ '\s'
-  " endfunction
-
-  call deoplete#custom#source('_',
-        \ 'matchers', ['matcher_full_fuzzy'])
+  " call deoplete#custom#source('_',
+  "       \ 'matchers', ['matcher_full_fuzzy'])
 
 '''
 
@@ -186,9 +206,14 @@ repo = 'roxma/vim-hug-neovim-rpc'
 repo = 'LumaKernel/indentLine'
 merged = 0
 hook_add = '''
+  let g:indentLine_color_gui = "Grey60"
   let g:indentLine_fileTypeExclude = [
+      \   'markdown',
       \   'startify',
       \   'help',
+      \   'fern',
+      \   'man',
+      \   'info',
       \ ]
 '''
 
@@ -250,7 +275,7 @@ hook_add = '''
     let $FZF_DEFAULT_OPTS = printf('--tabstop=4 --reverse --preview "%s || %s"', file_viewer, dir_viewer)
   endif
 
-  if executable('ag')
+  if executable('ag') && $FZF_DEFAULT_COMMAND ==# ''
     let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
   endif
 
@@ -260,35 +285,34 @@ hook_add = '''
 
   command! -bang Colors call fzf#vim#colors({'options': '--preview ""'}, <bang>0)
 
-  command! -bang LS Buffers<bang>
+  function! s:fzfize(fname) abort
+    let fname = a:fname
+    let fname = substitute(fname, '^\~/', '', '')
+    let fname = reverse(split(fname, '/\+'))
+    let pat = '\(\.[^.]\+\)$'
+    if fname[0] =~# pat
+      let ext = matchstr(fname[0], pat)
+      let fname[0] = substitute(fname[0], pat, '', '')
+      call add(fname, ext)
+    endif
+    let fname = join(fname, ' ')
+    return fname
+  endfunction
+
+  nnoremap <silent><expr> gf filereadable(expand('<cfile>'))
+          \ ? ':<C-u>e ' .. expand('<cfile>') .. '<CR>'
+          \ : ':<C-u>Files<CR>' .. <SID>fzfize(expand('<cfile>'))
 
   nnoremap <silent> ,f  :<C-u>Files<CR>
   nnoremap <silent> ,df :<C-u>GFiles<CR>
   nnoremap <silent> ,dd :<C-u>GFiles?<CR>
-  nnoremap <silent><expr> ,cf ':<C-u>Files<CR>' .. expand('<cword>')
+  nnoremap <silent><expr> ,cf ':<C-u>Files<CR>' .. expand('<cfile>')
   nnoremap <silent><expr> ,cdf ':<C-u>GFiles<CR>' .. expand('<cword>')
   nnoremap <silent><expr> ,cdd ':<C-u>GFiles?<CR>' .. expand('<cword>')
   nnoremap <silent> <Leader>i :<C-u>History<CR>
   nnoremap <silent> <Leader>ls :<C-u>Buffers<CR>
   nnoremap <silent> <Leader>col :<C-u>Colors<CR>
-
-  let g:mapping_descriptions += [[',f', ':Files']]
-  let g:mapping_descriptions += [[',df', ':GFiles']]
-  let g:mapping_descriptions += [[',dd', ':GFiles?']]
-  let g:mapping_descriptions += [[',cf ,cdf ,cdd', 'cursor ver.']]
-  let g:mapping_descriptions += [['<Leader>i', ':History']]
-  let g:mapping_descriptions += [['<Leader>ls', ':Buffers']]
-  let g:mapping_descriptions += [['<Leader>col', ':Colors']]
-
-  let g:mapping_descriptions += [[':LS', ':Buffers']]
-
-  let g:mapping_descriptions += [[':BLines', '']]
-  let g:mapping_descriptions += [[':History', '']]
-  let g:mapping_descriptions += [[':Marks', '']]
 '''
-
-
-
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
@@ -362,16 +386,8 @@ hook_post_source='''
 repo = 'AndrewRadev/linediff.vim'
 # Visual モードで :Linediff
 
-
-# 微妙に動かない
-# foldenable の時に
-# TODO : Issue 出すかも
 [[plugins]]
-if = 'g:is_wsl'
 repo = 'liuchengxu/vista.vim'
-hook_add = '''
-'''
-
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
@@ -381,8 +397,6 @@ build = 'make'
 [[plugins]]
 repo = 'lambdalisue/gina.vim'
 hook_post_source = '''
-  call gina#custom#command#option('/\(status\|commit\|log\|branch\|s\|lg\)', '--opener', 'vsplit')
-
   " -- status の設定
   call gina#custom#command#alias('status', 's')
   call gina#custom#command#option('s', '--short')
@@ -390,12 +404,12 @@ hook_post_source = '''
   call gina#custom#command#alias('log', 'lg')
   call gina#custom#command#option('lg', '--graph')
 
-  nnoremap <silent> <Leader>st :Gina s<CR>
-  nnoremap <silent> <Leader>cc :Gina compare<CR>
-  nnoremap <silent> <Leader>com :Gina commit<CR>
-  nnoremap <silent> <Leader>dd :Gina diff HEAD<CR>
-  nnoremap <silent> <Leader>lg :Gina lg<CR>
-  nnoremap <silent> <Leader>bla :Gina blame<CR>
+  nnoremap <silent> <Leader>st :<C-u>Gina s<CR>
+  nnoremap <silent> <Leader>cc :<C-u>Gina compare<CR>
+  nnoremap <silent> <Leader>com :<C-u>tabnew \| Gina commit<CR>:split \| Gina diff --cached<CR>:wincmd w<CR>
+  nnoremap <silent> <Leader>dd :<C-u>Gina diff HEAD<CR>
+  nnoremap <silent> <Leader>lg :<C-u>Gina lg<CR>
+  nnoremap <silent> <Leader>bla :<C-u>Gina blame<CR>
 
   function! s:Browse(line1, line2) abort
     let save = @@
@@ -434,10 +448,6 @@ hook_add = '''
 
   nnoremap <silent> ,g :Grepper<CR>
   nnoremap <silent> ,cg :Grepper -cword -noprompt<CR>
-
-  let g:mapping_descriptions += [[',g', ':Grepper']]
-  let g:mapping_descriptions += [[',cg', 'Grep word under the cursor.']]
-  let g:mapping_descriptions += [['gs', 'Grep with operator.']]
 
   let g:grepper = { 'open': 0 }
   autocmd User Grepper Cedit
@@ -553,24 +563,20 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'jeffkreeftmeijer/vim-numbertoggle'
-
-[[plugins]]
-# GitHub Favored Markdown Syntax
 repo = 'rhysd/vim-gfm-syntax'
+# GitHub Favored Markdown Syntax
 
 [[plugins]]
-repo = 'yardnsm/vim-import-cost'
-build = 'npm install'
+repo = 'LumaKernel/vim-import-cost'
+build = 'yarn'
+rev = 'mine'
 hook_add = '''
   let g:import_cost_silent = 1
-  " import の後ろにコメント書かないので
+  " import の後ろにコメント書かないので Comment を利用
   hi link ImportCostVirtualText Comment
   augroup import_cost_auto_run
     autocmd!
-    autocmd InsertLeave *.js,*.jsx,*.ts,*.tsx ImportCost
-    autocmd BufEnter *.js,*.jsx,*.ts,*.tsx ImportCost
-    autocmd CursorHold *.js,*.jsx,*.ts,*.tsx ImportCost
+    autocmd BufEnter,BufNew,InsertLeave *.js,*.mjs,*.jsx,*.ts,*.tsx silent! ImportCost
   augroup END
 '''
 
@@ -578,6 +584,7 @@ hook_add = '''
 repo = 'skywind3000/asyncrun.vim'
 # XXX: まだ未調整
 # vim-dispatchのほうがいいかな，むずかしい
+# vim-test かな
 
 [[plugins]]
 repo = 'LumaKernel/fern-mapping-fzf.vim'
@@ -619,3 +626,27 @@ meged = 0
 hook_add = '''
   command! -bar MessagesQF call g:messages_qf#messages() | Cedit
 '''
+
+[[plugins]]
+repo = 'tbodt/deoplete-tabnine'
+if = 0
+merged = 0
+build = './install.sh'
+
+[[plugins]]
+repo = 'briancollins/vim-jst'
+# EJS など
+
+[[plugins]]
+repo = 'othree/html5.vim'
+
+[[plugins]]
+repo = 'MaxMEllon/vim-jsx-pretty'
+
+[[plugins]]
+repo = 'tyru/eskk.vim'
+hook_add = '''
+  let g:eskk#marker_henkan = '▽ '
+  let g:eskk#marker_henkan_select = '▼ '
+'''
+

@@ -39,7 +39,8 @@ function rm
 end
 
 # -- vim
-alias vi="vim -u NONE"
+alias v="/usr/bin/vim"
+alias vi="nvim -u NONE"
 alias vim="nvim"
 
 # -- c++
@@ -76,6 +77,11 @@ alias ocamlrepl="rlwrap ocaml"
 #
 alias checkhealth="nvim +checkhealth"
 
+
+function garbage-collect-tmux
+  tmux ls | sed -n '/(attached)$/!s/\([^:]\+\):.*/\1/p' | xargs -I {} tmux kill-ses -t"{}"
+end
+
 # TODO: 使ってない
 if false
   function g
@@ -92,5 +98,10 @@ function dein
     cd $where
   end
 
+end
+
+if [ "$is_WSL" = 1 ]
+  # here
+  alias h "explorer.exe ."
 end
 

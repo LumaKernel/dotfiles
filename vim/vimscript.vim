@@ -7,9 +7,6 @@ command! VimShowHlItem echo synIDattr(synID(line("."), col("."), 1), "name")
 nnoremap <Leader>; :VimShowHlGroup<CR>
 nnoremap <Leader>: :VimShowHlItem<CR>
 
-call add(g:mapping_descriptions, ['<Leader>;', ':VimShowHlGroup'])
-call add(g:mapping_descriptions, ['<Leader>:', ':VimShowHlItem'])
-
 function! PutInNew(cmd) abort
   let l:res = execute(a:cmd)
   new

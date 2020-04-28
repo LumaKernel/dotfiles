@@ -4,6 +4,8 @@ repo = 'prabirshrestha/async.vim'
 
 [[plugins]]
 repo = 'LumaKernel/vim-lsp'
+if = 1
+# TODO: どの LSP client が一番軽いかを要検討
 rev = "dev"
 hook_add = '''
   function! MyRef() abort
@@ -30,7 +32,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
+depends = 'vim-lsp'
 
 [[plugins]]
 repo = 'lighttiger2505/deoplete-vim-lsp'
+depends = 'vim-lsp'
 
