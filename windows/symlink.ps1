@@ -16,6 +16,7 @@ $files = @(
   @{ target="ginit.vim"; path="AppData/Local/nvim" }
   @{ target="windows/profiles.json"; path="AppData/Local/Microsoft/Windows Terminal" }
   @{ target="windows/wsltty-config"; fullpath="$env:AppData/wsltty/config" }
+  @{ target="windows/init.ahk"; fullpath="$env:AppData/Microsoft/Windows/Start Menu/Programs/Startup/init.ahk" }
   "windows/.minttyrc"
   "windows/.bash_profile"
   "windows/.bashrc"
