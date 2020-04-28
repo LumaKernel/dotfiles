@@ -16,6 +16,14 @@ function s:check(name, cmds, verpat) abort
   endif
 endfunction
 
+function s:checkfile(fname) abort
+  if filereadable(a:fname)
+    call health#report_ok(printf('%s: Found.', a:fname))
+  else
+    call health#report_error(printf('%s: Not found.', a:fname))
+  endif
+endfunction
+
 function! health#my#check() abort
   call health#report_start('my: Info')
 
@@ -52,4 +60,8 @@ function! health#my#check() abort
   call s:check('mypy', ['python3', '-m', 'mypy', '--version'], '^mypy \(\d\+\.\d\+\)')
   call s:check('autopep8', ['python3', '-m', 'autopep8', '--version'], '^autopep8 \(\d\+\.\d\+\.\d\+\)')
   call s:check('isort', ['python3', '-m', 'isort', '--version'], 'VERSION \(\d\+\.\d\+\.\d\+\)')
+
+  call health#report_start('my: SKK-JISHO')
+  let jisyo_path = '/usr/local/share/skk/SKK-JISYO.L'
+  call s:checkfile(jisyo_path)
 endfunction
