@@ -12,15 +12,17 @@
   - 'sign in options' > アプリの再起動
   - 電源オプション
   - shift 5 回のアレ無効化
-  - inig.reg を入れる
+  - init.reg を入れる
   - 開発者向けみたいなやつ (拡張子表示など)
   - エクスプローラーのオプション > プライバシー，非表示設定に
+  - CTRL + SHIFT での IME 切り替え無効化
+    - https://superuser.com/a/1488169
+    - キーボードの詳細設定 > 入力言語のホットキー > シーケンスの変更
 - 絶対入れる
   - [PowerToys](https://github.com/microsoft/PowerToys)
     - 自動起動
-- CTRL + SHIFT での IME 切り替え無効化
-  - https://superuser.com/a/1488169
-  - キーボードの詳細設定 > 入力言語のホットキー > シーケンスの変更
+  -  AutoHotKeys
+    - init.ahk を設定する ( お試し中 )
 - 入れる
   - WSL2
   - dotfiles 内のセットアップスクリプト
