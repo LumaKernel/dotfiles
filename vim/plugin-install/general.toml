@@ -653,6 +653,10 @@ hook_add = '''
 [[plugins]]
 repo = 'kana/vim-altr'
 # call altr#define('src/%.css', 'dist/%.css')
+hook_add = '''
+  nmap <SPACE>ap <Plug>(altr-back)
+  nmap <SPACE>an <Plug>(altr-forward)
+'''
 
 [[plugins]]
 repo = 'thinca/vim-localrc'
