@@ -650,3 +650,14 @@ hook_add = '''
   let g:eskk#marker_henkan_select = '▼ '
 '''
 
+[[plugins]]
+repo = 'kana/vim-altr'
+# call altr#define('src/%.css', 'dist/%.css')
+
+[[plugins]]
+repo = 'thinca/vim-localrc'
+hook_add = '''
+  let g:localrc_filename = 'local_init.vim'
+'''
+
+
