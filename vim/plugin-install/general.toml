@@ -20,8 +20,8 @@ hook_add = '''
 [[plugins]]
 repo = 'tyru/open-browser.vim'
 hook_add = '''
-	nmap gx <Plug>(openbrowser-smart-search)
-	vmap gx <Plug>(openbrowser-smart-search)
+  nmap gx <Plug>(openbrowser-smart-search)
+  vmap gx <Plug>(openbrowser-smart-search)
 '''
 
 
@@ -285,23 +285,6 @@ hook_add = '''
 
   command! -bang Colors call fzf#vim#colors({'options': '--preview ""'}, <bang>0)
 
-  function! s:fzfize(fname) abort
-    let fname = a:fname
-    let fname = substitute(fname, '^\~/', '', '')
-    let fname = reverse(split(fname, '/\+'))
-    let pat = '\(\.[^.]\+\)$'
-    if fname[0] =~# pat
-      let ext = matchstr(fname[0], pat)
-      let fname[0] = substitute(fname[0], pat, '', '')
-      call add(fname, ext)
-    endif
-    let fname = join(fname, ' ')
-    return fname
-  endfunction
-
-  nnoremap <silent><expr> gf filereadable(expand('<cfile>'))
-          \ ? ':<C-u>e ' .. expand('<cfile>') .. '<CR>'
-          \ : ':<C-u>Files<CR>' .. <SID>fzfize(expand('<cfile>'))
 
   nnoremap <silent> ,f  :<C-u>Files<CR>
   nnoremap <silent> ,df :<C-u>GFiles<CR>

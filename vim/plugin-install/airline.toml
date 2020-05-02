@@ -72,12 +72,12 @@ hook_add = '''
   endfunction "}}}
 
   call airline#parts#define_function('eskk_mode', 'My_eskk_statusline')
-  call airline#parts#define_condition('eskk_mode', 'mode() =~# "^i"')
+  call airline#parts#define_condition('eskk_mode', 'mode() =~? "^i" || mode() =~? "^c"')
 
   function! AirlineInit()
     let g:airline_section_a = airline#section#create(['mode', ' ', 'eskk_mode'])
   endfunction
-  autocmd User AirlineAfterInit call AirlineInit()
+  autocmd User AirlineAfterInit ++nested call AirlineInit()
 '''
 
 hook_post_source = '''
