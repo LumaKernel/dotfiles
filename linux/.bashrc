@@ -28,6 +28,7 @@ unset VIMRUNTIME
 unset MYVIMRC
 unset MYGVIMRC
 
+
 # TODO: どうにかする
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -175,6 +176,11 @@ if [[ -n "$is_WSL" ]] && command -v wslpath >/dev/null 2>/dev/null; then
     && export WinHome="$(wslpath c:/users/$WinUserName)"
   alias cdwin="cd $WinHome"
 fi
+
+# -- go
+export PATH=/usr/local/go/bin:$PATH
+export GOPATH=$HOME/go
+export PATH=$HOME/go/bin:$PATH
 
 # -- opam TODO
 # $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
