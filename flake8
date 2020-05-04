@@ -2,7 +2,7 @@
 # -- エラーコードの一覧
 # https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
 # https://flake8.pycqa.org/en/2.6.0/warnings.html
-# -- 方針: スタイルに関するものについては ignore して別のルーチンで調べる
+# -- 方針: スタイルに関するものについては ignore して別の プロセス で調べる
 [flake8]
 ignore =
   # E30*: 改行に関するもの
@@ -11,6 +11,11 @@ ignore =
   E303,
   E304,
   E305,
+  # W391: 最後の改行
+  W391,
+  # E501: max-line-length
+  E501,
+  # W50*: 改行のタイミングに関するものや、 max-line-length
   W503,
   W504,
   W505,
