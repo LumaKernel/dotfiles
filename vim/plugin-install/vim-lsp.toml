@@ -63,7 +63,7 @@ hook_add = '''
         \         'plugins': {
         \           'pyflakes': { 'enabled': v:false },
         \           'flake8': { 'enabled': v:true },
-        \           'pycodestyle': { 'enabled': v:true },
+        \           'pycodestyle': { 'enabled': v:false },
         \           'pydocstyle': { 'enabled': v:false },
         \           'pylint': { 'enabled': v:false },
         \           'mccabe': { 'enabled': v:true },

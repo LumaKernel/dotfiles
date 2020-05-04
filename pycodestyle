@@ -7,6 +7,9 @@ ignore =
   E303,
   E304,
   E305,
+  W503,
+  W504,
+  W505,
 
 max-line-length = 160
 
