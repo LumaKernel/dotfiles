@@ -1,0 +1,12 @@
+# https://pycodestyle.pycqa.org/en/latest/intro.html#configuration
+# flake8 の方にコメントなどを書いている
+[pycodestyle]
+ignore =
+  E301,
+  E302,
+  E303,
+  E304,
+  E305,
+
+max-line-length = 160
+

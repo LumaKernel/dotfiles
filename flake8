@@ -1,0 +1,16 @@
+# https://flake8.pycqa.org/en/latest/user/configuration.html#configuration-locations
+# -- エラーコードの一覧
+# https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
+# https://flake8.pycqa.org/en/2.6.0/warnings.html
+# -- 方針: スタイルに関するものについては ignore して別のルーチンで調べる
+[flake8]
+ignore =
+  # E30*: 改行に関するもの
+  E301,
+  E302,
+  E303,
+  E304,
+  E305,
+max-complexity = 10
+max-line-length = 160
+

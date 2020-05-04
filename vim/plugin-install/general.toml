@@ -18,7 +18,9 @@ hook_add = '''
 
 
 [[plugins]]
-repo = 'tyru/open-browser.vim'
+repo = 'LumaKernel/open-browser.vim'
+merged = 0
+rev = 'support_wsl2'
 hook_add = '''
   nmap gx <Plug>(openbrowser-smart-search)
   vmap gx <Plug>(openbrowser-smart-search)
@@ -647,4 +649,9 @@ hook_add = '''
   let g:localrc_filename = 'local_init.vim'
 '''
 
+[[plugins]]
+repo = 'vim-python/python-syntax'
+hook_add = '''
+  let g:python_highlight_all = 1
+'''
 
