@@ -15,6 +15,10 @@ return
 Send, {Tab}
 return
 
+^[::
+Send, {Escape}
+return
+
 vk1D & b::
 Send, {Left}
 return
@@ -45,5 +49,13 @@ return
 
 vk1D & d::
 Send, {Delete}
+return
+
+vk1D & m::
+Send, {Enter}
+return
+
+vk1D & u::
+Send, {Ctrl Down}{Backspace}{Ctrl Up}
 return
 
