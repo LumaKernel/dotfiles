@@ -64,29 +64,8 @@ repo = 'lambdalisue/fern.vim'
 hook_add = '''
   let s:fern_default_exclude_pats = ['^\.git$', '^\.DS_Store$', '^node_modules$', '^dist$', '^:Zone\.Identifier$']
 
-  function! s:mypat_to_pat(mypat) abort
-    " abc    -> ^abc$
-    " abc/   -> ^abc$
-    " /abc   -> ignore
-    " /abc/  -> ignore
-    " *      -> .*
-    let mypat = a:mypat
-    if mypat =~# '^\/' || mypat =~# '^\s*$'
-      return ''
-    endif
-    let mypat = escape(mypat, '/\.[]-')
-    let mypat = substitute(mypat, '\%(\\\)\@<!\*', '.*', 'g')
-    return printf('\%%(%s\)', mypat)
-  endfunction
-
   function! s:GetFernExclude() abort
     let ignore_pats = copy(s:fern_default_exclude_pats)
-    let ignore_file_candidates = [',project_ignore', '.project_ignore']
-    for ignore_file in ignore_file_candidates
-      if filereadable(ignore_file)
-        let ignore_pats += filter(map(readfile(ignore_file), {_,v->s:mypat_to_pat(v)}), {_,v->v !=# ''})
-      endif
-    endfor
     return join(ignore_pats, '\|')
   endfunction
 
@@ -648,8 +627,21 @@ hook_add = '''
 [[plugins]]
 repo = 'yuki-ycino/fzf-preview.vim'
 hook_add = '''
-  nnoremap <silent> ,g :FzfPreviewProjectGrep<SPACE>
-  nnoremap <expr><silent> ,cg ':FzfPreviewProjectGrep ' .. expand('<cword>') .. '<CR>'
+  nnoremap ,g :FzfPreviewProjectGrep<SPACE>
+
+  function! s:FzfPreviewProjectGrepLiterally(str) abort
+    let literal = a:str
+
+    let regex = Regex7Escape(literal)
+    let regex = substitute(regex, '[\n\r]', '[\s\S]?', 'g')
+    let regex = substitute(regex, '\t', '\\t', 'g')
+
+    let bash_str = printf('"%s"', BashDStringEscape(regex))
+
+    let str = EscapeFArgs(bash_str)
+
+    execute printf('FzfPreviewProjectGrep %s', str)
+  endfunction
 
   function! s:FzfPreviewProjectGrepSelected() abort
     let yank_save = @@
@@ -657,11 +649,10 @@ hook_add = '''
     let copied = @@
     let @@ = yank_save
 
-    execute printf('FzfPreviewProjectGrepSelected %s', copied)
+    call s:FzfPreviewProjectGrepLiterally(copied)
   endfunction
 
-  xnoremap <silent> ,g :<C-u>call <SID>FzfPreviewProjectGrepSelected
+  nnoremap <expr><silent> ,cg ':call <SID>FzfPreviewProjectGrepLiterally(expand("<cword>"))<CR>'
+  xnoremap ,g :<C-u>call <SID>FzfPreviewProjectGrepSelected()<CR>
+  xnoremap ,cg :<C-u>call <SID>FzfPreviewProjectGrepSelected()<CR>
 '''
-
-
-
