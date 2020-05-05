@@ -41,18 +41,18 @@ if !g:from_pwsh
 endif
 
 function! CoqSwitchStyle() abort
-	if !exists('b:coquilleIDE') || b:coquilleIDE.dead()
-		return
-	endif
+  if !exists('b:coquilleIDE') || b:coquilleIDE.dead()
+    return
+  endif
 
-	let b:coquilleIDE.my_style = !get(b:coquilleIDE, 'my_style', 0)
-	if b:coquilleIDE.my_style
-		let b:coquilleIDE.style_checked = 'last_line'
-		let b:coquilleIDE.style_queued  = 'last_line'
-	else
-		let b:coquilleIDE.style_checked = 'all'
-		let b:coquilleIDE.style_queued  = 'all'
-	endif
-	CoqRecolor
+  let b:coquilleIDE.my_style = !get(b:coquilleIDE, 'my_style', 0)
+  if b:coquilleIDE.my_style
+    let b:coquilleIDE.style_checked = 'last_line'
+    let b:coquilleIDE.style_queued  = 'last_line'
+  else
+    let b:coquilleIDE.style_checked = 'all'
+    let b:coquilleIDE.style_queued  = 'all'
+  endif
+  CoqRecolor
 endfunction
 command! CoqSwitchStyle call CoqSwitchStyle()

@@ -18,8 +18,8 @@ let g:misspell = [
 function! DefineColors() abort
   let bg_tup = s:toTuple(synIDattr(hlID('Normal'), 'bg#'))
 
-  let warning_bg = s:toString(s:col_mult(bg_tup, [3, 2, 1]))
-  let error_bg   = s:toString(s:col_mult(bg_tup, [3, 0.6, 0.6]))
+  let warning_bg = s:toString(s:col_mult(bg_tup, [1.52, 1.3, 0.5]))
+  let error_bg   = s:toString(s:col_mult(bg_tup, [1.8, 0.8, 0.8]))
   let info_bg    = s:toString(s:col_mult(bg_tup, [1, 1, 3]))
 
   let qf_bg    = s:toString(s:col_mult(bg_tup, [1.8, 1.8, 0.8]))
@@ -88,6 +88,17 @@ endfunction
 
 " }}}
 
+" seoul256 {{{
 
-autocmd init_vim Syntax * :call DefineColors()
+function! g:my_color_fixes.seoul256()
+  hi Comment guifg=#999999
+  hi Comment ctermfg=244
+endfunction
+
+" }}}
+
+
+augroup my-color-syntax
+  autocmd ColorScheme * call DefineColors()
+augroup END
 call DefineColors()

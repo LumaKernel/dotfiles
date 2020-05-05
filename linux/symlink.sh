@@ -9,23 +9,26 @@ fi
 # ( -n で強制できるけど危ないかもしれないので )
 
 
-ln -sf ~/dotfiles/init.vim ~/.vimrc
+ln -sf $HOME/dotfiles/init.vim $HOME/.vimrc
 
-mkdir -p ~/.config/nvim
-ln -sf ~/dotfiles/init.vim ~/.config/nvim/init.vim
-ln -sf ~/dotfiles/ginit.vim ~/.config/nvim/ginit.vim
+mkdir -p $HOME/.config/nvim
+ln -sf $HOME/dotfiles/init.vim $HOME/.config/nvim/init.vim
+ln -sf $HOME/dotfiles/ginit.vim $HOME/.config/nvim/ginit.vim
 
-ln -sf ~/dotfiles/linux/.bash_profile ~/.bash_profile
-ln -sf ~/dotfiles/linux/.bashrc ~/.bashrc
+ln -sf $HOME/dotfiles/linux/.bash_profile $HOME/.bash_profile
+ln -sf $HOME/dotfiles/linux/.bashrc $HOME/.bashrc
 
-ln -sf ~/dotfiles/.gitignore_global ~/.gitignore_global
+ln -sf $HOME/dotfiles/.gitignore_global $HOME/.gitignore_global
 
-ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/.tmux-powerlinerc ~/.tmux-powerlinerc
+ln -sf $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
+ln -sf $HOME/dotfiles/.tmux-powerlinerc $HOME/.tmux-powerlinerc
 
-mkdir -p ~/.config/fish/functions
-ln -sf ~/dotfiles/fish/config.fish ~/.config/fish/config.fish
-ln -sf ~/dotfiles/fish/functions/*.fish ~/.config/fish/functions
+ln -sf $HOME/dotfiles/flake8 $HOME/.config/flake8
+ln -sf $HOME/dotfiles/pycodestyle $HOME/.config/pycodestyle
 
-mkdir -p ~/.config/powerline-shell
-ln -sf ~/dotfiles/powerline-shell/config.json ~/.config/powerline-shell/config.json
+mkdir -p $HOME/.config/fish/functions
+ln -sf $HOME/dotfiles/fish/config.fish $HOME/.config/fish/config.fish
+ln -sf $HOME/dotfiles/fish/functions/*.fish $HOME/.config/fish/functions
+
+mkdir -p $HOME/.config/powerline-shell
+ln -sf $HOME/dotfiles/powerline-shell/config.json $HOME/.config/powerline-shell/config.json

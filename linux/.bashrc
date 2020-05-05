@@ -28,6 +28,7 @@ unset VIMRUNTIME
 unset MYVIMRC
 unset MYGVIMRC
 
+
 # TODO: どうにかする
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -174,6 +175,16 @@ if [[ -n "$is_WSL" ]] && command -v wslpath >/dev/null 2>/dev/null; then
   [[ -z "$WinHome" ]] \
     && export WinHome="$(wslpath c:/users/$WinUserName)"
   alias cdwin="cd $WinHome"
+fi
+
+# -- go
+export PATH=/usr/local/go/bin:$PATH
+export GOPATH=$HOME/go
+export PATH=$HOME/go/bin:$PATH
+
+# -- gem
+if command -v gem >/dev/null 2>&1; then
+  export PATH="$(gem environment gemdir)/bin":$PATH
 fi
 
 # -- opam TODO

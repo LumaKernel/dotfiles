@@ -38,6 +38,10 @@ command -v themis >/dev/null 2>&1
 command -v pyenv >/dev/null 2>&1
   and source (pyenv init -|psub)
 
+# -- rbenv
+command -v rbenv >/dev/null 2>&1
+  and source (rbenv init -|psub)
+
 # --
 functions --copy cd standard_cd
 function cd

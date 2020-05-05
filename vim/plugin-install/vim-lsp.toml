@@ -2,10 +2,11 @@
 [[plugins]]
 repo = 'prabirshrestha/async.vim'
 
+# TODO: どの LSP client が一番軽いかを要検討
 [[plugins]]
 repo = 'LumaKernel/vim-lsp'
 if = 1
-# TODO: どの LSP client が一番軽いかを要検討
+merged = 0
 rev = "dev"
 hook_add = '''
   function! MyRef() abort
@@ -28,11 +29,50 @@ hook_add = '''
   nnoremap <silent> [e :LspPreviousError<CR>
   nnoremap <silent> gr :LspRename<CR>
 
+  " 名前は vim-lsp-settings に奪われているかもしれないので、
+  " my- をつける
+
+  augroup my-go-vim-lsp
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \   'name': 'my-go-lang',
+        \   'cmd': {server_info->['gopls']},
+        \   'whitelist': ['go'],
+        \ })
+    autocmd FileType go setlocal omnifunc=lsp#complete
+  augroup END
+
+  let g:lsp_virtual_text_prefix = " [lsp] "
+
+  highlight link LspErrorHighlight Error
+  highlight link LspWarningHighlight Warning
+
+  " call delete(expand('~/vim-lsp.log'))
+  " let g:lsp_log_file = expand('~/vim-lsp.log')
 '''
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
 depends = 'vim-lsp'
+# ~/.local/share/vim-lsp-settings/servers
+hook_add = '''
+  let g:lsp_settings = {
+        \   'pyls': {
+        \     'workspace_config': {
+        \       'pyls': {
+        \         'plugins': {
+        \           'pyflakes': { 'enabled': v:false },
+        \           'flake8': { 'enabled': v:true },
+        \           'pycodestyle': { 'enabled': v:false },
+        \           'pydocstyle': { 'enabled': v:false },
+        \           'pylint': { 'enabled': v:false },
+        \           'mccabe': { 'enabled': v:true },
+        \         }
+        \       }
+        \     }
+        \   }
+        \ }
+'''
 
 [[plugins]]
 repo = 'lighttiger2505/deoplete-vim-lsp'
