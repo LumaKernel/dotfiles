@@ -182,6 +182,11 @@ export PATH=/usr/local/go/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=$HOME/go/bin:$PATH
 
+# -- gem
+if command -v gem >/dev/null 2>&1; then
+  export PATH="$(gem environment gemdir)/bin":$PATH
+fi
+
 # -- opam TODO
 # $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 # eval `opam env`

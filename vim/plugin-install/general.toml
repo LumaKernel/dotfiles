@@ -431,9 +431,6 @@ hook_add = '''
   nmap gs <plug>(GrepperOperator)
   xmap gs <plug>(GrepperOperator)
 
-  nnoremap <silent> ,g :Grepper<CR>
-  nnoremap <silent> ,cg :Grepper -cword -noprompt<CR>
-
   let g:grepper = { 'open': 0 }
   autocmd User Grepper Cedit
 '''
@@ -629,13 +626,6 @@ repo = 'othree/html5.vim'
 repo = 'MaxMEllon/vim-jsx-pretty'
 
 [[plugins]]
-repo = 'tyru/eskk.vim'
-hook_add = '''
-  let g:eskk#marker_henkan = '▽ '
-  let g:eskk#marker_henkan_select = '▼ '
-'''
-
-[[plugins]]
 repo = 'kana/vim-altr'
 # call altr#define('src/%.css', 'dist/%.css')
 hook_add = '''
@@ -654,4 +644,24 @@ repo = 'vim-python/python-syntax'
 hook_add = '''
   let g:python_highlight_all = 1
 '''
+
+[[plugins]]
+repo = 'yuki-ycino/fzf-preview.vim'
+hook_add = '''
+  nnoremap <silent> ,g :FzfPreviewProjectGrep<SPACE>
+  nnoremap <expr><silent> ,cg ':FzfPreviewProjectGrep ' .. expand('<cword>') .. '<CR>'
+
+  function! s:FzfPreviewProjectGrepSelected() abort
+    let yank_save = @@
+    normal! gvy
+    let copied = @@
+    let @@ = yank_save
+
+    execute printf('FzfPreviewProjectGrepSelected %s', copied)
+  endfunction
+
+  xnoremap <silent> ,g :<C-u>call <SID>FzfPreviewProjectGrepSelected
+'''
+
+
 

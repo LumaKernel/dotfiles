@@ -62,22 +62,6 @@ hook_add = '''
   let g:airline_left_alt_sep = "\uE0B9 "
   let g:airline_right_sep = "\uE0BE "
   let g:airline_right_alt_sep = "\uE0BF "
-
-  function! g:My_eskk_statusline(...) abort "{{{
-    return eskk#is_enabled()
-        \   ? printf(get(a:000, 0, '[%s]'),
-        \       get(g:eskk#statusline_mode_strings,
-        \         eskk#get_current_instance().mode, '[??]'))
-        \   : '[--]'
-  endfunction "}}}
-
-  call airline#parts#define_function('eskk_mode', 'My_eskk_statusline')
-  call airline#parts#define_condition('eskk_mode', 'mode() =~? "^i" || mode() =~? "^c"')
-
-  function! AirlineInit()
-    let g:airline_section_a = airline#section#create(['mode', ' ', 'eskk_mode'])
-  endfunction
-  autocmd User AirlineAfterInit ++nested call AirlineInit()
 '''
 
 hook_post_source = '''
