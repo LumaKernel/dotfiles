@@ -5,8 +5,6 @@ repo = 'prabirshrestha/async.vim'
 # TODO: どの LSP client が一番軽いかを要検討
 [[plugins]]
 repo = 'LumaKernel/vim-lsp'
-if = 1
-merged = 0
 rev = "dev"
 hook_add = '''
   function! MyRef() abort
@@ -23,6 +21,7 @@ hook_add = '''
   nnoremap <silent> gd :<C-u>LspDefinition<CR>
   nnoremap <silent> gt :<C-u>LspTypeDefinition<CR>
   nnoremap <silent> gi :<C-u>LspImplementation<CR>
+  nnoremap <silent> <SPACE>ll :<C-u>LspDocumentDiagnostics<CR>
   nnoremap <silent> ]g :LspNextDiagnostic<CR>
   nnoremap <silent> [g :LspPreviousDiagnostic<CR>
   nnoremap <silent> ]e :LspNextError<CR>
@@ -44,6 +43,8 @@ hook_add = '''
 
   let g:lsp_virtual_text_prefix = "> "
   let g:lsp_diagnostics_echo_cursor = 1
+  let g:lsp_virtual_text_enabled = 0
+  let g:lsp_diagnostics_float_cursor = 1
 
   highlight link LspErrorHighlight Error
   highlight link LspWarningHighlight Warning
@@ -58,21 +59,21 @@ depends = 'vim-lsp'
 # ~/.local/share/vim-lsp-settings/servers
 hook_add = '''
   let g:lsp_settings = {
-        \   'pyls': {
-        \     'workspace_config': {
-        \       'pyls': {
-        \         'plugins': {
-        \           'pyflakes': { 'enabled': v:false },
-        \           'flake8': { 'enabled': v:true },
-        \           'pycodestyle': { 'enabled': v:false },
-        \           'pydocstyle': { 'enabled': v:false },
-        \           'pylint': { 'enabled': v:false },
-        \           'mccabe': { 'enabled': v:true },
-        \         }
-        \       }
-        \     }
-        \   }
-        \ }
+      \   'pyls': {
+      \     'workspace_config': {
+      \       'pyls': {
+      \         'plugins': {
+      \           'pyflakes': { 'enabled': v:false },
+      \           'flake8': { 'enabled': v:true },
+      \           'pycodestyle': { 'enabled': v:false },
+      \           'pydocstyle': { 'enabled': v:false },
+      \           'pylint': { 'enabled': v:false },
+      \           'mccabe': { 'enabled': v:true },
+      \         }
+      \       }
+      \     }
+      \   }
+      \ }
 '''
 
 [[plugins]]

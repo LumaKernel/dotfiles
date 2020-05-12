@@ -19,7 +19,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'LumaKernel/open-browser.vim'
-merged = 0
 rev = 'support_wsl2'
 hook_add = '''
   nmap gx <Plug>(openbrowser-smart-search)
@@ -185,7 +184,6 @@ repo = 'roxma/vim-hug-neovim-rpc'
 
 [[plugins]]
 repo = 'LumaKernel/indentLine'
-merged = 0
 hook_add = '''
   let g:indentLine_color_gui = "Grey60"
   let g:indentLine_fileTypeExclude = [
@@ -232,13 +230,12 @@ hook_add = '''
 
 [[plugins]]
 repo = 'junegunn/fzf'
-build = './install --all'
 merged = 0
+build = './install --all'
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 depends = 'fzf'
-merged = 0
 hook_add = '''
   if has('win32')
     " Windows: preview は相性があまりよくない
@@ -534,7 +531,6 @@ repo = 'skywind3000/asyncrun.vim'
 [[plugins]]
 repo = 'LumaKernel/fern-mapping-fzf.vim'
 depends = ['fzf', 'fern.vim']
-merged = 0
 hook_add = '''
   function! s:reveal(dict) abort
     echom string(a:dict)
@@ -551,7 +547,6 @@ repo = 'cohama/lexima.vim'
 [[plugins]]
 repo = 'LumaKernel/fern-mapping-reload-all.vim'
 depends = ['fern.vim']
-merged = 0
 hook_add = '''
   function! s:init_fern_mapping_reload_all() abort
     nmap <buffer> R <Plug>(fern-action-reload:all)
@@ -575,7 +570,6 @@ hook_add = '''
 [[plugins]]
 repo = 'tbodt/deoplete-tabnine'
 if = 0
-merged = 0
 build = './install.sh'
 
 [[plugins]]
