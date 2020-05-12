@@ -42,7 +42,8 @@ hook_add = '''
     autocmd FileType go setlocal omnifunc=lsp#complete
   augroup END
 
-  let g:lsp_virtual_text_prefix = " [lsp] "
+  let g:lsp_virtual_text_prefix = "> "
+  let g:lsp_diagnostics_echo_cursor = 1
 
   highlight link LspErrorHighlight Error
   highlight link LspWarningHighlight Warning

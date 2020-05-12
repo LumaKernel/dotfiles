@@ -149,9 +149,9 @@ hook_add = '''
   "     \ 'auto_complete': 0,
   "     \ })
 
-  inoremap <silent><expr> <C-n>
-    \ pumvisible() ? "\<C-n>" :
-    \ deoplete#manual_complete()
+  inoremap <silent><expr> <C-x><C-l>
+    \ (pumvisible() ? "\<C-e>" : '') .
+    \ deoplete#manual_complete(['lsp'])
 
   " call deoplete#custom#source('_',
   "       \ 'matchers', ['matcher_full_fuzzy'])
@@ -399,22 +399,6 @@ hook_post_source = '''
 repo = 'kshenoy/vim-signature'
 
 
-# TODO cmdwin があんま動かない，クォーテーションで変に?
-[[plugins]]
-repo = 'mhinz/vim-grepper'
-hook_add = '''
-  let g:grepper = {}
-  let g:grepper.tools = ['git', 'ag']
-  let g:grepper.prompt_mapping_tool = '<tab>'
-
-  nmap gs <plug>(GrepperOperator)
-  xmap gs <plug>(GrepperOperator)
-
-  let g:grepper = { 'open': 0 }
-  autocmd User Grepper Cedit
-'''
-
-
 [[plugins]]
 repo = 'luochen1990/rainbow'
 
@@ -602,7 +586,7 @@ repo = 'briancollins/vim-jst'
 repo = 'othree/html5.vim'
 
 [[plugins]]
-repo = 'MaxMEllon/vim-jsx-pretty'
+repo = 'LumaKernel/vim-jsx-pretty'
 
 [[plugins]]
 repo = 'kana/vim-altr'
@@ -656,3 +640,14 @@ hook_add = '''
   xnoremap ,g :<C-u>call <SID>FzfPreviewProjectGrepSelected()<CR>
   xnoremap ,cg :<C-u>call <SID>FzfPreviewProjectGrepSelected()<CR>
 '''
+
+[[plugins]]
+repo = 'puremourning/vimspector'
+hook_add = '''
+  let g:vimspector_enable_mappings='HUMAN'
+'''
+
+[[plugins]]
+repo = 'tsuyoshicho/vim-efm-langserver-settings'
+depends = ['vim-lsp']
+

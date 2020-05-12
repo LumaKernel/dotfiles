@@ -77,6 +77,8 @@ alias ocamlrepl="rlwrap ocaml"
 #
 alias checkhealth="nvim +checkhealth"
 
+alias p="pet exec"
+
 
 function garbage-collect-tmux
   tmux ls | sed -n '/(attached)$/!s/\([^:]\+\):.*/\1/p' | xargs -I {} tmux kill-ses -t"{}"
