@@ -1,11 +1,8 @@
-
-" private:とかのインデントを作らない(たぶん
-set cinoptions=g0
-
 augroup cpp-namespace
   autocmd!
   autocmd FileType cpp inoremap <buffer> <expr> ; <SID>expand_namespace()
 augroup END
+
 function! s:expand_namespace()
   let s = getline('.')[0:col('.')-2]
   if s =~# '\<b;$'
