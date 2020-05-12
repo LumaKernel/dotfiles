@@ -51,6 +51,9 @@ hook_add = '''
 
   " call delete(expand('~/vim-lsp.log'))
   " let g:lsp_log_file = expand('~/vim-lsp.log')
+
+  let g:lsp_signs_priority = 50
+  let g:lsp_semantic_enabled = 1
 '''
 
 [[plugins]]
