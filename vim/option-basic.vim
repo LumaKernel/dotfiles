@@ -108,11 +108,11 @@ set diffopt+=vertical
 " 不可視文字表示
 set list
 " 不可視文字を可視化
-set listchars=tab:\≫-,eol:$,extends:≫,precedes:≪,nbsp:%
+set listchars=tab:>-,eol:$,extends:≫,precedes:≪,nbsp:%
 " Tab文字を半角スペースにする
 set expandtab
 " 行頭以外のTab文字の表示幅(スペースいくつ分)
-set tabstop=2
+set tabstop=4
 " 行頭でのTab文字の表示幅
 set shiftwidth=2
 
