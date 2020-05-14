@@ -1,6 +1,3 @@
-set bufhidden=
-set buftype=
-
 function s:qfedit() abort
   let tnr0 = tabpagenr()
   let bnr0 = bufnr()
@@ -31,5 +28,8 @@ function s:qfedit() abort
   endif
 endfunction
 
-nnoremap <buffer><silent> <CR> :<C-u>call <SID>qfedit()<CR>
-
+if exists('b:opened_from_cedit')
+  set bufhidden=
+  set buftype=
+  nnoremap <buffer><silent> <CR> :<C-u>call <SID>qfedit()<CR>
+endif
