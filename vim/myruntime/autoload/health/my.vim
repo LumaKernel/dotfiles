@@ -45,17 +45,20 @@ function! health#my#check() abort
   call s:check('npm', ['npm', '--version'], '^\(\d\+\.\d\+\.\d\+\)')
   call s:check('yarn', ['yarn', '--version'], '^\(\d\+\.\d\+\.\d\+\)')
   call s:check('pyenv', ['pyenv', '--version'], '^pyenv \(\d\+\.\d\+\.\d\+\)')
-  call s:check('pip', ['pip', '--version'], '^pip \(\d\+\.\d\+\.\d\+\)')
+  call s:check('pip', ['pip', '--version'], '^pip \(\d\+\.\d\+\%(\.\d\+\)\?\)')
   call s:check('brew', ['brew', '--version'], '^Homebrew \(\d\+\.\d\+\.\d\+\)')
   call s:check('cargo', ['cargo', '--version'], '^cargo \(\d\+\.\d\+\.\d\+\)')
+  call s:check('go', ['go', 'version'], '^go version go\(\d\+\.\d\+\.\d\+\)')
 
   call health#report_start('my: Additional Commands')
   call s:check('bat', ['bat', '--version'], '^bat \(\d\+\.\d\+\.\d\+\)')
   call s:check('exa', ['exa', '--version'], '^exa v\(\d\+\.\d\+\.\d\+\)')
+  call s:check('procs', ['procs', '--version'], '^procs \(\d\+\.\d\+\.\d\+\)')
+  call s:check('fd', ['fd', '--version'], '^fd \(\d\+\.\d\+\.\d\+\)')
   call s:check('tidy', ['tidy', '--version'], '^HTML Tidy for .\+ version \(\d\+\.\d\+\.\d\+\)')
 
 
-  call health#report_start('my: Python')
+  call health#report_start('my: Python Modules')
   call s:check('flake8', ['python3', '-m', 'flake8', '--version'], '^\(\d\+\.\d\+\.\d\+\)')
   call s:check('mypy', ['python3', '-m', 'mypy', '--version'], '^mypy \(\d\+\.\d\+\)')
   call s:check('autopep8', ['python3', '-m', 'autopep8', '--version'], '^autopep8 \(\d\+\.\d\+\.\d\+\)')
