@@ -606,6 +606,9 @@ hook_add = '''
 repo = 'yuki-ycino/fzf-preview.vim'
 hook_add = '''
   nnoremap ,g :FzfPreviewProjectGrep<SPACE>
+  nnoremap ,rg :FzfPreviewProjectGrepRaw<SPACE>
+
+  command! -nargs=+ FzfPreviewProjectGrepRaw call <SID>FzfPreviewProjectGrepLiterally(<q-args>)
 
   function! s:FzfPreviewProjectGrepLiterally(str) abort
     let literal = a:str
