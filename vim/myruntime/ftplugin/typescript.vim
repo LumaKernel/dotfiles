@@ -8,8 +8,8 @@ command! -range -nargs=0 -bar TypeScriptImport call lsp#ui#vim#code_action#do({
     \   'sync': v:false,
     \   'selection': <range> != 0,
     \   'query_filter': { action -> get(action, 'title', '') =~#
-    \     '^Import ''\k\+'' from module "\f\+"\|' ..
-    \     '^Add ''\k\+'' to existing import declaration from "\f\+"'
+    \     '^Import ''\k\+'' from module "@\?\f\+"\|' ..
+    \     '^Add ''\k\+'' to existing import declaration from "@\?\f\+"'
     \   }
     \ })
 
