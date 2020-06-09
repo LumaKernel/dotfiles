@@ -120,12 +120,3 @@ end
 
 # TODO: dircolors は必要？
 # TODO: opam env
-
-if test -n "$TMUX" -a -n "$RUN_VIM"
-  set -e RUN_VIM
-  tmux setenv -r RUN_VIM
-  command -v nvim 2>&1 >/dev/null \
-    && nvim \
-    || vim
-end
-

@@ -49,11 +49,14 @@ hook_add = '''
   highlight link LspErrorHighlight Error
   highlight link LspWarningHighlight Warning
 
-  " call delete(expand('~/vim-lsp.log'))
-  " let g:lsp_log_file = expand('~/vim-lsp.log')
-
   let g:lsp_signs_priority = 50
   let g:lsp_semantic_enabled = 1
+
+  if 0
+    echom "[Warning] LSP Logging is on."
+    let g:lsp_log_file = expand('~/vim-lsp.log')
+    call delete(g:lsp_log_file)
+  endif
 '''
 
 [[plugins]]
@@ -67,11 +70,20 @@ hook_add = '''
       \       'pyls': {
       \         'plugins': {
       \           'pyflakes': { 'enabled': v:false },
-      \           'flake8': { 'enabled': v:true },
+      \           'flake8': { 'enabled': v:false },
       \           'pycodestyle': { 'enabled': v:false },
       \           'pydocstyle': { 'enabled': v:false },
       \           'pylint': { 'enabled': v:false },
       \           'mccabe': { 'enabled': v:true },
+      \         }
+      \       }
+      \     }
+      \   },
+      \   'typescript-language-server': {
+      \     'workspace_config': {
+      \       'typescript': {
+      \         'preferences': {
+      \           'importModuleSpecifier': 'non-relative',
       \         }
       \       }
       \     }
@@ -82,4 +94,18 @@ hook_add = '''
 [[plugins]]
 repo = 'lighttiger2505/deoplete-vim-lsp'
 depends = 'vim-lsp'
+
+[[plugins]]
+repo = 'tsuyoshicho/vim-efm-langserver-settings'
+depends = ['vim-lsp']
+hook_add = '''
+  let g:efm_langserver_settings#config_file = expand('~/dotfiles/vim/efm-settings.yml')
+
+  if 0
+    echom "[Warning] efm Logging is on."
+    let g:efm_langserver_settings#debug = 5
+    let g:efm_langserver_settings#debug_file = expand('~/efm.log')
+    call delete(g:efm_langserver_settings#debug_file)
+  endif
+'''
 

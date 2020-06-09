@@ -148,7 +148,7 @@ hook_add = '''
   "     \ 'auto_complete': 0,
   "     \ })
 
-  inoremap <silent><expr> <C-x><C-l>
+  inoremap <silent><expr> <C-g><C-l>
     \ (pumvisible() ? "\<C-e>" : '') .
     \ deoplete#manual_complete(['lsp'])
 
@@ -621,7 +621,7 @@ hook_add = '''
 
     let str = EscapeFArgs(bash_str)
 
-    execute printf('FzfPreviewProjectGrep %s', str)
+    execute printf('FzfPreviewProjectGrep -- %s', str)
   endfunction
 
   function! s:FzfPreviewProjectGrepSelected() abort
@@ -643,8 +643,4 @@ repo = 'puremourning/vimspector'
 hook_add = '''
   let g:vimspector_enable_mappings='HUMAN'
 '''
-
-[[plugins]]
-repo = 'tsuyoshicho/vim-efm-langserver-settings'
-depends = ['vim-lsp']
 

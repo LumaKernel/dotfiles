@@ -22,6 +22,7 @@ esac
   echo '.bashrc'
   echo '    - for Ubuntu'
 
+
 # ---- vim の環境変数を削除
 unset VIM
 unset VIMRUNTIME
@@ -193,7 +194,6 @@ fi
 
 # -- tmux and fish
 if [[ -z $TMUX ]] ; then
-  export RUN_VIM=1
   command -v fish >/dev/null 2>&1 >/dev/null \
     && command -v tmux >/dev/null 2>&1 >/dev/null \
     && exec tmux
@@ -208,3 +208,7 @@ if [[ -z $NO_FISH ]] ; then
     && exec fish
   return
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/luma/.sdkman"
+[[ -s "/home/luma/.sdkman/bin/sdkman-init.sh" ]] && source "/home/luma/.sdkman/bin/sdkman-init.sh"
