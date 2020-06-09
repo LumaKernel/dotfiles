@@ -644,3 +644,9 @@ hook_add = '''
   let g:vimspector_enable_mappings='HUMAN'
 '''
 
+[[plugins]]
+repo = 'LumaKernel/nvim-trailing-rel-num'
+hook_add = '''
+  hi link TrailingRelNum SpecialChar
+'''
+
