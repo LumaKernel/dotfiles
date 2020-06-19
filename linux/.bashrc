@@ -192,6 +192,10 @@ fi
 # $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 # eval `opam env`
 
+# deno
+export DENO_INSTALL="/home/luma/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 # -- tmux and fish
 if [[ -z $TMUX ]] ; then
   command -v fish >/dev/null 2>&1 >/dev/null \

@@ -44,6 +44,7 @@ function! health#my#check() abort
   call s:check('fzf', ['fzf', '--version'], '^\(\d\+\.\d\+\.\d\+\)')
   call s:check('npm', ['npm', '--version'], '^\(\d\+\.\d\+\.\d\+\)')
   call s:check('yarn', ['yarn', '--version'], '^\(\d\+\.\d\+\.\d\+\)')
+  call s:check('deno', ['deno', '--version'], '^deno \(\d\+\.\d\+\.\d\+\)')
   call s:check('pyenv', ['pyenv', '--version'], '^pyenv \(\d\+\.\d\+\.\d\+\)')
   call s:check('pip', ['pip', '--version'], '^pip \(\d\+\.\d\+\%(\.\d\+\)\?\)')
   call s:check('brew', ['brew', '--version'], '^Homebrew \(\d\+\.\d\+\.\d\+\)')
