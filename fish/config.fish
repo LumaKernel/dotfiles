@@ -43,10 +43,42 @@ command -v rbenv >/dev/null 2>&1
   and source (rbenv init -|psub)
 
 # --
-functions --copy cd standard_cd
+functions --copy cd cd_default
 function cd
-  standard_cd $argv; and ls
+  cd_default $argv; and ls
 end
+
+
+# empty tab to do nothing
+bind \t complete_if_non_empty
+bind -M insert \t complete_if_non_empty
+bind -M visual \t complete_if_non_empty
+
+function complete_if_non_empty
+  test -n (commandline)
+    and commandline -f complete
+end
+
+
+# empty enter to ls
+bind -m insert \n execute_or_ls
+bind -M insert -m insert \n execute_or_ls
+bind -M visual -m insert \n execute_or_ls
+bind -m insert \r execute_or_ls
+bind -M insert -m insert \r execute_or_ls
+bind -M visual -m insert \r execute_or_ls
+
+function execute_or_ls
+  if test -n (commandline)
+    commandline -f execute
+  else
+    echo
+    ls
+    echo
+    commandline -f force-repaint
+  end
+end
+
 
 # -- clipboard
 if [ $is_WSL = '1' ]
