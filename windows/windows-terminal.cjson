@@ -345,4 +345,3 @@
         { "command": { "action": "moveFocus", "direction": "up" }, "keys": "alt+up" }
     ]
 }
-

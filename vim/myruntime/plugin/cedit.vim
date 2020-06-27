@@ -11,4 +11,3 @@ function! s:cedit() abort
 endfunction
 
 command! Cedit call <SID>cedit()
-

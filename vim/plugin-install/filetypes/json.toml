@@ -12,4 +12,3 @@ hook_add = '''
 
 [[plugins]]
 repo = 'neoclide/jsonc.vim'
-

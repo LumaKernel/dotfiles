@@ -13,4 +13,3 @@ endfunction
 " -- user settings
 
 vnoremap <silent><expr> p <SID>Repl("<SID>")
-

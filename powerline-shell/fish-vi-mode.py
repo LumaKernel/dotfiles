@@ -50,4 +50,3 @@ class Segment(ThreadedSegment):
             vi_modes[fish_bind_mode]['fg'],
             vi_modes[fish_bind_mode]['bg']
         )
-

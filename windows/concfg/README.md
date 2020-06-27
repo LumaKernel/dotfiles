@@ -13,4 +13,3 @@
 ```powershell
 concfg import https://rawgithubusercontent.com/LumaKernel/dotifles/master/windows/concfg/lumc-vs-code-dark-plus.json
 ```
-

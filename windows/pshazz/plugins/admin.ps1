@@ -13,4 +13,3 @@ function global:pshazz:admin:prompt {
     $vars.isnot_admin = $True
   }
 }
-

@@ -27,4 +27,3 @@ class Segment(ThreadedSegment):
             " WSL " if not self.is_wsl2 else " WSL2 ",
             self.segment_def.get("fg_color", self.powerline.theme.PATH_FG),
             self.segment_def.get("bg_color", self.powerline.theme.PATH_BG))
-

@@ -107,4 +107,3 @@ if [ "$is_WSL" = 1 ]
   # here
   alias h "explorer.exe ."
 end
-

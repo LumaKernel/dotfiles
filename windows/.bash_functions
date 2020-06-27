@@ -24,4 +24,3 @@ function color()
   done
   printf " \\\e[m\n"
 }
-

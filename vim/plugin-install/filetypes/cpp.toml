@@ -41,5 +41,3 @@ repo = 'Shougo/unite-outline'
 
 [[plugins]]
 repo = 'rhysd/wandbox-vim'
-
-

@@ -29,4 +29,3 @@ ln -sf ~/dotfiles/fish/functions/*.fish ~/.config/fish/functions
 
 mkdir -p ~/.config/powerline-shell
 ln -sf ~/dotfiles/powerline-shell/config.json ~/.config/powerline-shell/config.json
-

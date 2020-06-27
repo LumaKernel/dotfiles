@@ -42,4 +42,3 @@ function global:pshazz_rightarrow {
   return (([char]0xe0b8) + " ")
 }
 ```
-

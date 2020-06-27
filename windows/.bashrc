@@ -38,4 +38,3 @@ export PS1='\[\033[32m\]\u@ \[\033[1;33m\]\w\[\033[34m\]$(__git_ps1)\[\033[00m\]
 [ -f "${HOME}/dotfiles/windows/.bash_aliases" ] && source "${HOME}/dotfiles/windows/.bash_aliases"
 
 [ -f "${HOME}/dotfiles/windows/.bash_functions" ] && source "${HOME}/dotfiles/windows/.bash_functions"
-

@@ -51,5 +51,3 @@ function! s:FormatDjangoHTML() abort
 endfunction
 
 command! FormatDjangoHTML call <SID>FormatDjangoHTML()
-
-

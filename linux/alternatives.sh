@@ -7,4 +7,3 @@ exit 1
 
 update-alternatives --install `which vim` vim `which nvim` 60
 update-alternatives --set vim `which nvim`
-

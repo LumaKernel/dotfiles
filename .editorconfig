@@ -13,3 +13,6 @@ trim_trailing_whitespace = false
 [{Makefile,*.make}]
 tindent_style = tab
 
+[.tmux-powerlinerc]
+indent_style = unset
+indent_size = unset

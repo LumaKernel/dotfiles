@@ -35,4 +35,3 @@ alias netsh='wincmd netsh'
 alias ping='wincmd /c/windows/system32/ping'
 
 alias vi="vim -u NONE"
-

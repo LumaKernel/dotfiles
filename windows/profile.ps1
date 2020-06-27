@@ -101,4 +101,3 @@ if (gcm pshazz -ea 0) {
 
   Set-Alias demo Start-Demo
 }
-

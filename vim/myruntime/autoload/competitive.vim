@@ -87,4 +87,3 @@ function! competitive#compete(dir) abort
     silent! call writefile([''], dot_compete)
   endif
 endfunction
-

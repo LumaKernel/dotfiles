@@ -21,4 +21,3 @@ ignore =
   W505,
 max-complexity = 10
 max-line-length = 160
-

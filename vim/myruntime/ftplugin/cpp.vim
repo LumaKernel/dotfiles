@@ -15,4 +15,3 @@ function! s:expand_namespace()
     return ';'
   endif
 endfunction
-

@@ -108,4 +108,3 @@ hook_add = '''
     call delete(g:efm_langserver_settings#debug_file)
   endif
 '''
-

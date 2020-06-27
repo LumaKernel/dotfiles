@@ -48,4 +48,3 @@ concfg import ~/dotifles/windows/concfg/lumc-vs-code-dark-plus.json -n
 
 # -- install dein.vim
 git clone https://github.com/Shougo/dein.vim ~/.cache/dein/repos/github.com/Shougo/dein.vim
-

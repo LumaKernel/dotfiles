@@ -22,4 +22,3 @@ bash ~/dotfiles/mac/install.sh
 echo "以下を自分で実行してください"
 echo "git config --global user.name <name>"
 echo "git config --global user.email <email>"
-
