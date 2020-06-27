@@ -29,7 +29,9 @@
         "defaults":
         {
             // Put settings here that you want to apply to all profiles.
-            "fontFace": "RictyDiminished NF"
+            "fontFace": "RictyDiminished NF",
+            "useAcrylic": true,
+            "acrylicOpacity": 0.6
         },
         "list":
         [
@@ -46,6 +48,7 @@
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "name": "Windows PowerShell",
                 "commandline": "powershell.exe",
+                "padding": "0, 0, 0, 0",
                 "hidden": false,
                 "colorScheme": "Tango Light"
             },
@@ -72,6 +75,7 @@
                 "hidden": false,
                 "name": "PowerShell Core",
                 "source": "Windows.Terminal.PowershellCore",
+                "padding": "0, 0, 0, 0",
                 "colorScheme": "Tango Light"
             },
             {
