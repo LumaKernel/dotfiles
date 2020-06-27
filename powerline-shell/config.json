@@ -1,22 +1,23 @@
 {
-  "segments": [
-    "~/dotfiles/powerline-shell/fish-vi-mode.py",
-    {
-      "type": "~/dotfiles/powerline-shell/wsl.py",
-      "bg_color": 17
+    "segments": [
+        "~/dotfiles/powerline-shell/fish-vi-mode.py",
+        {
+            "type": "~/dotfiles/powerline-shell/wsl.py",
+            "bg_color": 17
+        },
+        "virtual_env",
+        "time",
+        "ssh",
+        "cwd",
+        "git",
+        "hg",
+        "jobs",
+        "newline",
+        "root"
+    ],
+    "cwd": {
+        "mode": "plain"
     },
-    "virtual_env",
-    "time",
-    "ssh",
-    "cwd",
-    "git",
-    "hg",
-    "jobs",
-    "newline",
-    "root"
-  ],
-  "cwd": {
-    "mode": "plain"
-  },
-  "theme": "default"
+    "mode": "flat",
+    "theme": "default"
 }
