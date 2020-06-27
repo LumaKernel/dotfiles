@@ -46,6 +46,11 @@ command -v rbenv >/dev/null 2>&1
 functions --copy cd cd_default
 function cd
   cd_default $argv; and ls
+
+  test -z "$argv"
+    and deactivate_venv
+
+  activate_venv
 end
 
 
@@ -76,7 +81,20 @@ function execute_or_ls
     ls
     echo
     commandline -f force-repaint
+    activate_venv
   end
+end
+
+
+# venv
+set -x VIRTUAL_ENV_DISABLE_PROMPT 1
+function activate_venv
+  test -f ./venv/bin/activate.fish
+    and source ./venv/bin/activate.fish
+end
+function deactivate_venv
+  functions deactivate >/dev/null 2>/dev/null
+    and deactivate
 end
 
 
