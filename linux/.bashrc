@@ -99,7 +99,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # ---- fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export FZF_CTRL_T_COMMAND='fd --hidden --exclude ".git"'
+export FZF_CTRL_T_COMMAND='fd --hidden --exclude ".git" $dir'
 file_viewer="( \
   command -v bat 2>&1 >/dev/null && \
   bat --pager=never --color=always --style=numbers {} 2>/dev/null || \
