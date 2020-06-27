@@ -9,7 +9,7 @@ class Segment(ThreadedSegment):
             is_wsl_prog = re.compile('microsoft', flags=re.IGNORECASE)
             is_wsl2_prog = re.compile('microsoft')
 
-            p1 = subprocess.Popen(["uname", "-a"], stdout=subprocess.PIPE)
+            p1 = subprocess.Popen(["uname", "-r"], stdout=subprocess.PIPE)
             self.uname = p1.communicate()[0].decode("utf-8").rstrip()
 
             self.is_wsl = bool(is_wsl_prog.search(self.uname))
