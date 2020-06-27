@@ -107,4 +107,3 @@ sudo bash mac/install.sh
   - Karabiner-Elements
     * https://ke-complex-modifications.pqrs.org/
     * Command + H や + Q などを消す
-

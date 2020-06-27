@@ -70,4 +70,3 @@ pip install trash-cli
 # opam pin add ocaml-lsp-server https://github.com/ocaml/ocaml-lsp.git -y
 # opam install ocaml-lsp-server -y
 # opam install ocp-indent -y
-

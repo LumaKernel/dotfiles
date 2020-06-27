@@ -12,4 +12,3 @@ command! -range -nargs=0 TypeScriptImport call lsp#ui#vim#code_action#do({
     \     '^Add ''\k\+'' to existing import declaration from "\f\+"'
     \   }
     \ })
-

@@ -13,4 +13,3 @@ else
     l) tmux select-pane -R ;;
   esac
 fi
-

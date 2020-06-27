@@ -24,4 +24,3 @@ function s:set_confirm_quit(...) abort
 endfunction
 
 call timer_start(1000 * 60 * 10, function('s:set_confirm_quit'))
-

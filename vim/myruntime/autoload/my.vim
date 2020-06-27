@@ -21,4 +21,3 @@ function! my#CreateCenteredFloatingWindow()
   call nvim_open_win(s:buf1, v:true, opts)
   au BufLeave <buffer> exe 'bw! '.s:buf0 | exe 'bw! '.s:buf1
 endfunction
-

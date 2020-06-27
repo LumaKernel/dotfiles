@@ -16,4 +16,3 @@ command! -range -nargs=0 -bar TypeScriptImport call lsp#ui#vim#code_action#do({
 nnoremap <buffer> <SPACE>so :<C-u>OrganizeImports<CR>
 nnoremap <buffer> <SPACE>sf :<C-u>LspDocumentFormatSync<CR>
 nnoremap <buffer><expr> <SPACE>si exists(":TypeScriptImport") ? ":<C-u>TypeScriptImport<CR>" : "echo 'No :TypeScriptImport'"
-

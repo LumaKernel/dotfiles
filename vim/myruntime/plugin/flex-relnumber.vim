@@ -12,4 +12,3 @@ augroup flex_relnumber
         \ |   unlet w:[s:varname]
         \ | endif
 augroup END
-

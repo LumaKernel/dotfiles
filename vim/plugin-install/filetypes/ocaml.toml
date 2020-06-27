@@ -13,6 +13,3 @@ hook_add = '''
 
 [[plugins]]
 repo = 'let-def/ocp-indent-vim'
-
-
-

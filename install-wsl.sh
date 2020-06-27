@@ -21,4 +21,3 @@ bash ~/dotfiles/scripts/git-config.sh
 
 # -- aptなどでのインストール
 bash ~/dotfiles/linux/install.sh
-

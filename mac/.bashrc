@@ -34,4 +34,3 @@ if [[ -z $NO_FISH ]] ; then
   export NO_FISH=
   command -v fish >/dev/null 2>&1 && exec fish
 fi
-

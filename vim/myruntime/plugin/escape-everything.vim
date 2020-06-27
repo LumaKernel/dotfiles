@@ -20,4 +20,3 @@ endfunction
 function! PatternEscape(str) abort
   return escape(a:str, '.[]^()\$')
 endfunction
-

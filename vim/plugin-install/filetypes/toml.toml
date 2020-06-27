@@ -23,4 +23,3 @@ on_ft = ['toml']
 
 [[plugins]]
 repo = 'cespare/vim-toml'
-

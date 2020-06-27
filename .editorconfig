@@ -4,7 +4,7 @@ root = true
 end_of_line = lf
 insert_final_newline = true
 indent_style = space
-indent_size = 4
+indent_size = 2
 charset = utf-8
 
 [*.md]
@@ -13,3 +13,6 @@ trim_trailing_whitespace = false
 [{Makefile,*.make}]
 tindent_style = tab
 
+[.tmux-powerlinerc]
+indent_style = unset
+indent_size = unset

@@ -11,4 +11,3 @@ endfunction
 
 
 command! -bar -range FormatJSON call <SID>FormatJSON(<line1>, <line2>)
-

@@ -109,4 +109,3 @@ vmap <silent> <Plug>(move-multi-lines-down) :<C-u>silent execute v:count1 .. 'Mo
 "
 " vmap <C-k> <Plug>(move-multi-lines-up)
 " vmap <C-j> <Plug>(move-multi-lines-down)
-
