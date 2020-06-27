@@ -58,10 +58,10 @@ hook_add = '''
 
 
   " スペース入れて調整
-  let g:airline_left_sep = "\uE0B8 "
-  let g:airline_left_alt_sep = "\uE0B9 "
-  let g:airline_right_sep = "\uE0BE "
-  let g:airline_right_alt_sep = "\uE0BF "
+  let g:airline_left_sep = " "
+  let g:airline_left_alt_sep = "|"
+  let g:airline_right_sep = " "
+  let g:airline_right_alt_sep = "|"
 '''
 
 hook_post_source = '''
