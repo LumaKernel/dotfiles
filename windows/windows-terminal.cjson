@@ -41,7 +41,7 @@
                 "name": "Ubuntu",
                 "source": "Windows.Terminal.Wsl",
                 "padding": "0, 0, 0, 0",
-                "colorScheme": "Dracula"
+                "colorScheme": "UbuntuLegit"
             },
             {
                 // Make changes here to the powershell.exe profile.
@@ -50,7 +50,7 @@
                 "commandline": "powershell.exe",
                 "padding": "0, 0, 0, 0",
                 "hidden": false,
-                "colorScheme": "Tango Light"
+                "colorScheme": "One Half Dark"
             },
             {
                 "guid" : "{97035143-3720-4d9f-9a0c-e7546ad84e18}",
@@ -60,7 +60,7 @@
                 "icon" : "D:\\Git\\mingw64\\share\\git\\git-for-windows.ico",
                 "name" : "Git Bash",
                 "startingDirectory" : "%USERPROFILE%",
-                "colorScheme": "One Half Dark"
+                "colorScheme": "VibrantTomLight"
             },
             {
                 // Make changes here to the cmd.exe profile.
@@ -68,7 +68,7 @@
                 "name": "コマンド プロンプト",
                 "commandline": "cmd.exe",
                 "hidden": false,
-                "colorScheme": "One Half Light"
+                "colorScheme": "One Half Dark"
             },
             {
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
@@ -76,7 +76,7 @@
                 "name": "PowerShell Core",
                 "source": "Windows.Terminal.PowershellCore",
                 "padding": "0, 0, 0, 0",
-                "colorScheme": "Tango Light"
+                "colorScheme": "One Half Dark"
             },
             {
                 "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
