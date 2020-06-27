@@ -14,7 +14,7 @@ $files = @(
   @{ target="init.vim"; path=""; name=".vimrc" }
   @{ target="init.vim"; path="AppData/Local/nvim" }
   @{ target="ginit.vim"; path="AppData/Local/nvim" }
-  @{ target="windows/profiles.json"; path="AppData/Local/Microsoft/Windows Terminal" }
+  @{ target="windows/windows-terminal.cjson"; fullpath="$env:LocalAppData/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json" }
   @{ target="windows/wsltty-config"; fullpath="$env:AppData/wsltty/config" }
   @{ target="windows/init.ahk"; fullpath="$env:AppData/Microsoft/Windows/Start Menu/Programs/Startup/init.ahk" }
   "windows/.minttyrc"
