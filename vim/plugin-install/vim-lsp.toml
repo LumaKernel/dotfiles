@@ -1,11 +1,5 @@
-
 [[plugins]]
-repo = 'prabirshrestha/async.vim'
-
-# TODO: どの LSP client が一番軽いかを要検討
-[[plugins]]
-repo = 'LumaKernel/vim-lsp'
-rev = "dev"
+repo = 'prabirshrestha/vim-lsp'
 hook_add = '''
   function! MyRef() abort
     if &ft == 'vim' || &ft == 'help'
@@ -28,7 +22,7 @@ hook_add = '''
   nnoremap <silent> [e :LspPreviousError<CR>
   nnoremap <silent> gr :LspRename<CR>
 
-  " 名前は vim-lsp-settings に奪われているかもしれないので、
+  " 名前は vim-lsp-settings と衝突しないように
   " my- をつける
 
   let g:lsp_virtual_text_prefix = "> "
