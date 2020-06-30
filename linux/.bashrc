@@ -196,6 +196,11 @@ fi
 export DENO_INSTALL="/home/luma/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
+# fzf
+command -v fd >/dev/null 2>&1 &&
+  export FZF_CTRL_T_COMMAND="fd --base-directory=\"\$dir\" --hidden --absolute-path"
+
+
 # -- tmux and fish
 if [[ -z $TMUX ]] ; then
   command -v fish >/dev/null 2>&1 >/dev/null \
