@@ -31,16 +31,6 @@ hook_add = '''
   " 名前は vim-lsp-settings に奪われているかもしれないので、
   " my- をつける
 
-  augroup my-go-vim-lsp
-    autocmd!
-    autocmd User lsp_setup call lsp#register_server({
-        \   'name': 'my-go-lang',
-        \   'cmd': {server_info->['gopls']},
-        \   'whitelist': ['go'],
-        \ })
-    autocmd FileType go setlocal omnifunc=lsp#complete
-  augroup END
-
   let g:lsp_virtual_text_prefix = "> "
   let g:lsp_diagnostics_echo_cursor = 1
   let g:lsp_virtual_text_enabled = 0
