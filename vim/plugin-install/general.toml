@@ -651,8 +651,9 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'mattn/vim-goimports'
+repo = 'LumaKernel/vim-goimports'
 hook_add = '''
   let g:goimports_simplify = 1
+  let g:goimports_loclist = 0
 '''
 
