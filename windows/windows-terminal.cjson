@@ -60,7 +60,7 @@
                 "icon" : "D:\\Git\\mingw64\\share\\git\\git-for-windows.ico",
                 "name" : "Git Bash",
                 "startingDirectory" : "%USERPROFILE%",
-                "colorScheme": "VibrantTomLight"
+                "colorScheme": "Dracula"
             },
             {
                 // Make changes here to the cmd.exe profile.
