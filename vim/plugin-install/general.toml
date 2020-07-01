@@ -657,3 +657,6 @@ hook_add = '''
   let g:goimports_loclist = 0
 '''
 
+[[plugins]]
+repo = 'udalov/kotlin-vim'
+
