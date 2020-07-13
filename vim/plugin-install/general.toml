@@ -660,3 +660,13 @@ hook_add = '''
 [[plugins]]
 repo = 'udalov/kotlin-vim'
 
+[[plugins]]
+repo = 'lambdalisue/vim-findent'
+hook_add = '''
+  silent! EditorConfigDisable
+  augroup findent
+    autocmd!
+    autocmd BufNewFile,BufReadPost,BufFilePost * execute "Findent --no-messages --no-warnings --chunksize=300" | call timer_start(0, {-> execute("silent! EditorConfigReload")})
+  augroup END
+'''
+
