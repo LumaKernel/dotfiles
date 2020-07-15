@@ -89,8 +89,13 @@ end
 # venv
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 function activate_venv
-  test -f ./venv/bin/activate.fish
-    and source ./venv/bin/activate.fish
+  if test -f ./venv/bin/activate.fish
+    source ./venv/bin/activate.fish
+  else if test -f ../venv/bin/activate.fish
+    and source ../venv/bin/activate.fish
+  else if test -f ../../venv/bin/activate.fish
+    and source ../../venv/bin/activate.fish
+  end
 end
 function deactivate_venv
   functions deactivate >/dev/null 2>/dev/null
