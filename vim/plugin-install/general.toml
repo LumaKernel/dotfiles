@@ -37,6 +37,7 @@ hook_add = 'let g:switch_color_scheme_default = "onedark"'
 repo = 'rhysd/vim-color-spring-night'
 [[plugins]]
 repo = 'dracula/vim'
+name = 'colorscheme-dracula-vim'
 [[plugins]]
 repo = 'jpo/vim-railscasts-theme'
 [[plugins]]
@@ -278,6 +279,7 @@ hook_add = '''
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_add = '''
+  let g:quickrun_config = get(g:, 'quickrun_config', {})
   let g:quickrun_config['_'] = {
       \   'outputter' : 'quickfix',
       \   'runner' : has('+job') ? 'job' : 'vimproc'
@@ -604,6 +606,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'yuki-ycino/fzf-preview.vim'
+build = 'yarn'
 hook_add = '''
   nnoremap ,g :FzfPreviewProjectGrep<SPACE>
   nnoremap ,rg :FzfPreviewProjectGrepRaw<SPACE>
@@ -670,3 +673,11 @@ hook_add = '''
   augroup END
 '''
 
+[[plugins]]
+repo = 'norcalli/nvim-colorizer.lua'
+hook_post_source = '''
+  lua require'colorizer'.setup()
+'''
+
+[[plugins]]
+repo = 'ocaml/vim-ocaml'
