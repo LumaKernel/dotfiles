@@ -51,6 +51,12 @@ function! health#my#check() abort
   call s:check('cargo', ['cargo', '--version'], '^cargo \(\d\+\.\d\+\.\d\+\)')
   call s:check('go', ['go', 'version'], '^go version go\(\d\+\.\d\+\.\d\+\)')
 
+  call health#report_start('my: OCaml Environment')
+  call s:check('opam', ['opam', '--version'], '^\(\d\+\.\d\+\.\d\+\)')
+  call s:check('ocaml', ['ocaml', '--version'], '^The OCaml toplevel, version \(\d\+\.\d\+\.\d\+\)')
+  call s:check('merlin', ['opam', 'show', '--field', 'version', 'merlin'], '^\(\d.*\)')
+  call s:check('ocp-indent', ['opam', 'show', '--field', 'version', 'ocp-indent'], '^\(\d.*\)')
+
   call health#report_start('my: Additional Commands')
   call s:check('bat', ['bat', '--version'], '^bat \(\d\+\.\d\+\.\d\+\)')
   call s:check('exa', ['exa', '--version'], '^exa v\(\d\+\.\d\+\.\d\+\)')
