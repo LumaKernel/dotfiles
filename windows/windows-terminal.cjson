@@ -30,8 +30,7 @@
         {
             // Put settings here that you want to apply to all profiles.
             "fontFace": "RictyDiminished NF",
-            "useAcrylic": true,
-            "acrylicOpacity": 0.6
+            "useAcrylic": false
         },
         "list":
         [
@@ -41,7 +40,7 @@
                 "name": "Ubuntu",
                 "source": "Windows.Terminal.Wsl",
                 "padding": "0, 0, 0, 0",
-                "colorScheme": "UbuntuLegit"
+                "colorScheme": "Ubuntu"
             },
             {
                 // Make changes here to the powershell.exe profile.
@@ -91,6 +90,12 @@
                 "hidden": false,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{1777cdf0-b2c4-5a63-a204-eb60f349ea7c}",
+                "hidden": false,
+                "name": "Alpine",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
