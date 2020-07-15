@@ -620,9 +620,9 @@ hook_add = '''
     let regex = substitute(regex, '[\n\r]', '[\s\S]?', 'g')
     let regex = substitute(regex, '\t', '\\t', 'g')
 
-    let bash_str = printf('"%s"', BashDStringEscape(regex))
+    " let bash_str = printf('"%s"', BashDStringEscape(regex))
 
-    let str = EscapeFArgs(bash_str)
+    let str = EscapeFArgs(regex)
 
     execute printf('FzfPreviewProjectGrep -- %s', str)
   endfunction
