@@ -2,18 +2,6 @@
 # /etc/skel/.bashrc
 # http://www.unixuser.org/~euske/doc/bashtips/bashrc.html
 
-# echo ".bashrc:$$:`whoami`:`tput cols`:`tput lines`:$BASH_SOURCE:$PATH" >> ~/.log
-# echo "----" >> ~/.log
-# ps xao pid,ppid,cmd >> ~/.log
-# echo "----" >> ~/.log
-# case $- in
-#     *i*) ;;
-#       *) return;;
-# esac
-# echo "::interactive" >> ~/.log
-# return
-
-
 # インタラクティブではない場合，終了
 case $- in
     *i*) ;;
