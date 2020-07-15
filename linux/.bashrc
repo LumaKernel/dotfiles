@@ -190,7 +190,7 @@ fi
 
 # -- opam TODO
 # $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-# eval `opam env`
+eval `opam env`
 
 # deno
 export DENO_INSTALL="/home/luma/.deno"
