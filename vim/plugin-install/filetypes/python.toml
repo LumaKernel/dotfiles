@@ -21,8 +21,8 @@ hook_add = '''
   " let g:ale_python_mypy_executable = g:python3_host_prog
   " let g:ale_python_mypy_options = '-m mypy –ignore-missing-imports'
 
-
   " QuickRun
+  let g:quickrun_config = get(g:, 'quickrun_config', {})
   if has('win32') || has('win64')
     let g:quickrun_config['python'] = {
     \   "hook/output_encode/enable" : 1,

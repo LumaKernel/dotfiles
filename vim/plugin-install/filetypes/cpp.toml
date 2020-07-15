@@ -17,6 +17,8 @@ hook_add = '''
   " 'type' : 'cpp/g++' とすることで明示的に 'cpp/g++' の設定を継承する
 
   " -w : Inhibit all warning messages. : すべての警告を禁止する
+
+  let g:quickrun_config = get(g:, 'quickrun_config', {})
   let g:quickrun_config['cpp'] = {
   \ 'type' : 'cpp/g++',
   \ 'command' : 'g++',
