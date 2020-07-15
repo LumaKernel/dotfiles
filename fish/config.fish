@@ -65,7 +65,7 @@ function complete_if_non_empty
 end
 
 
-# empty enter to ls
+# hitting empty enter to ls (空エンター)
 bind -m insert \n execute_or_ls
 bind -M insert -m insert \n execute_or_ls
 bind -M visual -m insert \n execute_or_ls
@@ -96,6 +96,7 @@ function deactivate_venv
   functions deactivate >/dev/null 2>/dev/null
     and deactivate
 end
+activate_venv
 
 
 # -- clipboard
