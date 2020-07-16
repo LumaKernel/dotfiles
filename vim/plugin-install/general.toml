@@ -648,6 +648,7 @@ hook_add = '''
 '''
 
 [[plugins]]
+if = "has('nvim')"
 repo = 'LumaKernel/nvim-trailing-rel-num'
 hook_add = '''
   hi link TrailingRelNum SpecialChar
@@ -674,6 +675,7 @@ hook_add = '''
 '''
 
 [[plugins]]
+if = "has('nvim')"
 repo = 'norcalli/nvim-colorizer.lua'
 hook_post_source = '''
   lua require'colorizer'.setup()
@@ -681,3 +683,13 @@ hook_post_source = '''
 
 [[plugins]]
 repo = 'ocaml/vim-ocaml'
+
+[[plugins]]
+repo = 'AlessandroYorba/Sierra'
+
+[[plugins]]
+if = "has('nvim')"
+repo = 'nvim-treesitter/nvim-treesitter'
+hook_post_source ='''
+  lua require'nvim-treesitter.configs'.setup { ensure_installed = 'all' }
+'''
