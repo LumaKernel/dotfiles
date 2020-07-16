@@ -188,6 +188,10 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 command -v fd >/dev/null 2>&1 &&
   export FZF_CTRL_T_COMMAND="fd --base-directory=\"\$dir\" --hidden --absolute-path"
 
+# ssh-agent
+eval `ssh-agent`
+ssh-add
+
 
 # -- tmux and fish
 if [[ -z $TMUX ]] ; then
