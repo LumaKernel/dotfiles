@@ -693,3 +693,6 @@ repo = 'nvim-treesitter/nvim-treesitter'
 hook_post_source ='''
   lua require'nvim-treesitter.configs'.setup { ensure_installed = 'all' }
 '''
+
+[[plugins]]
+repo = 'tweekmonster/django-plus.vim'
