@@ -50,7 +50,9 @@ function cd
   test -z "$argv"
     and deactivate_venv
 
-  activate_venv
+  if test "$NO_AUTO_VENV" != "1"
+    activate_venv
+  end
 end
 
 
@@ -81,7 +83,9 @@ function execute_or_ls
     ls
     echo
     commandline -f force-repaint
-    activate_venv
+    if test "$NO_AUTO_VENV" != "1"
+      activate_venv
+    end
   end
 end
 
@@ -101,6 +105,11 @@ function deactivate_venv
   functions deactivate >/dev/null 2>/dev/null
     and deactivate
 end
+function no_auto_venv
+  set -x NO_AUTO_VENV 1
+  deactivate_venv
+end
+set -x NO_AUTO_VENV ""
 activate_venv
 
 
