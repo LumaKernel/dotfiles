@@ -22,13 +22,17 @@ if (v:version < 802 && !has('nvim')) || (v:version < 800 && has('nvim'))
   finish
 endif
 
+source ~/dotfiles/vim/nvim.vim
 source ~/dotfiles/vim/dein-setting.vim
 
 source ~/dotfiles/vim/gvim.vim
 source ~/dotfiles/vim/setup-powershell.vim
 
 if !g:from_pwsh
-  augroup init-vim
-    autocmd VimEnter * ++once ++nested LoadColorScheme
-  augroup END
+    augroup init-vim
+      autocmd VimEnter * ++once ++nested
+          \ if exists(':LoadColorScheme')
+          \ |  LoadColorScheme
+          \ | endif
+    augroup END
 endif
