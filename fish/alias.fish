@@ -85,22 +85,11 @@ function garbage-collect-tmux
   tmux ls | sed -n '/(attached)$/!s/\([^:]\+\):.*/\1/p' | xargs -I {} tmux kill-ses -t"{}"
 end
 
-# TODO: 使ってない
-if false
-  function g
-    set where (ghq list | fzf --reverse)
-    if [ -n "$where" ]
-      cd (ghq root)/$where
-    end
-  end
-end
-
 function dein
   set where (find ~/.cache/dein/repos/ -mindepth 3 -maxdepth 3 -type d | fzf --reverse)
   if [ -n "$where" ]
     cd $where
   end
-
 end
 
 if [ "$is_WSL" = 1 ]
