@@ -6,7 +6,7 @@ syntax enable
 set number
 set cursorline
 set cursorcolumn
-set virtualedit=block,onemore
+set virtualedit=block
 set smartindent
 set laststatus=2
 set notitle
