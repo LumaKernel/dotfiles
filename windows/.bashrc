@@ -26,6 +26,9 @@ function I {
     if [ "$1" ]; then history | grep "$@"; else history 30; fi
 }
 
+export PATH="$HOME/.pyenv/pyenv-win/bin:$PATH"
+export PATH="$HOME/.pyenv/pyenv-win/versions/3.8.3:$PATH"
+
 
 
 # ---- git の情報を表示
