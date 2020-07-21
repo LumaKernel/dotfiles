@@ -44,6 +44,8 @@ repo = 'jpo/vim-railscasts-theme'
 repo = 'junegunn/seoul256.vim'
 [[plugins]]
 repo = 'fcpg/vim-orbital'
+[[plugins]]
+repo = 'drewtempelmeyer/palenight.vim'
 
 
 [[plugins]]
@@ -645,13 +647,6 @@ hook_add = '''
 repo = 'puremourning/vimspector'
 hook_add = '''
   let g:vimspector_enable_mappings='HUMAN'
-'''
-
-[[plugins]]
-if = "has('nvim')"
-repo = 'LumaKernel/nvim-trailing-rel-num'
-hook_add = '''
-  hi link TrailingRelNum SpecialChar
 '''
 
 [[plugins]]

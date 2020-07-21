@@ -45,6 +45,7 @@ hook_add = '''
           \   'dracula',
           \   'railscasts',
           \   'sierra',
+          \   'palenight',
           \ ]
     return map(copy(names), { i, colo -> { 'line': colo, 'cmd': printf('SwitchColorScheme %s', colo) } })
   endfunction
