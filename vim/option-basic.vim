@@ -133,6 +133,21 @@ endif
 
 if exists('&inccommand') | set inccommand=nosplit | endif
 
+" -- Windows でのクリップボード
+if (has('win32') || has('win32unix')) && has('nvim') && executable('win32yank.exe') && executable('clip.exe')
+  let g:clipboard = {
+        \   'name': 'clip.exe + win32yank.exe for Windows',
+        \   'copy': {
+        \      '+': 'clip.exe',
+        \      '*': 'clip.exe',
+        \    },
+        \   'paste': {
+        \      '+': 'win32yank.exe -o',
+        \      '*': 'win32yank.exe -o',
+        \   },
+        \   'cache_enabled': 1,
+        \ }
+endif
 
 " -- WSL でのクリップボード
 if g:is_wsl && has('nvim') && executable('win32yank.exe')
