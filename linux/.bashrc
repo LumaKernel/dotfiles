@@ -7,8 +7,7 @@ case $- in
     *i*) ;;
       *) return;;
 esac
-  echo '.bashrc'
-  echo '    - for Ubuntu'
+  echo 'linux/.bashrc'
 
 
 # ---- vim の環境変数を削除
@@ -18,14 +17,6 @@ unset MYVIMRC
 unset MYGVIMRC
 
 
-# TODO: どうにかする
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-
 
 # ---- パスを追加
 # pip のライブラリなど
@@ -33,8 +24,8 @@ export PATH=~/.local/bin:$PATH
 export PATH=$PATH:$HOME/shell-tools
 
 
-[ -f "${HOME}/dotfiles/linux/.bash_aliases" ] && source "${HOME}/dotfiles/linux/.bash_aliases"
-[ -f "${HOME}/dotfiles/linux/.bash_functions" ] && source "${HOME}/dotfiles/linux/.bash_functions"
+source "${HOME}/dotfiles/linux/bash_aliases.sh"
+source "${HOME}/dotfiles/linux/bash_functions.sh"
 
 
 # ヒストリーをファイルに保存
@@ -140,9 +131,8 @@ export fish_bind_mode=
 eval $(dircolors "$HOME/dotfiles/.dircolors")
 
 
-# --
+# -- linuxbrew
 test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
-
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 
@@ -180,15 +170,24 @@ fi
 # $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 eval `opam env`
 
-# deno
+# -- deno
 export DENO_INSTALL="/home/luma/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
-# fzf
+# -- pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+
+
+# -- fzf
 command -v fd >/dev/null 2>&1 &&
   export FZF_CTRL_T_COMMAND="fd --base-directory=\"\$dir\" --hidden --absolute-path"
 
-# ssh-agent
+# -- ssh-agent
 eval `ssh-agent`
 ssh-add
 

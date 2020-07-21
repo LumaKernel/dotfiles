@@ -1,10 +1,6 @@
-#!/bin/bash
-
-echo '.bash_aliases'
+echo 'common/bash_aliases.sh'
 
 alias ..='cd ..'
-alias ...='cd ../..'
-alias -- -='cd -'
 alias ~='cd ~'
 
 alias ls='ls --color=auto --show-control-chars --time-style=long-iso -FH -A'
@@ -22,6 +18,7 @@ alias du1='du -d1'
 alias grep='grep --color'
 
 # -- vim
+alias v="vim"
 alias vi="vim -u NONE"
 alias g+='g++ -Wall -Wextra -Wpedantic -fsanitize=undefined -g'
 alias vim="nvim"

@@ -352,6 +352,7 @@ repo = 'AndrewRadev/linediff.vim'
 # Visual モードで :Linediff
 
 [[plugins]]
+if = "!has('win32')"
 repo = 'liuchengxu/vista.vim'
 
 [[plugins]]
@@ -683,7 +684,7 @@ repo = 'ocaml/vim-ocaml'
 repo = 'AlessandroYorba/Sierra'
 
 [[plugins]]
-if = "has('nvim')"
+if = "has('nvim') && !has('win32')"
 repo = 'nvim-treesitter/nvim-treesitter'
 hook_post_source ='''
   lua require'nvim-treesitter.configs'.setup { ensure_installed = 'all' }
