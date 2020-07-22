@@ -309,6 +309,7 @@
     "keybindings":
     [
         { "command": "unbound", "keys": "alt+f4" },
+        { "command": "unbound", "keys": "ctrl+," },
 
         // To learn more about selection, visit https://aka.ms/terminal-selection
         { "command": {"action": "copy", "singleLine": false }, "keys": "ctrl+c" },
