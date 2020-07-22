@@ -24,8 +24,8 @@ export PATH=~/.local/bin:$PATH
 export PATH=$PATH:$HOME/shell-tools
 
 
-source "${HOME}/dotfiles/linux/bash_aliases.sh"
-source "${HOME}/dotfiles/linux/bash_functions.sh"
+source "${HOME}/dotfiles/common/bash_aliases.sh"
+source "${HOME}/dotfiles/common/bash_functions.sh"
 
 
 # ヒストリーをファイルに保存

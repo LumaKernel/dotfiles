@@ -4,7 +4,7 @@ case $- in
       *) return;;
 esac
 
-echo '.bashrc'
+echo 'windows/.bashrc'
 
 # ---- vim の環境変数を削除
 unset VIM
@@ -32,8 +32,8 @@ export PATH="$HOME/.pyenv/pyenv-win/versions/3.8.3:$PATH"
 
 
 # ---- git の情報を表示
-source /c/msys64/usr/share/git/completion/git-prompt.sh
-source /c/msys64/usr/share/git/completion/git-completion.bash
+[ -f "/c/msys64/usr/share/git/completion/git-prompt.sh" ] && source /c/msys64/usr/share/git/completion/git-prompt.sh
+[ -f "/c/msys64/usr/share/git/completion/git-completion.bash" ] && source /c/msys64/usr/share/git/completion/git-completion.bash
 GIT_PS1_SHOWDIRTYSTATE=true
 export PS1='\[\033[32m\]\u@ \[\033[1;33m\]\w\[\033[34m\]$(__git_ps1)\[\033[00m\]'$'\n\$ '
 

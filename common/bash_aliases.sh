@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo 'common/bash_aliases.sh'
 
 alias ..='cd ..'

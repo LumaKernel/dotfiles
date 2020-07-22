@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo '.bash_aliases'
+echo 'windows/bash_aliases.sh'
 
-source "${HOME}/dotfiles/common/bash_alias.sh"
+source "${HOME}/dotfiles/common/bash_aliases.sh"
 
 # -- windows
 function wincmd()
@@ -17,4 +17,3 @@ alias ipconfig='wincmd ipconfig'
 alias netstat='wincmd netstat'
 alias netsh='wincmd netsh'
 alias ping='wincmd /c/windows/system32/ping'
-

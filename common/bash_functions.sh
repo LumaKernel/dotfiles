@@ -1,4 +1,6 @@
-echo '.bash_functions'
+#!/bin/bash
+
+echo 'common/bash_functions.sh'
 
 function color()
 {
