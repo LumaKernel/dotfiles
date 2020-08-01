@@ -36,6 +36,19 @@ hook_add = '''
   let g:lsp_signs_priority = 50
   let g:lsp_semantic_enabled = 1
 
+  let s:ft = [
+    \   'javascript',
+    \   'javascriptreact',
+    \   'typescript',
+    \   'typescriptreact',
+    \   'python',
+    \   'go',
+    \ ]
+
+  augroup vim-lsp
+    execute printf('autocmd VimEnter * ++once autocmd vim-lsp FileType %s setlocal omnifunc=lsp#complete', join(s:ft, ','))
+  augroup END
+
   if 0
     echom "[Warning] LSP Logging is on."
     let g:lsp_log_file = expand('~/vim-lsp.log')
