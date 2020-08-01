@@ -692,3 +692,10 @@ hook_post_source ='''
 
 [[plugins]]
 repo = 'tweekmonster/django-plus.vim'
+
+[[plugins]]
+if = "has('nvim')"
+repo = 'LumaKernel/nvim-visual-eof.lua'
+hook_post_source ='''
+  lua require'visual-eof'.setup { hl_EOL = 'NonText'; }
+'''
