@@ -31,10 +31,10 @@ source ~/dotfiles/vim/gvim.vim
 source ~/dotfiles/vim/setup-powershell.vim
 
 if !g:from_pwsh
-    augroup init-vim
-      autocmd VimEnter * ++once ++nested
-          \ if exists(':LoadColorScheme')
-          \ |  LoadColorScheme
-          \ | endif
-    augroup END
+  augroup init-vim
+    autocmd VimEnter * ++once ++nested
+        \ if exists(':LoadColorScheme')
+        \ |  LoadColorScheme
+        \ | endif
+  augroup END
 endif
