@@ -12,8 +12,7 @@ set laststatus=2
 set notitle
 set wrap
 
-set completeopt=menu,preview
-autocmd CompleteDone * silent! pclose
+set completeopt=menu
 
 set noshowmatch
 set novisualbell
@@ -103,6 +102,7 @@ nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><ESC>
 
 set diffopt+=vertical
 
+set nofixeol
 
 
 " 不可視文字表示
