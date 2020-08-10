@@ -40,7 +40,9 @@ function rm
 end
 
 # -- vim
-alias v="/usr/bin/vim"
+function v
+  eval (which vim) $argv
+end
 alias vi="nvim -u NONE"
 alias vim="nvim"
 
@@ -74,11 +76,12 @@ alias gl="git lg"
 
 # -- ocaml
 alias ocamlrepl="rlwrap ocaml"
+alias replocaml="rlwrap ocaml"
 
-#
+# -- some
 alias checkhealth="nvim +checkhealth"
-
 alias p="pet exec"
+alias repl="rlwrap"
 
 
 function garbage-collect-tmux
