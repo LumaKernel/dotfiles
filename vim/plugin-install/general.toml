@@ -135,9 +135,12 @@ hook_add = '''
   endfunction
 '''
 
+[[plugins]]
+repo = 'lambdalisue/fern-git-status.vim'
+depends = 'fern.vim'
 
 [[plugins]]
-repo = 'lambdalisue/fern-bookmark.vim'
+repo = 'lambdalisue/fern-mapping-git.vim'
 depends = 'fern.vim'
 
 
