@@ -1,6 +1,4 @@
 
-let s:F = vital#vital#import('System.Filepath')
-
 function! competitive#start() abort
   let g:lsp_diagnostics_enabled = 0
   let g:lsp_auto_enable = 0
@@ -69,6 +67,7 @@ function! s:cp_cpp()
 endfunction
 
 function! competitive#ready(dir) abort
+  let s:F = vital#vital#import('System.Filepath')
   if !isdirectory(a:dir)
     return 0
   endif
@@ -77,6 +76,7 @@ function! competitive#ready(dir) abort
 endfunction
 
 function! competitive#compete(dir) abort
+  let s:F = vital#vital#import('System.Filepath')
   call competitive#start()
   if !isdirectory(a:dir)
     return
