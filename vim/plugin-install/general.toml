@@ -141,9 +141,9 @@ repo = 'lambdalisue/fern-bookmark.vim'
 depends = 'fern.vim'
 
 
-
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+if = "has('python3') || has('nvim')"
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
 
@@ -437,6 +437,8 @@ repo = 'HiPhish/info.vim'
 
 [[plugins]]
 repo = 'mattn/emmet-vim'
+# for preact
+# let g:user_emmet_settings = emmet#merge(get(g:, 'user_emmet_settings'), { 'jsx': { 'attribute_name': {'class': 'class'}}})
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
@@ -513,22 +515,8 @@ hook_add = '''
 repo = 'rhysd/vim-gfm-syntax'
 # GitHub Favored Markdown Syntax
 
-[[plugins]]
-repo = 'LumaKernel/vim-import-cost'
-build = 'yarn'
-rev = 'mine'
-hook_add = '''
-  let g:import_cost_silent = 1
-  " import の後ろにコメント書かないので Comment を利用
-  hi link ImportCostVirtualText Comment
-  augroup import_cost_auto_run
-    autocmd!
-    autocmd BufEnter,BufNew,InsertLeave *.js,*.mjs,*.jsx,*.ts,*.tsx silent! ImportCost
-  augroup END
-'''
-
-[[plugins]]
-repo = 'skywind3000/asyncrun.vim'
+# [[plugins]]
+# repo = 'skywind3000/asyncrun.vim'
 # XXX: まだ未調整
 # vim-dispatchのほうがいいかな，むずかしい
 # vim-test かな
@@ -684,7 +672,9 @@ repo = 'ocaml/vim-ocaml'
 repo = 'AlessandroYorba/Sierra'
 
 [[plugins]]
-if = "has('nvim') && !has('win32')"
+if = 0
+# TODO: 動かないとりあえず保留
+# if = "has('nvim') && !has('win32')"
 repo = 'nvim-treesitter/nvim-treesitter'
 hook_post_source ='''
   lua require'nvim-treesitter.configs'.setup { ensure_installed = 'all' }
