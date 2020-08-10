@@ -28,11 +28,11 @@ export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
 
 # -- cquery
 command -v cquery >/dev/null 2>&1
-  and set -x PATH $PATH $HOME/bin/cquery/build/release/bin
+  or set -x PATH $PATH $HOME/bin/cquery/build/release/bin
 
 # -- themis
 command -v themis >/dev/null 2>&1
-  and set -x PATH $PATH $HOME/.cache/dein/repos/github.com/thinca/vim-themis/bin
+  or set -x PATH $PATH $HOME/.cache/dein/nvim/repos/github.com/thinca/vim-themis/bin
 
 # -- pyenv
 command -v pyenv >/dev/null 2>&1
