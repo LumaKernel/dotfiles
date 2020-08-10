@@ -1,5 +1,6 @@
 [[plugins]]
-repo = 'prabirshrestha/vim-lsp'
+repo = 'LumaKernel/vim-lsp'
+rev = 'dev'
 hook_add = '''
   function! MyRef() abort
     if &ft == 'vim' || &ft == 'help'
@@ -21,9 +22,6 @@ hook_add = '''
   nnoremap <silent> ]e :LspNextError<CR>
   nnoremap <silent> [e :LspPreviousError<CR>
   nnoremap <silent> gr :LspRename<CR>
-
-  " 名前は vim-lsp-settings と衝突しないように
-  " my- をつける
 
   let g:lsp_virtual_text_prefix = "> "
   let g:lsp_diagnostics_echo_cursor = 1
@@ -49,6 +47,32 @@ hook_add = '''
     execute printf('autocmd VimEnter * ++once autocmd vim-lsp FileType %s setlocal omnifunc=lsp#complete', join(s:ft, ','))
   augroup END
 
+
+  " 名前は vim-lsp-settings と衝突しないように
+  " my- をつける
+  
+  let g:nvim_venv_pyls = expand('~/.local/venvs/nvim/bin/pyls')
+  if executable(g:nvim_venv_pyls)
+    autocmd User lsp_setup call lsp#register_server({
+      \   'name': 'my-pyls',
+      \   'cmd': {server_info->[g:nvim_venv_pyls]},
+      \   'whitelist': ['python'],
+      \   'workspace_config': {
+      \     'pyls': {
+      \       'plugins': {
+      \         'pyflakes': { 'enabled': v:false },
+      \         'flake8': { 'enabled': v:false },
+      \         'pycodestyle': { 'enabled': v:false },
+      \         'pydocstyle': { 'enabled': v:false },
+      \         'pylint': { 'enabled': v:false },
+      \         'mccabe': { 'enabled': v:false },
+      \         'pyls_mypy': { 'enabled': v:true, 'live_mode': v:false },
+      \       }
+      \     }
+      \   }
+      \ })
+  endif
+
   if 0
     echom "[Warning] LSP Logging is on."
     let g:lsp_log_file = expand('~/vim-lsp.log')
@@ -63,6 +87,7 @@ depends = 'vim-lsp'
 hook_add = '''
   let g:lsp_settings = {
       \   'pyls': {
+      \     'disabled': 1,
       \     'workspace_config': {
       \       'pyls': {
       \         'plugins': {
@@ -71,7 +96,7 @@ hook_add = '''
       \           'pycodestyle': { 'enabled': v:false },
       \           'pydocstyle': { 'enabled': v:false },
       \           'pylint': { 'enabled': v:false },
-      \           'mccabe': { 'enabled': v:true },
+      \           'mccabe': { 'enabled': v:false },
       \         }
       \       }
       \     }
