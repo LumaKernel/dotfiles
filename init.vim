@@ -7,6 +7,10 @@ augroup init_vim
   autocmd!
 augroup END
 
+if executable('/usr/bin/whoami') && system('/usr/bin/whoami') =~# '^root\(\n\|$\)'
+  finish
+endif
+
 let g:from_pwsh = 0
 let g:is_wsl = 0
 silent! let g:from_pwsh = !has('nvim') && $RunFromPowershell ==# '1'
