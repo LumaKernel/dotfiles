@@ -14,7 +14,7 @@ endfunction
 
 
 filetype plugin indent off
-let s:dein_dir = expand('~/.cache/dein')
+let s:dein_dir = has('nvim') ? expand('~/.cache/dein/nvim') : expand('~/.cache/dein/vim')
 let s:dein_repo_dir = s:dein_dir .. '/repos/github.com/Shougo/dein.vim'
 
 if !isdirectory(s:dein_repo_dir)
@@ -54,9 +54,9 @@ augroup END
 
 filetype plugin indent on
 
-let s:F = vital#vital#import('System.File')
 
 function! DeinClean() abort
+  let s:F = vital#vital#import('System.File')
   for l:dir in dein#check_clean()
     call s:F.rmdir(l:dir, 'r')
   endfor
