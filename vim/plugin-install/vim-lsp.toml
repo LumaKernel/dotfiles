@@ -73,6 +73,18 @@ hook_add = '''
       \ })
   endif
 
+  if executable('rome') && 0
+    augroup my-lsp-rome
+      autocmd!
+      autocmd User lsp_setup call lsp#register_server({
+         \   'name': 'my-rome-lsp',
+         \   'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.config/'))},
+         \   'cmd': {server_info->['rome', 'lsp']},
+         \   'allowlist': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
+         \ })
+    augroup END
+  endif
+
   if 0
     echom "[Warning] LSP Logging is on."
     let g:lsp_log_file = expand('~/vim-lsp.log')
@@ -102,6 +114,7 @@ hook_add = '''
       \     }
       \   },
       \   'typescript-language-server': {
+      \     'disabled': 0,
       \     'workspace_config': {
       \       'typescript': {
       \         'preferences': {
