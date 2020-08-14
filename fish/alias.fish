@@ -58,7 +58,7 @@ alias man=man_vim
 
 # -- open-browser
 function open-browser
-  set OPEN_BROWSER_PATH ~/.cache/dein/repos/github.com/tyru/open-browser.vim
+  set OPEN_BROWSER_PATH ~/.cache/dein/nvim/repos/github.com/tyru/open-browser.vim
   nvim -u NONE -i NONE -N -n --headless --cmd "set rtp+=$OPEN_BROWSER_PATH" "+runtime! plugin/openbrowser.vim | sil! OpenBrowser $argv"
 end
 
@@ -89,7 +89,7 @@ function garbage-collect-tmux
 end
 
 function dein
-  set where (find ~/.cache/dein/repos/ -mindepth 3 -maxdepth 3 -type d | fzf --reverse)
+  set where (find ~/.cache/dein/nvim/repos/ -mindepth 3 -maxdepth 3 -type d | fzf --reverse)
   if [ -n "$where" ]
     cd $where
   end
