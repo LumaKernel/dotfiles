@@ -17,6 +17,8 @@ set completeopt=menu
 set noshowmatch
 set novisualbell
 
+set background=dark
+
 set conceallevel=0
 set concealcursor=
 augroup my-help-conceal
