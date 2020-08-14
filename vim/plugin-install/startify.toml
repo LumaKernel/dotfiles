@@ -31,23 +31,31 @@ hook_add = '''
         \   '~/dotfiles',
         \   '~/vim-make-plugin',
         \   '~/.cache/dein/repos',
-        \]
+        \ ]
 
   function! s:MyColorSelections()
-    let names = [
-          \   'onedark',
-          \   'seoul256',
-          \   'tender',
-          \   'spring-night',
-          \   'iceberg',
-          \   'orbital',
-          \   'darkblue',
-          \   'dracula',
-          \   'railscasts',
-          \   'sierra',
-          \   'palenight',
-          \ ]
-    return map(copy(names), { i, colo -> { 'line': colo, 'cmd': printf('SwitchColorScheme %s', colo) } })
+    let names = getcompletion('', 'color')
+    let excludes = [
+        \   'blue',
+        \   'default',
+        \   'delek',
+        \   'elflord',
+        \   'evening',
+        \   'industry',
+        \   'koehler',
+        \   'morning',
+        \   'murphy',
+        \   'pablo',
+        \   'peachpuff',
+        \   'ron',
+        \   'shine',
+        \   'slate',
+        \   'torte',
+        \   'zellner',
+        \ ]
+
+    call filter(names, {_, name -> index(excludes, name) < 0})
+    return map(copy(names), {_, colo -> {'line': colo, 'cmd': printf('SwitchColorScheme %s', colo)}})
   endfunction
 
   function! s:MyRefs()
