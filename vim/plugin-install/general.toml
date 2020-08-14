@@ -46,6 +46,12 @@ repo = 'junegunn/seoul256.vim'
 repo = 'fcpg/vim-orbital'
 [[plugins]]
 repo = 'drewtempelmeyer/palenight.vim'
+[[plugins]]
+repo = 'AlessandroYorba/Sierra'
+[[plugins]]
+repo = 'NLKNguyen/papercolor-theme'
+[[plugins]]
+repo = 'cormacrelf/vim-colors-github'
 
 
 [[plugins]]
@@ -138,6 +144,9 @@ hook_add = '''
 [[plugins]]
 repo = 'lambdalisue/fern-git-status.vim'
 depends = 'fern.vim'
+hook_add = '''
+  let g:fern_git_status#disable_untracked = 1
+'''
 
 [[plugins]]
 repo = 'lambdalisue/fern-mapping-git.vim'
@@ -529,9 +538,7 @@ repo = 'LumaKernel/fern-mapping-fzf.vim'
 depends = ['fzf', 'fern.vim']
 hook_add = '''
   function! s:reveal(dict) abort
-    echom string(a:dict)
-    let g:A = a:dict
-    execute printf("Fern %s -reveal=%s", a:dict.root_path, a:dict.full_path)
+    execute "FernReveal" a:dict.relative_path
   endfunction
   let g:Fern_mapping_fzf_file_sink = function('s:reveal')
   let g:Fern_mapping_fzf_dir_sink = function('s:reveal')
@@ -633,6 +640,8 @@ hook_add = '''
   nnoremap <expr><silent> ,cg ':call <SID>FzfPreviewProjectGrepLiterally(expand("<cword>"))<CR>'
   xnoremap ,g :<C-u>call <SID>FzfPreviewProjectGrepSelected()<CR>
   xnoremap ,cg :<C-u>call <SID>FzfPreviewProjectGrepSelected()<CR>
+
+  nnoremap ,rf :<C-u>FzfPreviewProjectMrwFiles<CR>
 '''
 
 [[plugins]]
@@ -672,9 +681,6 @@ hook_post_source = '''
 repo = 'ocaml/vim-ocaml'
 
 [[plugins]]
-repo = 'AlessandroYorba/Sierra'
-
-[[plugins]]
 if = 0
 # TODO: 動かないとりあえず保留
 # if = "has('nvim') && !has('win32')"
@@ -691,4 +697,14 @@ if = "has('nvim')"
 repo = 'LumaKernel/nvim-visual-eof.lua'
 hook_post_source ='''
   lua require'visual-eof'.setup { hl_EOL = 'NonText'; }
+'''
+
+[[plugins]]
+repo = 'yutakatay/auto-paste-mode.vim'
+
+[[plugins]]
+repo = 'https://github.com/ntpeters/vim-better-whitespace.git'
+hook_add = '''
+  let g:better_whitespace_enabled=1
+  let g:strip_whitespace_on_save=1
 '''
