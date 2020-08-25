@@ -709,3 +709,9 @@ hook_add = '''
   let g:strip_whitespace_on_save=1
   let g:strip_max_file_size = 5000
 '''
+
+[[plugins]]
+repo = 'relastle/vim-nayvy'
+hook_add = '''
+  let g:nayvy_import_path_format = 'all_absolute'
+'''
