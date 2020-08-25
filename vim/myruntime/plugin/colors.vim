@@ -23,6 +23,7 @@ let g:misspell = [
       \   'stirng',
       \   'stiring',
       \   'widht',
+      \   'inlcude',
       \ ]
 
 function! DefineColors() abort
@@ -45,10 +46,10 @@ function! DefineColors() abort
     call g:my_color_fixes[g:colors_name]()
   endif
 
-endfunction
+  hi link MySpellError Error
+  exe 'match MySpellError ' .. '/' .. join(g:misspell, '\|') .. '/'
 
-hi link MySpellError Error
-exe 'match MySpellError ' .. '/' .. join(g:misspell, '\|') .. '/'
+endfunction
 
 " string to tuple
 function! s:toTuple(text) abort
@@ -107,8 +108,28 @@ endfunction
 
 " }}}
 
+" PaperColor {{{
+
+function! g:my_color_fixes.PaperColor()
+  hi Comment guifg=#BBBBBB
+  hi Error guibg=#5f0000
+  hi Comment ctermfg=244
+endfunction
+
+" }}}
+
 
 augroup my-color-syntax
   autocmd ColorScheme * call DefineColors()
 augroup END
 call DefineColors()
+
+
+function! DefineMyPythonColors() abort
+  hi link MyPythonSyntaxError Error
+  match MyPythonSyntaxError /\<else\s*if\>/
+endfunction
+
+augroup my-python-syntax
+  autocmd FileType python,htmldjango call DefineMyPythonColors()
+augroup END
