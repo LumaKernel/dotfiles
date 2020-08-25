@@ -111,10 +111,6 @@ hook_add = '''
         \ ]
 
   let g:startify_lists = [
-        \ { 'type': 'bookmarks', 'header': ["   \uf461 ブックマーク"] },
-        \ { 'type': 'files',     'header': ["   \uf490 最近開いたファイル"] },
-        \ { 'type': 'dir',       'header': ["   \uf490 最近開いたファイル in " .. getcwd()] },
-        \ { 'type': 'sessions',  'header': ["   \ue706 セッション"] },
         \ { 'type': 'commands',  'header': ["   \uf489 コマンド"] },
         \ { 'type': function('s:MyColorSelections'),  'header': ["   \u26a1 カラーテーマ"] },
         \ { 'type': function('s:MyRefs'),  'header': ["   \uf002 リファレンス"] },
