@@ -32,3 +32,6 @@ ln -sf $HOME/dotfiles/fish/functions/*.fish $HOME/.config/fish/functions
 
 mkdir -p $HOME/.config/powerline-shell
 ln -sf $HOME/dotfiles/powerline-shell/config.json $HOME/.config/powerline-shell/config.json
+
+mkdir -p $HOME/.config/nayvy
+ln -sf $HOME/dotfiles/nayvy/import_config.nayvy $HOME/.config/nayvy/import_config.nayvy
