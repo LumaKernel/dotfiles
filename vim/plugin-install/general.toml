@@ -715,3 +715,6 @@ repo = 'relastle/vim-nayvy'
 hook_add = '''
   let g:nayvy_import_path_format = 'all_absolute'
 '''
+[[plugins]]
+repo = 'wakatime/vim-wakatime'
+
