@@ -10,6 +10,8 @@ git config --global core.excludesfile ~/.gitignore_global
 
 git config --global url."git@github.com:".pushInsteadOf "https://github.com/"
 
+git config --global gc.pruneExpire "2.month.ago"
+
 
 # https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
 
