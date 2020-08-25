@@ -747,7 +747,7 @@ hook_add = '''
     \   'padding:0.2em',
     \   'font-size:1em',
     \ ]
-  call map(g:my_debug_style, {_, v -> printf("% !importnant;")})
+  call map(g:my_debug_style, {_, v -> printf("%s !importnant;", v)})
   let g:my_debug_style = join(g:my_debug_style, '')
 
   let g:my_html_print_debug = printf('<span style="%s">_x_[XXX]_x_: {}</span>', g:my_debug_style)
