@@ -703,8 +703,9 @@ hook_post_source ='''
 repo = 'yutakatay/auto-paste-mode.vim'
 
 [[plugins]]
-repo = 'https://github.com/ntpeters/vim-better-whitespace.git'
+repo = 'ntpeters/vim-better-whitespace'
 hook_add = '''
   let g:better_whitespace_enabled=1
   let g:strip_whitespace_on_save=1
+  let g:strip_max_file_size = 5000
 '''
