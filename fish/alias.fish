@@ -99,3 +99,19 @@ if [ "$is_WSL" = 1 ]
   # here
   alias h "explorer.exe ."
 end
+
+function git-prune-trackings
+  git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 (git branch -vv | grep origin | psub) | awk '{print $1}' | xargs git branch -d
+end
+
+function hist-ranking-all
+  history | awk '{print $1}' | sort | uniq -c | sort -nr | head -n 10
+end
+
+function hist-ranking-1000
+  history | head -n 1000 | awk '{print $1}' | sort | uniq -c | sort -nr | head -n 10
+end
+
+alias rakning-hist-all=hist-ranking-all
+alias rakning-hist-1000=hist-ranking-1000
+
