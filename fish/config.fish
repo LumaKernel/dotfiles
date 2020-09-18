@@ -1,18 +1,13 @@
 
 echo "fish/config.fish"
+set -x shell_name fish
 
 pyenv init - | source
 
 # -- powerline-shell
 function fish_prompt
-  set -x powerline_fish_key_bindings $fish_key_bindings
-  set -x powerline_fish_bind_mode $fish_bind_mode
   powerline-shell --shell bare $status
-  set -e powerline_fish_key_bindings
-  set -e powerline_fish_bind_mode
 end
-
-fish_vi_key_bindings
 
 source ~/dotfiles/fish/alias.fish
 
@@ -68,27 +63,16 @@ end
 
 
 # hitting empty enter to ls (空エンター)
-bind -m insert \n execute_or_ls
-bind -M insert -m insert \n execute_or_ls
-bind -M visual -m insert \n execute_or_ls
-bind -m insert \r execute_or_ls
-bind -M insert -m insert \r execute_or_ls
-bind -M visual -m insert \r execute_or_ls
 
-function execute_or_ls
-  if test -n (commandline)
-    commandline -f execute
-  else
-    echo
+function done_enter --on-event fish_postexec
+  if test -z "$argv"
     ls
-    echo
     commandline -f force-repaint
     if test "$NO_AUTO_VENV" != "1"
       activate_venv
     end
   end
 end
-
 
 # venv
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1

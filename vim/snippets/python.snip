@@ -1,0 +1,12 @@
+delete dd
+
+snippet     dd
+options     head
+	def die(*args):
+		from django.http import Http404
+		import logging
+		logging.fatal(*args)
+		class DIE(Http404):
+			pass
+		raise DIE(args)
+	die($0)

@@ -1,6 +1,7 @@
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
+if=0
 hook_add = '''
   let g:airline_powerline_fonts = 1
   " Powerline Extra Symbols も使っている

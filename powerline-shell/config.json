@@ -1,6 +1,6 @@
 {
     "segments": [
-        "~/dotfiles/powerline-shell/fish-vi-mode.py",
+        "~/dotfiles/powerline-shell/shell.py",
         {
             "type": "~/dotfiles/powerline-shell/wsl.py",
             "bg_color": 17

@@ -43,10 +43,7 @@ hook_add = '''
     \   'go',
     \ ]
 
-  augroup vim-lsp
-    execute printf('autocmd VimEnter * ++once autocmd vim-lsp FileType %s setlocal omnifunc=lsp#complete', join(s:ft, ','))
-  augroup END
-
+  setglobal omnifunc=lsp#complete
 
   " 名前は vim-lsp-settings と衝突しないように
   " my- をつける
@@ -126,9 +123,9 @@ hook_add = '''
       \ }
 '''
 
-[[plugins]]
-repo = 'lighttiger2505/deoplete-vim-lsp'
-depends = 'vim-lsp'
+# [[plugins]]
+# repo = 'lighttiger2505/deoplete-vim-lsp'
+# depends = ['vim-lsp', 'deoplete.nvim']
 
 [[plugins]]
 repo = 'tsuyoshicho/vim-efm-langserver-settings'
