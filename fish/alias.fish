@@ -122,6 +122,11 @@ alias rakning-hist-all=hist-ranking-all
 alias rakning-hist-1000=hist-ranking-1000
 
 
+function nvim-reload
+  nvim +"call dein#recache_runtimepath()" +qa!
+  and nvim +":UpdateRemotePlugins" +qa!
+end
+
 function nvim-bench
   nvim +"call dein#recache_runtimepath()" +qa!
   and nvim +":UpdateRemotePlugins" +qa!

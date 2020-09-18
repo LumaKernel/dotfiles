@@ -100,7 +100,7 @@ set nosmartcase
 set incsearch
 set wrapscan
 set hlsearch
-nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><ESC>
+nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><ESC>
 
 set diffopt+=vertical
 

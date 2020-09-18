@@ -12,6 +12,11 @@ function! s:dein_opam_settings() abort
   endif
 endfunction
 
+let s:api_token_path = expand('~/dotfiles/.apikey')
+if filereadable(s:api_token_path)
+  let g:dein#install_github_api_token = get(readfile(s:api_token_path), 0, '')
+endif
+
 
 filetype plugin indent off
 let s:dein_dir = has('nvim') ? expand('~/.cache/dein/nvim') : expand('~/.cache/dein/vim')

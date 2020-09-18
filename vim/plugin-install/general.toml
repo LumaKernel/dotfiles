@@ -66,6 +66,9 @@ repo = 'tyru/caw.vim'
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
+  let g:fern#profile = 0
+  let g:fern#disable_viewer_auto_duplication = 1
+  let g:fern#disable_viewer_hide_cursor = 1
   let s:fern_default_exclude_pats = ['^\.git$', '^\.DS_Store$', '^node_modules$', '^dist$', '^:Zone\.Identifier$']
 
   function! s:GetFernExclude() abort
@@ -115,7 +118,7 @@ hook_add = '''
 
   augroup my-fern
     autocmd! *
-    autocmd FileType fern call s:init_fern()
+    " autocmd FileType fern call s:init_fern()
   augroup END
 
   let g:loaded_netrw             = 1
@@ -137,16 +140,16 @@ hook_add = '''
   endfunction
 '''
 
-[[plugins]]
-repo = 'lambdalisue/fern-git-status.vim'
-depends = 'fern.vim'
-hook_add = '''
-  let g:fern_git_status#disable_untracked = 1
-'''
-
-[[plugins]]
-repo = 'lambdalisue/fern-mapping-git.vim'
-depends = 'fern.vim'
+# [[plugins]]
+# repo = 'lambdalisue/fern-git-status.vim'
+# depends = 'fern.vim'
+# hook_add = '''
+#   let g:fern_git_status#disable_untracked = 1
+# '''
+# 
+# [[plugins]]
+# repo = 'lambdalisue/fern-mapping-git.vim'
+# depends = 'fern.vim'
 
 
 # [[plugins]]
@@ -229,7 +232,7 @@ hook_add = '''
   if has('win32')
     " Windows: preview は相性があまりよくない
     "   UTF-8 と CP932 を両方見れるようにするのがまず難しいそう
-    let $FZF_DEFAULT_OPTS = '--tabstop=4 --reverse'
+    let $FZF_DEFAULT_OPTS = '--tabstop=4'
   else
     let file_viewer = 'cat {} 2>/dev/null'
     let dir_viewer = 'ls {}'
@@ -239,7 +242,7 @@ hook_add = '''
     if executable('exa')
       let dir_viewer = 'exa --tree --color always {}'
     endif
-    let $FZF_DEFAULT_OPTS = printf('--tabstop=4 --reverse --preview "%s || %s"', file_viewer, dir_viewer)
+    let $FZF_DEFAULT_OPTS = printf('--tabstop=4 --preview-window up --preview "%s || %s"', file_viewer, dir_viewer)
   endif
 
   if executable('ag') && $FZF_DEFAULT_COMMAND ==# ''
@@ -253,6 +256,22 @@ hook_add = '''
   command! -bang Colors call fzf#vim#colors({'options': '--preview ""'}, <bang>0)
 
 
+  function! RipgrepFzf(query, fullscreen) abort
+    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+    let initial_command = printf(command_fmt, shellescape(a:query))
+    let reload_command = printf(command_fmt, '{q}')
+    let spec = {'options': [
+      \   '--preview-window', 'up:noborder',
+      \   '--phony',
+      \   '--query', a:query,
+      \   '--bind', 'change:reload:'.reload_command
+      \ ]}
+    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+  endfunction
+
+  command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
+
+
   nnoremap <silent> ,f  :<C-u>Files<CR>
   nnoremap <silent> ,df :<C-u>GFiles<CR>
   nnoremap <silent> ,dd :<C-u>GFiles?<CR>
@@ -262,6 +281,49 @@ hook_add = '''
   nnoremap <silent> <Leader>i :<C-u>History<CR>
   nnoremap <silent> <Leader>ls :<C-u>Buffers<CR>
   nnoremap <silent> <Leader>col :<C-u>Colors<CR>
+
+  function! s:RgPrompt() abort
+    call inputsave()
+    let str = input("Rg > ")
+    call inputrestore()
+    if !empty(str)
+      execute printf('Rg %s', str)
+    endif
+  endfunction
+
+  function! s:RgLiterallyPrompt() abort
+    call inputsave()
+    let str = input("Rg Literally > ")
+    call inputrestore()
+    if !empty(str)
+      call s:RgLiterally(str)
+    endif
+  endfunction
+
+  function! s:RgLiterally(str) abort
+    let literal = a:str
+
+    let regex = Regex7Escape(literal)
+    let regex = substitute(regex, '[\n\r]', '[\s\S]?', 'g')
+    let regex = substitute(regex, '\t', '\\t', 'g')
+
+    execute printf('Rg %s', regex)
+  endfunction
+
+  function! s:RgLiterallySelected() abort
+    let yank_save = @@
+    normal! gvy
+    let copied = @@
+    let @@ = yank_save
+
+    call s:RgLiterally(copied)
+  endfunction
+
+  nnoremap <expr><silent> ,cg ':call <SID>RgLiterally(expand("<cword>"))<CR>'
+  nnoremap ,g :<C-u>call <SID>RgPrompt()<CR>
+  nnoremap ,rg :<C-u>call <SID>RgLiterallyPrompt()<CR>
+  xnoremap ,g :<C-u>call <SID>RgLiterallySelected()<CR>
+  xnoremap ,cg :<C-u>call <SID>RgLiterllySelected()<CR>
 '''
 
 [[plugins]]
@@ -524,6 +586,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'yuki-ycino/fzf-preview.vim'
+if = 0
 build = 'yarn'
 hook_add = '''
   nnoremap ,g :FzfPreviewProjectGrep<SPACE>
@@ -679,18 +742,82 @@ repo = 'Xuyuanp/scrollbar.nvim'
 hook_add = '''
   augroup my_config_scrollbar_nvim
     autocmd!
-    autocmd BufEnter    * silent! lua require('scrollbar').show()
-    autocmd BufLeave    * silent! lua require('scrollbar').clear()
+    let s:sc_show = "silent! lua require('scrollbar').show()"
+    let s:sc_clear = "silent! lua require('scrollbar').clear()"
+    exe "autocmd BufEnter    *" s:sc_show
+    exe "autocmd BufLeave    *" s:sc_clear
 
-    autocmd CursorMoved * silent! lua require('scrollbar').show()
-    autocmd VimResized  * silent! lua require('scrollbar').show()
+    exe "autocmd CursorMoved *" s:sc_show
+    exe "autocmd VimResized  *" s:sc_show
 
-    autocmd FocusGained * silent! lua require('scrollbar').show()
-    autocmd FocusLost   * silent! lua require('scrollbar').clear()
+    exe "autocmd FocusGained *" s:sc_show
+    exe "autocmd FocusLost *" s:sc_clear
+
+    exe "autocmd CursorHold *" s:sc_clear
   augroup end
+
   let g:scrollbar_shape = {
     \ 'head': '^',
     \ 'body': '|',
     \ 'tail': 'v',
     \ }
+
+  function! ClearScrollBar() abort
+  silent! lua require('scrollbar').clear()
+  endfunction
+
+  command! ClearScrollBar call ClearScrollBar()
+
+  nnoremap <silent> <SPACE><SPACE> :<C-u>ClearScrollBar<CR>
+'''
+
+[[plugins]]
+repo = 'cocopon/vaffle.vim'
+if = 0
+
+[[plugins]]
+repo = 'kien/ctrlp.vim'
+hook_add = '''
+  let g:ctrlp_map = ''
+  nnoremap ,f :<C-u>CtrlP<CR>
+  nnoremap ,ru :<C-u>CtrlPMRU<CR>
+  let g:ctrlp_open_new_file = 'edit'
+  let g:ctrlp_prompt_mappings = {
+      \ 'PrtBS()':              ['<bs>', '<c-]>'],
+      \ 'PrtDelete()':          ['<del>', '<c-l>'],
+      \ 'PrtDeleteWord()':      ['<c-w>'],
+      \ 'PrtClear()':           ['<c-u>'],
+      \ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
+      \ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
+      \ 'PrtSelectMove("t")':   ['<Home>', '<kHome>'],
+      \ 'PrtSelectMove("b")':   ['<End>', '<kEnd>'],
+      \ 'PrtSelectMove("u")':   ['<PageUp>', '<kPageUp>'],
+      \ 'PrtSelectMove("d")':   ['<PageDown>', '<kPageDown>'],
+      \ 'PrtHistory(-1)':       [],
+      \ 'PrtHistory(1)':        [],
+      \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
+      \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
+      \ 'AcceptSelection("t")': ['<c-t>'],
+      \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
+      \ 'ToggleFocus()':        ['<s-tab>'],
+      \ 'ToggleRegex()':        ['<c-x>'],
+      \ 'ToggleByFname()':      ['<c-d>'],
+      \ 'ToggleType(1)':        ['<c-up>'],
+      \ 'ToggleType(-1)':       ['<c-down>'],
+      \ 'PrtExpandDir()':       ['<tab>'],
+      \ 'PrtInsert("c")':       [],
+      \ 'PrtInsert()':          [],
+      \ 'PrtCurStart()':        ['<c-a>'],
+      \ 'PrtCurEnd()':          ['<c-e>'],
+      \ 'PrtCurLeft()':         ['<c-b>', '<left>'],
+      \ 'PrtCurRight()':        ['<c-f>', '<right>'],
+      \ 'PrtClearCache()':      ['<c-r>', '<F5>'],
+      \ 'PrtDeleteEnt()':       [],
+      \ 'CreateNewFile()':      [],
+      \ 'MarkToOpen()':         [],
+      \ 'OpenMulti()':          [],
+      \ 'PrtExit()':            ['<esc>', '<c-c>', '<c-g>'],
+      \ }
+  " 小さい方が使いやすい
+  let g:ctrlp_mruf_max = 14
 '''
