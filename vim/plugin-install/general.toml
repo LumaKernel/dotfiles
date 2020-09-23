@@ -69,7 +69,7 @@ hook_add = '''
   let g:fern#profile = 0
   let g:fern#disable_viewer_auto_duplication = 1
   let g:fern#disable_viewer_hide_cursor = 1
-  let s:fern_default_exclude_pats = ['^\.git$', '^\.DS_Store$', '^node_modules$', '^dist$', '^:Zone\.Identifier$']
+  let s:fern_default_exclude_pats = ['^\.git$', '^\.DS_Store$', '^node_modules$', '^dist$', '^:Zone\.Identifier$', '^__pycache__$']
 
   function! s:GetFernExclude() abort
     let ignore_pats = copy(s:fern_default_exclude_pats)
@@ -752,14 +752,12 @@ hook_add = '''
 
     exe "autocmd FocusGained *" s:sc_show
     exe "autocmd FocusLost *" s:sc_clear
-
-    exe "autocmd CursorHold *" s:sc_clear
   augroup end
 
   let g:scrollbar_shape = {
-    \ 'head': '^',
+    \ 'head': '+',
     \ 'body': '|',
-    \ 'tail': 'v',
+    \ 'tail': '+',
     \ }
 
   function! ClearScrollBar() abort

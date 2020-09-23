@@ -110,7 +110,7 @@ set nofixeol
 " 不可視文字表示
 set list
 " 不可視文字を可視化
-set listchars=tab:>-,eol:$,extends:≫,precedes:≪,nbsp:%
+set listchars=tab:>-,eol:$,extends:≫,precedes:≪,nbsp:%,space:·
 " Tab文字を半角スペースにする
 set expandtab
 " 行頭以外のTab文字の表示幅(スペースいくつ分)
