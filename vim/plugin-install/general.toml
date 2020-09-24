@@ -379,42 +379,42 @@ hook_add = '''
 # build = 'make'
 
 
-# [[plugins]]
-# repo = 'lambdalisue/gina.vim'
-# hook_post_source = '''
-#   " -- status の設定
-#   call gina#custom#command#alias('status', 's')
-#   call gina#custom#command#option('s', '--short')
-# 
-#   call gina#custom#command#alias('log', 'lg')
-#   call gina#custom#command#option('lg', '--graph')
-# 
-#   nnoremap <silent> <Leader>st :<C-u>Gina s<CR>
-#   nnoremap <silent> <Leader>cc :<C-u>Gina compare<CR>
-#   nnoremap <silent> <Leader>com :<C-u>tabnew \| Gina commit<CR>:split \| Gina diff --cached<CR>:wincmd w<CR>
-#   nnoremap <silent> <Leader>dd :<C-u>Gina diff HEAD<CR>
-#   nnoremap <silent> <Leader>lg :<C-u>Gina lg<CR>
-#   nnoremap <silent> <Leader>bla :<C-u>Gina blame<CR>
-# 
-#   function! s:Browse(line1, line2) abort
-#     let save = @@
-#     let @@ = ''
-#     if filereadable(expand('%'))
-#       execute printf('%d,%dGina browse --yank :', a:line1, a:line2)
-#     else
-#       Gina browse --yank
-#     endif
-#     if !empty(@@)
-#       execute "OpenBrowser" @@
-#     endif
-#     let @@ = save
-#   endfunction
-# 
-#   command! -range Browse call <SID>Browse(<line1>, <line2>)
-#   command! -range GitHubBrowse call <SID>Borwse(<line1>, <line2>)
-#   nnoremap <silent> <Leader>bro :Browse<CR>
-#   xnoremap <silent> <Leader>bro :Browse<CR>
-# '''
+[[plugins]]
+repo = 'lambdalisue/gina.vim'
+hook_post_source = '''
+  " -- status の設定
+  call gina#custom#command#alias('status', 's')
+  call gina#custom#command#option('s', '--short')
+
+  call gina#custom#command#alias('log', 'lg')
+  call gina#custom#command#option('lg', '--graph')
+
+  nnoremap <silent> <Leader>st :<C-u>Gina s<CR>
+  nnoremap <silent> <Leader>cc :<C-u>Gina compare<CR>
+  nnoremap <silent> <Leader>com :<C-u>tabnew \| Gina commit<CR>:split \| Gina diff --cached<CR>:wincmd w<CR>
+  nnoremap <silent> <Leader>dd :<C-u>Gina diff HEAD<CR>
+  nnoremap <silent> <Leader>lg :<C-u>Gina lg<CR>
+  nnoremap <silent> <Leader>bla :<C-u>Gina blame<CR>
+
+  function! s:Browse(line1, line2) abort
+    let save = @@
+    let @@ = ''
+    if filereadable(expand('%'))
+      execute printf('%d,%dGina browse --yank :', a:line1, a:line2)
+    else
+      Gina browse --yank
+    endif
+    if !empty(@@)
+      execute "OpenBrowser" @@
+    endif
+    let @@ = save
+  endfunction
+
+  command! -range Browse call <SID>Browse(<line1>, <line2>)
+  command! -range GitHubBrowse call <SID>Borwse(<line1>, <line2>)
+  nnoremap <silent> <Leader>bro :Browse<CR>
+  xnoremap <silent> <Leader>bro :Browse<CR>
+'''
 
 
 [[plugins]]
@@ -772,50 +772,3 @@ hook_add = '''
 [[plugins]]
 repo = 'cocopon/vaffle.vim'
 if = 0
-
-[[plugins]]
-repo = 'kien/ctrlp.vim'
-hook_add = '''
-  let g:ctrlp_map = ''
-  nnoremap ,f :<C-u>CtrlP<CR>
-  nnoremap ,ru :<C-u>CtrlPMRU<CR>
-  let g:ctrlp_open_new_file = 'edit'
-  let g:ctrlp_prompt_mappings = {
-      \ 'PrtBS()':              ['<bs>', '<c-]>'],
-      \ 'PrtDelete()':          ['<del>', '<c-l>'],
-      \ 'PrtDeleteWord()':      ['<c-w>'],
-      \ 'PrtClear()':           ['<c-u>'],
-      \ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
-      \ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
-      \ 'PrtSelectMove("t")':   ['<Home>', '<kHome>'],
-      \ 'PrtSelectMove("b")':   ['<End>', '<kEnd>'],
-      \ 'PrtSelectMove("u")':   ['<PageUp>', '<kPageUp>'],
-      \ 'PrtSelectMove("d")':   ['<PageDown>', '<kPageDown>'],
-      \ 'PrtHistory(-1)':       [],
-      \ 'PrtHistory(1)':        [],
-      \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
-      \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
-      \ 'AcceptSelection("t")': ['<c-t>'],
-      \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
-      \ 'ToggleFocus()':        ['<s-tab>'],
-      \ 'ToggleRegex()':        ['<c-x>'],
-      \ 'ToggleByFname()':      ['<c-d>'],
-      \ 'ToggleType(1)':        ['<c-up>'],
-      \ 'ToggleType(-1)':       ['<c-down>'],
-      \ 'PrtExpandDir()':       ['<tab>'],
-      \ 'PrtInsert("c")':       [],
-      \ 'PrtInsert()':          [],
-      \ 'PrtCurStart()':        ['<c-a>'],
-      \ 'PrtCurEnd()':          ['<c-e>'],
-      \ 'PrtCurLeft()':         ['<c-b>', '<left>'],
-      \ 'PrtCurRight()':        ['<c-f>', '<right>'],
-      \ 'PrtClearCache()':      ['<c-r>', '<F5>'],
-      \ 'PrtDeleteEnt()':       [],
-      \ 'CreateNewFile()':      [],
-      \ 'MarkToOpen()':         [],
-      \ 'OpenMulti()':          [],
-      \ 'PrtExit()':            ['<esc>', '<c-c>', '<c-g>'],
-      \ }
-  " 小さい方が使いやすい
-  let g:ctrlp_mruf_max = 14
-'''
