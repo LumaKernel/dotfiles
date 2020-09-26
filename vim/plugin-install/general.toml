@@ -95,7 +95,7 @@ hook_add = '''
     if F.contains(dir, getcwd())
       let dir = getcwd()
     endif
-    exe printf('Fern %s -reveal=%s', dir, expand('%'))
+    exe printf('Fern %s -reveal=%', dir)
     return ''
   endfunction
 
