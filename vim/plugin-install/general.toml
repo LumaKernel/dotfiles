@@ -95,7 +95,7 @@ hook_add = '''
     if F.contains(dir, getcwd())
       let dir = getcwd()
     endif
-    exe printf('Fern %s -reveal=%', dir)
+    exe printf('Fern %s -reveal=%%', dir)
     return ''
   endfunction
 
@@ -374,9 +374,9 @@ hook_add = '''
 # # }}}
 
 
-# [[plugins]]
-# repo = 'Shougo/vimproc.vim'
-# build = 'make'
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
 
 
 [[plugins]]
@@ -531,6 +531,7 @@ hook_add = '''
 '''
 
 [[plugins]]
+if = 0
 repo = 'cohama/lexima.vim'
 
 [[plugins]]
@@ -770,5 +771,7 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'cocopon/vaffle.vim'
-if = 0
+repo = 'pantharshit00/vim-prisma'
+
+[[plugins]]
+repo = 'Quramy/tsuquyomi'

@@ -111,7 +111,7 @@ hook_add = '''
       \     }
       \   },
       \   'typescript-language-server': {
-      \     'disabled': 0,
+      \     'disabled': 1,
       \     'workspace_config': {
       \       'typescript': {
       \         'preferences': {
