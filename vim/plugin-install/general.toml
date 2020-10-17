@@ -774,4 +774,5 @@ hook_add = '''
 repo = 'pantharshit00/vim-prisma'
 
 [[plugins]]
+if = 0
 repo = 'Quramy/tsuquyomi'

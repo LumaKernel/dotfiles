@@ -350,6 +350,11 @@ languages:
     - <<: *eslint-format
     - <<: *prettier-format
 
+  typescriptreact:
+    - <<: *eslint-lint
+    - <<: *eslint-format
+    - <<: *prettier-format
+
   css:
     - <<: *stylelint-lint
     - <<: *prettier-format

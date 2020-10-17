@@ -1,6 +1,6 @@
 
 let b:ale_fixers = ['prettier', 'eslint']
-let b:mode = "tsuquyomi"
+let b:mode = "lsp"
 
 if b:mode is# "lsp"
   command! -buffer -nargs=0 -bar OrganizeImports LspCodeAction source.organizeImports
