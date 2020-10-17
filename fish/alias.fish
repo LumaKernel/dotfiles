@@ -144,3 +144,15 @@ function nvim-bench
     echo Mean Time: (math -- $sum / $T) ms
   end
 end
+
+function ffm
+  docker run --rm -it -v "$PWD":/tmp/h -w "/tmp/h" jrottenberg/ffmpeg "$argv"
+end
+
+function ffp
+  docker run -it --rm -v "$PWD":/tmp/h -w "/tmp/h" sjourdan/ffprobe "$argv"
+end
+
+function nvim-plug-here
+  nvim --cmd "let &rtp = &rtp .. expand('%:h:p')" "$argv"
+end
