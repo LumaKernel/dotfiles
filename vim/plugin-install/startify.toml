@@ -101,6 +101,7 @@ hook_add = '''
 
 
   let g:startify_commands = [
+        \   ':echo "hi"',
         \   ':DeinClean',
         \   ':call dein#recache_runtimepath()',
         \   ':call dein#build()',

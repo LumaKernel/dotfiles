@@ -82,8 +82,8 @@ alias replocaml="rlwrap ocaml"
 alias checkhealth="nvim +checkhealth"
 alias p="pet exec"
 alias repl="rlwrap"
-alias dc="repl docker-compose"
-alias dce="repl docker-compose exec"
+alias dc="docker-compose"
+alias dce="docker-compose exec"
 
 function dcc
   repl docker-compose exec "$argv" /bin/bash
@@ -111,11 +111,11 @@ function git-prune-trackings
 end
 
 function hist-ranking-all
-  history | awk '{print $1}' | sort | uniq -c | sort -nr | head -n 10
+  history | awk '{print $1}' | sort | uniq -c | sort -nr | head -n 30
 end
 
 function hist-ranking-1000
-  history | head -n 1000 | awk '{print $1}' | sort | uniq -c | sort -nr | head -n 10
+  history | head -n 1000 | awk '{print $1}' | sort | uniq -c | sort -nr | head -n 30
 end
 
 alias rakning-hist-all=hist-ranking-all
@@ -155,4 +155,8 @@ end
 
 function nvim-plug-here
   nvim --cmd "let &rtp = &rtp .. expand('%:h:p')" "$argv"
+end
+
+function nvim-only-here
+  nvim -u DEFAULTS --cmd "let &rtp = expand('%:h:p') .. ',' .. &rtp" "$argv"
 end

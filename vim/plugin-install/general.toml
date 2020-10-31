@@ -451,6 +451,9 @@ repo = 'HiPhish/info.vim'
 repo = 'mattn/emmet-vim'
 # for preact
 # let g:user_emmet_settings = emmet#merge(get(g:, 'user_emmet_settings'), { 'jsx': { 'attribute_name': {'class': 'class'}}})
+hook_add = '''
+  let g:user_emmet_leader_key = "\<C-f>"
+'''
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'

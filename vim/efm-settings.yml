@@ -228,7 +228,7 @@ tools:
       - '%tRROR %f:%l %m'
 
   textlint-lint: &textlint-lint
-    lint-command: 'npx --no-install textlint --fix-dry-run -f unix --stdin --stdin-filename ${INPUT}'
+    lint-command: 'npx --no-install textlint -f unix --stdin --stdin-filename ${INPUT}'
     lint-ignore-exit-code: true
     lint-stdin: true
     lint-formats:
@@ -237,7 +237,7 @@ tools:
       - .textlintrc
 
   eslint-lint: &eslint-lint
-    lint-command: 'npx --no-install eslint -f unix --stdin --stdin-filename ${INPUT}'
+    lint-command: 'npx --no-install eslint --fix-dry-run -f unix --stdin --stdin-filename ${INPUT}'
     lint-ignore-exit-code: true
     lint-stdin: true
     root-markers:

@@ -40,7 +40,7 @@ if dein#load_state(s:dein_dir)
     for s:toml in glob(s:dir .. '/plugin-install/filetypes/*.toml', 1, 1)
       call dein#load_toml(s:toml)
     endfor
-    call s:dein_opam_settings()
+    " call s:dein_opam_settings()
   call dein#end()
   call dein#call_hook('source')
   call dein#save_state()
@@ -65,7 +65,7 @@ function! DeinClean() abort
   for l:dir in dein#check_clean()
     call s:F.rmdir(l:dir, 'r')
   endfor
-  call dein#update()
+  call dein#check_update()
   call dein#recache_runtimepath()
   call dein#remote_plugins()
 endfunction

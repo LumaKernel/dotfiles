@@ -1,15 +1,2 @@
-hook_add = '''
-  if executable('opam')
-    silent! let s:opam_share = system('opam config var share')
-    let s:merlin_dir = substitute(s:opam_share, '\n$', '', '') .. '/merlin/vim'
-    let g:merlin_dir = s:merlin_dir
-    if isdirectory(s:merlin_dir)
-      call dein#add(s:merlin_dir, { 'merged' : 0 })
-      sil! exe 'helptags ' .. s:merlin_dir .. '/doc'
-    endif
-  endif
-'''
-
-
 [[plugins]]
 repo = 'let-def/ocp-indent-vim'

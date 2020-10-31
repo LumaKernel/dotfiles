@@ -1,9 +1,3 @@
-# json 系も一緒に管理
-
-hook_add = '''
-  let g:vim_json_conceal = 0
-'''
-
 [[plugins]]
 repo = 'elzr/vim-json'
 hook_add = '''

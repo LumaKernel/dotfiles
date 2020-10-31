@@ -142,12 +142,6 @@ if (( ! $? )); then
   export is_WSL=1
 fi
 
-# Related: https://github.com/mintty/wsltty/issues/197
-if [[ -n "$is_WSL" ]]; then
-  command -v cmd.exe >/dev/null 2>&1 \
-    || return
-fi
-
 if [[ -n "$is_WSL" ]] && command -v wslpath >/dev/null 2>/dev/null; then
   echo '    - cdwin : Go to win home.'
   [[ -z "$WinUserName" ]] && export WinUserName="$(cmd.exe /c echo %UserName% 2>/dev/null | tr -d '\n' | tr -d '\r')"
@@ -191,6 +185,9 @@ command -v fd >/dev/null 2>&1 &&
 eval `ssh-agent`
 ssh-add
 
+# -- docker
+export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1
 
 # -- tmux and fish
 if [[ -z $TMUX ]] ; then

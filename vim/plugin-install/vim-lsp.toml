@@ -82,6 +82,49 @@ hook_add = '''
     augroup END
   endif
 
+  if executable('prisma-language-server') || 1
+    let g:pls_use_mine = 1
+    let g:pls_path = g:pls_use_mine
+      \ ? '/home/luma/workspace/prisma-language-tools/packages/language-server/bin/prisma-language-server'
+      \ : 'prisma-language-server'
+      " '/home/luma/.config/nvm/14.6.0/bin/prisma-language-server'
+      " '/home/luma/workspace/prisma-language-tools/packages/language-server/dist/src/cli.js'
+    let g:pls_path = '/home/luma/workspace/prisma-language-tools/packages/language-server/dist/src/cli.js'
+
+    augroup my-lsp-prisma
+      autocmd!
+      autocmd User lsp_setup call lsp#register_server({
+         \   'name': 'my-prisma-language-server',
+         \   'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+         \   'cmd': {server_info->['node', '--trace-warnings', g:pls_path, '--stdio']},
+         \   'allowlist': ['prisma'],
+         \   'workspace_config': {
+         \     'prismaLanguageServer': {
+         \       'prismaFmtBinPath': '/home/luma/.cargo/bin/prisma-fmt',
+         \     }
+         \   },
+         \ })
+    augroup END
+  endif
+
+  let g:my_auto_format = 1
+
+  command! -bar MyLspDocumentFormatSync if g:my_auto_format | exe "silent! LspDocumentFormatSync" | endif
+  command! DisableAutoFormat let g:my_auto_format = 0
+  command! EnableAutoFormat let g:my_auto_format = 1
+
+  let s:format_on_save_ft = [
+    \   "javascript",
+    \   "typescript",
+    \   "typescriptreact",
+    \   "prisma",
+    \ ]
+
+  augroup my-lsp-fmt-on-save
+    let s:cmd = "autocmd BufWritePost <buffer> MyLspDocumentFormatSync"
+    execute "autocmd FileType" join(s:format_on_save_ft, ',') s:cmd
+  augroup END
+
   if 0
     echom "[Warning] LSP Logging is on."
     let g:lsp_log_file = expand('~/vim-lsp.log')
