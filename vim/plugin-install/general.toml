@@ -551,7 +551,7 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'thinca/vim-zenspace'
+repo = 'LumaKernel/vim-zenspace'
 
 [[plugins]]
 repo = 'LumaKernel/vim-messages-qf'
@@ -738,6 +738,7 @@ hook_add = '''
     \   'cpp':             'std::cout << ("_x_[XXX]_x_ {}\n") << std::endl;',
     \   'html':            g:my_html_print_debug,
     \   'htmldjango':      g:my_html_print_debug,
+    \   'rust':            'println!("_x_[XXX]_x_ {}");',
     \ }
 '''
 
@@ -779,3 +780,6 @@ repo = 'pantharshit00/vim-prisma'
 [[plugins]]
 if = 0
 repo = 'Quramy/tsuquyomi'
+
+[[plugins]]
+repo = 'https://github.com/jparise/vim-graphql.git'
