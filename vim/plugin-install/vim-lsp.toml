@@ -1,5 +1,27 @@
 [[plugins]]
 repo = 'LumaKernel/vim-lsp'
+on_ft = [
+  'vim',
+  'python',
+  'javascript',
+  'typescript',
+  'typescriptreact',
+  'css',
+  'sass',
+  'scss',
+  'less',
+  'markdown',
+  'yaml',
+  'json',
+  'json5',
+  'go',
+  'rust',
+  'prisma',
+  'less',
+  'vue',
+  'html',
+  'sh',
+]
 rev = 'dev'
 hook_add = '''
   function! MyRef() abort
@@ -117,7 +139,6 @@ hook_add = '''
     \   "javascript",
     \   "typescript",
     \   "typescriptreact",
-    \   "prisma",
     \ ]
 
   augroup my-lsp-fmt-on-save
@@ -169,11 +190,12 @@ hook_add = '''
       \ }
 '''
 
-# [[plugins]]
-# repo = 'lighttiger2505/deoplete-vim-lsp'
-# depends = ['vim-lsp', 'deoplete.nvim']
+[[plugins]]
+repo = 'lighttiger2505/deoplete-vim-lsp'
+depends = ['vim-lsp', 'deoplete.nvim']
 
 [[plugins]]
+if = 0
 repo = 'tsuyoshicho/vim-efm-langserver-settings'
 depends = ['vim-lsp']
 hook_add = '''

@@ -1,5 +1,5 @@
-snippet     template
-abbr        temp
+snippet     template-editorconfig
+abbr        temp-editorconfig editorconfig-temp ec-temp temp-ec
 options     head
   root = true
 
@@ -15,3 +15,10 @@ options     head
 
   [{Makefile,*.make}]
   tindent_style = tab
+
+snippet     template-npmrc
+abbr        temp-npmrc npmrc-temp
+options     head
+  also=dev
+  progress=false
+  engine-strict=true

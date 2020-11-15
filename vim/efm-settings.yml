@@ -110,16 +110,14 @@ tools:
     - dict.yml
 
   markdownlint-lint: &markdownlint-lint
-    lint-command: 'markdownlint --stdin'
+    lint-command: 'npx --no-install markdownlint --stdin'
     lint-stdin: true
     lint-formats:
-      - '%f:%l %m'
-      - '%f: %l: %m'
+      - '%f:%l:%m'
 
-  # not work
-  # markdownlint-format: &markdownlint-format
-  #   format-command: 'markdownlint --fix ${INPUT}'
-  #   format-stdin: false
+  markdownlint-format: &markdownlint-format
+    format-command: 'npx --no-install markdownlint --fix ${INPUT}'
+    format-stdin: false
 
   pandoc-markdown-format: &pandoc-markdown-format
     format-command: 'pandoc -f markdown -t gfm -sp --tab-stop=2'
@@ -241,7 +239,6 @@ tools:
     lint-ignore-exit-code: true
     lint-stdin: true
     root-markers:
-      - package.json
       - .eslintrc.js
       - .eslintrc.yaml
       - .eslintrc.yml
@@ -289,13 +286,13 @@ languages:
     - <<: *vint-lint
 
   markdown:
-    - <<: *markdownlint-lint
-    - <<: *textlint-lint
-    - <<: *vale-lint
-    - <<: *nvcheck-lint
-    - <<: *nvcheck-format
-    - <<: *prettier-format
-    - <<: *pandoc-markdown-format
+    # - <<: *markdownlint-lint
+    # - <<: *textlint-lint
+    # - <<: *vale-lint
+    # - <<: *nvcheck-lint
+    # - <<: *nvcheck-format
+    # - <<: *prettier-format
+    # - <<: *pandoc-markdown-format
 
   json:
     - <<: *jsonlint-lint
@@ -342,18 +339,18 @@ languages:
     - <<: *pandoc-rst-format
 
   javascript:
-    - <<: *eslint-lint
-    - <<: *eslint-format
+    # - <<: *eslint-lint
+    # - <<: *eslint-format
 
   typescript:
-    - <<: *eslint-lint
-    - <<: *eslint-format
-    - <<: *prettier-format
+    # - <<: *eslint-lint
+    # - <<: *eslint-format
+    # - <<: *prettier-format
 
   typescriptreact:
-    - <<: *eslint-lint
-    - <<: *eslint-format
-    - <<: *prettier-format
+    # - <<: *eslint-lint
+    # - <<: *eslint-format
+    # - <<: *prettier-format
 
   css:
     - <<: *stylelint-lint

@@ -152,25 +152,21 @@ hook_add = '''
 # depends = 'fern.vim'
 
 
-# [[plugins]]
-# repo = 'Shougo/deoplete.nvim'
-# if = "has('python3') || has('nvim')"
-# hook_add = '''
-#   let g:deoplete#enable_at_startup = 1
-# 
-#   " call deoplete#custom#option({
-#   "     \ 'auto_complete': 0,
-#   "     \ })
-# 
-#   inoremap <silent><expr> <C-g><C-l>
-#     \ (pumvisible() ? "\<C-e>" : '') .
-#     \ deoplete#manual_complete(['lsp'])
-# 
-#   " call deoplete#custom#source('_',
-#   "       \ 'matchers', ['matcher_full_fuzzy'])
-# 
-# '''
-# 
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+if = "has('python3') || has('nvim')"
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+
+  " call deoplete#custom#option({
+  "     \ 'auto_complete': 0,
+  "     \ })
+
+  call deoplete#custom#source('_',
+        \ 'matchers', ['matcher_full_fuzzy'])
+
+'''
+
 [[plugins]]
 repo = 'Shougo/neosnippet.vim' # {{{
 hook_add = '''
@@ -780,6 +776,39 @@ repo = 'pantharshit00/vim-prisma'
 [[plugins]]
 if = 0
 repo = 'Quramy/tsuquyomi'
+hook_add = '''
+  let g:tsuquyomi_disable_quickfix = 1
+'''
 
 [[plugins]]
-repo = 'https://github.com/jparise/vim-graphql.git'
+repo = 'jparise/vim-graphql.git'
+
+[[plugins]]
+repo = 'heavenshell/vim-shutup.git'
+hook_add = '''
+  function s:lsp_eslint_format(...)
+    let value = a:000[0]
+    let position = a:000[1]
+    if position == 'upper' " Insert ignore into above current line.
+      return printf('// eslint-disable-next-line %s', value)
+    endif
+    " Insert ignore into same line
+    return printf(' // eslint-disable-line %s', value)
+  endfunction
+
+  let g:shutup_patterns = {
+    \ '\[\%(Error\|Warning\)/\zs.*\ze\]': function('s:lsp_eslint_format'),
+    \ }
+'''
+
+[[plugins]]
+repo = 'kamykn/spelunker.vim'
+hook_add = '''
+  let g:spelunker_white_list_for_user = [
+    \   'crate',
+    \ ]
+'''
+
+[[plugins]]
+repo = 'kamykn/popup-menu.nvim'
+depends_on = ['spelunker.vim']

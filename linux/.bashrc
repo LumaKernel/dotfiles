@@ -175,7 +175,8 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-
+# -- gpg
+export GPG_TTY="$(tty)"
 
 # -- fzf
 command -v fd >/dev/null 2>&1 &&
@@ -191,6 +192,7 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 
 # -- tmux and fish
 if [[ -z $TMUX ]] ; then
+  gpg-agent --daemon --allow-preset-passphrase
   command -v fish >/dev/null 2>&1 >/dev/null \
     && command -v tmux >/dev/null 2>&1 >/dev/null \
     && exec tmux

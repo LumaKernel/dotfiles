@@ -10,22 +10,6 @@ nnoremap <Leader>: :VimShowHlItem<CR>
 
 let g:my_color_fixes = get(g:, 'g:my_color_fixes', {})
 
-let g:misspell = [
-      \   'functoin',
-      \   'funciton',
-      \   'functino',
-      \   'optino',
-      \   'optoin',
-      \   'optin',
-      \   'ehco',
-      \   'itn',
-      \   'teh',
-      \   'stirng',
-      \   'stiring',
-      \   'widht',
-      \   'inlcude',
-      \ ]
-
 function! DefineColors() abort
   let bg_tup = s:toTuple(synIDattr(hlID('Normal'), 'bg#'))
 
@@ -45,10 +29,6 @@ function! DefineColors() abort
   if exists('g:colors_name') && has_key(g:my_color_fixes, g:colors_name)
     call g:my_color_fixes[g:colors_name]()
   endif
-
-  hi link MySpellError Error
-  exe 'match MySpellError ' .. '/' .. join(g:misspell, '\|') .. '/'
-
 endfunction
 
 " string to tuple
