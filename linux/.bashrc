@@ -190,6 +190,10 @@ ssh-add
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 
+# -- nextword
+
+export NEXTWORD_DATA_PATH=$HOME/.local/share/nextword/nextword-data-large
+
 # -- tmux and fish
 if [[ -z $TMUX ]] ; then
   gpg-agent --daemon --allow-preset-passphrase

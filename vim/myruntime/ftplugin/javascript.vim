@@ -12,3 +12,9 @@ command! -range -nargs=0 TypeScriptImport call lsp#ui#vim#code_action#do({
     \     '^Add ''\k\+'' to existing import declaration from "\f\+"'
     \   }
     \ })
+
+setlocal foldmethod=indent
+setlocal foldnestmax=2
+setlocal foldlevel=1
+setlocal tabstop=2
+setlocal shiftwidth=2

@@ -161,10 +161,11 @@ hook_add = '''
   " call deoplete#custom#option({
   "     \ 'auto_complete': 0,
   "     \ })
+'''
 
+hook_post_source = '''
   call deoplete#custom#source('_',
         \ 'matchers', ['matcher_full_fuzzy'])
-
 '''
 
 [[plugins]]
@@ -636,9 +637,22 @@ hook_add = '''
 repo = 'lambdalisue/vim-findent'
 hook_add = '''
   silent! EditorConfigDisable
+
+  function! s:my_findent_init() abort
+    let no_check = [
+      \   'javascript',
+      \   'typescript',
+      \   'typescriptreact',
+      \ ]
+    if index(no_check, &l:ft) < 0
+      Findent --no-messages --no-warnings --chunksize=300
+      call timer_start(0, {-> execute("silent! EditorConfigReload")})
+    endif
+  endfunction
+
   augroup findent
     autocmd!
-    autocmd BufNewFile,BufReadPost,BufFilePost * execute "Findent --no-messages --no-warnings --chunksize=300" | call timer_start(0, {-> execute("silent! EditorConfigReload")})
+    autocmd BufNewFile,BufReadPost,BufFilePost * call s:my_findent_init()
   augroup END
 '''
 

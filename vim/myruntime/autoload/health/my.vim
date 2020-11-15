@@ -63,6 +63,7 @@ function! health#my#check() abort
   call s:check('procs', ['procs', '--version'], '^procs \(\d\+\.\d\+\.\d\+\)')
   call s:check('fd', ['fd', '--version'], '^fd \(\d\+\.\d\+\.\d\+\)')
   call s:check('tidy', ['tidy', '--version'], '^HTML Tidy for .\+ version \(\d\+\.\d\+\.\d\+\)')
+  call s:check('nextword', ['nextword', '-v'], '^nextword version \(\d\+\.\d\+\.\d\+\)')
 
 
   call health#report_start('my: Python Modules')
