@@ -93,6 +93,7 @@ endfunction
 function! g:my_color_fixes.PaperColor()
   hi Comment guifg=#BBBBBB
   hi Error guibg=#5f0000
+  hi Warning guibg=#434300
   hi Comment ctermfg=244
 endfunction
 

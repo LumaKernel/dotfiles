@@ -95,9 +95,14 @@ export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
 
 
 # ---- nvm
-export NVM_DIR="$HOME/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# ---- fnm
+export PATH="$HOME/.fnm:$PATH"
+eval "`fnm env`"
 
 
 # ---- cquery
@@ -189,6 +194,9 @@ ssh-add
 # -- docker
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
+export UID="$(id -u)"
+export GID="$(id -g)"
+export UID_GID="$(id -u):$(id -g)"
 
 # -- nextword
 
@@ -215,3 +223,7 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/luma/.sdkman"
 [[ -s "/home/luma/.sdkman/bin/sdkman-init.sh" ]] && source "/home/luma/.sdkman/bin/sdkman-init.sh"
+
+# fnm
+export PATH=/home/luma/.fnm:$PATH
+eval "`fnm env`"

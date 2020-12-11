@@ -1,0 +1,73 @@
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+if = "g:lsp_mode is# 'coc'"
+rev = 'release'
+hook_add = '''
+  set nobackup
+  set nowritebackup
+
+  set cmdheight=2
+
+  set shortmess+=c
+
+  if has("patch-8.1.1564")
+    set signcolumn=number
+  else
+    set signcolumn=yes
+  endif
+
+  inoremap <silent><expr> <C-n>
+        \ pumvisible() ? "\<C-n>" :
+        \ coc#refresh()
+
+  inoremap <silent><expr> <C-g> coc#refresh()
+
+  nmap <silent> [g <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gl <Plug>(coc-references)
+  nmap <silent> gr <Plug>(coc-rename)
+
+
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+      call CocActionAsync('doHover')
+    else
+      execute '!' . &keywordprg . " " . expand('<cword>')
+    endif
+  endfunction
+
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+
+  xmap <SPACE>cf  <Plug>(coc-format-selected)
+  nmap <SPACE>cf  <Plug>(coc-format-selected)
+
+  nmap gw <Plug>(coc-codeaction)
+  nmap gq <Plug>(coc-fix-current)
+  nmap Q  <Plug>(coc-fix-current)
+
+  command! -nargs=0 Format :call CocAction('format')
+  command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+  nnoremap <silent><nowait> <SPACE>ce  :<C-u>CocList extensions<CR>
+  nnoremap <silent><nowait> <SPACE>cc  :<C-u>CocList commands<CR>
+  nnoremap <silent><nowait> <SPACE>co  :<C-u>CocList outline<CR>
+  nnoremap <silent><nowait> <SPACE>cs  :<C-u>CocList -I symbols<CR>
+  nnoremap <silent><nowait> <SPACE>cj  :<C-u>CocNext<CR>
+  nnoremap <silent><nowait> <SPACE>ck  :<C-u>CocPrev<CR>
+  nnoremap <silent><nowait> <SPACE>cp  :<C-u>CocListResume<CR>
+'''
+
+[[plugins]]
+repo = 'antoinemadec/coc-fzf'
+rev = 'release'
+hook_add = '''
+  nnoremap <silent><nowait> <SPACE>ca  :<C-u>CocFzfList diagnostics<CR>
+'''

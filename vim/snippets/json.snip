@@ -46,3 +46,43 @@ options     head
       "no-debugger": "error"
     }
   }
+
+snippet     tsconfig-script-strict
+abbr        tsc-script-strict typescript-config-strict
+options     head
+  {
+    "exclude": [
+      "node_modules"
+    ],
+    "include": [
+      "scripts/**/*.ts"
+    ],
+    "compilerOptions": {
+      "allowJs": true,
+      "isolatedModules": true,
+      "lib": [
+        "ES2020"
+      ],
+      "module": "CommonJS",
+      "noEmit": false,
+      "target": "ES2020",
+      "strict": true,
+      "baseUrl": ".",
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "typeRoots": [
+        "types",
+        "node_modules/@types"
+      ],
+      "noFallthroughCasesInSwitch": true,
+      "noImplicitReturns": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "forceConsistentCasingInFileNames": true,
+      "importsNotUsedAsValues": "error",
+      "preserveConstEnums": true,
+      "resolveJsonModule": true,
+      "skipLibCheck": true,
+      "useDefineForClassFields": true
+    }
+  }

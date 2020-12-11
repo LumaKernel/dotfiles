@@ -56,9 +56,23 @@ repo = 'cormacrelf/vim-colors-github'
 
 [[plugins]]
 repo = 'itchyny/vim-parenmatch'
+
 [[plugins]]
 repo = 'itchyny/vim-cursorword'
-if = '!g:from_pwsh'
+if = '!g:from_pwsh && !has("nvim")'
+
+[[plugins]]
+repo = 'dominikduda/vim_current_word'
+if = 'has("nvim")'
+hook_add = '''
+  let g:vim_current_word#highlight_twins = 1
+  augroup my_current_word
+    au ColorScheme * hi CurrentWordTwins guifg=Black guibg=#F5D7E3 gui=NONE ctermfg=Black ctermbg=LightMagenta cterm=NONE
+    au ColorScheme * hi CurrentWord guifg=Black guibg=#F4A5AE gui=NONE ctermfg=Black ctermbg=LightYellow cterm=NONE
+    " au ColorScheme * hi CurrentWordTwins guifg=#F5D7E3 guibg=Black gui=NONE ctermfg=LightMagenta ctermbg=Black cterm=NONE
+    " au ColorScheme * hi CurrentWord guifg=#F4A5AE guibg=Black gui=NONE ctermfg=LightYellow ctermbg=Black cterm=NONE
+  augroup END
+'''
 
 [[plugins]]
 repo = 'tyru/caw.vim'
@@ -153,8 +167,11 @@ hook_add = '''
 
 
 [[plugins]]
+# TODO: チューニングが悪いんだろうが、特定の状況、特定のファイル、特に TypeScript フロントエンドで半端なく重くなる。たえられーん。
+# matcher_full_fuzzy がわるいんかな。
 repo = 'Shougo/deoplete.nvim'
-if = "has('python3') || has('nvim')"
+if = 0
+# if = "has('python3') || has('nvim')"
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
 
@@ -254,7 +271,7 @@ hook_add = '''
 
 
   function! RipgrepFzf(query, fullscreen) abort
-    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+    let command_fmt = 'rg --hidden --column --line-number --no-heading --color=always --smart-case -- %s || true'
     let initial_command = printf(command_fmt, shellescape(a:query))
     let reload_command = printf(command_fmt, '{q}')
     let spec = {'options': [
@@ -785,10 +802,11 @@ hook_add = '''
 '''
 
 [[plugins]]
+if = 1
 repo = 'pantharshit00/vim-prisma'
 
 [[plugins]]
-if = 0
+if = "g:ts_lsp_mode is# 'tsu'"
 repo = 'Quramy/tsuquyomi'
 hook_add = '''
   let g:tsuquyomi_disable_quickfix = 1
@@ -819,10 +837,127 @@ hook_add = '''
 repo = 'kamykn/spelunker.vim'
 hook_add = '''
   let g:spelunker_white_list_for_user = [
+    \   'amqp',
+    \   'sitemap',
+    \   'configs',
+    \   'codegen',
+    \   'commonjs',
+    \   'sourcemap',
+    \   'changelog',
+    \   'codecov',
+    \   'commitlint',
+    \   'compat',
+    \   'cors',
     \   'crate',
+    \   'cuid',
+    \   'env',
+    \   'expire',
+    \   'expires',
+    \   'hyperid',
+    \   'interable',
+    \   'nanoid',
+    \   'nnoremap',
+    \   'nodemon',
+    \   'nominality',
+    \   'nullable',
+    \   'postgres',
+    \   'prebuild',
+    \   'preinstall',
+    \   'pretypecheck',
+    \   'prev',
+    \   'prisma',
+    \   'psql',
+    \   'readme',
+    \   'realpath',
+    \   'recaptcha',
+    \   'regex',
+    \   'regexp',
+    \   'remoteip',
+    \   'repo',
+    \   'sendgrid',
+    \   'stdin',
+    \   'stdout',
+    \   'stringify',
+    \   'cobertura',
+    \   'repl',
+    \   'nodejs',
+    \   'insertable',
+    \   'queryable',
+    \   'queryable',
+    \   'uuid',
     \ ]
+  let g:spelunker_complex_or_compound_word_group = 'Warning'
 '''
 
 [[plugins]]
 repo = 'kamykn/popup-menu.nvim'
-depends_on = ['spelunker.vim']
+
+[[plugins]]
+depends = ["deoplete.nvim"]
+repo = 'Shougo/deoplete-nextword'
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+if = 'has("nvim")'
+on_ft = [
+  'javascript',
+  'javascriptreact',
+  'typescript',
+  'typescriptreact',
+  'rust',
+  'go',
+  'c',
+  'cpp',
+  'elm',
+  'teal',
+  'java',
+  'dart',
+  'lua',
+  'ocaml',
+  'json',
+  'jsdoc',
+  'html',
+  'nix',
+  'kotlin',
+  'ocamllex',
+  'vue',
+  'scala',
+  'toml',
+  'bash',
+  'php',
+  'graphql',
+  'python',
+  'yaml',
+  'css',
+]
+on_cmd = [
+  "TSBufDisable",
+  "TSBufEnablescript",
+  "TSConfigInfo",
+  "TSDisableAll",
+  "TSEnableAll",
+  "TSInstal",
+  "TSInstallFromGrammar",
+  "TSInstallInfo",
+  "TSInstallSync",
+  "TSModuleInfo",
+  "TSUninstall",
+  "TSUpdate",
+]
+hook_add = '''
+  set foldmethod=expr
+  set foldexpr=nvim_treesitter#foldexpr()
+'''
+hook_post_source = '''
+  lua <<EOF
+    require'nvim-treesitter.configs'.setup {
+      ensure_installed = "all",
+      indent = {
+        enable = true,
+      },
+      highlight = {
+        enable = true,
+      },
+    }
+EOF
+'''

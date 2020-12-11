@@ -55,6 +55,12 @@ function man_vim
 end
 alias man=man_vim
 
+# -- eslint watch
+
+function esw-here
+  npx -p eslint-watch esw . --ext .js,.ts,.tsx,.json -w --changed --fix-dry-run
+end
+
 
 # # -- open-browser
 # function open-browser
@@ -149,6 +155,10 @@ function nvim-bench
   end
 end
 
+function rm_node_modules
+  /bin/rm -r ./node_modules
+end
+
 function ffm
   docker run --rm -it -v "$PWD":/tmp/h -w "/tmp/h" jrottenberg/ffmpeg "$argv"
 end
@@ -158,7 +168,7 @@ function ffp
 end
 
 function nvim-plug-here
-  nvim --cmd "let &rtp = &rtp .. expand('%:h:p')" "$argv"
+  nvim --cmd "let &rtp = &rtp .. ',' .. expand('%:h:p')" "$argv"
 end
 
 function nvim-only-here

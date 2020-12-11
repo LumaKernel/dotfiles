@@ -235,17 +235,14 @@ tools:
       - .textlintrc
 
   eslint-lint: &eslint-lint
-    lint-command: 'npx --no-install eslint --fix-dry-run -f unix --stdin --stdin-filename ${INPUT}'
+    lint-command: 'npx --no-install -- eslint_d --fix-dry-run -f unix --stdin --stdin-filename ${INPUT}'
     lint-ignore-exit-code: true
     lint-stdin: true
     root-markers:
-      - .eslintrc.js
-      - .eslintrc.yaml
-      - .eslintrc.yml
-      - .eslintrc.json
+      - .git
 
   eslint-format: &eslint-format
-    format-command: 'npx --no-install eslint --fix ${INPUT}'
+    format-command: 'npx --no-install -- eslint_d --fix ${INPUT}'
     format-stdin: false
     root-markers:
       - package.json
@@ -339,16 +336,16 @@ languages:
     - <<: *pandoc-rst-format
 
   javascript:
-    # - <<: *eslint-lint
-    # - <<: *eslint-format
+    - <<: *eslint-lint
+    - <<: *eslint-format
 
   typescript:
-    # - <<: *eslint-lint
+    - <<: *eslint-lint
     # - <<: *eslint-format
     # - <<: *prettier-format
 
   typescriptreact:
-    # - <<: *eslint-lint
+    - <<: *eslint-lint
     # - <<: *eslint-format
     # - <<: *prettier-format
 

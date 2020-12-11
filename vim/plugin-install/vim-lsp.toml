@@ -1,5 +1,6 @@
 [[plugins]]
 repo = 'LumaKernel/vim-lsp'
+if = "g:lsp_mode is# 'vim-lsp'"
 on_ft = [
   'vim',
   'python',
@@ -69,7 +70,7 @@ hook_add = '''
 
   " 名前は vim-lsp-settings と衝突しないように
   " my- をつける
-  
+
   let g:nvim_venv_pyls = expand('~/.local/venvs/nvim/bin/pyls')
   if executable(g:nvim_venv_pyls)
     autocmd User lsp_setup call lsp#register_server({
@@ -104,7 +105,21 @@ hook_add = '''
     augroup END
   endif
 
-  if executable('prisma-language-server') || 1
+  let g:deno_latest_bin = expand('~/.cargo/bin/deno')
+
+  if executable(g:deno_latest_bin) && 0
+    augroup my-deno-lsp
+      autocmd!
+      autocmd User lsp_setup call lsp#register_server({
+         \   'name': 'my-deno-lsp',
+         \   'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.git/'))},
+         \   'cmd': {server_info->[g:deno_latest_bin, 'lsp']},
+         \   'allowlist': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
+         \ })
+    augroup END
+  endif
+
+  if executable('prisma-language-server') || 0
     let g:pls_use_mine = 1
     let g:pls_path = g:pls_use_mine
       \ ? '/home/luma/workspace/prisma-language-tools/packages/language-server/bin/prisma-language-server'
@@ -136,9 +151,7 @@ hook_add = '''
   command! EnableAutoFormat let g:my_auto_format = 1
 
   let s:format_on_save_ft = [
-    \   "javascript",
-    \   "typescript",
-    \   "typescriptreact",
+    \   "nothing",
     \ ]
 
   augroup my-lsp-fmt-on-save
@@ -146,15 +159,16 @@ hook_add = '''
     execute "autocmd FileType" join(s:format_on_save_ft, ',') s:cmd
   augroup END
 
+  let g:lsp_log_file = expand('~/vim-lsp.log')
   if 0
     echom "[Warning] LSP Logging is on."
-    let g:lsp_log_file = expand('~/vim-lsp.log')
     call delete(g:lsp_log_file)
   endif
 '''
 
 [[plugins]]
-repo = 'mattn/vim-lsp-settings'
+if = "g:lsp_mode == 'vim-lsp'"
+repo = 'LumaKernel/vim-lsp-settings'
 depends = 'vim-lsp'
 # ~/.local/share/vim-lsp-settings/servers
 hook_add = '''
@@ -175,7 +189,7 @@ hook_add = '''
       \     }
       \   },
       \   'typescript-language-server': {
-      \     'disabled': 0,
+      \     'disabled': 1,
       \     'workspace_config': {
       \       'typescript': {
       \         'preferences': {
@@ -192,10 +206,11 @@ hook_add = '''
 
 [[plugins]]
 repo = 'lighttiger2505/deoplete-vim-lsp'
+if = "g:lsp_mode is# 'vim-lsp' && 0"
 depends = ['vim-lsp', 'deoplete.nvim']
 
 [[plugins]]
-if = 0
+if = "g:lsp_mode is# 'vim-lsp'"
 repo = 'tsuyoshicho/vim-efm-langserver-settings'
 depends = ['vim-lsp']
 hook_add = '''

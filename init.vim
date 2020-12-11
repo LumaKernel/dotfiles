@@ -11,6 +11,12 @@ if executable('/usr/bin/whoami') && system('/usr/bin/whoami') =~# '^root\(\n\|$\
   finish
 endif
 
+" "vim-lsp" | "coc" | "none"
+let g:lsp_mode = "coc"
+
+" "tsu" | "lsp" | "none"
+let g:ts_lsp_mode = "lsp"
+
 let g:from_pwsh = 0
 let g:is_wsl = 0
 silent! let g:from_pwsh = !has('nvim') && $RunFromPowershell ==# '1'
