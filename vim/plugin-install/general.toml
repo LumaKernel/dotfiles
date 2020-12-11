@@ -499,10 +499,12 @@ hook_add = '''
 
 [[plugins]]
 repo = 'HerringtonDarkholme/yats.vim'
+if = '!has("nvim")'
 on_ft = ["typescript", "typescriptreact"]
 
 [[plugins]]
 repo = 'othree/yajs.vim'
+if = '!has("nvim")'
 on_ft = ["javascript", "typescript", "javascriptreact", "typescriptreact"]
 
 [[plugins]]
