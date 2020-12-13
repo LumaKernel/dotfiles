@@ -1,0 +1,7 @@
+{
+  "eslint.autoFixOnSave": true,
+  "workspace.progressTarget": "statusline",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "rust"
+  ]
+}
