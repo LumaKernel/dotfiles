@@ -7,8 +7,10 @@ case $- in
     *i*) ;;
       *) return;;
 esac
-  echo 'linux/.bashrc'
 
+echo 'linux/.bashrc'
+
+export shell_name=bash
 
 # ---- vim の環境変数を削除
 unset VIM
