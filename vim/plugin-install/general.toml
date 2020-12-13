@@ -56,6 +56,7 @@ repo = 'cormacrelf/vim-colors-github'
 
 [[plugins]]
 repo = 'itchyny/vim-parenmatch'
+if = 0
 
 [[plugins]]
 repo = 'itchyny/vim-cursorword'
@@ -816,6 +817,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'jparise/vim-graphql.git'
+if = '!has("nvim")'
 
 [[plugins]]
 repo = 'heavenshell/vim-shutup.git'
@@ -962,4 +964,11 @@ hook_post_source = '''
       },
     }
 EOF
+'''
+
+[[plugins]]
+repo = 'andymass/vim-matchup'
+hook_add = '''
+  let g:matchup_matchparen_deferred = 1
+  let g:matchup_matchparen_hi_surround_always = 1
 '''

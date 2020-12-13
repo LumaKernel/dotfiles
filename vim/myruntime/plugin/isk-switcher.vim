@@ -5,7 +5,7 @@ function! SwitchIsKeyword() abort
   else
     let b:isk_save = &isk
     if '-' =~# '\k'
-      setlocal isk=-
+      setlocal isk-=-
     else
       setlocal isk+=-
     endif

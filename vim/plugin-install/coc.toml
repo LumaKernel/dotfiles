@@ -6,7 +6,7 @@ hook_add = '''
   set nobackup
   set nowritebackup
 
-  set cmdheight=2
+  " set cmdheight=2
 
   set shortmess+=c
 
@@ -63,6 +63,11 @@ hook_add = '''
   nnoremap <silent><nowait> <SPACE>cj  :<C-u>CocNext<CR>
   nnoremap <silent><nowait> <SPACE>ck  :<C-u>CocPrev<CR>
   nnoremap <silent><nowait> <SPACE>cp  :<C-u>CocListResume<CR>
+
+  nnoremap <silent><nowait> <SPACE>so  :<C-u>OR<CR>
+
+  hi link CocErrorHighlight Error
+  hi link CocWarningHighlight Warning
 '''
 
 [[plugins]]
@@ -70,4 +75,5 @@ repo = 'antoinemadec/coc-fzf'
 rev = 'release'
 hook_add = '''
   nnoremap <silent><nowait> <SPACE>ca  :<C-u>CocFzfList diagnostics<CR>
+  nnoremap <silent><nowait> <SPACE>cq  :<C-u>CocFzfList actions<CR>
 '''

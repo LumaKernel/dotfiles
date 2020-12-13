@@ -31,6 +31,8 @@ augroup END
 
 let g:loaded_matchparen = 1
 
+set iskeyword+=-
+
 set fileencodings=utf-8,cp932,utf-16le,euc-jp,sjis
 set fileformats=unix,dos
 set noswapfile
