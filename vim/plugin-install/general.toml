@@ -52,6 +52,197 @@ repo = 'AlessandroYorba/Sierra'
 repo = 'NLKNguyen/papercolor-theme'
 [[plugins]]
 repo = 'cormacrelf/vim-colors-github'
+[[plugins]]
+repo = 'bluz71/vim-nightfly-guicolors'
+[[plugins]]
+repo = 'mhartington/oceanic-next'
+[[plugins]]
+repo = 'glepnir/zephyr-nvim'
+
+
+[[plugins]]
+repo = 'itchyny/vim-gitbranch'
+if = "has('patch-8.2.0001') || has('nvim')"
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+if = "has('patch-8.2.0001') || has('nvim')"
+depends = []
+hook_add = '''
+  let g:lightline = {
+    \   'colorscheme': 'seoul256',
+    \   'active': {
+    \     'left':  [
+    \       [ 'mode', 'paste' ],
+    \       [ 'gitbranch', 'filename', 'filestat', 'modified', 'readonly' ],
+    \       [ 'charvaluehex' ],
+    \     ],
+    \     'right': [
+    \       [ 'lineinfo' ],
+    \       [ 'fileformat', 'fileencoding', 'filetype' ],
+    \     ],
+    \   },
+    \   'inactive': {
+    \     'left':  [
+    \       [ 'gitbranch', 'filename', 'filestat', 'modified', 'readonly' ],
+    \     ],
+    \     'right': [
+    \       [ 'lineinfo' ],
+    \       [ 'fileformat', 'fileencoding', 'filetype' ],
+    \     ],
+    \   },
+    \   'component': {
+    \     'charvaluehex': '0x%B',
+    \   },
+    \   'component_function': {
+    \     'mode': 'MyMode',
+    \     'gitbranch': 'MyGitBrnach',
+    \     'readonly': 'MyReadonly',
+    \     'filename': 'MyFilename',
+    \     'filestat': 'MyFilestat',
+    \     'modified': 'MyModified',
+    \     'fileformat': 'MyFileformat',
+    \   },
+    \ }
+
+  function MyGitBrnach()
+    if &buftype is# 'help'
+      return ''
+    elseif !empty(getcmdwintype())
+      return ''
+    elseif &filetype is# 'fern'
+      return ''
+    endif
+    let res = gitbranch#name()
+    if empty(res)
+      return 'no git'
+    endif
+    return printf('git:%s', res)
+  endfunction
+
+  function MyReadonly()
+    if &buftype is# 'help'
+      return ''
+    elseif !empty(getcmdwintype())
+      return ''
+    elseif &filetype is# 'fern'
+      return ''
+    endif
+    return &ro is# 1 ? 'RO' : ''
+  endfunction
+
+  function! MyFilename()
+    if &buftype is# 'help'
+      return ''
+    elseif &filetype is# 'fern'
+      return ''
+    endif
+    return expand('%:t')
+  endfunction
+
+  if executable('stat')
+    let g:MyStatCache = {}
+    function! MyFilestat()
+      let filename = g:MyGetFilename()
+
+      if empty(filename)
+        return filename
+      endif
+
+      if has_key(g:MyStatCache, filename)
+        return g:MyStatCache[filename]
+      endif
+
+      let res = ''
+      silent! let res = trim(
+        \   system(printf("stat --format '%%a' %s", shellescape(filename)))
+        \ )
+      if match(res, '^\d\d\d$') == -1
+        return ''
+      endif
+      let g:MyStatCache[filename] = res
+      return res
+    endfunction
+
+    function! MyStatCacheDeleteThis()
+      let filename = g:MyGetFilename()
+
+      if empty(filename)
+        return filename
+      endif
+
+      silent! unlet! g:MyStatCache[filename]
+    endfunction
+
+    function! MyGetFilename()
+      if &buftype is# 'help'
+        return ''
+      elseif !empty(getcmdwintype())
+        return ''
+      elseif &filetype is# 'fern'
+        let filename = GetFernDirname()
+      else
+        let filename = expand('%:p')
+      endif
+
+      return filename
+    endfunction
+
+    augroup MyStatCache
+      autocmd BufEnter * call g:MyStatCacheDeleteThis()
+    augroup END
+  else
+    function! MyFilestat()
+      return ''
+    endfunction
+  endif
+
+  function! MyMode()
+    if &buftype is# 'help'
+      return ''
+    elseif !empty(getcmdwintype())
+      return ''
+    elseif &filetype is# 'fern'
+      return GetFernDirname()
+    endif
+    return toupper(mode())
+  endfunction
+
+  function! MyFileformat()
+    if &buftype is# 'help'
+      return ''
+    elseif !empty(getcmdwintype())
+      return ''
+    elseif &filetype is# 'fern'
+      return GetFernDirname()
+    endif
+
+    if &ff is# 'dos'
+      return '\r\n'
+    elseif &ff is# 'unix'
+      return '\n'
+    elseif &ff is# 'mac'
+      return '\r'
+    endif
+    return ''
+  endfunction
+
+  function! MyModified()
+    if &buftype is# 'help'
+      return ''
+    elseif !empty(getcmdwintype())
+      return ''
+    elseif &filetype is# 'fern'
+      return ''
+    endif
+
+    return &modified is# 1 ? '*' : ''
+  endfunction
+
+  function! GetFernDirname()
+    let path = get(matchlist(expand('%'), 'fern://[^/]\+/file://\(.*\)\$'), 1, '')
+    return path
+  endfunction
+'''
 
 
 [[plugins]]
@@ -866,6 +1057,8 @@ hook_add = '''
     \   'nullable',
     \   'postgres',
     \   'prebuild',
+    \   'playlist',
+    \   'readdir',
     \   'preinstall',
     \   'pretypecheck',
     \   'prev',
@@ -882,7 +1075,10 @@ hook_add = '''
     \   'sendgrid',
     \   'stdin',
     \   'stdout',
+    \   'cognito',
     \   'stringify',
+    \   'whitelist',
+    \   'contrib',
     \   'cobertura',
     \   'repl',
     \   'nodejs',

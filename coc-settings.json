@@ -3,5 +3,16 @@
   "workspace.progressTarget": "statusline",
   "coc.preferences.formatOnSaveFiletypes": [
     "rust"
-  ]
+  ],
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {}
+    }
+  },
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  }
 }

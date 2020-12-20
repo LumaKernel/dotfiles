@@ -92,8 +92,11 @@ alias replocaml="rlwrap ocaml"
 alias checkhealth="nvim +checkhealth"
 alias p="pet exec"
 alias repl="rlwrap"
+alias dk="docker"
 alias dc="docker-compose"
 alias dce="docker-compose exec"
+
+alias tf="terraform"
 
 function dcc
   repl docker-compose exec "$argv" /bin/bash

@@ -229,3 +229,5 @@ export SDKMAN_DIR="/home/luma/.sdkman"
 # fnm
 export PATH=/home/luma/.fnm:$PATH
 eval "`fnm env`"
+
+complete -C /usr/bin/terraform terraform

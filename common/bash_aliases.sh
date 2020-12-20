@@ -34,6 +34,11 @@ alias man=man_vim
 # -- git
 alias gs="git status --short"
 alias gp="git push"
-alias ga="git add ."
-alias gc="git commit -m"
+alias ga="git add"
+alias gc="git commit"
 alias gl="git lg"
+
+# -- some
+alias dk="docker"
+alias dc="docker-compose"
+alias tf="terraform"

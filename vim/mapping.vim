@@ -78,3 +78,74 @@ xnoremap <silent> <LT> <LT>gv
 xnoremap <silent> > >gv
 
 noremap <expr> 0 getline('.')[: col('.') - 2] =~# '^\s\+$' ? '0' : '^'
+
+nnoremap <C-g><C-g> <C-g>
+
+" like A<ESC>
+nnoremap <C-g>a $
+nnoremap <C-g>A $
+nnoremap <C-g><C-a> $
+
+" like I<ESC>
+nmap <C-g>i 0
+nmap <C-g>I 0
+nmap <C-g><C-i> 0
+
+" No number row mapping (developping) (JIS)
+" $: see above
+inoremap ;a $
+inoremap ;A $
+inoremap ;<C-a> $
+
+" 0: see above
+inoremap ;i 0
+inoremap ;I 0
+inoremap ;<C-i> 0
+
+" [o]r
+inoremap ;o <BAR><BAR>
+inoremap ;O <BAR><BAR>
+inoremap ;<C-o> <BAR><BAR>
+
+" a[n]d
+inoremap ;n &&
+inoremap ;N &&
+inoremap ;<C-n> &&
+
+" shar[p]
+inoremap ;p #
+inoremap ;P #
+inoremap ;<C-p> #
+
+" [s]inglequote
+inoremap ;s '
+inoremap ;S '
+inoremap ;<C-s> '
+
+" [d]oublequote
+inoremap ;d "
+inoremap ;D "
+inoremap ;<C-d> "
+
+" left(vim h) parenthes
+inoremap ;h (
+inoremap ;H (
+inoremap ;<C-h> (
+
+" right(vim l) parenthes
+inoremap ;l )
+inoremap ;l )
+inoremap ;<C-l> )
+
+" [f]ive
+inoremap ;f 5
+inoremap ;F 5
+inoremap ;<C-f> 5
+
+" [e]ight
+inoremap ;e 8
+inoremap ;E 8
+inoremap ;<C-e> 8
+
+inoremap ;; ;
+inoremap ;<ESC> ;<ESC>
