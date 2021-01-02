@@ -102,10 +102,11 @@ hook_add = '''
 
   let g:startify_commands = [
         \   ':echo "hi"',
-        \   ':DeinClean',
         \   ':call dein#recache_runtimepath()',
+        \   ':call dein#check_update()',
         \   ':call dein#build()',
         \   ':call dein#remote_plugins()',
+        \   ':DeinClean',
         \   ':CocConfig',
         \   ':History',
         \   ':Colors',

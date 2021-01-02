@@ -177,3 +177,11 @@ end
 function nvim-only-here
   nvim -u DEFAULTS --cmd "let &rtp = expand('%:h:p') .. ',' .. &rtp" "$argv"
 end
+
+function node-generate-password
+  node -e "require('crypto').randomBytes(48, function(err, buffer) { var token = buffer.toString('hex'); console.log(token); });"
+end
+
+function node-use-port
+  node -e "[3000,8000].forEach(async(p)=>{try{await new Promise((rs,rj)=>require('http').createServer().listen(p,void 0,rs).on('error',rj));console.log(`\${p}: listening`)}catch{console.log(`\${p}: already used`)}})"
+end

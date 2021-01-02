@@ -1,5 +1,6 @@
 {
   "eslint.autoFixOnSave": true,
+  "eslint.enable": true,
   "workspace.progressTarget": "statusline",
   "coc.preferences.formatOnSaveFiletypes": [
     "rust"
@@ -13,6 +14,9 @@
     }
   },
   "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck"
+    "sh": {
+      "command": "shellcheck",
+      "args": ["-x"]
+    }
   }
 }

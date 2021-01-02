@@ -68,6 +68,19 @@ hook_add = '''
 
   hi link CocErrorHighlight Error
   hi link CocWarningHighlight Warning
+
+  let g:coc_global_extensions = [
+    \   'coc-eslint',
+    \   'coc-diagnostic',
+    \   'coc-yaml',
+    \   'coc-tsserver',
+    \   'coc-rust-analyzer',
+    \   'coc-python',
+    \   'coc-prisma',
+    \   'coc-json',
+    \   'coc-go',
+    \   'coc-neosnippet',
+    \ ]
 '''
 
 [[plugins]]
