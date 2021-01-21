@@ -76,11 +76,22 @@ hook_add = '''
     \   'coc-tsserver',
     \   'coc-rust-analyzer',
     \   'coc-python',
+    \   'coc-vetur',
     \   'coc-prisma',
     \   'coc-json',
     \   'coc-go',
     \   'coc-neosnippet',
+    \   'coc-svelte',
     \ ]
+
+  let g:my_coc_debug = 0
+
+  if g:my_coc_debug
+    echom "Warnign: coc debug mode is on"
+    let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
+    let g:node_client_debug = 1
+    " :call coc#client#open_log()
+  endif
 '''
 
 [[plugins]]

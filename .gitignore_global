@@ -8,3 +8,6 @@ yarn-error.log
 .env
 local_init.vim
 .vim/
+:w
+[
+]

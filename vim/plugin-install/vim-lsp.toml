@@ -1,5 +1,5 @@
 [[plugins]]
-repo = 'LumaKernel/vim-lsp'
+repo = 'prabirshrestha/vim-lsp'
 if = "g:lsp_mode is# 'vim-lsp'"
 on_ft = [
   'vim',
@@ -12,6 +12,7 @@ on_ft = [
   'scss',
   'less',
   'markdown',
+  'text',
   'yaml',
   'json',
   'json5',
@@ -72,11 +73,11 @@ hook_add = '''
   " my- をつける
 
   let g:nvim_venv_pyls = expand('~/.local/venvs/nvim/bin/pyls')
-  if executable(g:nvim_venv_pyls)
+  if executable(g:nvim_venv_pyls) && 0
     autocmd User lsp_setup call lsp#register_server({
       \   'name': 'my-pyls',
       \   'cmd': {server_info->[g:nvim_venv_pyls]},
-      \   'whitelist': ['python'],
+      \   'allowlist': ['python'],
       \   'workspace_config': {
       \     'pyls': {
       \       'plugins': {
@@ -91,6 +92,15 @@ hook_add = '''
       \     }
       \   }
       \ })
+  endif
+
+  if executable("node") && 1
+    autocmd User lsp_setup call lsp#register_server({
+      \   'name': 'my-vfile',
+      \   'cmd': {server_info->['node', '/home/luma/workspace/vfile-reporter-daemon/dist/bin/index.js', 'lsp', '--stdin']},
+      \   'allowlist': ['text', 'markdown'],
+      \ })
+
   endif
 
   if executable('rome') && 0
@@ -119,7 +129,7 @@ hook_add = '''
     augroup END
   endif
 
-  if executable('prisma-language-server') || 0
+  if executable('prisma-language-server') && 0
     let g:pls_use_mine = 1
     let g:pls_path = g:pls_use_mine
       \ ? '/home/luma/workspace/prisma-language-tools/packages/language-server/bin/prisma-language-server'
@@ -160,7 +170,7 @@ hook_add = '''
   augroup END
 
   let g:lsp_log_file = expand('~/vim-lsp.log')
-  if 0
+  if 1
     echom "[Warning] LSP Logging is on."
     call delete(g:lsp_log_file)
   endif
@@ -210,7 +220,7 @@ if = "g:lsp_mode is# 'vim-lsp' && 0"
 depends = ['vim-lsp', 'deoplete.nvim']
 
 [[plugins]]
-if = "g:lsp_mode is# 'vim-lsp'"
+if = "g:lsp_mode is# 'vim-lsp' && 0"
 repo = 'tsuyoshicho/vim-efm-langserver-settings'
 depends = ['vim-lsp']
 hook_add = '''

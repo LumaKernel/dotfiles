@@ -1033,6 +1033,8 @@ repo = 'kamykn/spelunker.vim'
 hook_add = '''
   let g:spelunker_white_list_for_user = [
     \   'amqp',
+    \   'blocklist',
+    \   'allowlist',
     \   'sitemap',
     \   'configs',
     \   'codegen',
@@ -1086,6 +1088,25 @@ hook_add = '''
     \   'queryable',
     \   'queryable',
     \   'uuid',
+    \   'refactor',
+    \   'rehype',
+    \   'remark',
+    \   'retext',
+    \   'unist',
+    \   'hashicorp',
+    \   'nmap',
+    \   'vmap',
+    \   'autocmd',
+    \   'loclist',
+    \   'noborder',
+    \   'xmap',
+    \   'xnoremap',
+    \   'wincmd',
+    \   'prettierrc',
+    \   'thenable',
+    \   'restapi',
+    \   'restapis',
+    \   'resourcegroups',
     \ ]
   let g:spelunker_complex_or_compound_word_group = 'Warning'
 '''
@@ -1177,3 +1198,15 @@ hook_add = '''
   let g:matchup_matchparen_deferred = 1
   let g:matchup_matchparen_hi_surround_always = 1
 '''
+
+[[plugins]]
+repo = 'pechorin/any-jump.vim'
+
+
+[[plugins]]
+repo = 'evanleck/vim-svelte'
+on_path = '\.svelte$'
+rev = 'main'
+
+[[plugins]]
+repo = 'fidian/hexmode'
