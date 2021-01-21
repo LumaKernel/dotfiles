@@ -4,8 +4,8 @@ if [ (whoami) = "root" ]
   exit 1
 end
 
-fisher add joehillen/to-fish
-# fisher add jorgebucaran/fish-nvm
-fisher add otms61/fish-pet
-fisher add LumaKernel/fish-gulp-complete
-fisher add LumaKernel/fish-fd-complete@main
+fisher install joehillen/to-fish
+# fisher install jorgebucaran/fish-nvm
+fisher install otms61/fish-pet
+fisher install LumaKernel/fish-gulp-complete
+fisher install LumaKernel/fish-fd-complete@main

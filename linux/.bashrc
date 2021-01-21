@@ -231,3 +231,7 @@ export PATH=/home/luma/.fnm:$PATH
 eval "`fnm env`"
 
 complete -C /usr/bin/terraform terraform
+
+# fnm
+export PATH=/home/luma/.fnm:$PATH
+eval "`fnm env`"

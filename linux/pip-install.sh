@@ -1,13 +1,10 @@
 #!/bin/bash
 
-if [ "`whoami`" == "root" ]; then
-  echo "[Error] Do NOT run with sudo."
-  exit 1
-fi
+PIP="pip3"
 
 # -- pip でのインストール
-pip install powerline-shell
-pip install pylint flake8
-pip install pynvim
-pip install jedi
-pip install trash-cli
+$PIP install powerline-shell
+$PIP install pylint flake8
+$PIP install pynvim
+$PIP install jedi
+$PIP install trash-cli

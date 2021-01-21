@@ -195,13 +195,7 @@ endif
 
 
 if has('nvim')
-  if has('win32unix')
-    let g:python3_host_prog = systemlist('which python3')[0]
-  elseif has('win32')
-    let g:python3_host_prog = systemlist('where python')[0]
-  else
-    let g:python3_host_prog = systemlist('which python')[0]
-  endif
+  let g:python3_host_prog = systemlist('which python3')[0]
 else
   if has('win32unix')
     " 対応しない！
