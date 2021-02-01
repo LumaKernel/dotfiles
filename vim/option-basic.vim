@@ -32,6 +32,7 @@ augroup END
 let g:loaded_matchparen = 1
 
 set iskeyword+=-
+set isfname+=@-@
 
 set fileencodings=utf-8,cp932,utf-16le,euc-jp,sjis
 set fileformats=unix,dos
@@ -112,7 +113,7 @@ set nofixeol
 " 不可視文字表示
 set list
 " 不可視文字を可視化
-set listchars=tab:>-,eol:$,extends:≫,precedes:≪,nbsp:%,space:·
+set listchars=tab:>-,eol:$,extends:≫,precedes:≪,nbsp:%
 " Tab文字を半角スペースにする
 set expandtab
 " 行頭以外のTab文字の表示幅(スペースいくつ分)

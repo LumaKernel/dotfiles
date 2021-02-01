@@ -126,7 +126,10 @@ export PATH=$PATH:$HOME/bin
 
 
 # ---- cargo
-export PATH=$PATH:$HOME/.cargo/bin
+if test -z "$CARGO_BIN_PATH"; then
+  export CARGO_BIN_PATH="$HOME/.cargo/bin"
+  export PATH="$CARGO_BIN_PATH:$PATH"
+fi
 
 
 # ---- delete my fish envs
@@ -232,6 +235,8 @@ eval "`fnm env`"
 
 complete -C /usr/bin/terraform terraform
 
-# fnm
-export PATH=/home/luma/.fnm:$PATH
-eval "`fnm env`"
+# Wasmer
+if ! command -v wasmer >/dev/null; then
+  export WASMER_DIR="$HOME/.wasmer"
+  [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+fi

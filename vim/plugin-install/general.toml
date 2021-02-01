@@ -58,6 +58,16 @@ repo = 'bluz71/vim-nightfly-guicolors'
 repo = 'mhartington/oceanic-next'
 [[plugins]]
 repo = 'glepnir/zephyr-nvim'
+[[plugins]]
+if = 'has("nvim")'
+repo = 'tjdevries/colorbuddy.vim'
+[[plugins]]
+if = 'has("nvim")'
+repo = 'tjdevries/gruvbuddy.nvim'
+hook_post_source = '''
+  lua require('colorbuddy').colorscheme('gruvbuddy')
+'''
+
 
 
 [[plugins]]
@@ -274,7 +284,6 @@ repo = 'lambdalisue/fern.vim'
 hook_add = '''
   let g:fern#profile = 0
   let g:fern#disable_viewer_auto_duplication = 1
-  let g:fern#disable_viewer_hide_cursor = 1
   let s:fern_default_exclude_pats = ['^\.git$', '^\.DS_Store$', '^node_modules$', '^dist$', '^:Zone\.Identifier$', '^__pycache__$']
 
   function! s:GetFernExclude() abort
@@ -734,9 +743,23 @@ on_ft = "markdown"
 repo = 'LumaKernel/fern-mapping-fzf.vim'
 depends = ['fzf', 'fern.vim']
 hook_add = '''
-  function! s:reveal(dict) abort
-    execute "FernReveal" a:dict.relative_path
+  function! Fern_mapping_fzf_customize_option(spec)
+    let a:spec.options .= ' --multi'
+    return fzf#vim#with_preview(a:spec)
   endfunction
+
+  function! Fern_mapping_fzf_before_all(dict)
+    if !len(a:dict.lines)
+      return
+    endif
+    return a:dict.fern_helper.async.update_marks([])
+  endfunction
+
+  function! s:reveal(dict)
+    execute "FernReveal -wait" a:dict.relative_path
+    execute "normal \<Plug>(fern-action-mark:set)"
+  endfunction
+
   let g:Fern_mapping_fzf_file_sink = function('s:reveal')
   let g:Fern_mapping_fzf_dir_sink = function('s:reveal')
 '''
@@ -877,15 +900,6 @@ hook_post_source = '''
 [[plugins]]
 repo = 'ocaml/vim-ocaml'
 on_ft = 'ocaml'
-
-[[plugins]]
-if = 0
-# TODO: 動かないとりあえず保留
-# if = "has('nvim') && !has('win32')"
-repo = 'nvim-treesitter/nvim-treesitter'
-hook_post_source ='''
-  lua require'nvim-treesitter.configs'.setup { ensure_installed = 'all' }
-'''
 
 [[plugins]]
 repo = 'tweekmonster/django-plus.vim'
@@ -1210,3 +1224,6 @@ rev = 'main'
 
 [[plugins]]
 repo = 'fidian/hexmode'
+
+[[plugins]]
+repo = 'glepnir/indent-guides.nvim'

@@ -29,6 +29,7 @@ sudo apt-get install ripgrep -y
 
 sudo apt-get install tmux -y
 sudo apt-get install fish -y
+sudo apt-get install rlwrap -y
 
 # -- install tmux-powerline
 bash $HOME/dotfiles/linux/install-tmux-powerline.sh

@@ -185,3 +185,27 @@ end
 function node-use-port
   node -e "[3000,8000].forEach(async(p)=>{try{await new Promise((rs,rj)=>require('http').createServer().listen(p,void 0,rs).on('error',rj));console.log(`\${p}: listening`)}catch{console.log(`\${p}: already used`)}})"
 end
+
+function wp
+  wasm-pack $argv
+end
+
+function wasm-pack-watch
+  set -l ARGS
+  if test (count $argv) = 0
+    set ARGS "build"
+  else
+    set ARGS $argv
+  end
+  cargo watch -i "pkg/*" -i "*.{html,ts,js,tsx,svelte,vue,css,scss,sass,less}" -s "wasm-pack $ARGS"
+end
+
+function wpw
+  wasm-pack-watch $argv
+end
+
+function g
+  if set -l REPO (ghq list | fzf)
+    cd (ghq root)"/$REPO"
+  end
+end

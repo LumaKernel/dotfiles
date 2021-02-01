@@ -37,6 +37,13 @@ command -v pyenv >/dev/null 2>&1
 command -v rbenv >/dev/null 2>&1
   and source (rbenv init -|psub)
 
+# -- wasmer
+if test -z "$WASMER_DIR"
+  set -x WASMER_DIR "$HOME/.wasmer"
+  set -x WASMER_CACHE_DIR "$WASMER_DIR/cache"
+  set -x PATH "$WASMER_DIR/bin" $PATH "$WASMER_DIR/globals/wapm_packages/.bin"
+end
+
 # --
 functions --copy cd cd_default
 function cd
@@ -98,7 +105,7 @@ activate_venv
 
 
 # -- clipboard
-if [ $is_WSL = '1' ]
+if test $is_WSL = '1'
   function fish_clipboard_copy
     set -l cmdline (commandline --current-selection)
     test -n "$cmdline"; or set cmdline (commandline)
@@ -133,16 +140,16 @@ if [ $is_WSL = '1' ]
     else if type -q xclip
       set data (xclip -selection clipboard -o 2>/dev/null)
     end
-    
+
     # Issue 6254: Handle zero-length clipboard content
     if not string match -qr . -- "$data"
       return 1
     end
-    
+
     # Also split on \r to turn it into a newline,
     # otherwise the output looks really confusing.
     set data (string split \r -- $data)
-    
+
     # If the current token has an unmatched single-quote,
     # escape all single-quotes (and backslashes) in the paste,
     # in order to turn it into a single literal token.

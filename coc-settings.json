@@ -1,7 +1,9 @@
 {
   "eslint.autoFixOnSave": true,
-  "eslint.enable": true,
-  "workspace.progressTarget": "statusline",
+  "diagnostic.errorSign": ">>",
+  "diagnostic.warningSign": "--",
+  "diagnostic.infoSign": "..",
+  "diagnostic.hintSign": "..",
   "coc.preferences.formatOnSaveFiletypes": [
     "rust"
   ],
