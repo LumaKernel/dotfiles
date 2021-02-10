@@ -91,7 +91,7 @@ return
 
 ; Alt + Ctrl + hjkl
 
-!+h::
+!^h::
 WinGetActiveTitle, Title
 if Title != WSL
 {
@@ -99,7 +99,7 @@ if Title != WSL
 }
 return
 
-!+j::
+!^j::
 WinGetActiveTitle, Title
 if Title != WSL
 {
@@ -107,7 +107,7 @@ if Title != WSL
 }
 return
 
-!+k::
+!^k::
 WinGetActiveTitle, Title
 if Title != WSL
 {
@@ -115,7 +115,7 @@ if Title != WSL
 }
 return
 
-!+l::
+!^l::
 WinGetActiveTitle, Title
 if Title != WSL
 {
