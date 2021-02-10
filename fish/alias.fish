@@ -67,11 +67,11 @@ end
 #   set OPEN_BROWSER_PATH ~/.cache/dein/nvim/repos/github.com/tyru/open-browser.vim
 #   nvim -u NONE -i NONE -N -n --headless --cmd "set rtp+=$OPEN_BROWSER_PATH" "+runtime! plugin/openbrowser.vim | sil! OpenBrowser $argv"
 # end
-# 
-# if [ "$is_WSL" = 1 ]
-#   alias cdwin='cd $WinHome'
-#   alias open=open-browser
-# end
+
+if [ "$is_WSL" = 1 ]
+  alias cdwin='cd $WinHome'
+  alias open=open-browser
+end
 
 # -- browser
 # used by, for example gh cli
