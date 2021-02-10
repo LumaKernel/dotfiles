@@ -21,142 +21,22 @@ return
 Send, {Escape}
 return
 
-; Alt + hjkl
-
-!h::
-IfWinActive, WSL
-{
-  Send, {!h}
-}
-else
-{
-  Send, {Left}
-}
-return
-
-!j::
-IfWinActive, WSL
-{
-  Send, {!j}
-}
-else
-{
-  Send, {Down}
-}
-return
-
-!k::
-IfWinActive, WSL
-{
-  Send, {!k}
-}
-else
-{
-  Send, {Up}
-}
-return
-
-!l::
-IfWinActive, WSL
-{
-  Send, {!i}{l}
-}
-else
-{
-  Send, {Right}
-}
-return
-
 ; Alt + Shift + hjkl
 
 !+h::
-IfWinActive, WSL
-{
-  Send, {!+h}
-}
-else
-{
-  Send, {+Left}
-}
+Send, {Left}
 return
 
 !+j::
-IfWinActive, WSL
-{
-  Send, {!+j}
-}
-else
-{
-  Send, {+Down}
-}
+Send, {Down}
 return
 
 !+k::
-IfWinActive, WSL
-{
-  Send, {!+k}
-}
-else
-{
-  Send, {+Up}
-}
+Send, {Up}
 return
 
 !+l::
-IfWinActive, WSL
-{
-  Send, {!+l}
-}
-else
-{
-  Send, {+Right}
-}
-return
-
-; Alt + Ctrl + hjkl
-
-!^h::
-IfWinActive, WSL
-{
-  Send, {!^h}
-}
-else
-{
-  Send, {^Left}
-}
-return
-
-!^j::
-IfWinActive, WSL
-{
-  Send, {!^j}
-}
-else
-{
-  Send, {^Down}
-}
-return
-
-!^k::
-IfWinActive, WSL
-{
-  Send, {!^k}
-}
-else
-{
-  Send, {^Up}
-}
-return
-
-!^l::
-IfWinActive, WSL
-{
-  Send, {!^l}
-}
-else
-{
-  Send, {^Right}
-}
+Send, {Right}
 return
 
 vk1D & b::
