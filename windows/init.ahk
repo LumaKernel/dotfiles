@@ -24,32 +24,44 @@ return
 ; Alt + hjkl
 
 !h::
-WinGetActiveTitle, Title
-if Title != WSL
+IfWinActive, WSL
+{
+  Send, {Alt Down}{h}{Alt Up}
+}
+else
 {
   Send, {Left}
 }
 return
 
 !j::
-WinGetActiveTitle, Title
-if Title != WSL
+IfWinActive, WSL
+{
+  Send, {Alt Down}{j}{Alt Up}
+}
+else
 {
   Send, {Down}
 }
 return
 
 !k::
-WinGetActiveTitle, Title
-if Title != WSL
+IfWinActive, WSL
+{
+  Send, {Alt Down}{k}{Alt Up}
+}
+else
 {
   Send, {Up}
 }
 return
 
 !l::
-WinGetActiveTitle, Title
-if Title != WSL
+IfWinActive, WSL
+{
+  Send, {Alt Down}{l}{Alt Up}
+}
+else
 {
   Send, {Right}
 }
