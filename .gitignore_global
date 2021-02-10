@@ -5,7 +5,6 @@ __pycache__/
 .mypy_cache/
 yarn-error.log
 *:Zone.Identifier
-.env
 local_init.vim
 .vim/
 :w

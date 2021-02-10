@@ -20,5 +20,6 @@
       "command": "shellcheck",
       "args": ["-x"]
     }
-  }
+  },
+  "coc.source.neosnippet.priority": 40
 }

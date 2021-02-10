@@ -55,3 +55,12 @@ options     head
       throw new Error("Logic Error");
     }
   }
+
+snippet processenv
+abbr env_values
+abbr nodejs_env_values
+  declare namespace NodeJS {
+    interface ProcessEnv {
+      readonly NODE_ENV?: 'development' | 'production' | 'test'
+    }
+  }

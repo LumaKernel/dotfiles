@@ -209,3 +209,22 @@ function g
     cd (ghq root)"/$REPO"
   end
 end
+
+function docker-tcpdump
+  set -l sh_commands '
+  if ! command -v tcpdump > /dev/null; then
+    if command -v apt-get > /dev/null; then
+      apt-get update
+      apt-get install -y tcpdump
+    elif command -v apk > /dev/null; then
+      apk update
+      apk add tcpdump
+    else
+      echo "ERROR: docker-tcpdump: no configured package manager."
+      exit 1
+    fi
+  fi
+  tcpdump -X -s 0
+  '
+  docker exec -it -u root $argv sh -c "$sh_commands"
+end

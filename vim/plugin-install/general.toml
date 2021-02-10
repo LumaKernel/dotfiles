@@ -741,6 +741,7 @@ on_ft = "markdown"
 
 [[plugins]]
 repo = 'LumaKernel/fern-mapping-fzf.vim'
+rev="feat-root"
 depends = ['fzf', 'fern.vim']
 hook_add = '''
   function! Fern_mapping_fzf_customize_option(spec)
@@ -1227,3 +1228,7 @@ repo = 'fidian/hexmode'
 
 [[plugins]]
 repo = 'glepnir/indent-guides.nvim'
+
+[[plugins]]
+repo = '/home/luma/workspace/coc-denoland'
+merged = 0
