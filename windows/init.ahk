@@ -59,7 +59,7 @@ return
 !l::
 IfWinActive, WSL
 {
-  Send, {!l}
+  Send, {!i}{l}
 }
 else
 {
