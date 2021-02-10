@@ -3,6 +3,8 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+
+
 ^h::
 Send, {Backspace}
 return
@@ -19,20 +21,106 @@ return
 Send, {Escape}
 return
 
+; Alt + hjkl
+
 !h::
-Send, {Left}
+WinGetActiveTitle, Title
+if Title != WSL
+{
+  Send, {Left}
+}
 return
 
 !j::
-Send, {Down}
+WinGetActiveTitle, Title
+if Title != WSL
+{
+  Send, {Down}
+}
 return
 
 !k::
-Send, {Up}
+WinGetActiveTitle, Title
+if Title != WSL
+{
+  Send, {Up}
+}
 return
 
 !l::
-Send, {Right}
+WinGetActiveTitle, Title
+if Title != WSL
+{
+  Send, {Right}
+}
+return
+
+; Alt + Shift + hjkl
+
+!+h::
+WinGetActiveTitle, Title
+if Title != WSL
+{
+  Send, {Shift Down}{Left}{Shift Up}
+}
+return
+
+!+j::
+WinGetActiveTitle, Title
+if Title != WSL
+{
+  Send, {Shift Down}{Down}{Shift Up}
+}
+return
+
+!+k::
+WinGetActiveTitle, Title
+if Title != WSL
+{
+  Send, {Shift Down}{Up}{Shift Up}
+}
+return
+
+!+l::
+WinGetActiveTitle, Title
+if Title != WSL
+{
+  Send, {Shift Down}{Right}{Shift Up}
+}
+return
+
+; Alt + Ctrl + hjkl
+
+!+h::
+WinGetActiveTitle, Title
+if Title != WSL
+{
+  Send, {Ctrl Down}{Left}{Ctrl Up}
+}
+return
+
+!+j::
+WinGetActiveTitle, Title
+if Title != WSL
+{
+  Send, {Ctrl Down}{Down}{Ctrl Up}
+}
+return
+
+!+k::
+WinGetActiveTitle, Title
+if Title != WSL
+{
+  Send, {Ctrl Down}{Up}{Ctrl Up}
+}
+return
+
+!+l::
+WinGetActiveTitle, Title
+if Title != WSL
+{
+  Send, {Ctrl Down}{Right}{Ctrl Up}
+}
 return
 
 vk1D & b::
