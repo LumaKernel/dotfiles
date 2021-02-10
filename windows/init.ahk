@@ -26,7 +26,7 @@ return
 !h::
 IfWinActive, WSL
 {
-  Send, {Alt Down}{h}{Alt Up}
+  Send, {!h}
 }
 else
 {
@@ -37,7 +37,7 @@ return
 !j::
 IfWinActive, WSL
 {
-  Send, {Alt Down}{j}{Alt Up}
+  Send, {!j}
 }
 else
 {
@@ -48,7 +48,7 @@ return
 !k::
 IfWinActive, WSL
 {
-  Send, {Alt Down}{k}{Alt Up}
+  Send, {!k}
 }
 else
 {
@@ -59,7 +59,7 @@ return
 !l::
 IfWinActive, WSL
 {
-  Send, {Alt Down}{l}{Alt Up}
+  Send, {!l}
 }
 else
 {
@@ -70,68 +70,92 @@ return
 ; Alt + Shift + hjkl
 
 !+h::
-WinGetActiveTitle, Title
-if Title != WSL
+IfWinActive, WSL
 {
-  Send, {Shift Down}{Left}{Shift Up}
+  Send, {!+h}
+}
+else
+{
+  Send, {+Left}
 }
 return
 
 !+j::
-WinGetActiveTitle, Title
-if Title != WSL
+IfWinActive, WSL
 {
-  Send, {Shift Down}{Down}{Shift Up}
+  Send, {!+j}
+}
+else
+{
+  Send, {+Down}
 }
 return
 
 !+k::
-WinGetActiveTitle, Title
-if Title != WSL
+IfWinActive, WSL
 {
-  Send, {Shift Down}{Up}{Shift Up}
+  Send, {!+k}
+}
+else
+{
+  Send, {+Up}
 }
 return
 
 !+l::
-WinGetActiveTitle, Title
-if Title != WSL
+IfWinActive, WSL
 {
-  Send, {Shift Down}{Right}{Shift Up}
+  Send, {!+l}
+}
+else
+{
+  Send, {+Right}
 }
 return
 
 ; Alt + Ctrl + hjkl
 
 !^h::
-WinGetActiveTitle, Title
-if Title != WSL
+IfWinActive, WSL
 {
-  Send, {Ctrl Down}{Left}{Ctrl Up}
+  Send, {!^h}
+}
+else
+{
+  Send, {^Left}
 }
 return
 
 !^j::
-WinGetActiveTitle, Title
-if Title != WSL
+IfWinActive, WSL
 {
-  Send, {Ctrl Down}{Down}{Ctrl Up}
+  Send, {!^j}
+}
+else
+{
+  Send, {^Down}
 }
 return
 
 !^k::
-WinGetActiveTitle, Title
-if Title != WSL
+IfWinActive, WSL
 {
-  Send, {Ctrl Down}{Up}{Ctrl Up}
+  Send, {!^k}
+}
+else
+{
+  Send, {^Up}
 }
 return
 
 !^l::
-WinGetActiveTitle, Title
-if Title != WSL
+IfWinActive, WSL
 {
-  Send, {Ctrl Down}{Right}{Ctrl Up}
+  Send, {!^l}
+}
+else
+{
+  Send, {^Right}
 }
 return
 
