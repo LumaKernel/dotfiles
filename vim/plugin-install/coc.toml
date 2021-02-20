@@ -73,7 +73,6 @@ hook_add = '''
     \   'coc-eslint',
     \   'coc-diagnostic',
     \   'coc-yaml',
-    \   'coc-tsserver',
     \   'coc-rust-analyzer',
     \   'coc-python',
     \   'coc-vetur',
@@ -82,6 +81,7 @@ hook_add = '''
     \   'coc-go',
     \   'coc-neosnippet',
     \   'coc-svelte',
+    \   'coc-emmet',
     \ ]
 
   let g:my_coc_debug = 0
@@ -101,3 +101,30 @@ hook_add = '''
   nnoremap <silent><nowait> <SPACE>ca  :<C-u>CocFzfList diagnostics<CR>
   nnoremap <silent><nowait> <SPACE>cq  :<C-u>CocFzfList actions<CR>
 '''
+
+[[plugins]]
+repo = '/home/luma/workspace/coc-denoland'
+merged = 0
+if = 1
+hook_add = '''
+augroup my-coc-tsdetect
+  autocmd!
+  autocmd BufWritePre *
+          \ if exists('b:tsdetect_is_node')
+          \   | if !b:tsdetect_is_node
+          \     | call CocAction('format')
+          \   | else
+          \     | CocCommand eslint.executeAutofix
+          \   | endif
+          \ | endif
+  autocmd BufWritePost *
+          \ if exists('b:tsdetect_is_node') && !b:tsdetect_is_node
+          \   | CocCommand deno.cache
+          \ | endif
+augroup END
+'''
+
+[[plugins]]
+repo = '/home/luma/workspace/vim-tsdetect'
+merged = 0
+if = 1

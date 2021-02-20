@@ -1,5 +1,6 @@
 {
-  "eslint.autoFixOnSave": true,
+  "tsdetect.mode": "auto",
+  "tsdetect.configType": "workspace",
   "diagnostic.errorSign": ">>",
   "diagnostic.warningSign": "--",
   "diagnostic.infoSign": "..",
@@ -21,5 +22,19 @@
       "args": ["-x"]
     }
   },
-  "coc.source.neosnippet.priority": 40
+  "coc.source.neosnippet.priority": 40,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "emmet.priority": 30,
+  "deno.codeLens.references": true,
+  "deno.codeLens.referencesAllFunctions": true,
+  "deno.codeLens.implementations": true,
+  "codeLens.enable": true,
+  "tsserver.enable": true,
+  "deno.enable": false,
+  "coc.source.file.trimSameExts": [
+    ".ts",
+    ".js"
+  ]
 }

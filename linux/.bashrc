@@ -218,16 +218,17 @@ else
   echo tmux is running: \$TMUX=$TMUX
 fi
 
-if [[ -z $NO_FISH ]] ; then
-  export NO_FISH=
-  command -v fish >/dev/null 2>&1 \
-    && exec fish
-  return
+# tfenv
+if test -z "$TFENV_DIR"; then
+  export TFENV_DIR="$HOME/.tfenv"
+  export PATH="$TFENV_DIR/bin:$PATH"
 fi
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/luma/.sdkman"
-[[ -s "/home/luma/.sdkman/bin/sdkman-init.sh" ]] && source "/home/luma/.sdkman/bin/sdkman-init.sh"
+# dvm
+if test -z "$DVM_DIR"; then
+  export DVM_DIR="$HOME/.dvm"
+  export PATH="$DVM_DIR/bin:$PATH"
+fi
 
 # fnm
 export PATH=/home/luma/.fnm:$PATH
@@ -239,4 +240,11 @@ complete -C /usr/bin/terraform terraform
 if ! command -v wasmer >/dev/null; then
   export WASMER_DIR="$HOME/.wasmer"
   [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+fi
+
+if [[ -z $NO_FISH ]] ; then
+  export NO_FISH=
+  command -v fish >/dev/null 2>&1 \
+    && exec fish
+  return
 fi

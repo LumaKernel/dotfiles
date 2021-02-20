@@ -284,7 +284,16 @@ repo = 'lambdalisue/fern.vim'
 hook_add = '''
   let g:fern#profile = 0
   let g:fern#disable_viewer_auto_duplication = 1
-  let s:fern_default_exclude_pats = ['^\.git$', '^\.DS_Store$', '^node_modules$', '^dist$', '^:Zone\.Identifier$', '^__pycache__$']
+  let s:fern_default_exclude_pats = [
+    \   '^\.git$',
+    \   '^\.DS_Store$',
+    \   '^node_modules$',
+    \   '^dist$',
+    \   '^:Zone\.Identifier$',
+    \   '^__pycache__$',
+    \   '^yarn.lock$',
+    \   '^package-lock.json$',
+    \ ]
 
   function! s:GetFernExclude() abort
     let ignore_pats = copy(s:fern_default_exclude_pats)
@@ -758,7 +767,9 @@ hook_add = '''
 
   function! s:reveal(dict)
     execute "FernReveal -wait" a:dict.relative_path
-    execute "normal \<Plug>(fern-action-mark:set)"
+    if len(a:dict.lines) > 2
+      execute "normal \<Plug>(fern-action-mark:set)"
+    endif
   endfunction
 
   let g:Fern_mapping_fzf_file_sink = function('s:reveal')
@@ -970,6 +981,7 @@ hook_add = '''
     \   'javascriptreact': 'console.log(`_x_[XXX]_x_ {}`);',
     \   'typescript':      'console.log(`_x_[XXX]_x_ {}`);',
     \   'typescriptreact': 'console.log(`_x_[XXX]_x_ {}`);',
+    \   'vue':             'console.log(`_x_[XXX]_x_ {}`);',
     \   'c':               'printf(_x_[XXX]_x_ {}\n");',
     \   'cpp':             'std::cout << ("_x_[XXX]_x_ {}\n") << std::endl;',
     \   'html':            g:my_html_print_debug,
@@ -1228,7 +1240,3 @@ repo = 'fidian/hexmode'
 
 [[plugins]]
 repo = 'glepnir/indent-guides.nvim'
-
-[[plugins]]
-repo = '/home/luma/workspace/coc-denoland'
-merged = 0

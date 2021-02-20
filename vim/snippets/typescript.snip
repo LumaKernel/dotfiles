@@ -64,3 +64,20 @@ abbr nodejs_env_values
       readonly NODE_ENV?: 'development' | 'production' | 'test'
     }
   }
+
+snippet node-debug
+abbr debug-node
+abbr file-debug
+  import * as fs from "fs";
+  import * as util from "util";
+  import * as path from "path";
+  import { homedir } from "os";
+
+  const debugLogFile = path.resolve(homedir(), "node-debug.log");
+
+  export const dump = (obj: unknown) => {
+    fs.appendFileSync(
+      debugLogFile,
+      \`${new Date().toLocaleTimeString()}: ${util.inspect(obj)}\n\`,
+    );
+  };
