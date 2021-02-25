@@ -1,7 +1,9 @@
 [[plugins]]
 repo = 'neoclide/coc.nvim'
-if = "g:lsp_mode is# 'coc'"
 rev = 'release'
+# repo = '/home/luma/ghq/github.com/neoclide/coc.nvim'
+merged = 0
+if = "g:lsp_mode is# 'coc'"
 hook_add = '''
   set nobackup
   set nowritebackup
@@ -75,7 +77,6 @@ hook_add = '''
     \   'coc-yaml',
     \   'coc-rust-analyzer',
     \   'coc-python',
-    \   'coc-vetur',
     \   'coc-prisma',
     \   'coc-json',
     \   'coc-go',
@@ -106,25 +107,41 @@ hook_add = '''
 repo = '/home/luma/workspace/coc-denoland'
 merged = 0
 if = 1
-hook_add = '''
-augroup my-coc-tsdetect
-  autocmd!
-  autocmd BufWritePre *
-          \ if exists('b:tsdetect_is_node')
-          \   | if !b:tsdetect_is_node
-          \     | call CocAction('format')
-          \   | else
-          \     | CocCommand eslint.executeAutofix
-          \   | endif
-          \ | endif
-  autocmd BufWritePost *
-          \ if exists('b:tsdetect_is_node') && !b:tsdetect_is_node
-          \   | CocCommand deno.cache
-          \ | endif
-augroup END
-'''
+
+[[plugins]]
+repo = '/home/luma/ghq/github.com/fannheyward/coc-deno'
+merged = 0
+if = 0
+
+[[plugins]]
+repo = '/home/luma/ghq/github.com/yaegassy/coc-vetur'
+merged = 0
+if = 1
 
 [[plugins]]
 repo = '/home/luma/workspace/vim-tsdetect'
 merged = 0
 if = 1
+hook_add = '''
+  function! s:my_coc_tsdetect_buf_write_pre() abort
+    if exists('b:tsdetect_is_node')
+      if !b:tsdetect_is_node
+        call CocAction('format')
+      else
+        CocCommand eslint.executeAutofix
+      endif
+    endif
+  endfunction
+
+  function! s:my_coc_tsdetect_buf_write_post() abort
+    if exists('b:tsdetect_is_node') && !b:tsdetect_is_node
+      CocCommand deno.cache
+    endif
+  endfunction
+
+  augroup my-coc-tsdetect
+    autocmd!
+    " autocmd BufWritePre * call <SID>my_coc_tsdetect_buf_write_pre()
+    " autocmd BufWritePost * call <SID>my_coc_tsdetect_buf_write_post()
+  augroup END
+'''

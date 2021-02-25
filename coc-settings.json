@@ -6,7 +6,8 @@
   "diagnostic.infoSign": "..",
   "diagnostic.hintSign": "..",
   "coc.preferences.formatOnSaveFiletypes": [
-    "rust"
+    "rust",
+    "vue"
   ],
   "languageserver": {
     "terraform": {
@@ -30,11 +31,5 @@
   "deno.codeLens.references": true,
   "deno.codeLens.referencesAllFunctions": true,
   "deno.codeLens.implementations": true,
-  "codeLens.enable": true,
-  "tsserver.enable": true,
-  "deno.enable": false,
-  "coc.source.file.trimSameExts": [
-    ".ts",
-    ".js"
-  ]
+  "codeLens.enable": true
 }

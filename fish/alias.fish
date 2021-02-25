@@ -211,6 +211,8 @@ function g
 end
 
 function docker-tcpdump
+  set -l container_name $argv[1]
+  set -e argv[1]
   set -l sh_commands '
   if ! command -v tcpdump > /dev/null; then
     if command -v apt-get > /dev/null; then
@@ -224,7 +226,12 @@ function docker-tcpdump
       exit 1
     fi
   fi
-  tcpdump -X -s 0
+
+  if test '(count $argv)' = 0; then
+    tcpdump -X -s 0
+  else
+    tcpdump '"$argv"'
+  fi
   '
-  docker exec -it -u root $argv sh -c "$sh_commands"
+  docker exec -it -u root "$container_name" sh -c "$sh_commands"
 end
