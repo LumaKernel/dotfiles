@@ -106,7 +106,7 @@ hook_add = '''
 [[plugins]]
 repo = '/home/luma/workspace/coc-denoland'
 merged = 0
-if = 1
+if = 0
 
 [[plugins]]
 repo = '/home/luma/ghq/github.com/fannheyward/coc-deno'
@@ -116,7 +116,7 @@ if = 0
 [[plugins]]
 repo = '/home/luma/ghq/github.com/yaegassy/coc-vetur'
 merged = 0
-if = 1
+if = 0
 
 [[plugins]]
 repo = '/home/luma/workspace/vim-tsdetect'
@@ -124,16 +124,25 @@ merged = 0
 if = 1
 hook_add = '''
   function! s:my_coc_tsdetect_buf_write_pre() abort
+    if !get(g:, 'coc_enabled', 0)
+      return
+    endif
     if exists('b:tsdetect_is_node')
       if !b:tsdetect_is_node
-        call CocAction('format')
+        " call CocAction('format')
       else
-        CocCommand eslint.executeAutofix
+        " CocCommand eslint.executeAutofix
       endif
+    endif
+    if &filetype == 'vue'
+      " CocCommand eslint.executeAutofix
     endif
   endfunction
 
   function! s:my_coc_tsdetect_buf_write_post() abort
+    if !get(g:, 'coc_enabled', 0)
+      return
+    endif
     if exists('b:tsdetect_is_node') && !b:tsdetect_is_node
       CocCommand deno.cache
     endif
@@ -141,7 +150,7 @@ hook_add = '''
 
   augroup my-coc-tsdetect
     autocmd!
-    " autocmd BufWritePre * call <SID>my_coc_tsdetect_buf_write_pre()
-    " autocmd BufWritePost * call <SID>my_coc_tsdetect_buf_write_post()
+    autocmd BufWritePre * call <SID>my_coc_tsdetect_buf_write_pre()
+    autocmd BufWritePost * call <SID>my_coc_tsdetect_buf_write_post()
   augroup END
 '''

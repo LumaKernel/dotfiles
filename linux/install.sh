@@ -50,8 +50,8 @@ fish $HOME/dotfiles/wsl/install.fish
 # -- pip でのインストール
 bash $HOME/dotfiles/linux/pip-install.sh
 
-# -- cargo でのインストール
-bash $HOME/dotfiles/linux/cargo-install.sh
+# -- install fnm
+curl -fsSL https://fnm.vercel.app/install | bash
 
 # -- ocaml
 # TODO: 使うときになったら

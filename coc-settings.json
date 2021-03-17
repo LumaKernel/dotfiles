@@ -1,13 +1,16 @@
 {
-  "tsdetect.mode": "auto",
-  "tsdetect.configType": "workspace",
+  "tsdetect.doNothingIfConfigExists": false,
   "diagnostic.errorSign": ">>",
   "diagnostic.warningSign": "--",
   "diagnostic.infoSign": "..",
   "diagnostic.hintSign": "..",
   "coc.preferences.formatOnSaveFiletypes": [
     "rust",
-    "vue"
+    "vue",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
   ],
   "languageserver": {
     "terraform": {
@@ -27,9 +30,13 @@
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
+  "tsserver.formatOnType": true,
+  "eslint.format.enable": true,
+  "eslint.autoFixOnSave": true,
   "emmet.priority": 30,
   "deno.codeLens.references": true,
   "deno.codeLens.referencesAllFunctions": true,
   "deno.codeLens.implementations": true,
-  "codeLens.enable": true
+  "codeLens.enable": true,
+  "prettier.onlyUseLocalVersion": true
 }

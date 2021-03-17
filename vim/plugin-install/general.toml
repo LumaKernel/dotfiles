@@ -67,8 +67,8 @@ repo = 'tjdevries/gruvbuddy.nvim'
 hook_post_source = '''
   lua require('colorbuddy').colorscheme('gruvbuddy')
 '''
-
-
+[[plugins]]
+repo = 'sainnhe/edge'
 
 [[plugins]]
 repo = 'itchyny/vim-gitbranch'
@@ -264,17 +264,7 @@ repo = 'itchyny/vim-cursorword'
 if = '!g:from_pwsh && !has("nvim")'
 
 [[plugins]]
-repo = 'dominikduda/vim_current_word'
-if = 'has("nvim")'
-hook_add = '''
-  let g:vim_current_word#highlight_twins = 1
-  augroup my_current_word
-    au ColorScheme * hi CurrentWordTwins guifg=Black guibg=#F5D7E3 gui=NONE ctermfg=Black ctermbg=LightMagenta cterm=NONE
-    au ColorScheme * hi CurrentWord guifg=Black guibg=#F4A5AE gui=NONE ctermfg=Black ctermbg=LightYellow cterm=NONE
-    " au ColorScheme * hi CurrentWordTwins guifg=#F5D7E3 guibg=Black gui=NONE ctermfg=LightMagenta ctermbg=Black cterm=NONE
-    " au ColorScheme * hi CurrentWord guifg=#F4A5AE guibg=Black gui=NONE ctermfg=LightYellow ctermbg=Black cterm=NONE
-  augroup END
-'''
+repo = 'RRethy/vim-illuminate'
 
 [[plugins]]
 repo = 'tyru/caw.vim'
@@ -466,7 +456,7 @@ hook_add = '''
     if executable('exa')
       let dir_viewer = 'exa --tree --color always {}'
     endif
-    let $FZF_DEFAULT_OPTS = printf('--tabstop=4 --preview-window up --preview "%s || %s"', file_viewer, dir_viewer)
+    let $FZF_DEFAULT_OPTS = printf('--tabstop=4 --preview-window hidden:up --preview "%s || %s"', file_viewer, dir_viewer)
   endif
 
   if executable('ag') && $FZF_DEFAULT_COMMAND ==# ''
@@ -485,7 +475,7 @@ hook_add = '''
     let initial_command = printf(command_fmt, shellescape(a:query))
     let reload_command = printf(command_fmt, '{q}')
     let spec = {'options': [
-      \   '--preview-window', 'up:noborder',
+      \   '--preview-window', 'hidden:up:noborder',
       \   '--phony',
       \   '--query', a:query,
       \   '--bind', 'change:reload:'.reload_command
@@ -1220,13 +1210,6 @@ EOF
 '''
 
 [[plugins]]
-repo = 'andymass/vim-matchup'
-hook_add = '''
-  let g:matchup_matchparen_deferred = 1
-  let g:matchup_matchparen_hi_surround_always = 1
-'''
-
-[[plugins]]
 repo = 'pechorin/any-jump.vim'
 
 
@@ -1234,9 +1217,6 @@ repo = 'pechorin/any-jump.vim'
 repo = 'evanleck/vim-svelte'
 on_path = '\.svelte$'
 rev = 'main'
-
-[[plugins]]
-repo = 'fidian/hexmode'
 
 [[plugins]]
 repo = 'glepnir/indent-guides.nvim'

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="1.5.0"
+VERSION="1.7.0"
 cd /tmp
 wget "https://github.com/cli/cli/releases/download/v${VERSION}/gh_${VERSION}_linux_amd64.deb"
 sudo dpkg -i "gh_${VERSION}_linux_amd64.deb"
