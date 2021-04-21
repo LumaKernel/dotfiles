@@ -5,8 +5,9 @@ if [ "`whoami`" == "root" ]; then
   exit 1
 fi
 
-mkdir -p $HOME/.pyenv
-pushd $HOME/.pyenv
+mkdir -p "$HOME/.pyenv"
+pushd "$HOME/.pyenv"
+
 # -- install pyenv
 
 # dependencies

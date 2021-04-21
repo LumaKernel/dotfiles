@@ -160,10 +160,10 @@ if [[ -n "$is_WSL" ]] && command -v wslpath >/dev/null 2>/dev/null; then
   alias cdwin="cd $WinHome"
 fi
 
-# -- go
-export PATH=/usr/local/go/bin:$PATH
-export GOPATH=$HOME/go
-export PATH=$HOME/go/bin:$PATH
+# -- goup/go
+export GOROOT="$HOME/.go"
+export GOPATH="$HOME/go"
+export PATH="$GOROOT/current/bin:$GOROOT/bin:$GOPATe/bin:/usr/local/go/bin:$PATH"
 
 # -- gem
 if command -v gem >/dev/null 2>&1; then
@@ -222,24 +222,52 @@ fi
 if test -z "$TFENV_DIR"; then
   export TFENV_DIR="$HOME/.tfenv"
   export PATH="$TFENV_DIR/bin:$PATH"
+  if ! test -d "$TFENV_DIR"; then
+    echo "[bashrc healthcheck] tfenv not installed."
+  fi
 fi
 
 # dvm
 if test -z "$DVM_DIR"; then
   export DVM_DIR="$HOME/.dvm"
   export PATH="$DVM_DIR/bin:$PATH"
+  if ! test -d "$DVM_DIR"; then
+    echo "[bashrc healthcheck] dvm not installed."
+  fi
 fi
 
 # fnm
-export PATH=/home/luma/.fnm:$PATH
-eval "`fnm env`"
+if test -z "$FNM_DIR"; then
+  export FNM_DIR="$HOME/.fnm"
+  export PATH="$FNM_DIR:$PATH"
+  if test -d "$DVM_DIR"; then
+    eval "`fnm env`"
+  else
+    echo "[bashrc healthcheck] fnm not installed."
+  fi
+fi
 
+# gvm
+if test -z "$GVM_SCRIPT_PATH"; then
+  export GVM_SCRIPT_PATH="$HOME/.gvm/scripts/gvm"
+  if test -s "$GVM_SCRIPT_PATH"; then
+    source "$GVM_SCRIPT_PATH"
+  else
+    echo "[bashrc healthcheck] gvm not installed."
+  fi
+fi
+
+# terraform completion
 complete -C /usr/bin/terraform terraform
 
-# Wasmer
+# wasmer
 if ! command -v wasmer >/dev/null; then
   export WASMER_DIR="$HOME/.wasmer"
-  [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+  if test -s "$WASMER_DIR/wasmer.sh"; then
+    source "$WASMER_DIR/wasmer.sh"
+  else
+    echo "[bashrc healthcheck] wasmer not found."
+  fi
 fi
 
 if [[ -z $NO_FISH ]] ; then
