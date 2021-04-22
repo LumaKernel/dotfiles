@@ -246,11 +246,12 @@ fi
 if test -z "$FNM_DIR"; then
   export FNM_DIR="$HOME/.fnm"
   export PATH="$FNM_DIR:$PATH"
-  if test -d "$DVM_DIR"; then
-    eval "`fnm env`"
-  else
-    echo "[info/healthcheck/.bashrc] fnm not installed."
-  fi
+fi
+
+if test -d "$FNM_DIR"; then
+  eval "`fnm env`"
+else
+  echo "[info/healthcheck/.bashrc] fnm not installed."
 fi
 
 # gvm
