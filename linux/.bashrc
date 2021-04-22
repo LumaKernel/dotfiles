@@ -102,11 +102,6 @@ export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-# ---- fnm
-export PATH="$HOME/.fnm:$PATH"
-eval "`fnm env`"
-
-
 # ---- cquery
 command -v cquery >/dev/null 2>&1 ||
   export PATH=$PATH:$HOME/bin/cquery/build/release/bin

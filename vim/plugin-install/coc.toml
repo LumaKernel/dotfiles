@@ -121,7 +121,7 @@ if = 0
 [[plugins]]
 repo = '/home/luma/workspace/vim-tsdetect'
 merged = 0
-if = 1
+if = 0
 hook_add = '''
   function! s:my_coc_tsdetect_buf_write_pre() abort
     if !get(g:, 'coc_enabled', 0)
