@@ -1219,4 +1219,5 @@ on_path = '\.svelte$'
 rev = 'main'
 
 [[plugins]]
+if = 0
 repo = 'glepnir/indent-guides.nvim'
