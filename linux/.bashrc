@@ -281,3 +281,4 @@ if [[ -z $NO_FISH ]] ; then
   command -v fish >/dev/null 2>&1 \
     && exec fish
   return
+fi
