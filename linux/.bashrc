@@ -215,7 +215,7 @@ export NEXTWORD_DATA_PATH=$HOME/.local/share/nextword/nextword-data-large
 
 # -- tmux and fish
 if [[ -z $TMUX ]] ; then
-  gpg-agent --daemon --allow-preset-passphrase
+  # gpg-agent --daemon --allow-preset-passphrase
   command -v fish >/dev/null 2>&1 >/dev/null \
     && command -v tmux >/dev/null 2>&1 >/dev/null \
     && exec tmux
