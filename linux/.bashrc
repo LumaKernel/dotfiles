@@ -18,17 +18,13 @@ unset VIMRUNTIME
 unset MYVIMRC
 unset MYGVIMRC
 
-
-
 # ---- パスを追加
 # pip のライブラリなど
 export PATH=~/.local/bin:$PATH
 export PATH=$PATH:$HOME/shell-tools
 
-
 source "${HOME}/dotfiles/common/bash_aliases.sh"
 source "${HOME}/dotfiles/common/bash_functions.sh"
-
 
 # ヒストリーをファイルに保存
 shopt -s histappend
@@ -43,7 +39,6 @@ shopt -s checkwinsize  # ${COLUMNS} と ${LINES} を winsize に同期
 shopt -s no_empty_cmd_completion  # 何も入力してないなら補完しない
 shopt -s nocaseglob  # glob で ignorecase
 
-
 # ---- hisotry 向上
 
 # i: 直前の履歴 30件を表示する。引数がある場合は過去 1000件を検索
@@ -55,7 +50,6 @@ function i {
 function I {
     if [ "$1" ]; then history | grep "$@"; else history 30; fi
 }
-
 
 # ---- Powerline Shell
 #   pip3 install powerline-shell
@@ -163,11 +157,17 @@ export PATH="$GOROOT/current/bin:$GOROOT/bin:$GOPATe/bin:/usr/local/go/bin:$PATH
 # -- gem
 if command -v gem >/dev/null 2>&1; then
   export PATH="$(gem environment gemdir)/bin":$PATH
+else
+  echo "[info/healthcheck/.bashrc] gem not installed."
 fi
 
 # -- opam TODO
 # $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-eval `opam env`
+if command -v opam >/dev/null 2>&1; then
+  eval `opam env`
+else
+  echo "[info/healthcheck/.bashrc] opam not installed."
+fi
 
 # -- deno
 export DENO_INSTALL="/home/luma/.deno"
@@ -178,18 +178,30 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
+else
+  echo "[info/healthcheck/.bashrc] pyenv not installed."
 fi
 
 # -- gpg
 export GPG_TTY="$(tty)"
 
+# -- fd
+if ! command -v fd >/dev/null 2>&1; then
+  if command -v fdfind >/dev/null 2>&1; then
+    alias fd=fdfind
+  fi
+fi
+
 # -- fzf
-command -v fd >/dev/null 2>&1 &&
+if command -v fd >/dev/null 2>&1; then
   export FZF_CTRL_T_COMMAND="fd --base-directory=\"\$dir\" --hidden --absolute-path"
+else
+  echo "[info/healthcheck/.bashrc] fd not installed."
+fi
 
 # -- ssh-agent
-eval `ssh-agent`
-ssh-add
+# eval `ssh-agent`
+# ssh-add
 
 # -- docker
 export DOCKER_BUILDKIT=1
@@ -199,7 +211,6 @@ export GID="$(id -g)"
 export UID_GID="$(id -u):$(id -g)"
 
 # -- nextword
-
 export NEXTWORD_DATA_PATH=$HOME/.local/share/nextword/nextword-data-large
 
 # -- tmux and fish
@@ -218,7 +229,7 @@ if test -z "$TFENV_DIR"; then
   export TFENV_DIR="$HOME/.tfenv"
   export PATH="$TFENV_DIR/bin:$PATH"
   if ! test -d "$TFENV_DIR"; then
-    echo "[bashrc healthcheck] tfenv not installed."
+    echo "[info/healthcheck/.bashrc] tfenv not installed."
   fi
 fi
 
@@ -227,7 +238,7 @@ if test -z "$DVM_DIR"; then
   export DVM_DIR="$HOME/.dvm"
   export PATH="$DVM_DIR/bin:$PATH"
   if ! test -d "$DVM_DIR"; then
-    echo "[bashrc healthcheck] dvm not installed."
+    echo "[info/healthcheck/.bashrc] dvm not installed."
   fi
 fi
 
@@ -238,7 +249,7 @@ if test -z "$FNM_DIR"; then
   if test -d "$DVM_DIR"; then
     eval "`fnm env`"
   else
-    echo "[bashrc healthcheck] fnm not installed."
+    echo "[info/healthcheck/.bashrc] fnm not installed."
   fi
 fi
 
@@ -248,7 +259,7 @@ if test -z "$GVM_SCRIPT_PATH"; then
   if test -s "$GVM_SCRIPT_PATH"; then
     source "$GVM_SCRIPT_PATH"
   else
-    echo "[bashrc healthcheck] gvm not installed."
+    echo "[info/healthcheck/.bashrc] gvm not installed."
   fi
 fi
 
@@ -261,7 +272,7 @@ if ! command -v wasmer >/dev/null; then
   if test -s "$WASMER_DIR/wasmer.sh"; then
     source "$WASMER_DIR/wasmer.sh"
   else
-    echo "[bashrc healthcheck] wasmer not found."
+    echo "[info/healthcheck/.bashrc] wasmer not found."
   fi
 fi
 
@@ -270,4 +281,3 @@ if [[ -z $NO_FISH ]] ; then
   command -v fish >/dev/null 2>&1 \
     && exec fish
   return
-fi
