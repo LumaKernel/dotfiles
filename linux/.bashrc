@@ -22,10 +22,8 @@ unset MYGVIMRC
 # pip のライブラリなど
 if test -z "$LUMA_WORLD_BIN_DIR"; then
   export LUMA_WORLD_BIN_DIR="$HOME/.local/bin"
-  export PATH "$LUMA_WORLD_BIN_DIR:$PATH"
+  export PATH="$LUMA_WORLD_BIN_DIR:$PATH"
 fi
-
-# export PATH="$PATH:$HOME/shell-tools"
 
 source "$HOME/dotfiles/common/bash_aliases.sh"
 source "$HOME/dotfiles/common/bash_functions.sh"
