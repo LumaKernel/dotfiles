@@ -9,11 +9,11 @@ colors = {
 class Segment(ThreadedSegment):
     def add_to_powerline(self):
         self.join()
-        if 'shell_name' not in os.environ:
+        if 'SHELL_NAME' not in os.environ:
             return
-        shell_name = os.environ.get('shell_name', '')
+        SHELL_NAME = os.environ.get('SHELL_NAME', '')
         self.powerline.append(
-            " " + shell_name + " ",
+            " " + SHELL_NAME + " ",
             0,
-            colors.get(shell_name, 255),
+            colors.get(SHELL_NAME, 255),
         )

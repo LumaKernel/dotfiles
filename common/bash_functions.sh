@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'common/bash_functions.sh'
+echo "[info/enter] common/bash_functions.sh"
 
 function color()
 {

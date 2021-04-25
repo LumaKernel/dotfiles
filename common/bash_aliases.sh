@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'common/bash_aliases.sh'
+echo "[info/enter] common/bash_aliases.sh"
 
 alias ..='cd ..'
 alias ~='cd ~'

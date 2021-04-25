@@ -2,10 +2,13 @@
 echo "[info/enter] fish/config.fish"
 set fish_greeting
 
-set -x shell_name fish
+set -x SHELL_NAME fish
 set -e NO_FISH
 
-set -g fish_function_path "$HOME/dotfiles/fish/functions" $fish_function_path
+if test -z "$LUMA_WORLD_FISH_FUNCTIONS"
+  set -g LUMA_WORLD_FISH_FUNCTIONS "$HOME/dotfiles/fish/functions"
+  set -g fish_function_path "$LUMA_WORLD_FISH_FUNCTIONS" $fish_function_path
+end
 
 set -g fish_key_bindings fish_user_key_bindings
 
@@ -14,40 +17,14 @@ function fish_prompt
   powerline-shell --shell bare "$status"
 end
 
-# -- local binary
-set -x PATH ~/.local/bin $PATH
-
-# XXX: 役立ってるかわからん
-set -x GCC_COLORS 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# -- less
-export LESS='-R --no-init -g -j10 --quit-if-one-screen'
-export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
-
-# -- cquery
-command -v cquery >/dev/null 2>&1
-  or set -x PATH $PATH "$HOME/bin/cquery/build/release/bin"
-
-# -- themis
-command -v themis >/dev/null 2>&1
-  or set -x PATH $PATH "$HOME/.cache/dein/nvim/repos/github.com/thinca/vim-themis/bin"
-
-# -- pyenv
-command -v pyenv >/dev/null 2>&1
-  and source (pyenv init -|psub)
-
 # -- rbenv
-command -v rbenv >/dev/null 2>&1
-  and source (rbenv init -|psub)
-
-# -- wasmer
-if test -z "$WASMER_DIR"
-  set -x WASMER_DIR "$HOME/.wasmer"
-  set -x WASMER_CACHE_DIR "$WASMER_DIR/cache"
-  set -x PATH "$WASMER_DIR/bin" $PATH "$WASMER_DIR/globals/wapm_packages/.bin"
+if command -v rbenv >/dev/null 2>&1
+  source (rbenv init -|psub)
+else
+  echo "[info/healthcheck/config.fish] rbenv not installed."
 end
 
-# --
+# -- cd improved
 functions --copy cd cd_default
 function cd
   cd_default $argv; and ls
@@ -59,7 +36,6 @@ function cd
     activate_venv
   end
 end
-
 
 # hitting empty enter to ls (空エンター)
 

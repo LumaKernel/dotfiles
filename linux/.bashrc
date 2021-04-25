@@ -8,9 +8,9 @@ case $- in
       *) return;;
 esac
 
-echo 'linux/.bashrc'
+echo "[info/enter] linux/.bashrc"
 
-export shell_name=bash
+export SHELL_NAME=bash
 
 # ---- vim の環境変数を削除
 unset VIM
@@ -20,11 +20,15 @@ unset MYGVIMRC
 
 # ---- パスを追加
 # pip のライブラリなど
-export PATH=~/.local/bin:$PATH
-export PATH=$PATH:$HOME/shell-tools
+if test -z "$LUMA_WORLD_BIN_DIR"; then
+  export LUMA_WORLD_BIN_DIR="$HOME/.local/bin"
+  export PATH "$LUMA_WORLD_BIN_DIR:$PATH"
+fi
 
-source "${HOME}/dotfiles/common/bash_aliases.sh"
-source "${HOME}/dotfiles/common/bash_functions.sh"
+# export PATH="$PATH:$HOME/shell-tools"
+
+source "$HOME/dotfiles/common/bash_aliases.sh"
+source "$HOME/dotfiles/common/bash_functions.sh"
 
 # ヒストリーをファイルに保存
 shopt -s histappend
@@ -51,9 +55,6 @@ function I {
     if [ "$1" ]; then history | grep "$@"; else history 30; fi
 }
 
-# ---- Powerline Shell
-#   pip3 install powerline-shell
-
 command -v powerline-shell >/dev/null 2>&1
 if (( ! $? )) ; then
 
@@ -64,12 +65,12 @@ if (( ! $? )) ; then
   if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
   fi
-
+else
+  echo "[info/healthcheck/.bashrc] powerline-shell not installed."
 fi
 
 # ---- colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
 
 # ---- fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -94,26 +95,6 @@ export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
 # export NVM_DIR="$HOME/nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-# ---- cquery
-command -v cquery >/dev/null 2>&1 ||
-  export PATH=$PATH:$HOME/bin/cquery/build/release/bin
-
-
-# ---- themis
-command -v themis >/dev/null 2>&1 ||
-  export PATH=$PATH:$HOME/.cache/dein/repos/github.com/thinca/vim-themis/bin
-
-
-# ---- bashmarks
-[ -f "${HOME}/.local/bin/bashmarks.sh" ] && source "${HOME}/.local/bin/bashmarks.sh"
-
-
-# ---- user installed bin
-export PATH=$PATH:$HOME/bin
-
-
 # ---- cargo
 if test -z "$CARGO_BIN_PATH"; then
   export CARGO_BIN_PATH="$HOME/.cargo/bin"
@@ -150,15 +131,27 @@ if [[ -n "$is_WSL" ]] && command -v wslpath >/dev/null 2>/dev/null; then
 fi
 
 # -- goup/go
-export GOROOT="$HOME/.go"
-export GOPATH="$HOME/go"
-export PATH="$GOROOT/current/bin:$GOROOT/bin:$GOPATe/bin:/usr/local/go/bin:$PATH"
+if test -z "$GOROOT"; then
+  export GOROOT="$HOME/.go"
+  export GOPATH="$HOME/go"
+  export PATH="$GOROOT/current/bin:$GOROOT/bin:$GOPATH/bin:/usr/local/go/bin:$PATH"
+fi
 
 # -- gem
 if command -v gem >/dev/null 2>&1; then
-  export PATH="$(gem environment gemdir)/bin":$PATH
+  if test -z "$GEM_BIN_DIR"; then
+    export GEM_BIN_DIR=$(gem environment gemdir)/bin
+    export PATH="$GEM_BIN_DIR:$PATH"
+  fi
 else
   echo "[info/healthcheck/.bashrc] gem not installed."
+fi
+
+# -- wasmer
+if test -z "$WASMER_DIR"; then
+  export WASMER_DIR="$HOME/.wasmer"
+  export WASMER_CACHE_DIR="$WASMER_DIR/cache"
+  export PATH="$WASMER_DIR/bin:$PATH:$WASMER_DIR/globals/wapm_packages/.bin"
 fi
 
 # -- opam TODO
@@ -170,12 +163,17 @@ else
 fi
 
 # -- deno
-export DENO_INSTALL="/home/luma/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+if test -z "$DENO_INSTALL"; then
+  export DENO_INSTALL="/home/luma/.deno"
+  export PATH="$DENO_INSTALL/bin:$PATH"
+fi
 
 # -- pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+if test -z "$PYENV_ROOT"; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+fi
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 else
@@ -193,7 +191,7 @@ if ! command -v fd >/dev/null 2>&1; then
 fi
 
 # -- fzf
-if command -v fd >/dev/null 2>&1; then
+if type fd >/dev/null 2>&1; then
   export FZF_CTRL_T_COMMAND="fd --base-directory=\"\$dir\" --hidden --absolute-path"
 else
   echo "[info/healthcheck/.bashrc] fd not installed."
@@ -211,7 +209,7 @@ export GID="$(id -g)"
 export UID_GID="$(id -u):$(id -g)"
 
 # -- nextword
-export NEXTWORD_DATA_PATH=$HOME/.local/share/nextword/nextword-data-large
+export NEXTWORD_DATA_PATH="$HOME/.local/share/nextword/nextword-data-large"
 
 # -- tmux and fish
 if [[ -z $TMUX ]] ; then
@@ -258,16 +256,6 @@ fi
 # used by, for example gh cli
 if command -v wslview >/dev/null 2>&1; then
   export BROWSER=wslview
-fi
-
-# gvm
-if test -z "$GVM_SCRIPT_PATH"; then
-  export GVM_SCRIPT_PATH="$HOME/.gvm/scripts/gvm"
-  if test -s "$GVM_SCRIPT_PATH"; then
-    source "$GVM_SCRIPT_PATH"
-  else
-    echo "[info/healthcheck/.bashrc] gvm not installed."
-  fi
 fi
 
 # terraform completion
