@@ -25,9 +25,6 @@ if test -z "$LUMA_WORLD_BIN_DIR"; then
   export PATH="$LUMA_WORLD_BIN_DIR:$PATH"
 fi
 
-source "$HOME/dotfiles/common/bash_aliases.sh"
-source "$HOME/dotfiles/common/bash_functions.sh"
-
 # ヒストリーをファイルに保存
 shopt -s histappend
 HISTCONTROL=ignorespace
@@ -71,7 +68,6 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # ---- fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND='fd --hidden --exclude ".git" $dir'
 file_viewer="( \
@@ -82,12 +78,11 @@ dir_viewer="( \
   command -v exa 2>&1 >/dev/null && \
   exa --tree --color always {} 2>/dev/null || \
   ls {} 2>/dev/null )"
-  export FZF_DEFAULT_OPTS="$(printf -- '--tabstop=4 --reverse --preview "%s || %s || echo \"<no preview>\""' "$file_viewer" "$dir_viewer")"
+export FZF_DEFAULT_OPTS="$(printf -- '--tabstop=4 --reverse --preview "%s || %s || echo \"<no preview>\""' "$file_viewer" "$dir_viewer")"
 
 # ---- less
 export LESS='-R --no-init -g -j10 --quit-if-one-screen'
 export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
-
 
 # ---- nvm
 # export NVM_DIR="$HOME/nvm"
@@ -99,20 +94,16 @@ if test -z "$CARGO_BIN_PATH"; then
   export PATH="$CARGO_BIN_PATH:$PATH"
 fi
 
-
 # ---- delete my fish envs
 export fish_key_bindings=
 export fish_bind_mode=
 
-
 # ---- dircolors
 eval $(dircolors "$HOME/dotfiles/.dircolors")
-
 
 # -- linuxbrew
 test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
 
 # -- WSL
 uname -a 2>/dev/null | grep microsoft >/dev/null 2>/dev/null
@@ -206,9 +197,6 @@ export UID="$(id -u)"
 export GID="$(id -g)"
 export UID_GID="$(id -u):$(id -g)"
 
-# -- nextword
-export NEXTWORD_DATA_PATH="$HOME/.local/share/nextword/nextword-data-large"
-
 # -- tmux and fish
 if [[ -z $TMUX ]] ; then
   # gpg-agent --daemon --allow-preset-passphrase
@@ -217,7 +205,7 @@ if [[ -z $TMUX ]] ; then
     && exec tmux
   return
 else
-  echo tmux is running: \$TMUX=$TMUX
+  echo "[info/.bashrc] tmux is running: \$TMUX=$TMUX"
 fi
 
 # tfenv
@@ -275,3 +263,9 @@ if [[ -z $NO_FISH ]] ; then
     && exec fish
   return
 fi
+
+source "$HOME/dotfiles/common/bash_aliases.sh"
+source "$HOME/dotfiles/common/bash_functions.sh"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+return
