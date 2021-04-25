@@ -254,6 +254,12 @@ else
   echo "[info/healthcheck/.bashrc] fnm not installed."
 fi
 
+# -- browser
+# used by, for example gh cli
+if command -v wslview >/dev/null 2>&1; then
+  export BROWSER=wslview
+fi
+
 # gvm
 if test -z "$GVM_SCRIPT_PATH"; then
   export GVM_SCRIPT_PATH="$HOME/.gvm/scripts/gvm"

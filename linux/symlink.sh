@@ -21,9 +21,7 @@ sudo ln -sf "$HOME"/dotfiles/.tmux-powerlinerc "$HOME"/.tmux-powerlinerc
 sudo ln -sf "$HOME"/dotfiles/flake8 "$HOME"/.config/flake8
 sudo ln -sf "$HOME"/dotfiles/pycodestyle "$HOME"/.config/pycodestyle
 
-mkdir -p "$HOME"/.config/fish/functions
 sudo ln -sf "$HOME"/dotfiles/fish/config.fish "$HOME"/.config/fish/config.fish
-sudo ln -sf "$HOME"/dotfiles/fish/functions/*.fish "$HOME"/.config/fish/functions
 
 mkdir -p "$HOME"/.config/powerline-shell
 test ! -d "$HOME"/.config/powerline-shell/config.json

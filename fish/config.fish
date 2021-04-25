@@ -1,15 +1,20 @@
 
-echo "fish/config.fish"
+echo "[info/enter] fish/config.fish"
+set fish_greeting
+
 set -x shell_name fish
+set -e NO_FISH
+
+set -g fish_function_path "$HOME/dotfiles/fish/functions" $fish_function_path
+
+set -g fish_key_bindings fish_user_key_bindings
 
 # -- powerline-shell
 function fish_prompt
   powerline-shell --shell bare "$status"
 end
 
-source ~/dotfiles/fish/alias.fish
-
-# -- ローカルパス
+# -- local binary
 set -x PATH ~/.local/bin $PATH
 
 # XXX: 役立ってるかわからん
@@ -56,17 +61,6 @@ function cd
 end
 
 
-# empty tab to do nothing
-bind \t complete_if_non_empty
-bind -M insert \t complete_if_non_empty
-bind -M visual \t complete_if_non_empty
-
-function complete_if_non_empty
-  test -n (commandline)
-    and commandline -f complete
-end
-
-
 # hitting empty enter to ls (空エンター)
 
 function done_enter --on-event fish_postexec
@@ -81,26 +75,7 @@ end
 
 # venv
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
-function activate_venv
-  if test -f ./venv/bin/activate.fish
-    source ./venv/bin/activate.fish
-  else if test -f ../venv/bin/activate.fish
-    and source ../venv/bin/activate.fish
-  else if test -f ../../venv/bin/activate.fish
-    and source ../../venv/bin/activate.fish
-  end
-end
-function deactivate_venv
-  functions deactivate >/dev/null 2>/dev/null
-    and deactivate
-end
-function no_auto_venv
-  set -x NO_AUTO_VENV 1
-  deactivate_venv
-end
-set -x NO_AUTO_VENV ""
 activate_venv
-
 
 # -- clipboard
 if test "$is_WSL" = '1'
@@ -170,6 +145,3 @@ if test "$is_WSL" = '1'
     end
   end
 end
-
-# TODO: dircolors は必要？
-# TODO: opam env

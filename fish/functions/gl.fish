@@ -1,0 +1,1 @@
+alias gl='git lg'

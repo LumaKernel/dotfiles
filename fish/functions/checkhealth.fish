@@ -1,0 +1,1 @@
+alias checkhealth="nvim +checkhealth"
