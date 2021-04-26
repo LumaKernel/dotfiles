@@ -12,6 +12,8 @@ git config --global url."git@github.com:".pushInsteadOf "https://github.com/"
 
 git config --global gc.pruneExpire "2.month.ago"
 
+git config --global core.editor nvim
+
 
 # https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
 
@@ -38,6 +40,8 @@ git config --global alias.staaash 'stash --all'
 # git staash    # stash untracked and tracked files
 # git staaash   # stash ignored, untracked, and tracked files
 
+git config --global alias.rui 'range-diff @{u} HEAD@{1} @'
+
 git config --global alias.merc 'merge --no-ff'
 
 git config --global alias.me !'git config --list | grep "^user\\."'
@@ -46,8 +50,6 @@ git config --global alias.dish "diff --cached"
 git config --global alias.dif "diff --ignore-all-space"
 git config --global alias.dis "diff --cached --ignore-all-space"
 
-
-echo "以下を自分で実行してください"
+echo "[Hint/git-config.sh] 以下を自分で実行してください"
 echo "git config --global user.name <name>"
 echo "git config --global user.email <email>"
-echo "git config --global core.editor nvim"

@@ -1,9 +1,15 @@
 import os
 from powerline_shell.utils import ThreadedSegment
 
-colors = {
-    'fish': 157,
-    'bash': 221,
+definitions = {
+    'fish': {
+        'abbr': 'fi',
+        'color': 157,
+    },
+    'bash': {
+        'abbr': 'ba',
+        'color': 221,
+    },
 }
 
 class Segment(ThreadedSegment):
@@ -11,9 +17,10 @@ class Segment(ThreadedSegment):
         self.join()
         if 'SHELL_NAME' not in os.environ:
             return
-        SHELL_NAME = os.environ.get('SHELL_NAME', '')
+        shell_name = os.environ.get('SHELL_NAME', '')
+        this_definition = definitions.get(shell_name, {})
         self.powerline.append(
-            " " + SHELL_NAME + " ",
+            ' ' + this_definition.get('abbr', '?') + ' ',
             0,
-            colors.get(SHELL_NAME, 255),
+            this_definition.get('color', 255),
         )
