@@ -232,10 +232,16 @@ if test -z "$FNM_DIR"; then
   export PATH="$FNM_DIR:$PATH"
 fi
 
-if test -d "$FNM_DIR"; then
+if command -v fnm >/dev/null 1>&2; then
   eval "`fnm env`"
 else
   echo "[info/healthcheck/.bashrc] fnm not installed."
+fi
+
+# serverless
+if test -z "$SERVERLESS_DIR"; then
+  export SERVERLESS_DIR="$HOME/.serverless/bin"
+  export PATH="$SERVERLESS_DIR:$PATH"
 fi
 
 # -- browser

@@ -10,6 +10,11 @@ if test -z "$LUMA_WORLD_FISH_FUNCTIONS"
   set -g fish_function_path "$LUMA_WORLD_FISH_FUNCTIONS" $fish_function_path
 end
 
+if test -z "$LUMA_WORLD_FISH_COMPLETE"
+  set -g LUMA_WORLD_FISH_COMPLETE "$HOME/dotfiles/fish/completions"
+  set -g fish_complete_path "$LUMA_WORLD_FISH_COMPLETE" $fish_complete_path
+end
+
 set -g fish_key_bindings fish_user_key_bindings
 
 # -- powerline-shell
