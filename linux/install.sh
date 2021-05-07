@@ -33,10 +33,10 @@ sudo apt-get install fish -y
 sudo apt-get install rlwrap -y
 
 # -- install tmux-powerline
-bash $HOME/dotfiles/linux/install-tmux-powerline.sh
+bash "$HOME/dotfiles/linux/install-tmux-powerline.sh"
 
 # -- install tpm
-bash $HOME/dotfiles/linux/install-tpm.sh
+bash "$HOME/dotfiles/linux/install-tpm.sh"
 
 
 # -- install fisher
@@ -46,19 +46,16 @@ fi
 
 
 # ---- fisher plugins
-fish $HOME/dotfiles/wsl/install.fish
+fish "$HOME/dotfiles/wsl/install.fish"
 
 # -- pip でのインストール
-bash $HOME/dotfiles/linux/pip-install.sh
-
-# -- install fnm
-curl -fsSL https://fnm.vercel.app/install | bash
+bash "$HOME/dotfiles/linux/pip-install.sh"
 
 # -- ocaml
-# TODO: 使うときになったら
-# su $SUDO_USER -c npm install -g ocaml-language-server
-# su $SUDO_USER -c "opam install ocamlfind num merlin -y"
+# TODO
+# npm install -g ocaml-language-server
+# opam install ocamlfind num merlin -y
 # opam user-setup install -y
-# su $SUDO_USER -c "opam pin add ocaml-lsp-server https://github.com/ocaml/ocaml-lsp.git -y"
-# su $SUDO_USER -c "opam install ocaml-lsp-server -y"
-# su $SUDO_USER -c "opam install ocp-indent -y"
+# opam pin add ocaml-lsp-server https://github.com/ocaml/ocaml-lsp.git -y
+# opam install ocaml-lsp-server -y
+# opam install ocp-indent -y
