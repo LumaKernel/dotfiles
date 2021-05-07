@@ -79,6 +79,14 @@ endfunction
 
 " }}}
 
+" onedark {{{
+
+function! g:my_color_fixes.edge()
+  hi Error ctermbg=52 guibg=#661111
+endfunction
+
+" }}}
+
 " seoul256 {{{
 
 function! g:my_color_fixes.seoul256()

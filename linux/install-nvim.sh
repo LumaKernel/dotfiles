@@ -2,6 +2,11 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(realpath "$(dirname "$0")")"
+source "$SCRIPT_DIR/utils/get_fingerprint.sh"
+
+verify_github
+
 sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip -y
 
 mkdir $HOME/mybuild || true

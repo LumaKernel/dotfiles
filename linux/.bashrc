@@ -231,12 +231,11 @@ fi
 if test -z "$FNM_DIR"; then
   export FNM_DIR="$HOME/.fnm"
   export PATH="$FNM_DIR:$PATH"
-fi
-
-if command -v fnm >/dev/null 1>&2; then
-  eval "`fnm env`"
-else
-  echo "[info/healthcheck/.bashrc] fnm not installed."
+  if command -v fnm >/dev/null 1>&2; then
+    eval "`fnm env`"
+  else
+    echo "[info/healthcheck/.bashrc] fnm not installed."
+  fi
 fi
 
 # serverless

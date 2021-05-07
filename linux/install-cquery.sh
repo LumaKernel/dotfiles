@@ -5,6 +5,11 @@ if [ "`whoami`" == "root" ]; then
   exit 1
 fi
 
+SCRIPT_DIR="$(realpath "$(dirname "$0")")"
+source "$SCRIPT_DIR/utils/get_fingerprint.sh"
+
+verify_github
+
 mkdir -p $HOME/.local/bin
 
 # -- install cquery

@@ -5,6 +5,11 @@ if [ "`whoami`" == "root" ]; then
   exit 1
 fi
 
+SCRIPT_DIR="$(realpath "$(dirname "$0")")"
+source "$SCRIPT_DIR/utils/get_fingerprint.sh"
+
+verify_github
+
 DIR="$HOME/.local/share/nextword"
 mkdir -p "$DIR"
 cd "$DIR"
