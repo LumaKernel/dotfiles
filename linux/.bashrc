@@ -121,9 +121,10 @@ fi
 
 # -- goup/go
 if test -z "$GOROOT"; then
-  export GOROOT="$HOME/.go"
+  export GOROOT="$HOME/.go/current"
   export GOPATH="$HOME/go"
-  export PATH="$GOROOT/current/bin:$GOROOT/bin:$GOPATH/bin:/usr/local/go/bin:$PATH"
+  export PATH="$HOME/.go/current/bin:$HOME/.go/bin:$GOPATH/bin:/usr/local/go/bin:$PATH"
+  export GO111MODULE="on"
 fi
 
 # -- gem
