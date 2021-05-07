@@ -5,6 +5,7 @@
   "diagnostic.infoSign": "..",
   "diagnostic.hintSign": "..",
   "coc.preferences.formatOnSaveFiletypes": [
+    "go",
     "rust",
     "vue",
     "javascript",
