@@ -10,7 +10,14 @@ VERSION="0.7.2"
 
 cd /tmp
 FILENAME="shellcheck-v${VERSION}.linux.x86_64.tar.xz"
-/bin/rm "$FILENAME"
-wget "https://github.com/koalaman/shellcheck/releases/download/v${VERSION}/${FILENAME}"
-sudo dpkg -i "${FILENAME}"
+DIRNAME="shellcheck-v${VERSION}"
+
 /bin/rm "${FILENAME}"
+/bin/rm -r "${DIRNAME}"
+
+wget "https://github.com/koalaman/shellcheck/releases/download/v${VERSION}/${FILENAME}"
+tar -xf "${FILENAME}"
+sudo install "${DIRNAME}/shellcheck" /usr/local/bin/shellcheck
+
+/bin/rm "${FILENAME}"
+/bin/rm -r "${DIRNAME}"
