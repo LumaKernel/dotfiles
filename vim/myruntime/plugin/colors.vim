@@ -74,7 +74,7 @@ endfunction
 function! g:my_color_fixes.onedark()
   hi Comment guifg=#999999
   hi Comment ctermfg=244
-  " hi Error ctermbg=52
+  hi Error ctermbg=52 guibg=#661111
 endfunction
 
 " }}}

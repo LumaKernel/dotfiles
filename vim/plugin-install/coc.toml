@@ -68,8 +68,15 @@ hook_add = '''
 
   nnoremap <silent><nowait> <SPACE>so  :<C-u>OR<CR>
 
-  hi link CocErrorHighlight Error
-  hi link CocWarningHighlight Warning
+  function! s:init_coc_highlight() abort
+    hi link CocErrorHighlight Error
+    hi link CocWarningHighlight Warning
+  endfunction
+
+  call s:init_coc_highlight()
+  augroup init_coc_highlight
+    autocmd ColorScheme * call <SID>init_coc_highlight()
+  augroup END
 
   let g:coc_global_extensions = [
     \   'coc-eslint',
