@@ -10,6 +10,16 @@ esac
 
 echo "[info/enter] linux/.bashrc"
 
+# local profile
+LOCAL_PROFILE_FILEPATH="$HOME/local_profile.sh"
+if test -f "$LOCAL_PROFILE_FILEPATH"; then
+  echo "[info/.bashrc/local_profile] $LOCAL_PROFILE_FILEPATH found"
+  source "$LOCAL_PROFILE_FILEPATH"
+else
+  echo "[warn/.bashrc/local_profile] $LOCAL_PROFILE_FILEPATH not found"
+fi
+
+# shell name
 export SHELL_NAME=bash
 
 # ---- vim の環境変数を削除
