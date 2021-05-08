@@ -6,7 +6,7 @@ source "$SCRIPTS_DIR/utils/shared.sh"
 
 verify_github
 
-VERSION="1.7.0"
+VERSION="1.9.2"
 
 cd /tmp
 
