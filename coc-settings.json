@@ -11,7 +11,8 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "tf"
   ],
   "languageserver": {
     "terraform": {

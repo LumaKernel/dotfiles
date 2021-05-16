@@ -87,6 +87,14 @@ endfunction
 
 " }}}
 
+" sierra {{{
+
+function! g:my_color_fixes.iceberg()
+  hi Error ctermbg=52 guibg=#400000
+endfunction
+
+" }}}
+
 " seoul256 {{{
 
 function! g:my_color_fixes.seoul256()

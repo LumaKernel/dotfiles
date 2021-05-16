@@ -30,8 +30,3 @@ function verify_host {
     exit 1
   fi
 }
-
-function verify_github {
-  verify_host github.com:443 "b8d899154b9bedc003b380cc7cbc810df9f6150b649f03fda74b616e9acfde88"
-  verify_host raw.githubusercontent.com:443 "80e801c3a29dd05d8bf590847c2746ec205e91b8ccf99fd6be12e3923fa069cb"
-}

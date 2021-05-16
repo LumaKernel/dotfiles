@@ -4,8 +4,6 @@ SCRIPT_DIR="$(realpath "$(dirname "$0")")"
 SCRIPTS_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
 source "$SCRIPTS_DIR/utils/shared.sh"
 
-verify_github
-
 if command -v go 2>/dev/null; then
   go get github.com/x-motemen/ghq
 else

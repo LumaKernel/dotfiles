@@ -4,8 +4,6 @@ SCRIPT_DIR="$(realpath "$(dirname "$0")")"
 SCRIPTS_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
 source "$SCRIPTS_DIR/utils/shared.sh"
 
-verify_github
-
 mkdir -p $HOME/.tmux/plugins
 
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]] ; then
