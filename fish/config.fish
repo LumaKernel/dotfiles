@@ -17,6 +17,9 @@ end
 
 set -g fish_key_bindings fish_user_key_bindings
 
+# -- color
+set fish_color_command brcyan
+
 # -- powerline-shell
 function fish_prompt
   powerline-shell --shell bare "$status"
