@@ -1049,6 +1049,7 @@ hook_add = '''
 repo = 'kamykn/spelunker.vim'
 hook_add = '''
   let &spellfile = expand('$HOME/dotfiles/vim/spellfile.utf-8.add')
+  let g:spelunker_spell_bad_group = 'Warning'
   let g:spelunker_complex_or_compound_word_group = 'Warning'
 '''
 

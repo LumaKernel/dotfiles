@@ -95,41 +95,17 @@ hook_add = '''
   let g:my_coc_debug = 0
 
   if g:my_coc_debug
-    echom "Warnign: coc debug mode is on"
+    echom "Warning: coc debug mode is on"
     let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
     let g:node_client_debug = 1
     " :call coc#client#open_log()
   endif
-'''
 
-[[plugins]]
-repo = 'antoinemadec/coc-fzf'
-rev = 'release'
-hook_add = '''
-  nnoremap <silent><nowait> <SPACE>ca  :<C-u>CocFzfList diagnostics<CR>
-  nnoremap <silent><nowait> <SPACE>cq  :<C-u>CocFzfList actions<CR>
-'''
+  augroup my-tf
+    autocmd!
+    autocmd BufWritePre *.tf silent! call CocAction('format')
+  augroup END
 
-[[plugins]]
-repo = '/home/luma/workspace/coc-denoland'
-merged = 0
-if = 0
-
-[[plugins]]
-repo = '/home/luma/ghq/github.com/fannheyward/coc-deno'
-merged = 0
-if = 0
-
-[[plugins]]
-repo = '/home/luma/ghq/github.com/yaegassy/coc-vetur'
-merged = 0
-if = 0
-
-[[plugins]]
-repo = '/home/luma/workspace/vim-tsdetect'
-merged = 0
-if = 0
-hook_add = '''
   function! s:my_coc_tsdetect_buf_write_pre() abort
     if !get(g:, 'coc_enabled', 0)
       return
@@ -161,3 +137,31 @@ hook_add = '''
     autocmd BufWritePost * call <SID>my_coc_tsdetect_buf_write_post()
   augroup END
 '''
+
+[[plugins]]
+repo = 'antoinemadec/coc-fzf'
+rev = 'release'
+hook_add = '''
+  nnoremap <silent><nowait> <SPACE>ca  :<C-u>CocFzfList diagnostics<CR>
+  nnoremap <silent><nowait> <SPACE>cq  :<C-u>CocFzfList actions<CR>
+'''
+
+[[plugins]]
+repo = '/home/luma/workspace/coc-denoland'
+merged = 0
+if = 0
+
+[[plugins]]
+repo = '/home/luma/ghq/github.com/fannheyward/coc-deno'
+merged = 0
+if = 0
+
+[[plugins]]
+repo = '/home/luma/ghq/github.com/yaegassy/coc-vetur'
+merged = 0
+if = 0
+
+[[plugins]]
+repo = '/home/luma/workspace/vim-tsdetect'
+merged = 0
+if = 0

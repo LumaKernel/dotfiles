@@ -8,6 +8,7 @@
     "go",
     "rust",
     "vue",
+    "svelte",
     "javascript",
     "javascriptreact",
     "typescript",
@@ -40,5 +41,8 @@
   "deno.codeLens.referencesAllFunctions": true,
   "deno.codeLens.implementations": true,
   "codeLens.enable": true,
+  "go.goplsOptions": {
+    "staticcheck": true
+  },
   "prettier.onlyUseLocalVersion": true
 }
