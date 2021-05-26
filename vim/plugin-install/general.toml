@@ -929,6 +929,7 @@ hook_add = '''
 '''
 
 [[plugins]]
+if = '!IsPrivateMode()'
 repo = 'wakatime/vim-wakatime'
 
 [[plugins]]

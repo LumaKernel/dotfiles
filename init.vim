@@ -11,6 +11,10 @@ if executable('/usr/bin/whoami') && system('/usr/bin/whoami') =~# '^root\(\n\|$\
   finish
 endif
 
+function! IsPrivateMode() abort
+  return $PRIVATE_MODE == '1'
+endfunction
+
 " "vim-lsp" | "coc" | "none"
 let g:lsp_mode = "coc"
 
