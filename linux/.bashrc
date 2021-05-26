@@ -164,7 +164,7 @@ fi
 
 # -- deno
 if test -z "$DENO_INSTALL"; then
-  export DENO_INSTALL="/home/luma/.deno"
+  export DENO_INSTALL="$HOME/.deno"
   export PATH="$DENO_INSTALL/bin:$PATH"
 fi
 
