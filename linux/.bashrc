@@ -48,7 +48,7 @@ shopt -s checkwinsize  # ${COLUMNS} と ${LINES} を winsize に同期
 shopt -s no_empty_cmd_completion  # 何も入力してないなら補完しない
 shopt -s nocaseglob  # glob で ignorecase
 
-# ---- hisotry 向上
+# ---- history 向上
 
 # i: 直前の履歴 30件を表示する。引数がある場合は過去 1000件を検索
 function i {
