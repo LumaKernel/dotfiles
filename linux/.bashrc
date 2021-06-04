@@ -192,7 +192,7 @@ fi
 
 # -- fzf
 if type fd >/dev/null 2>&1; then
-  export FZF_CTRL_T_COMMAND="fd --base-directory=\"\$dir\" --hidden --absolute-path"
+  export FZF_CTRL_T_COMMAND="fd --search-path=\"\$dir\" --hidden --absolute-path"
 else
   echo "[info/healthcheck/.bashrc] fd not installed."
 fi
