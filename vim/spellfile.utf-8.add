@@ -387,3 +387,9 @@ dpkg
 speedtest
 configmap
 versioned
+bitnami
+hclog
+grpc
+ioutil
+proto
+lsof
