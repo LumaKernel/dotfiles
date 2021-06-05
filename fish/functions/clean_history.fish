@@ -1,22 +1,46 @@
-set -l SUDO_ALLOWLIST "chmod" "chown"
-
-function clean_history --inherit-variable SUDO_ALLOWLIST
+function clean_history
   set -l HISTORY_PATH "$HOME/.local/share/fish/fish_history"
-  cp "$HISTORY_PATH" "$HISTORY_PATH.bak"
-  sed -i -e 's/\t\+/ /g' "$HISTORY_PATH"
 
-  for hist in (history search --prefix '/bin/rm ')
-    history delete --exact --case-sensitive $hist
+  set -l is_force ""
+  if contains -- --force $argv
+    or contains -- -f $argv
+    set is_force 1
   end
 
-  for hist in (history search --prefix 'sudo ')
-    for cmd in $SUDO_ALLOWLIST
-      if string match --regex --quiet '^sudo '$cmd $hist
-        continue
+  if test -n "$is_force"
+    if test -f "$HISTORY_PATH.2.bak"
+      cp "$HISTORY_PATH.2.bak" "$HISTORY_PATH.3.bak"
+    end
+    if test -f "$HISTORY_PATH.1.bak"
+      cp "$HISTORY_PATH.1.bak" "$HISTORY_PATH.2.bak"
+    end
+    if test -f "$HISTORY_PATH.0.bak"
+      cp "$HISTORY_PATH.0.bak" "$HISTORY_PATH.1.bak"
+    end
+    cp "$HISTORY_PATH" "$HISTORY_PATH.0.bak"
+    sed -i -e 's/\t\+/ /g' "$HISTORY_PATH"
+  end
+
+  for hist in (history)
+    if _is_cmd_force $hist
+      or _is_cmd_sudo_danger $hist
+      or _is_cmd_rm $hist
+      if test -n "$is_force"
+        history delete --exact --case-sensitive $hist
+      else
+        echo $hist
       end
     end
-    history delete --exact --case-sensitive $hist
   end
 
-  echo "Run 're' to refresh."
+  if test -n "$is_force"
+    echo "[info/clean_history]: run 're' to refresh"
+  else
+    echo
+    echo "[info/clean_history]: running with dry-run mode"
+    echo "[info/clean_history]: run with '-f' or '--force' flag to delete them"
+    echo "[info/clean_history]: prepend spaces to avoid being the command listed"
+  end
 end
+
+complete -c clean_history -s f -l force -d 'Execute'
