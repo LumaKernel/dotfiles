@@ -62,7 +62,7 @@ endif
 
 set undofile
 
-let s:undofiledir = expand('~/.tmp/vim/undofile')
+let s:undofiledir = has('nvim') ? expand('~/.tmp/nvim/undofile') : expand('~/.tmp/vim/undofile')
 
 if !isdirectory(s:undofiledir)
   silent! call mkdir(s:undofiledir, 'p')
