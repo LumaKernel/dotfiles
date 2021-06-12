@@ -23,11 +23,57 @@
       "initializationOptions": {}
     }
   },
-  "diagnostic-languageserver.filetypes": {
-    "sh": {
+  "diagnostic-languageserver.linters": {
+    "hadolint": {
+      "command": "hadolint",
+      "sourceName": "hadolint",
+      "args": [
+        "-f",
+        "json",
+        "-"
+      ],
+      "parseJson": {
+        "line": "line",
+        "column": "column",
+        "security": "level",
+        "message": "${message} [${code}]"
+      },
+      "securities": {
+        "error": "error",
+        "warning": "warning",
+        "info": "info",
+        "style": "hint"
+      }
+    },
+    "shellcheck": {
       "command": "shellcheck",
-      "args": ["-x"]
+      "debounce": 100,
+      "args": [
+        "--format",
+        "json",
+        "-x",
+        "-"
+      ],
+      "sourceName": "shellcheck",
+      "parseJson": {
+        "line": "line",
+        "column": "column",
+        "endLine": "endLine",
+        "endColumn": "endColumn",
+        "message": "${message} [${code}]",
+        "security": "level"
+      },
+      "securities": {
+        "error": "error",
+        "warning": "warning",
+        "info": "info",
+        "style": "hint"
+      }
     }
+  },
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck",
+    "dockerfile": "hadolint"
   },
   "coc.source.neosnippet.priority": 40,
   "emmet.includeLanguages": {
