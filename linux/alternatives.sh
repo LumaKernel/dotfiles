@@ -5,5 +5,5 @@ exit 1
 
 # TODO: いるこれ？
 
-update-alternatives --install `which vim` vim `which nvim` 60
-update-alternatives --set vim `which nvim`
+update-alternatives --install "$(which vim)" vim "$(which nvim)" 60
+update-alternatives --set vim "$(which nvim)"

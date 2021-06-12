@@ -2,11 +2,12 @@
 
 SCRIPT_DIR="$(realpath "$(dirname "$0")")"
 SCRIPTS_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
+# shellcheck source=../../utils/shared.sh
 source "$SCRIPTS_DIR/utils/shared.sh"
 
 VERSION="0.7.2"
 
-cd /tmp
+cd /tmp || exit
 FILENAME="shellcheck-v${VERSION}.linux.x86_64.tar.xz"
 DIRNAME="shellcheck-v${VERSION}"
 

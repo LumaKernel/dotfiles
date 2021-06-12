@@ -1,7 +1,9 @@
+#!/bin/bash
+
 function get_fingerprint {
   CERTIFICATE_INFO="$(openssl s_client -connect "$1" -CAfile /usr/share/ca-certificates/mozilla/DigiCert_Assured_ID_Root_CA.crt >/dev/fd/1 </dev/null 2>/dev/null)"
 
-  CERTIFICATE_BODY="$(echo "$CERTIFICATE_INFO" | while read LINE; do
+  CERTIFICATE_BODY="$(echo "$CERTIFICATE_INFO" | while read -r LINE; do
     if test "$LINE" = "-----BEGIN CERTIFICATE-----"; then
       FOUND_CERTIFICATE=1
     fi
