@@ -1052,6 +1052,19 @@ hook_add = '''
   let &spellfile = expand('$HOME/dotfiles/vim/spellfile.utf-8.add')
   let g:spelunker_spell_bad_group = 'Warning'
   let g:spelunker_complex_or_compound_word_group = 'Warning'
+
+  let g:spelunker_disable_auto_group = 1
+
+  function! s:spelunker_init() abort
+    if line('$') < 1000
+      call spelunker#check()
+    fi
+  endfunction
+
+  augroup spelunker
+    autocmd!
+    autocmd BufWinEnter,BufWritePost *.vim,*.js,*.jsx,*.json,*.md call <SID>spelunker_init()
+  augroup END
 '''
 
 [[plugins]]
