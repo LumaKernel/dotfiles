@@ -22,7 +22,7 @@ set fish_color_command brcyan
 
 # -- powerline-shell
 function fish_prompt
-  powerline-shell --shell bare "$status"
+  powerline-shell --shell bare $status
 end
 
 # -- rbenv
@@ -40,7 +40,7 @@ function cd
   test -z "$argv"
     and deactivate_venv
 
-  if test "$NO_AUTO_VENV" != "1"
+  if test $NO_AUTO_VENV != "1"
     activate_venv
   end
 end
@@ -51,7 +51,7 @@ function done_enter --on-event fish_postexec
   if test -z "$argv"
     ls
     commandline -f force-repaint
-    if test "$NO_AUTO_VENV" != "1"
+    if test $NO_AUTO_VENV != "1"
       activate_venv
     end
   end
@@ -65,21 +65,21 @@ activate_venv
 if test "$is_WSL" = '1'
   function fish_clipboard_copy
     set -l cmdline (commandline --current-selection)
-    test -n "$cmdline"; or set cmdline (commandline)
+    test -n $cmdline; or set cmdline (commandline)
     if type -q clip.exe
-      printf '%s\n' "$cmdline" | clip.exe -i
+      printf '%s\n' $cmdline | clip.exe -i
     else if type -q win32yank.exe
-      printf '%s\n' "$cmdline" | win32yank.exe -i
+      printf '%s\n' $cmdline | win32yank.exe -i
     else if type -q pbcopy
-      printf '%s\n' "$cmdline" | pbcopy
+      printf '%s\n' $cmdline | pbcopy
     else if set -q WAYLAND_DISPLAY; and type -q wl-copy
-      printf '%s\n' "$cmdline" | wl-copy
+      printf '%s\n' $cmdline | wl-copy
     else if type -q xsel
       # Silence error so no error message shows up
       # if e.g. X isn't running.
-      printf '%s\n' "$cmdline" | xsel --clipboard 2>/dev/null
+      printf '%s\n' $cmdline | xsel --clipboard 2>/dev/null
     else if type -q xclip
-      printf '%s\n' "$cmdline" | xclip -selection clipboard 2>/dev/null
+      printf '%s\n' $cmdline | xclip -selection clipboard 2>/dev/null
     end
   end
 
@@ -99,13 +99,13 @@ if test "$is_WSL" = '1'
     end
 
     # Issue 6254: Handle zero-length clipboard content
-    if not string match -qr . -- "$data"
+    if not string match -qr . -- $data
       return 1
     end
 
     # Also split on \r to turn it into a newline,
     # otherwise the output looks really confusing.
-    set data (string split \r -- "$data")
+    set data (string split \r -- $data)
 
     # If the current token has an unmatched single-quote,
     # escape all single-quotes (and backslashes) in the paste,
@@ -114,18 +114,18 @@ if test "$is_WSL" = '1'
     # This eases pasting non-code (e.g. markdown or git commitishes).
     if __fish_commandline_is_singlequoted
       if status test-feature regex-easyesc
-        set data (string replace -ra "(['\\\])" '\\\\$1' -- "$data")
+        set data (string replace -ra "(['\\\])" '\\\\$1' -- $data)
         else
-          set data (string replace -ra "(['\\\])" '\\\\\\\$1' -- "$data")
+          set data (string replace -ra "(['\\\])" '\\\\\\\$1' -- $data)
         end
     end
     if not string length -q -- (commandline -c)
       # If we're at the beginning of the first line, trim whitespace from the start,
       # so we don't trigger ignoring history.
-      set data[1] (string trim -l -- "$data"[1])
+      set data[1] (string trim -l -- $data[1])
     end
-    if test -n "$data"
-      commandline -i -- "$data"
+    if test -n $data
+      commandline -i -- $data
     end
   end
 end
