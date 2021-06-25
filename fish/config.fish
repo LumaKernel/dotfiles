@@ -40,7 +40,7 @@ function cd
   test -z "$argv"
     and deactivate_venv
 
-  if test $NO_AUTO_VENV != "1"
+  if test "$NO_AUTO_VENV" != "1"
     activate_venv
   end
 end
@@ -51,7 +51,7 @@ function done_enter --on-event fish_postexec
   if test -z "$argv"
     ls
     commandline -f force-repaint
-    if test $NO_AUTO_VENV != "1"
+    if test "$NO_AUTO_VENV" != "1"
       activate_venv
     end
   end
@@ -124,7 +124,7 @@ if test "$is_WSL" = '1'
       # so we don't trigger ignoring history.
       set data[1] (string trim -l -- $data[1])
     end
-    if test -n $data
+    if test -n "$data"
       commandline -i -- $data
     end
   end
