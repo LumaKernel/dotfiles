@@ -1,15 +1,15 @@
 snippet     script_path
-abbr        path_of_script
+alias       path_of_script
 options     head
-  SCRIPT_PATH="$(realpath "\$0")"
+  SCRIPT_PATH="$(realpath "`"$"`0")"
 
 snippet     script_dir
-abbr        dir_path path_script_dir
+alias       dir_path path_script_dir
 options     head
-  SCRIPT_DIR="$(realpath "$(dirname "\$0")")"
+  SCRIPT_DIR="$(realpath "$(dirname "`"$"`0")")"
 
 snippet     docker_node
-abbr        node_docker
+alias       node_docker
 options     head
   PORT=8080
   NAME="node1"
@@ -18,4 +18,11 @@ options     head
   docker rm -f "$NAME"
   docker run --rm -it --name "$NAME" --entrypoint "" -v "\$SCRIPT_DIR:/sandbox" -p "\$PORT:\$PORT" -w /sandbox node:14 $CMDS
 
-  sudo chown -R "\$(whoami):\$(whoami)" "\$SCRIPT_DIR"
+  sudo chown -R "`"$"`(whoami):`"$"`(whoami)" "`"$"`SCRIPT_DIR"
+
+
+snippet     wslnotify
+alias       powershell_notify
+alias       notify_wsl
+options     head
+  powershell.exe -command New-BurntToastNotification -Text $0
