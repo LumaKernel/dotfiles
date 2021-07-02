@@ -1058,7 +1058,7 @@ hook_add = '''
   function! s:spelunker_init() abort
     if line('$') < 1000
       call spelunker#check()
-    fi
+    endif
   endfunction
 
   augroup spelunker
