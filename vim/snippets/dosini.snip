@@ -17,8 +17,15 @@ options     head
   tindent_style = tab
 
 snippet     template-npmrc
-abbr        temp-npmrc npmrc-temp
+alias       temp-npmrc
+alias       npmrc-temp
 options     head
   also=dev
   progress=false
   engine-strict=true
+
+snippet     npmrc-no-lockfile
+alias       no-lockfile-npmrc
+alias       lockfile-no-npmrc
+options     head
+  package-lock=false
