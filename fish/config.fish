@@ -61,6 +61,9 @@ end
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 activate_venv
 
+# tabtab source for packages
+[ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
+
 # -- clipboard
 if test "$is_WSL" = '1'
   function fish_clipboard_copy
