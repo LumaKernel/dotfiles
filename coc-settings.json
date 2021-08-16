@@ -90,5 +90,8 @@
   "go.goplsOptions": {
     "staticcheck": true
   },
-  "prettier.onlyUseLocalVersion": true
+  "coc.preferences.enableMessageDialog": false,
+  "prettier.onlyUseLocalVersion": true,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.experimental.procAttrMacros": true
 }
