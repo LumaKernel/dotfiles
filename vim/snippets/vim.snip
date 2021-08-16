@@ -14,3 +14,28 @@ options     head
 
   function! s:new() abort
   endfunction
+
+
+snippet     start_denops
+alias       debug_denops
+alias       local_init_denops
+alias       init_denops
+alias       denops_debug
+options     head
+  if exists('s:loaded')
+    finish
+  endif
+  let s:loaded = 1
+
+  function! HelloFunc() abort
+    unsilent echom "HelloFunc"
+  endfunction
+
+  let g:HelloLambda = {-> execute('unsilent echom "HelloLambda"', '')}
+
+  unsilent echom '--- denops debugging'
+
+  " let &rtp = expand('<sfile>:p:h') . ',' . &rtp
+  let g:denops#debug = 1
+
+  " vsplit scheme://foo/bar
