@@ -1160,3 +1160,9 @@ rev = 'main'
 [[plugins]]
 if = 0
 repo = 'glepnir/indent-guides.nvim'
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+
+[[plugins]]
+repo = 'luma-dev/dps-godoc'
