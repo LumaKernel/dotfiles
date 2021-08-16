@@ -1,6 +1,9 @@
 [[plugins]]
 repo = 'neoclide/coc.nvim'
-rev = 'release'
+# rev = 'release'
+# rev = 'master'
+rev = '170b5fd2d904c0e9a7ace394510687447809d8dd'
+build = 'yarn install --frozen-lockfile'
 # repo = '/home/luma/ghq/github.com/neoclide/coc.nvim'
 merged = 0
 if = "g:lsp_mode is# 'coc'"
@@ -82,7 +85,6 @@ hook_add = '''
     \   'coc-eslint',
     \   'coc-diagnostic',
     \   'coc-yaml',
-    \   'coc-rust-analyzer',
     \   'coc-python',
     \   'coc-prisma',
     \   'coc-json',
@@ -147,7 +149,7 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = '/home/luma/workspace/coc-denoland'
+repo = '/home/luma/ghq/github.com/LumaKernel/coc-denoland'
 merged = 0
 if = 0
 
