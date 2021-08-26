@@ -1,0 +1,25 @@
+snippet     oapi-codegen-server-go
+alias       go-oapi-codegen-server
+alias       openapi-codegen-go-server
+alias       codegen-oapi-go-server
+alias       petstore-oapi-codegen-go-server
+alias       server-oapi-codegen-go
+options     head
+  output:
+    petstore-server.gen.go
+  generate:
+    - server
+    - spec
+  package: api
+
+snippet     oapi-codegen-types-go
+alias       go-oapi-codegen-types
+alias       openapi-codegen-go-types
+alias       codegen-oapi-go-types
+alias       petstore-oapi-codegen-go-types
+alias       types-oapi-codegen-go
+  output:
+    petstore-types.gen.go
+  generate:
+    - types
+  package: api

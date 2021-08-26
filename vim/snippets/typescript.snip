@@ -16,8 +16,7 @@ options     head
     }
   }
 
-snippet     assertIsHTMLTemplateElement
-abbr        ishtmltemplateelement
+snippet     assertIsHTMLTemplateElement abbr        ishtmltemplateelement
 abbr        htmltemplateelement
 abbr        templateelement
 abbr        elementtemplate
@@ -81,3 +80,34 @@ abbr file-debug
       \`${new Date().toLocaleTimeString()}: ${util.inspect(obj)}\n\`,
     );
   };
+
+snippet     import-meta
+alias       declare-import-meta
+alias       meta-import-declare
+alias       env-meta-import-declare
+alias       env-meta-import-declare
+options     head
+  declare interface ImportMeta {
+    env: {
+      GITHUB_AUTH_TOKEN: string;
+      NODE_ENV: 'development' | 'production';
+      PORT?: string;
+      PWD: string;
+    };
+  }
+
+snippet     import-meta-vite
+alias       vite-import-meta
+alias       declare-import-meta-vite
+alias       meta-import-declare-vite
+alias       env-meta-import-declare-vite
+alias       env-meta-import-declare-vite
+options     head
+  declare interface ImportMeta {
+    env: {
+      MODE: string;
+      BASE_URL: string;
+      PROD: boolean;
+      DEV: boolean;
+    };
+  }

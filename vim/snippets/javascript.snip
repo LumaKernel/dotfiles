@@ -1,0 +1,26 @@
+snippet     eslint-typescript-sub
+alias       subdirectory-typescript-eslint
+options     head
+  const path = require('path');
+
+  /** @type {import("eslint").parserOptions} */
+  module.exports = {
+    override: {
+      files: ['*.ts'],
+      parserOptions: {project: path.resolve(__dirname, 'tsconfig.json')},
+    },
+  };
+
+snippet     esm-this-dir
+alias       dirname-esm
+options     head
+  import {join, dirname} from 'path'
+  import {fileURLToPath} from 'url'
+  join(dirname(fileURLToPath(import.meta.url), "foo");
+
+snippet     eslint-linter-config
+alias       eslint-type-jsdoc
+alias       type-eslint-jsdoc
+alias       jsdoc-eslint-type
+options     head
+  /** @type {import("eslint").Linter.Config} */
