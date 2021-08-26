@@ -1,3 +1,3 @@
-function nvim_plug_here
-  nvim --cmd "let &rtp = &rtp .. ',' .. expand('%:h:p')" $argv
+function nvim_plug_here --wraps nvim
+  nvim --cmd "let &rtp = &rtp .. ',' .. '"(pwd)"'" $argv
 end

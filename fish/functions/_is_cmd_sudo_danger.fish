@@ -1,4 +1,4 @@
-set -l SUDO_ALLOWLIST "chmod" "chown" "echo" "apt" "apt-get" "lsof" "cat"
+set -l SUDO_ALLOWLIST "chmod" "chown" "echo" "apt" "apt-get" "lsof" "cat" "service" "tcpdump" "install" "dpkg"
 
 function _is_cmd_sudo_danger --inherit-variable SUDO_ALLOWLIST
   set -l input "$argv"
