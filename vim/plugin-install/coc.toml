@@ -151,7 +151,7 @@ hook_add = '''
 [[plugins]]
 repo = '/home/luma/ghq/github.com/LumaKernel/coc-denoland'
 merged = 0
-if = 0
+if = 1
 
 [[plugins]]
 repo = '/home/luma/ghq/github.com/fannheyward/coc-deno'

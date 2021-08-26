@@ -1166,3 +1166,6 @@ repo = 'vim-denops/denops.vim'
 
 [[plugins]]
 repo = 'luma-dev/dps-godoc'
+
+[[plugins]]
+repo = 'LumaKernel/as-it-is.vim'

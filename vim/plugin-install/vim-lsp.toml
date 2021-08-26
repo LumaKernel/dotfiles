@@ -170,7 +170,7 @@ hook_add = '''
   augroup END
 
   let g:lsp_log_file = expand('~/vim-lsp.log')
-  if 1
+  if 0
     echom "[Warning] LSP Logging is on."
     call delete(g:lsp_log_file)
   endif
