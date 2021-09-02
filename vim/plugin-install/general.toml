@@ -1138,13 +1138,13 @@ hook_post_source = '''
       },
     }
     local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-    parser_config.prisma = {
-      install_info = {
-        url = "~/workspace/tree-sitter-prisma",
-        files = {"src/parser.c"},
-      },
-      filetype = "prisma",
-    }
+    -- parser_config.prisma = {
+    --   install_info = {
+    --     url = "~/workspace/tree-sitter-prisma",
+    --     files = {"src/parser.c"},
+    --   },
+    --   filetype = "prisma",
+    -- }
 EOF
 '''
 
