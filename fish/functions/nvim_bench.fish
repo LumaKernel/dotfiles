@@ -1,12 +1,16 @@
 function nvim_bench
-  nvim +"call dein#recache_runtimepath()" +qa!
-  and nvim +":UpdateRemotePlugins" +qa!
+  set -l NVIM_RUN nvim
+  if test -n $argv[1]
+    set NVIM_RUN nvim_s
+  end
+  eval $NVIM_RUN' +"call dein#recache_runtimepath()" +qa!'
+  and eval $NVIM_RUN' +":UpdateRemotePlugins" +qa!'
   begin
     set -l sum 0
     set -l T 10
     for i in (seq 1 $T)
       /bin/rm -f /tmp/nvim-startuptime
-      nvim +"autocmd VimEnter * qa!" --startuptime /tmp/nvim-startuptime
+      eval $NVIM_RUN' +"autocmd VimEnter * qa!" --startuptime /tmp/nvim-startuptime'
       set -l this (cat /tmp/nvim-startuptime | tail -n 1 | awk '{print $1}')
       echo $i: $this ms
       set sum (math -- $sum + $this)

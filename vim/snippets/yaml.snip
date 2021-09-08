@@ -23,3 +23,36 @@ alias       types-oapi-codegen-go
   generate:
     - types
   package: api
+
+snippet gha-eg-path-ignore
+options head
+  paths-ignore:
+    - "README.md"
+    - "LICENSE"
+    - ".github/workflows/commitlint.yml"
+    - ".github/workflows/release-pr.yml"
+    - ".husky/"
+    - "commitlint.config.cjs"
+
+snippet gha-eg-cache-pnpm-modules
+options head
+  - name: Cache pnpm modules
+    uses: actions/cache@v2
+    with:
+      path: ~/.pnpm-store
+      key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+      restore-keys: |
+        ${{ runner.os }}-pnpm-
+
+snippet gha-eg-setup-pnpm
+options head
+  - uses: pnpm/action-setup@v2
+    with:
+      version: 6
+      run_install: |
+        - recursive: true
+          args: [--frozen-lockfile, --prefer-offline]
+
+snippet gha-eg-if-main-push
+options head
+  - if: ${{ github.event_name == 'push' && github.event.ref == 'refs/heads/main' }}

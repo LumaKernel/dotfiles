@@ -3,7 +3,7 @@ alias       subdirectory-typescript-eslint
 options     head
   const path = require('path');
 
-  /** @type {import("eslint").parserOptions} */
+  /** @type {import('eslint').Linter.Config} */
   module.exports = {
     override: {
       files: ['*.ts'],
@@ -23,4 +23,18 @@ alias       eslint-type-jsdoc
 alias       type-eslint-jsdoc
 alias       jsdoc-eslint-type
 options     head
-  /** @type {import("eslint").Linter.Config} */
+  /** @type {import('eslint').Linter.Config} */
+
+snippet     jest-config
+alias       jest-type-jsdoc
+alias       type-jest-jsdoc
+alias       jsdoc-jest-type
+options     head
+  /** @type {import('@jest/types').Config} */
+
+snippet     snowpack-config
+alias       snowpack-type-jsdoc
+alias       type-snowpack-jsdoc
+alias       jsdoc-snowpack-type
+options     head
+  /** @type {import('snowpack').SnowpackUserConfig} */

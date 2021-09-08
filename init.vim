@@ -15,11 +15,38 @@ function! IsPrivateMode() abort
   return $PRIVATE_MODE == '1'
 endfunction
 
+" "ddc" | "coc" | "none"
+let g:complete_mode = "coc"
+if !empty($VIM_COMPLETE_MODE)
+  let g:complete_mode = $VIM_COMPLETE_MODE
+endif
+
 " "vim-lsp" | "coc" | "none"
 let g:lsp_mode = "coc"
+if !empty($VIM_LSP_MODE)
+  let g:lsp_mode = $VIM_LSP_MODE
+endif
 
 " "tsu" | "lsp" | "none"
-let g:ts_lsp_mode = "lsp"
+let g:ts_lsp_mode = "none"
+if !empty($VIM_TS_LSP_MODE)
+  let g:ts_lsp_mode = $VIM_TS_LSP_MODE
+endif
+
+
+if g:complete_mode isnot# "coc" && g:lsp_mode is# "coc"
+  let g:lsp_mode = "none"
+endif
+
+if g:lsp_mode is# "none"
+  \ || g:complete_mode is# "none"
+  let g:ts_lsp_mode = "none"
+endif
+
+if g:complete_mode is# "coc"
+  let g:ts_lsp_mode = "lsp"
+endif
+
 
 let g:from_pwsh = 0
 let g:is_wsl = 0

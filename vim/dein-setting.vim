@@ -19,20 +19,21 @@ endif
 
 
 filetype plugin indent off
-let s:dein_dir = has('nvim') ? expand('~/.cache/dein/nvim') : expand('~/.cache/dein/vim')
-let s:dein_repo_dir = s:dein_dir .. '/repos/github.com/Shougo/dein.vim'
+let g:dein_ns = printf('%s--%s--%s', g:complete_mode, g:lsp_mode, g:ts_lsp_mode)
+let g:dein_dir = has('nvim') ? expand(printf('~/.cache/dein/nvim-%s', g:dein_ns)) : expand(printf('~/.cache/dein/vim-%s', g:dein_ns))
+let g:dein_repo_dir = g:dein_dir .. '/repos/github.com/Shougo/dein.vim'
 
-if !isdirectory(s:dein_repo_dir)
-  execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+if !isdirectory(g:dein_repo_dir)
+  execute '!git clone https://github.com/Shougo/dein.vim' g:dein_repo_dir
 endif
 
-let &runtimepath = s:dein_repo_dir .. ',' .. &runtimepath
+let &runtimepath = g:dein_repo_dir .. ',' .. &runtimepath
 
 let s:dir = expand('<sfile>:h')
 
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-    call dein#add(s:dein_dir)
+if dein#load_state(g:dein_dir)
+  call dein#begin(g:dein_dir)
+    call dein#add(g:dein_dir)
     call dein#add(resolve(s:dir .. '/myruntime'), { 'merged' : 1 })
     for s:toml in glob(s:dir .. '/plugin-install/*.toml', 1, 1)
       silent! call dein#load_toml(s:toml)
@@ -49,6 +50,8 @@ if dein#load_state(s:dein_dir)
   endif
 endif
 
+filetype plugin indent on
+
 augroup init_vim
   if v:vim_did_enter
     call dein#call_hook('post_source')
@@ -56,8 +59,6 @@ augroup init_vim
     autocmd VimEnter * call dein#call_hook('post_source')
   endif
 augroup END
-
-filetype plugin indent on
 
 
 function! DeinClean() abort

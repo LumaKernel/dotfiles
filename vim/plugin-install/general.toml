@@ -1,11 +1,3 @@
-# プラグイン追加時のあれこれ
-#
-# - ファイルタイプ専用のものであれば，専用TOMLファイルに追加
-# - Lazy にする場合 (on_ft なども含まれる) は，
-#   dein#check_lazy_plugins() でチェック
-#   この設定は，基本いらないとすら思っていい
-
-
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
@@ -1169,3 +1161,51 @@ repo = 'luma-dev/dps-godoc'
 
 [[plugins]]
 repo = 'LumaKernel/as-it-is.vim'
+
+# ddc.vim
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+if = 'g:complete_mode == "ddc"'
+hook_post_source = '''
+  if g:complete_mode == "ddc"
+    call ddc#custom#patch_global('sources', ['around', 'nextword'])
+    call ddc#custom#patch_global('sourceOptions', {
+        \ '_': {
+        \   'matchers': ['matcher_fuzzy'],
+        \   'sorters': ['sorter_rank']},
+        \ })
+    call ddc#custom#patch_global('sourceOptions', {
+        \ 'around': {
+        \   'mark': 'A',
+        \   'maxSize': 500,
+        \ }})
+    call ddc#custom#patch_global('sourceOptions', {
+        \ 'nextword': {
+        \   'mark': 'next',
+        \   'minAutoCompleteLength': 1,
+        \   'isVolatile': v:true,
+        \ }})
+    inoremap <silent><expr> <TAB>
+        \ pumvisible() ? '<C-n>' :
+        \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+        \ '<TAB>' : ddc#manual_complete()
+    inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-h>'
+    call ddc#enable()
+  endif
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+depends = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+depends = ['ddc.vim']
+
+[[plugins]]
+repo = 'matsui54/ddc-matcher_fuzzy'
+depends = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-nextword'
+depends = ['ddc.vim']
