@@ -1,8 +1,0 @@
-[[plugins]]
-repo = 'Mizuchi/STL-Syntax'
-
-[[plugins]]
-repo = 'Shougo/unite-outline'
-
-[[plugins]]
-repo = 'rhysd/wandbox-vim'

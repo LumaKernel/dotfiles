@@ -1,9 +1,0 @@
-[[plugins]]
-repo = 'pangloss/vim-javascript'
-
-[[plugins]]
-repo = 'heavenshell/vim-jsdoc'
-hook_add = '''
-  let g:jsdoc_enable_es6 = 1
-  au FileType javascript nnoremap <buffer> <Leader>d :JsDoc
-'''

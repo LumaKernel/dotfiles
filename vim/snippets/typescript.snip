@@ -1,14 +1,14 @@
 snippet     query
-abbr        jquery
-abbr        selector
-abbr        document
+alias       jquery
+alias       selector
+alias       document
 options     head
   const $: typeof document.querySelectorAll = document.querySelectorAll.bind(document)
   const \$1: typeof document.querySelector = document.querySelector.bind(document)
   $0
 
 snippet     assertNonEmpty
-abbr        nonempty
+alias       nonempty
 options     head
   function assertNonEmpty<T>(value: T | null | undefined): asserts value is T {
     if (value === null || value === void 0) {
@@ -16,10 +16,11 @@ options     head
     }
   }
 
-snippet     assertIsHTMLTemplateElement abbr        ishtmltemplateelement
-abbr        htmltemplateelement
-abbr        templateelement
-abbr        elementtemplate
+snippet     assertIsHTMLTemplateElement
+alias       ishtmltemplateelement
+alias       htmltemplateelement
+alias       templateelement
+alias       elementtemplate
 options     head
   function assertIsHTMLTemplateElement (value: Element | null | undefined): asserts value is HTMLTemplateElement {
     if (value === null || value === void 0 || !(value instanceof HTMLTemplateElement)) {
@@ -28,8 +29,8 @@ options     head
   }
 
 snippet     assertIsHTMLElement
-abbr        ishtmlelement
-abbr        htmlelement
+alias       ishtmlelement
+alias       htmlelement
 options     head
   function assertIsHTMLElement(
     value: Element | null | undefined
@@ -44,8 +45,8 @@ options     head
   }
 
 snippet     assertIsSVGElement
-abbr        issvgelement
-abbr        svgelement
+alias       issvgelement
+alias       svgelement
 options     head
   function assertIsSVGElement(
     value: Element | null | undefined
@@ -56,8 +57,8 @@ options     head
   }
 
 snippet processenv
-abbr env_values
-abbr nodejs_env_values
+alias env_values
+alias nodejs_env_values
   declare namespace NodeJS {
     interface ProcessEnv {
       readonly NODE_ENV?: 'development' | 'production' | 'test'
@@ -65,8 +66,8 @@ abbr nodejs_env_values
   }
 
 snippet node-debug
-abbr debug-node
-abbr file-debug
+alias debug-node
+alias file-debug
   import * as fs from "fs";
   import * as util from "util";
   import * as path from "path";
@@ -111,3 +112,25 @@ options     head
       DEV: boolean;
     };
   }
+
+# Deno snippets
+snippet deno-import-io
+  import * as io from "https://deno.land/std/io/mod.ts";
+
+snippet deno-import-semver
+  import * as semver from "https://deno.land/x/semver/mod.ts";
+
+snippet deno-import-semaphore
+  import { Mutex } from "https://deno.land/x/semaphore/mod.ts";
+
+snippet deno-import-path
+  import * as path from "https://deno.land/std/path/mod.ts";
+
+snippet deno-import-fs
+  import * as fs from "https://deno.land/std/fs/mod.ts";
+
+snippet deno-import-unzip
+  import { unZipFromFile } from "https://deno.land/x/zip/mod.ts";
+
+snippet deno-import-assert
+  import { assert } from "https://deno.land/std@0.106.0/testing/asserts.ts";

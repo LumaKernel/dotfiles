@@ -2,7 +2,7 @@
 repo = 'neoclide/coc.nvim'
 # rev = 'release'
 # rev = 'master'
-rev = '170b5fd2d904c0e9a7ace394510687447809d8dd'
+rev = '03c9add7cd867a013102dcb45fb4e75304d227d7'
 build = 'yarn install --frozen-lockfile'
 # repo = '/home/luma/ghq/github.com/neoclide/coc.nvim'
 merged = 0
@@ -157,7 +157,7 @@ rev = 'release'
 repo = '/home/luma/ghq/github.com/LumaKernel/coc-denoland'
 depends = ['coc.nvim']
 merged = 0
-if = 1
+if = 0
 
 [[plugins]]
 repo = '/home/luma/workspace/vim-tsdetect'

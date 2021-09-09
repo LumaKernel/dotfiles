@@ -35,12 +35,16 @@ if dein#load_state(g:dein_dir)
   call dein#begin(g:dein_dir)
     call dein#add(g:dein_dir)
     call dein#add(resolve(s:dir .. '/myruntime'), { 'merged' : 1 })
-    for s:toml in glob(s:dir .. '/plugin-install/*.toml', 1, 1)
-      silent! call dein#load_toml(s:toml)
-    endfor
-    for s:toml in glob(s:dir .. '/plugin-install/filetypes/*.toml', 1, 1)
-      silent! call dein#load_toml(s:toml)
-    endfor
+    call dein#load_toml(s:dir .. '/plugin-install/common.toml')
+    if g:complete_mode is# 'ddc'
+      call dein#load_toml(s:dir .. '/plugin-install/ddc.toml')
+    endif
+    if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
+      call dein#load_toml(s:dir .. '/plugin-install/coc.toml')
+    endif
+    if g:lsp_mode is# 'vim-lsp'
+      call dein#load_toml(s:dir .. '/plugin-install/vim-lsp.toml')
+    endif
     " call s:dein_opam_settings()
   call dein#end()
   call dein#call_hook('source')

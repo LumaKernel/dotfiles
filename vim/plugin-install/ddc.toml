@@ -1,0 +1,99 @@
+# ddc.vim
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+if = 'g:complete_mode is# "ddc"'
+hook_post_source = '''
+if g:complete_mode is# "ddc"
+  if has('nvim')
+    call ddc#custom#patch_global('sources', [
+        \ 'treesitter',
+        \ 'tabnine',
+        \ 'around',
+        \ 'deoppet',
+        \ 'nextword',
+      \ ])
+  else
+    call ddc#custom#patch_global('sources', [
+        \ 'tabnine',
+        \ 'around',
+        \ 'deoppet',
+        \ 'nextword',
+      \ ])
+  endif
+
+  call ddc#custom#patch_global('sourceOptions', {
+      \ '_': {
+      \   'matchers': ['matcher_fuzzy'],
+      \   'sorters': ['sorter_rank']},
+      \ })
+  call ddc#custom#patch_global('sourceOptions', {
+      \ 'around': {
+      \   'mark': 'A',
+      \   'maxSize': 500,
+      \ }})
+  call ddc#custom#patch_global('sourceOptions', {
+      \ 'nextword': {
+      \   'mark': 'next',
+      \   'maxCandidates': 3,
+      \   'isVolatile': v:true,
+      \   'minAutoCompleteLength': 3,
+      \ }})
+  call ddc#custom#patch_global('sourceOptions', {
+      \ 'deoppet': {
+      \   'dup': v:true,
+      \   'mark': 'dp',
+      \ }})
+  call ddc#custom#patch_global('sourceOptions', {
+      \ 'tabnine': {
+      \   'mark': 'TN',
+      \   'isVolatile': v:true,
+      \ }})
+  call ddc#custom#patch_global('sourceOptions', {
+      \ 'treesitter': {
+      \   'mark': 'TS',
+      \ }})
+  inoremap <silent><expr> <TAB>
+      \ pumvisible() ? '<C-n>' :
+      \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+      \ '<TAB>' : ddc#manual_complete()
+  inoremap <silent><expr> <C-n> ddc#manual_complete()
+
+  inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-h>'
+  call timer_start(1000, {->execute('call ddc#enable()')})
+endif
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+depends = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+depends = ['ddc.vim']
+
+[[plugins]]
+repo = 'matsui54/ddc-matcher_fuzzy'
+depends = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-nextword'
+depends = ['ddc.vim']
+
+[[plugins]]
+repo = 'delphinus/ddc-treesitter'
+if = 'has("nvim")'
+depends = ['ddc.vim']
+
+[[plugins]]
+repo = 'LumaKernel/ddc-tabnine'
+if = '!IsPrivateMode() && 1'
+depends = ['ddc.vim']
+
+
+[[plugins]]
+repo = '/home/luma/workspace/0-ddc-tn/ddc-tn'
+if = 0
+depends = ['ddc.vim']
+merged = 0
+hook_add = '''
+'''
