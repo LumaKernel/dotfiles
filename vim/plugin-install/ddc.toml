@@ -82,7 +82,7 @@ depends = ['ddc.vim']
 [[plugins]]
 repo = 'delphinus/ddc-treesitter'
 if = 'has("nvim")'
-depends = ['ddc.vim']
+depends = ['ddc.vim', 'nvim-treesitter']
 
 [[plugins]]
 repo = 'LumaKernel/ddc-tabnine'
