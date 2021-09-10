@@ -11,14 +11,16 @@ if g:complete_mode is# "ddc"
         \ 'around',
         \ 'deoppet',
         \ 'nextword',
+        \ 'file',
       \ ])
   else
-    call ddc#custom#patch_global('sources', [
-        \ 'tabnine',
-        \ 'around',
-        \ 'deoppet',
-        \ 'nextword',
-      \ ])
+  call ddc#custom#patch_global('sources', [
+      \ 'tabnine',
+      \ 'around',
+      \ 'deoppet',
+      \ 'nextword',
+      \ 'file',
+    \ ])
   endif
 
   call ddc#custom#patch_global('sourceOptions', {
@@ -49,6 +51,18 @@ if g:complete_mode is# "ddc"
       \   'isVolatile': v:true,
       \ }})
   call ddc#custom#patch_global('sourceOptions', {
+      \ 'file': {
+      \   'mark': 'F',
+      \   'isVolatile': v:true,
+      \ }})
+  call ddc#custom#patch_filetype(
+      \ ['ps1', 'dosbatch', 'autohotkey', 'registry'],
+      \ 'sourceParams', {
+      \   'file': {
+      \     'mode': 'win32',
+      \   },
+      \ })
+  call ddc#custom#patch_global('sourceOptions', {
       \ 'treesitter': {
       \   'mark': 'TS',
       \ }})
@@ -59,6 +73,15 @@ if g:complete_mode is# "ddc"
   inoremap <silent><expr> <C-n> ddc#manual_complete()
 
   inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-h>'
+
+  " XXX: experimental
+  " if exists('g:ddc#_initialized')
+  "   call ddc#enable()
+  " else
+  "   augroup my-ddc
+  "     autocmd User DDCReady ++once call ddc#enable()
+  "   augroup END
+  " endif
   call timer_start(1000, {->execute('call ddc#enable()')})
 endif
 '''
@@ -85,15 +108,24 @@ if = 'has("nvim")'
 depends = ['ddc.vim', 'nvim-treesitter']
 
 [[plugins]]
+repo = 'LumaKernel/ddc-file'
+if = '1'
+depends = ['ddc.vim']
+
+[[plugins]]
 repo = 'LumaKernel/ddc-tabnine'
 if = '!IsPrivateMode() && 1'
 depends = ['ddc.vim']
-
-
-[[plugins]]
-repo = '/home/luma/workspace/0-ddc-tn/ddc-tn'
-if = 0
-depends = ['ddc.vim']
-merged = 0
 hook_add = '''
+command! -bar EditTabNineConfig execute 'edit' ddc_tabnine#config_dir() . '/tabnine_config.json'
 '''
+
+
+# Debug
+# [[plugins]]
+# repo = '~/ghq/github.com/LumaKernel/ddc-file'
+# if = 0
+# depends = ['ddc.vim']
+# merged = 0
+# hook_add = '''
+# '''
