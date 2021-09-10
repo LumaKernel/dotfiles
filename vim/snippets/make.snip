@@ -1,0 +1,11 @@
+snippet template
+  .PHONY: default
+  default: help
+
+  .PHONY: help
+  help:
+    @echo Usage: make <target...>
+
+  .PHONY: test
+  test:
+    test
