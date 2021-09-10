@@ -133,4 +133,34 @@ snippet deno-import-unzip
   import { unZipFromFile } from "https://deno.land/x/zip/mod.ts";
 
 snippet deno-import-assert
-  import { assert } from "https://deno.land/std@0.106.0/testing/asserts.ts";
+  import { assert } from "https://deno.land/std/testing/asserts.ts";
+
+snippet deno-import-xdg
+  import xdg from 'https://deno.land/x/xdg/src/mod.deno.ts';
+
+snippet deno-import-iter-helpers
+  import {
+    asyncIteratorFrom as fromA,
+    iteratorFrom as from,
+    wrapAsyncIterator as wrapA,
+    wrapIterator as wrap,
+  } from "https://deno.land/x/iterator_helpers/mod.ts";
+
+snippet deno-ignore-explicit-any
+alias any-ignore-deno
+alias ignore-any-deno
+alias explicit-any-ignore-deno
+  // deno-lint-ignore no-explicit-any
+
+snippet deno-exists
+alias fs-exists-deno
+alias exists-deno
+  // https://github.com/denoland/deno_std/issues/1216
+  const exists = async (filepath: string): Promise<boolean> => {
+    try {
+      await Deno.lstat(filepath);
+      return true;
+    } catch (_e: unknown) {
+      return false;
+    }
+  };
