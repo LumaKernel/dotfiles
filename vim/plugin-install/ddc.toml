@@ -2,24 +2,27 @@
 [[plugins]]
 repo = 'Shougo/ddc.vim'
 if = 'g:complete_mode is# "ddc"'
+hook_add = '''
+set completeopt=menuone
+'''
 hook_post_source = '''
 if g:complete_mode is# "ddc"
   if has('nvim')
     call ddc#custom#patch_global('sources', [
         \ 'treesitter',
         \ 'tabnine',
+        \ 'file',
         \ 'around',
         \ 'deoppet',
         \ 'nextword',
-        \ 'file',
       \ ])
   else
   call ddc#custom#patch_global('sources', [
       \ 'tabnine',
+      \ 'file',
       \ 'around',
       \ 'deoppet',
       \ 'nextword',
-      \ 'file',
     \ ])
   endif
 
@@ -27,16 +30,18 @@ if g:complete_mode is# "ddc"
       \ '_': {
       \   'matchers': ['matcher_fuzzy'],
       \   'sorters': ['sorter_rank']},
+      \   'ignoreCase': v:true,
       \ })
   call ddc#custom#patch_global('sourceOptions', {
       \ 'around': {
       \   'mark': 'A',
       \   'maxSize': 500,
+      \   'minAutoCompleteLength': 4,
       \ }})
   call ddc#custom#patch_global('sourceOptions', {
       \ 'nextword': {
       \   'mark': 'next',
-      \   'maxCandidates': 3,
+      \   'maxCandidates': 4,
       \   'isVolatile': v:true,
       \   'minAutoCompleteLength': 3,
       \ }})
@@ -44,16 +49,21 @@ if g:complete_mode is# "ddc"
       \ 'deoppet': {
       \   'dup': v:true,
       \   'mark': 'dp',
+      \   'minAutoCompleteLength': 2,
       \ }})
   call ddc#custom#patch_global('sourceOptions', {
       \ 'tabnine': {
       \   'mark': 'TN',
+      \   'maxCandidates': 5,
       \   'isVolatile': v:true,
+      \   'minAutoCompleteLength': 2,
+      \   'forceCompletionPattern': '..',
       \ }})
   call ddc#custom#patch_global('sourceOptions', {
       \ 'file': {
       \   'mark': 'F',
       \   'isVolatile': v:true,
+      \   'minAutoCompleteLength': 1,
       \ }})
   call ddc#custom#patch_filetype(
       \ ['ps1', 'dosbatch', 'autohotkey', 'registry'],
@@ -83,6 +93,9 @@ if g:complete_mode is# "ddc"
   "   augroup END
   " endif
   call timer_start(1000, {->execute('call ddc#enable()')})
+
+  " Debug
+  " call ddc#custom#patch_global('sources', ['file'])
 endif
 '''
 
@@ -122,9 +135,10 @@ command! -bar EditTabNineConfig execute 'edit' ddc_tabnine#config_dir() . '/tabn
 
 
 # Debug
+
 # [[plugins]]
-# repo = '~/ghq/github.com/LumaKernel/ddc-file'
-# if = 0
+# repo = '~/ghq/github.com/LumaKernel/ddc-tabnine'
+# if = 1
 # depends = ['ddc.vim']
 # merged = 0
 # hook_add = '''
