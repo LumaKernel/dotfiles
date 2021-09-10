@@ -565,3 +565,9 @@ sigint
 fullpath
 tabnine
 camelcase
+deps
+lcov
+genhtml
+coverage
+lcov
+dirs
