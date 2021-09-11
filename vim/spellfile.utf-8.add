@@ -571,3 +571,4 @@ genhtml
 coverage
 lcov
 dirs
+posix
