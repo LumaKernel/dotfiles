@@ -13,6 +13,7 @@ if g:complete_mode is# "ddc"
         \ 'tabnine',
         \ 'file',
         \ 'around',
+        \ 'buffer',
         \ 'deoppet',
         \ 'nextword',
       \ ])
@@ -21,6 +22,7 @@ if g:complete_mode is# "ddc"
       \ 'tabnine',
       \ 'file',
       \ 'around',
+      \ 'buffer',
       \ 'deoppet',
       \ 'nextword',
     \ ])
@@ -35,8 +37,20 @@ if g:complete_mode is# "ddc"
   call ddc#custom#patch_global('sourceOptions', {
       \ 'around': {
       \   'mark': 'A',
-      \   'maxSize': 500,
       \   'minAutoCompleteLength': 4,
+      \ }})
+  call ddc#custom#patch_global('sourceParams', {
+      \ 'around': {
+      \   'maxSize': 500,
+      \ }})
+  call ddc#custom#patch_global('sourceOptions', {
+      \ 'buffer': {
+      \   'mark': 'B',
+      \   'minAutoCompleteLength': 4,
+      \ }})
+  call ddc#custom#patch_global('sourceParams', {
+      \ 'buffer': {
+      \   'requireSameFiletype': v:false,
       \ }})
   call ddc#custom#patch_global('sourceOptions', {
       \ 'nextword': {
@@ -63,15 +77,20 @@ if g:complete_mode is# "ddc"
       \ 'file': {
       \   'mark': 'F',
       \   'isVolatile': v:true,
-      \   'minAutoCompleteLength': 1,
+      \   'forceCompletionPattern': '\S/\S*',
       \ }})
   call ddc#custom#patch_filetype(
-      \ ['ps1', 'dosbatch', 'autohotkey', 'registry'],
-      \ 'sourceParams', {
+      \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
+      \ 'sourceOptions': {
+      \   'file': {
+      \     'forceCompletionPattern': '\S\\\S*',
+      \   },
+      \ },
+      \ 'sourceParams': {
       \   'file': {
       \     'mode': 'win32',
       \   },
-      \ })
+      \ }})
   call ddc#custom#patch_global('sourceOptions', {
       \ 'treesitter': {
       \   'mark': 'TS',
@@ -122,6 +141,10 @@ depends = ['ddc.vim', 'nvim-treesitter']
 
 [[plugins]]
 repo = 'LumaKernel/ddc-file'
+depends = ['ddc.vim']
+
+[[plugins]]
+repo = 'matsui54/ddc-buffer'
 depends = ['ddc.vim']
 
 [[plugins]]
