@@ -122,12 +122,11 @@ depends = ['ddc.vim', 'nvim-treesitter']
 
 [[plugins]]
 repo = 'LumaKernel/ddc-file'
-if = '1'
 depends = ['ddc.vim']
 
 [[plugins]]
 repo = 'LumaKernel/ddc-tabnine'
-if = '!IsPrivateMode() && 1'
+if = '!IsPrivateMode()'
 depends = ['ddc.vim']
 hook_add = '''
 command! -bar EditTabNineConfig execute 'edit' ddc_tabnine#config_dir() . '/tabnine_config.json'
@@ -137,7 +136,7 @@ command! -bar EditTabNineConfig execute 'edit' ddc_tabnine#config_dir() . '/tabn
 # Debug
 
 # [[plugins]]
-# repo = '~/ghq/github.com/LumaKernel/ddc-tabnine'
+# repo = '~/ghq/github.com/LumaKernel/ddc-file'
 # if = 1
 # depends = ['ddc.vim']
 # merged = 0
