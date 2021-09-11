@@ -32,12 +32,12 @@ if g:complete_mode is# "ddc"
       \ '_': {
       \   'matchers': ['matcher_fuzzy'],
       \   'sorters': ['sorter_rank']},
-      \   'ignoreCase': v:true,
       \ })
   call ddc#custom#patch_global('sourceOptions', {
       \ 'around': {
       \   'mark': 'A',
       \   'minAutoCompleteLength': 4,
+      \   'ignoreCase': v:true,
       \ }})
   call ddc#custom#patch_global('sourceParams', {
       \ 'around': {
@@ -47,6 +47,7 @@ if g:complete_mode is# "ddc"
       \ 'buffer': {
       \   'mark': 'B',
       \   'minAutoCompleteLength': 4,
+      \   'ignoreCase': v:true,
       \ }})
   call ddc#custom#patch_global('sourceParams', {
       \ 'buffer': {
@@ -58,12 +59,14 @@ if g:complete_mode is# "ddc"
       \   'maxCandidates': 4,
       \   'isVolatile': v:true,
       \   'minAutoCompleteLength': 3,
+      \   'ignoreCase': v:true,
       \ }})
   call ddc#custom#patch_global('sourceOptions', {
       \ 'deoppet': {
       \   'dup': v:true,
       \   'mark': 'dp',
       \   'minAutoCompleteLength': 2,
+      \   'ignoreCase': v:true,
       \ }})
   call ddc#custom#patch_global('sourceOptions', {
       \ 'tabnine': {
@@ -72,12 +75,14 @@ if g:complete_mode is# "ddc"
       \   'isVolatile': v:true,
       \   'minAutoCompleteLength': 2,
       \   'forceCompletionPattern': '..',
+      \   'ignoreCase': v:true,
       \ }})
   call ddc#custom#patch_global('sourceOptions', {
       \ 'file': {
       \   'mark': 'F',
       \   'isVolatile': v:true,
       \   'forceCompletionPattern': '\S/\S*',
+      \   'ignoreCase': v:true,
       \ }})
   call ddc#custom#patch_filetype(
       \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
@@ -159,7 +164,7 @@ command! -bar EditTabNineConfig execute 'edit' ddc_tabnine#config_dir() . '/tabn
 # Debug
 
 # [[plugins]]
-# repo = '~/ghq/github.com/LumaKernel/ddc-file'
+# repo = '~/ghq/github.com/LumaKernel/ddc-tabnine'
 # if = 1
 # depends = ['ddc.vim']
 # merged = 0
