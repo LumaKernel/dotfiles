@@ -172,9 +172,11 @@ command! -bar EditTabNineConfig execute 'edit' ddc_tabnine#config_dir() . '/tabn
 # Debug
 
 # [[plugins]]
-# repo = '~/ghq/github.com/LumaKernel/ddc-file'
+# repo = '~/ghq/github.com/LumaKernel/ddc-tabnine'
 # if = 1
 # depends = ['ddc.vim']
 # merged = 0
 # hook_add = '''
+# " let g:ddc_tabnine#storage_dir = expand('~/xxxxxxxxxxxx-my-tabnine/binaries')
+# " let g:ddc_tabnine#disable_auto_install = v:true
 # '''
