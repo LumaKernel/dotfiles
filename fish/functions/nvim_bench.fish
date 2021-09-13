@@ -1,7 +1,7 @@
 function nvim_bench
   set -l NVIM_RUN nvim
   if test -n $argv[1]
-    set NVIM_RUN nvim_s
+    set NVIM_RUN $argv[1]
   end
   eval $NVIM_RUN' +"call dein#recache_runtimepath()" +qa!'
   and eval $NVIM_RUN' +":UpdateRemotePlugins" +qa!'

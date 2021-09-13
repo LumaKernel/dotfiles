@@ -15,6 +15,12 @@ function! IsPrivateMode() abort
   return $PRIVATE_MODE == '1'
 endfunction
 
+" "huge" | "light"
+let g:mode = "huge"
+if !empty($VIM_MODE)
+  let g:mode = $VIM_MODE
+endif
+
 " "ddc" | "coc" | "none"
 let g:complete_mode = "ddc"
 if !empty($VIM_COMPLETE_MODE)
@@ -71,7 +77,7 @@ source ~/dotfiles/vim/dein-setting.vim
 source ~/dotfiles/vim/gvim.vim
 source ~/dotfiles/vim/setup-powershell.vim
 
-if !g:from_pwsh
+if !g:from_pwsh && g:mode is# 'huge'
   augroup init-vim
     autocmd VimEnter * ++once ++nested
         \ if exists(':LoadColorScheme')

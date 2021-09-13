@@ -18,56 +18,58 @@ if g:complete_mode is# "ddc"
         \ 'nextword',
       \ ])
   else
-  call ddc#custom#patch_global('sources', [
-      \ 'tabnine',
-      \ 'file',
-      \ 'around',
-      \ 'buffer',
-      \ 'deoppet',
-      \ 'nextword',
-    \ ])
+    call ddc#custom#patch_global('sources', [
+        \ 'tabnine',
+        \ 'file',
+        \ 'around',
+        \ 'buffer',
+        \ 'deoppet',
+        \ 'nextword',
+      \ ])
   endif
 
   call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
       \   'matchers': ['matcher_fuzzy'],
-      \   'sorters': ['sorter_rank']},
-      \ })
+      \   'sorters': ['sorter_rank'],
+      \   'ignoreCase': v:true,
+      \ }})
+
   call ddc#custom#patch_global('sourceOptions', {
       \ 'around': {
       \   'mark': 'A',
       \   'minAutoCompleteLength': 4,
-      \   'ignoreCase': v:true,
       \ }})
   call ddc#custom#patch_global('sourceParams', {
       \ 'around': {
       \   'maxSize': 500,
       \ }})
+
   call ddc#custom#patch_global('sourceOptions', {
       \ 'buffer': {
       \   'mark': 'B',
       \   'minAutoCompleteLength': 4,
-      \   'ignoreCase': v:true,
       \ }})
   call ddc#custom#patch_global('sourceParams', {
       \ 'buffer': {
       \   'requireSameFiletype': v:false,
       \ }})
+
   call ddc#custom#patch_global('sourceOptions', {
       \ 'nextword': {
       \   'mark': 'next',
       \   'maxCandidates': 4,
       \   'isVolatile': v:true,
       \   'minAutoCompleteLength': 3,
-      \   'ignoreCase': v:true,
       \ }})
+
   call ddc#custom#patch_global('sourceOptions', {
       \ 'deoppet': {
       \   'dup': v:true,
       \   'mark': 'dp',
       \   'minAutoCompleteLength': 2,
-      \   'ignoreCase': v:true,
       \ }})
+
   call ddc#custom#patch_global('sourceOptions', {
       \ 'tabnine': {
       \   'mark': 'TN',
@@ -75,14 +77,13 @@ if g:complete_mode is# "ddc"
       \   'isVolatile': v:true,
       \   'minAutoCompleteLength': 2,
       \   'forceCompletionPattern': '..',
-      \   'ignoreCase': v:true,
       \ }})
+
   call ddc#custom#patch_global('sourceOptions', {
       \ 'file': {
       \   'mark': 'F',
       \   'isVolatile': v:true,
       \   'forceCompletionPattern': '\S/\S*',
-      \   'ignoreCase': v:true,
       \ }})
   call ddc#custom#patch_filetype(
       \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
@@ -96,10 +97,12 @@ if g:complete_mode is# "ddc"
       \     'mode': 'win32',
       \   },
       \ }})
+
   call ddc#custom#patch_global('sourceOptions', {
       \ 'treesitter': {
       \   'mark': 'TS',
       \ }})
+
   inoremap <silent><expr> <TAB>
       \ pumvisible() ? '<C-n>' :
       \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
@@ -119,6 +122,7 @@ if g:complete_mode is# "ddc"
   call timer_start(1000, {->execute('call ddc#enable()')})
 
   " Debug
+  " call ddc#custom#patch_global('sources', ['around'])
   " call ddc#custom#patch_global('sources', ['file'])
 endif
 '''
@@ -129,6 +133,10 @@ depends = ['ddc.vim']
 
 [[plugins]]
 repo = 'Shougo/ddc-sorter_rank'
+depends = ['ddc.vim']
+
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
 depends = ['ddc.vim']
 
 [[plugins]]
@@ -164,7 +172,7 @@ command! -bar EditTabNineConfig execute 'edit' ddc_tabnine#config_dir() . '/tabn
 # Debug
 
 # [[plugins]]
-# repo = '~/ghq/github.com/LumaKernel/ddc-tabnine'
+# repo = '~/ghq/github.com/LumaKernel/ddc-file'
 # if = 1
 # depends = ['ddc.vim']
 # merged = 0

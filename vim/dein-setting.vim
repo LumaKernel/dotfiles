@@ -19,7 +19,13 @@ endif
 
 
 filetype plugin indent off
-let g:dein_ns = printf('%s--%s--%s', g:complete_mode, g:lsp_mode, g:ts_lsp_mode)
+let g:dein_ns = printf(
+  \ '%s--%s--%s--%s',
+  \ g:mode,
+  \ g:complete_mode,
+  \ g:lsp_mode,
+  \ g:ts_lsp_mode
+\ )
 let g:dein_dir = has('nvim') ? expand(printf('~/.cache/dein/nvim-%s', g:dein_ns)) : expand(printf('~/.cache/dein/vim-%s', g:dein_ns))
 let g:dein_repo_dir = g:dein_dir .. '/repos/github.com/Shougo/dein.vim'
 
@@ -36,6 +42,9 @@ if dein#load_state(g:dein_dir)
     call dein#add(g:dein_dir)
     call dein#add(resolve(s:dir .. '/myruntime'), { 'merged' : 1 })
     call dein#load_toml(s:dir .. '/plugin-install/common.toml')
+    if g:mode is# 'huge'
+      call dein#load_toml(s:dir .. '/plugin-install/huge.toml')
+    endif
     if g:complete_mode is# 'ddc'
       call dein#load_toml(s:dir .. '/plugin-install/ddc.toml')
     endif

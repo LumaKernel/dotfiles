@@ -15,7 +15,9 @@ command! -range -nargs=0 TypeScriptImport call lsp#ui#vim#code_action#do({
 
 setlocal foldmethod=indent
 setlocal foldnestmax=2
-setlocal foldlevel=1
+setlocal foldlevel=2
+setlocal foldlevelstart=2
+setlocal foldminlines=2
 setlocal tabstop=2
 setlocal shiftwidth=2
 
