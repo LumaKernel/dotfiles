@@ -118,15 +118,8 @@ if g:complete_mode is# "ddc"
 
   inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-h>'
 
-  " XXX: experimental
-  " if exists('g:ddc#_initialized')
-  "   call ddc#enable()
-  " else
-  "   augroup my-ddc
-  "     autocmd User DDCReady ++once call ddc#enable()
-  "   augroup END
-  " endif
-  call timer_start(1000, {->execute('call ddc#enable()')})
+  " call timer_start(1000, {->execute('call ddc#enable()')})
+  call ddc#enable()
 
   " Debug
   " call ddc#custom#patch_global('sources', ['around'])
