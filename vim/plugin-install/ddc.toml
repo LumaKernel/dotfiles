@@ -10,6 +10,7 @@ if g:complete_mode is# "ddc"
   if has('nvim')
     call ddc#custom#patch_global('sources', [
         \ 'treesitter',
+        \ 'omni',
         \ 'tabnine',
         \ 'file',
         \ 'around',
@@ -19,6 +20,7 @@ if g:complete_mode is# "ddc"
       \ ])
   else
     call ddc#custom#patch_global('sources', [
+        \ 'omni',
         \ 'tabnine',
         \ 'file',
         \ 'around',
@@ -103,6 +105,11 @@ if g:complete_mode is# "ddc"
       \   'mark': 'TS',
       \ }})
 
+  call ddc#custom#patch_global('sourceOptions', {
+      \ 'omni': {
+      \   'mark': 'O',
+      \ }})
+
   inoremap <silent><expr> <TAB>
       \ pumvisible() ? '<C-n>' :
       \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
@@ -157,6 +164,10 @@ repo = 'LumaKernel/ddc-file'
 depends = ['ddc.vim']
 
 [[plugins]]
+repo = 'Shougo/ddc-omni'
+depends = ['ddc.vim']
+
+[[plugins]]
 repo = 'matsui54/ddc-buffer'
 depends = ['ddc.vim']
 
@@ -172,11 +183,17 @@ command! -bar EditTabNineConfig execute 'edit' ddc_tabnine#config_dir() . '/tabn
 # Debug
 
 # [[plugins]]
+# repo = '~/ghq/github.com/LumaKernel/ddc-file'
+# if = 1
+# depends = ['ddc.vim']
+# merged = 0
+
+# [[plugins]]
 # repo = '~/ghq/github.com/LumaKernel/ddc-tabnine'
 # if = 1
 # depends = ['ddc.vim']
 # merged = 0
 # hook_add = '''
-# " let g:ddc_tabnine#storage_dir = expand('~/xxxxxxxxxxxx-my-tabnine/binaries')
+# " let g:ddc_tabnine#storage_dir = expand('~/xxx-my-tabnine/binaries')
 # " let g:ddc_tabnine#disable_auto_install = v:true
 # '''
