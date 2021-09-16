@@ -248,15 +248,19 @@ depends = ['ddc.vim']
 repo = 'LumaKernel/ddc-registers-words'
 depends = ['ddc.vim']
 
+[[plugins]]
+repo = 'LumaKernel/ddc-coc-patched'
+depends = ['ddc.vim', 'coc-patched.nvim']
+
 
 
 # Debug
 
-[[plugins]]
-repo = '~/ghq/github.com/LumaKernel/ddc-coc-patched'
-if = 1
-depends = ['ddc.vim', 'coc-patched.nvim']
-merged = 0
+# [[plugins]]
+# repo = '~/ghq/github.com/LumaKernel/ddc-coc-patched'
+# if = 1
+# depends = ['ddc.vim', 'coc-patched.nvim']
+# merged = 0
 
 # [[plugins]]
 # repo = '~/ghq/github.com/LumaKernel/ddc-win32yank'

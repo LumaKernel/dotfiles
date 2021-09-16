@@ -1,5 +1,10 @@
 [[plugins]]
-repo = '~/ghq/github.com/LumaKernel/coc-patched.nvim'
+# repo = '~/ghq/github.com/LumaKernel/coc-patched.nvim'
+
+repo = 'LumaKernel/coc-patched.nvim'
+rev = 'release'
+
+# repo = 'neoclide/coc-patched.nvim'
 # rev = 'release'
 # rev = 'master'
 # rev = '03c9add7cd867a013102dcb45fb4e75304d227d7'
@@ -93,6 +98,9 @@ if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
     \   'coc-svelte',
     \   'coc-tabnine',
     \   'coc-yaml',
+    \   'coc-tsserver',
+    \   'coc-deno',
+    \   'coc-tsdetect',
     \ ]
 
   let g:my_coc_debug = 0
@@ -154,14 +162,8 @@ rev = 'release'
 
 # DEBUG: coc.nvim extension
 
-[[plugins]]
-repo = '/home/luma/ghq/github.com/LumaKernel/coc-denoland'
-depends = ['coc.nvim']
-merged = 0
-if = 0
-
-[[plugins]]
-repo = '~/ghq/github.com/LumaKernel/vim-tsdetect'
-depends = ['coc.nvim']
-merged = 0
-if = 0
+# [[plugins]]
+# repo = '~/ghq/github.com/LumaKernel/vim-tsdetect'
+# depends = ['coc.nvim']
+# merged = 0
+# if = 0
