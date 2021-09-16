@@ -8,7 +8,6 @@ hook_post_source = '''
 let g:ddc_sources = [
       \ 'treesitter',
       \ 'coc-patched',
-      \ 'omni',
       \ 'coc-patched-1',
       \ 'file',
       \ 'around',
@@ -166,12 +165,6 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'mark': 'TS',
     \ }})
 
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'omni': {
-    \   'mark': 'O',
-    \   'maxCandidates': 20,
-    \ }})
-
 inoremap <silent><expr> <TAB>
     \ pumvisible() ? '<C-n>' :
     \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
@@ -221,10 +214,6 @@ repo = 'LumaKernel/ddc-file'
 depends = ['ddc.vim']
 
 [[plugins]]
-repo = 'Shougo/ddc-omni'
-depends = ['ddc.vim']
-
-[[plugins]]
 repo = 'matsui54/ddc-buffer'
 depends = ['ddc.vim']
 
@@ -250,6 +239,7 @@ depends = ['ddc.vim']
 
 [[plugins]]
 repo = 'LumaKernel/ddc-coc-patched'
+rev = 'v0.0.0-2021-09-16'
 depends = ['ddc.vim', 'coc-patched.nvim']
 
 
