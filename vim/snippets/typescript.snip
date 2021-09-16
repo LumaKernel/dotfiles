@@ -7,6 +7,15 @@ options     head
   const \$1: typeof document.querySelector = document.querySelector.bind(document)
   $0
 
+
+snippet     esm-this-dir
+alias       dirname-esm
+options     head
+  import {join, dirname} from 'path'
+  import {fileURLToPath} from 'url'
+  join(dirname(fileURLToPath(import.meta.url), "foo");
+
+
 snippet     assertNonEmpty
 alias       nonempty
 options     head
@@ -65,9 +74,9 @@ alias nodejs_env_values
     }
   }
 
-snippet node-debug
-alias debug-node
-alias file-debug
+snippet node_debug
+alias debug_node
+alias file_debug
   import * as fs from "fs";
   import * as util from "util";
   import * as path from "path";
@@ -82,11 +91,11 @@ alias file-debug
     );
   };
 
-snippet     import-meta
-alias       declare-import-meta
-alias       meta-import-declare
-alias       env-meta-import-declare
-alias       env-meta-import-declare
+snippet     import_meta
+alias       declare_import_meta
+alias       meta_import_declare
+alias       env_meta_import_declare
+alias       env_meta_import_declare
 options     head
   declare interface ImportMeta {
     env: {
@@ -97,12 +106,12 @@ options     head
     };
   }
 
-snippet     import-meta-vite
-alias       vite-import-meta
-alias       declare-import-meta-vite
-alias       meta-import-declare-vite
-alias       env-meta-import-declare-vite
-alias       env-meta-import-declare-vite
+snippet     import_meta_vite
+alias       vite_import_meta
+alias       declare_import_meta_vite
+alias       meta_import_declare_vite
+alias       env_meta_import_declare_vite
+alias       env_meta_import_declare_vite
 options     head
   declare interface ImportMeta {
     env: {
@@ -114,31 +123,31 @@ options     head
   }
 
 # Deno snippets
-snippet deno-import-io
+snippet deno_import_io
   import * as io from "https://deno.land/std/io/mod.ts";
 
-snippet deno-import-semver
+snippet deno_import_semver
   import * as semver from "https://deno.land/x/semver/mod.ts";
 
-snippet deno-import-semaphore
+snippet deno_import_semaphore
   import { Mutex } from "https://deno.land/x/semaphore/mod.ts";
 
-snippet deno-import-path
+snippet deno_import_path
   import * as path from "https://deno.land/std/path/mod.ts";
 
-snippet deno-import-fs
+snippet deno_import_fs
   import * as fs from "https://deno.land/std/fs/mod.ts";
 
-snippet deno-import-unzip
+snippet deno_import_unzip
   import { unZipFromFile } from "https://deno.land/x/zip/mod.ts";
 
-snippet deno-import-assert
+snippet deno_import_assert
   import { assert } from "https://deno.land/std/testing/asserts.ts";
 
-snippet deno-import-xdg
+snippet deno_import_xdg
   import xdg from 'https://deno.land/x/xdg/src/mod.deno.ts';
 
-snippet deno-import-iter-helpers
+snippet deno_import_iter_helpers
   import {
     asyncIteratorFrom as fromA,
     iteratorFrom as from,
@@ -146,15 +155,15 @@ snippet deno-import-iter-helpers
     wrapIterator as wrap,
   } from "https://deno.land/x/iterator_helpers/mod.ts";
 
-snippet deno-ignore-explicit-any
-alias any-ignore-deno
-alias ignore-any-deno
-alias explicit-any-ignore-deno
+snippet deno_ignore_explicit_any
+alias any_ignore_deno
+alias ignore_any_deno
+alias explicit_any_ignore_deno
   // deno-lint-ignore no-explicit-any
 
-snippet deno-exists
-alias fs-exists-deno
-alias exists-deno
+snippet deno_exists
+alias fs_exists_deno
+alias exists_deno
   // https://github.com/denoland/deno_std/issues/1216
   const exists = async (filePath: string): Promise<boolean> => {
     try {

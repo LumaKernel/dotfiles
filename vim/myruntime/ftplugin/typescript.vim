@@ -62,3 +62,5 @@ setlocal foldnestmax=5
 setlocal foldlevel=1
 setlocal tabstop=2
 setlocal shiftwidth=2
+
+command! -buffer -bar DenoCache !deno cache --unstable %

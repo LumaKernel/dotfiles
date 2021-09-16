@@ -1,148 +1,149 @@
 [[plugins]]
-repo = 'neoclide/coc.nvim'
+repo = '~/ghq/github.com/LumaKernel/coc-patched.nvim'
 # rev = 'release'
 # rev = 'master'
-rev = '03c9add7cd867a013102dcb45fb4e75304d227d7'
-build = 'yarn install --frozen-lockfile'
+# rev = '03c9add7cd867a013102dcb45fb4e75304d227d7'
+# build = 'yarn install --frozen-lockfile'
 # repo = '/home/luma/ghq/github.com/neoclide/coc.nvim'
 merged = 0
 if = "g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'"
 hook_add = '''
-  if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
-    set nobackup
-    set nowritebackup
+if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
+  set nobackup
+  set nowritebackup
 
-    " set cmdheight=2
+  " set cmdheight=2
 
-    set shortmess+=c
+  set shortmess+=c
 
-    if has("patch-8.1.1564")
-      set signcolumn=number
+  if has("patch-8.1.1564")
+    set signcolumn=number
+  else
+    set signcolumn=yes
+  endif
+
+  inoremap <silent><expr> <C-n>
+        \ pumvisible() ? "\<C-n>" :
+        \ coc#refresh()
+
+  inoremap <silent><expr> <C-g> coc#refresh()
+
+  nmap <silent> [g <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gl <Plug>(coc-references)
+  nmap <silent> gr <Plug>(coc-rename)
+
+
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+      call CocActionAsync('doHover')
     else
-      set signcolumn=yes
+      execute '!' . &keywordprg . " " . expand('<cword>')
     endif
+  endfunction
 
-    inoremap <silent><expr> <C-n>
-          \ pumvisible() ? "\<C-n>" :
-          \ coc#refresh()
+  autocmd CursorHold * silent call CocActionAsync('highlight')
 
-    inoremap <silent><expr> <C-g> coc#refresh()
+  xmap <SPACE>cf  <Plug>(coc-format-selected)
+  nmap <SPACE>cf  <Plug>(coc-format-selected)
 
-    nmap <silent> [g <Plug>(coc-diagnostic-prev)
-    nmap <silent> ]g <Plug>(coc-diagnostic-next)
+  nmap gw <Plug>(coc-codeaction)
+  nmap gq <Plug>(coc-fix-current)
+  nmap Q  <Plug>(coc-fix-current)
 
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> gl <Plug>(coc-references)
-    nmap <silent> gr <Plug>(coc-rename)
+  command! -nargs=0 Format :call CocAction('format')
+  command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+  nnoremap <silent><nowait> <SPACE>ce  :<C-u>CocList extensions<CR>
+  nnoremap <silent><nowait> <SPACE>cc  :<C-u>CocList commands<CR>
+  nnoremap <silent><nowait> <SPACE>co  :<C-u>CocList outline<CR>
+  nnoremap <silent><nowait> <SPACE>cs  :<C-u>CocList -I symbols<CR>
+  nnoremap <silent><nowait> <SPACE>cj  :<C-u>CocNext<CR>
+  nnoremap <silent><nowait> <SPACE>ck  :<C-u>CocPrev<CR>
+  nnoremap <silent><nowait> <SPACE>cp  :<C-u>CocListResume<CR>
 
-    nnoremap <silent> K :call <SID>show_documentation()<CR>
+  nnoremap <silent><nowait> <SPACE>so  :<C-u>OR<CR>
 
-    function! s:show_documentation()
-      if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-      elseif (coc#rpc#ready())
-        call CocActionAsync('doHover')
+  function! s:init_coc_highlight() abort
+    hi link CocErrorHighlight Error
+    hi link CocWarningHighlight Warning
+  endfunction
+
+  call s:init_coc_highlight()
+  augroup init_coc_highlight
+    autocmd ColorScheme * call <SID>init_coc_highlight()
+  augroup END
+
+  let g:coc_global_extensions = [
+    \   'coc-diagnostic',
+    \   'coc-emmet',
+    \   'coc-eslint',
+    \   'coc-go',
+    \   'coc-json',
+    \   'coc-prisma',
+    \   'coc-python',
+    \   'coc-svelte',
+    \   'coc-tabnine',
+    \   'coc-yaml',
+    \ ]
+
+  let g:my_coc_debug = 0
+
+  if g:my_coc_debug
+    echom "Warning: coc debug mode is on"
+    let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
+    let g:node_client_debug = 1
+    " :call coc#client#open_log()
+  endif
+
+  augroup my-tf
+    autocmd!
+    autocmd BufWritePre *.tf silent! call CocAction('format')
+  augroup END
+
+  function! s:my_coc_tsdetect_buf_write_pre() abort
+    if !get(g:, 'coc_enabled', 0)
+      return
+    endif
+    if exists('b:tsdetect_is_node')
+      if !b:tsdetect_is_node
+        " call CocAction('format')
       else
-        execute '!' . &keywordprg . " " . expand('<cword>')
-      endif
-    endfunction
-
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-
-    xmap <SPACE>cf  <Plug>(coc-format-selected)
-    nmap <SPACE>cf  <Plug>(coc-format-selected)
-
-    nmap gw <Plug>(coc-codeaction)
-    nmap gq <Plug>(coc-fix-current)
-    nmap Q  <Plug>(coc-fix-current)
-
-    command! -nargs=0 Format :call CocAction('format')
-    command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-    nnoremap <silent><nowait> <SPACE>ce  :<C-u>CocList extensions<CR>
-    nnoremap <silent><nowait> <SPACE>cc  :<C-u>CocList commands<CR>
-    nnoremap <silent><nowait> <SPACE>co  :<C-u>CocList outline<CR>
-    nnoremap <silent><nowait> <SPACE>cs  :<C-u>CocList -I symbols<CR>
-    nnoremap <silent><nowait> <SPACE>cj  :<C-u>CocNext<CR>
-    nnoremap <silent><nowait> <SPACE>ck  :<C-u>CocPrev<CR>
-    nnoremap <silent><nowait> <SPACE>cp  :<C-u>CocListResume<CR>
-
-    nnoremap <silent><nowait> <SPACE>so  :<C-u>OR<CR>
-
-    function! s:init_coc_highlight() abort
-      hi link CocErrorHighlight Error
-      hi link CocWarningHighlight Warning
-    endfunction
-
-    call s:init_coc_highlight()
-    augroup init_coc_highlight
-      autocmd ColorScheme * call <SID>init_coc_highlight()
-    augroup END
-
-    let g:coc_global_extensions = [
-      \   'coc-eslint',
-      \   'coc-diagnostic',
-      \   'coc-yaml',
-      \   'coc-python',
-      \   'coc-prisma',
-      \   'coc-json',
-      \   'coc-go',
-      \   'coc-neosnippet',
-      \   'coc-svelte',
-      \   'coc-emmet',
-      \ ]
-
-    let g:my_coc_debug = 0
-
-    if g:my_coc_debug
-      echom "Warning: coc debug mode is on"
-      let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
-      let g:node_client_debug = 1
-      " :call coc#client#open_log()
-    endif
-
-    augroup my-tf
-      autocmd!
-      autocmd BufWritePre *.tf silent! call CocAction('format')
-    augroup END
-
-    function! s:my_coc_tsdetect_buf_write_pre() abort
-      if !get(g:, 'coc_enabled', 0)
-        return
-      endif
-      if exists('b:tsdetect_is_node')
-        if !b:tsdetect_is_node
-          " call CocAction('format')
-        else
-          " CocCommand eslint.executeAutofix
-        endif
-      endif
-      if &filetype == 'vue'
         " CocCommand eslint.executeAutofix
       endif
-    endfunction
+    endif
+    if &filetype == 'vue'
+      " CocCommand eslint.executeAutofix
+    endif
+  endfunction
 
-    function! s:my_coc_tsdetect_buf_write_post() abort
-      if !get(g:, 'coc_enabled', 0)
-        return
-      endif
-      if exists('b:tsdetect_is_node') && !b:tsdetect_is_node
-        CocCommand deno.cache
-      endif
-    endfunction
+  function! s:my_coc_tsdetect_buf_write_post() abort
+    if !get(g:, 'coc_enabled', 0)
+      return
+    endif
+    if exists('b:tsdetect_is_node') && !b:tsdetect_is_node
+      " buggy
+      " CocCommand deno.cache
+    endif
+  endfunction
 
-    augroup my-coc-tsdetect
-      autocmd!
-      autocmd BufWritePre * call <SID>my_coc_tsdetect_buf_write_pre()
-      autocmd BufWritePost * call <SID>my_coc_tsdetect_buf_write_post()
-    augroup END
+  augroup my-coc-tsdetect
+    autocmd!
+    autocmd BufWritePre * call <SID>my_coc_tsdetect_buf_write_pre()
+    autocmd BufWritePost * call <SID>my_coc_tsdetect_buf_write_post()
+  augroup END
 
-    nnoremap <silent><nowait> <SPACE>ca  :<C-u>CocFzfList diagnostics<CR>
-    nnoremap <silent><nowait> <SPACE>cq  :<C-u>CocFzfList actions<CR>
-  endif
+  nnoremap <silent><nowait> <SPACE>ca  :<C-u>CocFzfList diagnostics<CR>
+  nnoremap <silent><nowait> <SPACE>cq  :<C-u>CocFzfList actions<CR>
+endif
 '''
 
 [[plugins]]
@@ -151,7 +152,7 @@ depends = ['coc.nvim']
 rev = 'release'
 
 
-# coc.nvim extension debugging
+# DEBUG: coc.nvim extension
 
 [[plugins]]
 repo = '/home/luma/ghq/github.com/LumaKernel/coc-denoland'
@@ -160,7 +161,7 @@ merged = 0
 if = 0
 
 [[plugins]]
-repo = '/home/luma/workspace/vim-tsdetect'
+repo = '~/ghq/github.com/LumaKernel/vim-tsdetect'
 depends = ['coc.nvim']
 merged = 0
 if = 0

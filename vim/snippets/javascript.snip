@@ -1,3 +1,20 @@
+snippet node-debug
+alias debug-node
+alias file-debug
+  import * as fs from "fs";
+  import * as util from "util";
+  import * as path from "path";
+  import { homedir } from "os";
+
+  const debugLogFile = path.resolve(homedir(), "node-debug.log");
+
+  export const dump = (obj) => {
+    fs.appendFileSync(
+      debugLogFile,
+      `"\x60"`${new Date().toLocaleTimeString()}: ${util.inspect(obj)}\n`"\x60"`,
+    );
+  };
+
 snippet     eslint-typescript-sub
 alias       subdirectory-typescript-eslint
 options     head

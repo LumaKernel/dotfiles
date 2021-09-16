@@ -1,0 +1,1 @@
+alias snvim=nvims

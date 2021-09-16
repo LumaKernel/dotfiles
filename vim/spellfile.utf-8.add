@@ -585,3 +585,8 @@ tsserver
 worktree
 npmjs
 tsserver
+doautocmd
+nextword
+deoppet
+pnpx
+submodule
