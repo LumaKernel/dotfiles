@@ -1,9 +1,9 @@
 # coc.nvim
 [[plugins]]
-repo = '~/ghq/github.com/LumaKernel/coc-patched.nvim'
+# repo = '~/ghq/github.com/LumaKernel/coc-patched.nvim'
 
-# repo = 'LumaKernel/coc-patched.nvim'
-# rev = 'v0.0.0-2021-09-17-1'
+repo = 'LumaKernel/coc-patched.nvim'
+rev = 'v0.0.0-2021-09-18'
 
 # repo = 'neoclide/coc-patched.nvim'
 # rev = 'release'

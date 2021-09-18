@@ -7,19 +7,21 @@ set completeopt=menuone
 hook_post_source = '''
 call ddc#custom#alias('source', 'coc-lsp', 'coc-patched')
 call ddc#custom#alias('source', 'win32yank.exe', 'run')
+call ddc#custom#alias('source', 'recent', 'registers-words')
 let g:ddc_sources = [
-      \ 'treesitter',
       \ 'coc-lsp',
+      \ 'treesitter',
       \ 'tabnine',
+      \ 'recent',
       \ 'tmux',
       \ 'around',
       \ 'buffer',
       \ 'file',
       \ 'neosnippet',
       \ 'win32yank.exe',
-      \ 'registers-words',
       \ 'nextword',
     \ ]
+
 if !executable('win32yank.exe')
   call filter(g:ddc_sources, 'v:val isnot# "win32yank.exe"')
 endif
@@ -39,171 +41,190 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'ignoreCase': v:true,
     \ }})
 
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'a1': {
-    \   'mark': 'A1',
-    \   'dup': v:true,
-    \ }})
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'a2': {
-    \   'mark': 'A2',
-    \   'dup': v:true,
-    \ }})
-
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'around': {
-    \   'mark': 'A',
-    \   'minAutoCompleteLength': 4,
-    \   'maxCandidates': 5,
-    \ }})
-call ddc#custom#patch_global('sourceParams', {
-    \ 'around': {
-    \   'maxSize': 500,
+let name = 'around'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'A',
+    \     'minAutoCompleteLength': 4,
+    \     'maxCandidates': 5,
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \     'maxSize': 500,
+    \   },
     \ }})
 
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'win32yank.exe': {
-    \   'mark': 'CLIP',
-    \   'maxCandidates': 20,
-    \ }})
-call ddc#custom#patch_global('sourceParams', {
-    \ 'win32yank.exe': {
-    \   'cmd': ['win32yank.exe', '-o'],
-    \ }})
-
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'registers-words': {
-    \   'mark': 'R',
-    \   'maxCandidates': 20,
-    \ }})
-call ddc#custom#patch_global('sourceParams', {
-    \ 'registers-words': {
-    \   'registers': '/"0123',
+let name = 'win32yank.exe'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'CLIP',
+    \     'maxCandidates': 20,
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \     'cmd': ['win32yank.exe', '-o'],
+    \   },
     \ }})
 
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'buffer': {
-    \   'mark': 'B',
-    \   'minAutoCompleteLength': 4,
-    \   'maxCandidates': 5,
-    \ }})
-call ddc#custom#patch_global('sourceParams', {
-    \ 'buffer': {
-    \   'requireSameFiletype': v:false,
-    \ }})
-
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'nextword': {
-    \   'mark': 'NEXT',
-    \   'maxCandidates': 4,
-    \   'isVolatile': v:true,
-    \   'minAutoCompleteLength': 3,
+let name = 'recent'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'R',
+    \     'maxCandidates': 20,
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \     'registers': '/"0123456789',
+    \   },
     \ }})
 
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'neosnippet': {
-    \   'mark': 'SNIP',
-    \   'minAutoCompleteLength': 2,
+let name = 'buffer'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'B',
+    \     'minAutoCompleteLength': 4,
+    \     'maxCandidates': 5,
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \     'requireSameFiletype': v:false,
+    \   },
     \ }})
 
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'tabnine': {
-    \   'mark': 'TN',
-    \   'maxCandidates': 5,
-    \   'isVolatile': v:true,
-    \   'minAutoCompleteLength': 2,
-    \   'forceCompletionPattern': '.[^(]',
+let name = 'nextword'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'EN',
+    \     'maxCandidates': 4,
+    \     'isVolatile': v:true,
+    \     'minAutoCompleteLength': 3,
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \   },
     \ }})
 
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'tmux': {
-    \   'mark': 'TMUX',
-    \   'maxCandidates': 5,
+let name = 'neosnippet'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'SNIP',
+    \     'minAutoCompleteLength': 2,
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \   },
     \ }})
 
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'coc-lsp': {
-    \   'mark': '',
-    \   'isVolatile': v:true,
-    \   'maxCandidates': 30,
-    \   'forceCompletionPattern': '\.',
-    \   'minAutoCompleteLength': 1,
+let name = 'tabnine'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'TN',
+    \     'maxCandidates': 5,
+    \     'isVolatile': v:true,
+    \     'minAutoCompleteLength': 2,
+    \     'forceCompletionPattern': '.[^(]',
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \   },
     \ }})
-call ddc#custom#patch_global('sourceParams', {
-    \ 'coc-lsp': {
-    \   'include': v:null,
-    \   'exclude': ['F', 'A', 'B', 'TN'],
+
+let name = 'tmux'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'TMUX',
+    \     'maxCandidates': 5,
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \   },
+    \ }})
+
+let name = 'coc-lsp'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': '',
+    \     'isVolatile': v:true,
+    \     'maxCandidates': 30,
+    \     'forceCompletionPattern': '\.',
+    \     'minAutoCompleteLength': 1,
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \     'include': v:null,
+    \     'exclude': ['F', 'A', 'B', 'TN'],
+    \   },
     \ }})
 call ddc#custom#patch_filetype(
     \ ['json'], {
     \ 'sourceOptions': {
-    \   'coc-lsp': {
+    \   name: {
     \     'matchers': [],
     \   },
     \ },
     \ 'sourceParams': {
-    \   'coc-lsp': {
+    \   name: {
     \   },
     \ }})
 
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'file-cwd': {
-    \   'mark': 'CWD',
-    \   'isVolatile': v:true,
-    \   'forceCompletionPattern': '\S/\S*',
-    \ }})
-call ddc#custom#patch_global('sourceParams', {
-    \ 'file-cwd': {
-    \   'cwdMaxCandidates': 100,
-    \   'bufMaxCandidates': 0,
-    \   'projFromCwdMaxCandidates': [0],
-    \   'projFromBufMaxCandidates': [0],
-    \ }})
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'file-buf': {
-    \   'mark': 'BUF',
-    \   'isVolatile': v:true,
-    \   'forceCompletionPattern': '\S/\S*',
-    \ }})
-call ddc#custom#patch_global('sourceParams', {
-    \ 'file-buf': {
-    \   'cwdMaxCandidates': 0,
-    \   'bufMaxCandidates': 100,
-    \   'projFromCwdMaxCandidates': [0],
-    \   'projFromBufMaxCandidates': [0],
-    \ }})
-
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'file': {
-    \   'mark': 'F',
-    \   'isVolatile': v:true,
-    \   'forceCompletionPattern': '\S/\S*',
+let name = 'file'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'F',
+    \     'isVolatile': v:true,
+    \     'forceCompletionPattern': '\S/\S*',
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \   },
     \ }})
 call ddc#custom#patch_filetype(
     \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
     \ 'sourceOptions': {
-    \   'file': {
+    \   name: {
     \     'forceCompletionPattern': '\S\\\S*',
     \   },
     \ },
     \ 'sourceParams': {
-    \   'file': {
+    \   name: {
     \     'mode': 'win32',
     \   },
     \ }})
 
-call ddc#custom#patch_global('sourceOptions', {
-    \ 'treesitter': {
-    \   'mark': 'TS',
+let name = 'treesitter'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'TS',
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \   },
     \ }})
 
-inoremap <silent><expr> <TAB>
-    \ pumvisible() ? '<C-n>' :
-    \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-    \ '<TAB>' : ddc#manual_complete()
-inoremap <silent><expr> <C-n> ddc#manual_complete()
-
-inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-h>'
+inoremap <silent><expr> <C-n>
+    \ pumvisible() ? '<C-n>' : ddc#manual_complete()
 
 " call timer_start(1000, {->execute('call ddc#enable()')})
 call ddc#enable()
@@ -283,7 +304,10 @@ depends = ['ddc.vim']
 # merged = 0
 
 [[plugins]]
-repo = '~/ghq/github.com/LumaKernel/ddc-coc-patched'
-merged = 0
-# rev = 'v0.0.0-2021-09-17-1'
+repo = 'LumaKernel/ddc-coc-patched'
+rev = 'v0.0.0-2021-09-18'
+
+# repo = '~/ghq/github.com/LumaKernel/ddc-coc-patched'
+# merged = 0
+
 depends = ['ddc.vim', 'coc-patched.nvim']

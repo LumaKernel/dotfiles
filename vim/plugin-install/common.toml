@@ -17,13 +17,13 @@ let s:fern_default_exclude_pats = [
   \   '^__pycache__$',
   \   '^yarn.lock$',
   \   '^package-lock.json$',
+  \   '^pnpm-lock.yaml$',
   \ ]
 
 function! s:GetFernExclude() abort
   let ignore_pats = copy(s:fern_default_exclude_pats)
   return join(ignore_pats, '\|')
 endfunction
-
 
 let g:fern#default_hidden = 1
 let g:fern#default_exclude = s:GetFernExclude()
@@ -178,25 +178,9 @@ endfunction
 
 function! s:MyRefs()
   return [
-        \   { 'line': 'GNU Make' , 'cmd': 'call LynxCache("https://www.gnu.org/software/make/manual/make.html")' },
+        \   { 'line': 'GNU Make Manual' , 'cmd': 'Ref lynx https://www.gnu.org/software/make/manual/make.html' },
+        \   { 'line': 'ECMA262' , 'cmd': 'Ref lynx https://tc39.es/ecma262' },
         \ ]
-endfunction
-
-function! g:LynxCache(url) abort
-  let URI = vital#vital#import('Web.URI')
-  let HTTP = vital#vital#import('Web.HTTP')
-  let filename = expand('~/docs') .. '/' .. URI.encode(a:url)
-  call mkdir(fnamemodify(filename, ':h'), 'p')
-  try
-    if !filereadable(filename)
-      call HTTP.request({'url': a:url, 'method': 'GET', 'outputFile': filename})
-    endif
-  catch /.*/
-    echom '[LynxCache] Something wrong. Couldn''t make cache.'
-    exe 'Ref lynx' a:url
-    return
-  endtry
-  exe 'Ref lynx' filename
 endfunction
 
 function! s:MyLinks()
@@ -248,3 +232,9 @@ augroup init_vim
   au User StartifyReady silent! nunmap <buffer> T
 augroup END
 '''
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+
+[[plugins]]
+repo = 'osyo-manga/ref-lynx'
