@@ -5,28 +5,31 @@ hook_add = '''
 set completeopt=menuone
 '''
 hook_post_source = '''
+call ddc#custom#alias('source', 'coc-lsp', 'coc-patched')
+call ddc#custom#alias('source', 'win32yank.exe', 'run')
 let g:ddc_sources = [
       \ 'treesitter',
-      \ 'coc-patched',
-      \ 'coc-patched-1',
-      \ 'file',
+      \ 'coc-lsp',
+      \ 'tabnine',
+      \ 'tmux',
       \ 'around',
       \ 'buffer',
-      \ 'tmux',
+      \ 'file',
       \ 'neosnippet',
-      \ 'win32yank',
+      \ 'win32yank.exe',
       \ 'registers-words',
       \ 'nextword',
     \ ]
 if !executable('win32yank.exe')
-  call filter(g:ddc_sources, 'v:val isnot# "win32yank"')
+  call filter(g:ddc_sources, 'v:val isnot# "win32yank.exe"')
 endif
 if !has('nvim')
   call filter(g:ddc_sources, 'v:val isnot# "treesitter"')
 endif
 if g:lsp_mode isnot# 'coc'
-  call filter(g:ddc_sources, 'v:val !~# "coc-patched.*"')
+  call filter(g:ddc_sources, 'v:val !~# "coc-.*"')
 endif
+
 call ddc#custom#patch_global('sources', g:ddc_sources)
 
 call ddc#custom#patch_global('sourceOptions', {
@@ -34,6 +37,17 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'matchers': ['matcher_fuzzy'],
     \   'sorters': ['sorter_rank'],
     \   'ignoreCase': v:true,
+    \ }})
+
+call ddc#custom#patch_global('sourceOptions', {
+    \ 'a1': {
+    \   'mark': 'A1',
+    \   'dup': v:true,
+    \ }})
+call ddc#custom#patch_global('sourceOptions', {
+    \ 'a2': {
+    \   'mark': 'A2',
+    \   'dup': v:true,
     \ }})
 
 call ddc#custom#patch_global('sourceOptions', {
@@ -48,9 +62,13 @@ call ddc#custom#patch_global('sourceParams', {
     \ }})
 
 call ddc#custom#patch_global('sourceOptions', {
-    \ 'win32yank': {
+    \ 'win32yank.exe': {
     \   'mark': 'CLIP',
     \   'maxCandidates': 20,
+    \ }})
+call ddc#custom#patch_global('sourceParams', {
+    \ 'win32yank.exe': {
+    \   'cmd': ['win32yank.exe', '-o'],
     \ }})
 
 call ddc#custom#patch_global('sourceOptions', {
@@ -98,47 +116,61 @@ call ddc#custom#patch_global('sourceOptions', {
     \ }})
 
 call ddc#custom#patch_global('sourceOptions', {
-    \ 'coc-patched-1': {
-    \   'mark': '',
-    \   'maxCandidates': 5,
-    \   'isVolatile': v:true,
-    \   'minAutoCompleteLength': 2,
-    \   'forceCompletionPattern': '.[^(]',
-    \ }})
-call ddc#custom#patch_global('sourceParams', {
-    \ 'coc-patched-1': {
-    \   'include': ['TN'],
-    \   'exclude': v:null,
-    \ }})
-
-call ddc#custom#patch_global('sourceOptions', {
     \ 'tmux': {
     \   'mark': 'TMUX',
     \   'maxCandidates': 5,
     \ }})
 
 call ddc#custom#patch_global('sourceOptions', {
-    \ 'coc-patched': {
+    \ 'coc-lsp': {
     \   'mark': '',
+    \   'isVolatile': v:true,
     \   'maxCandidates': 30,
     \   'forceCompletionPattern': '\.',
     \   'minAutoCompleteLength': 1,
     \ }})
 call ddc#custom#patch_global('sourceParams', {
-    \ 'coc-patched': {
+    \ 'coc-lsp': {
     \   'include': v:null,
     \   'exclude': ['F', 'A', 'B', 'TN'],
     \ }})
 call ddc#custom#patch_filetype(
     \ ['json'], {
     \ 'sourceOptions': {
-    \   'coc-patched': {
+    \   'coc-lsp': {
     \     'matchers': [],
     \   },
     \ },
     \ 'sourceParams': {
-    \   'coc-patched': {
+    \   'coc-lsp': {
     \   },
+    \ }})
+
+call ddc#custom#patch_global('sourceOptions', {
+    \ 'file-cwd': {
+    \   'mark': 'CWD',
+    \   'isVolatile': v:true,
+    \   'forceCompletionPattern': '\S/\S*',
+    \ }})
+call ddc#custom#patch_global('sourceParams', {
+    \ 'file-cwd': {
+    \   'cwdMaxCandidates': 100,
+    \   'bufMaxCandidates': 0,
+    \   'projFromCwdMaxCandidates': [0],
+    \   'projFromBufMaxCandidates': [0],
+    \ }})
+call ddc#custom#patch_global('sourceOptions', {
+    \ 'file-buf': {
+    \   'mark': 'BUF',
+    \   'isVolatile': v:true,
+    \   'forceCompletionPattern': '\S/\S*',
+    \ }})
+call ddc#custom#patch_global('sourceParams', {
+    \ 'file-buf': {
+    \   'cwdMaxCandidates': 0,
+    \   'bufMaxCandidates': 100,
+    \   'projFromCwdMaxCandidates': [0],
+    \   'projFromBufMaxCandidates': [0],
     \ }})
 
 call ddc#custom#patch_global('sourceOptions', {
@@ -179,9 +211,10 @@ call ddc#enable()
 " Debug
 " call ddc#custom#patch_global('sources', ['around'])
 " call ddc#custom#patch_global('sources', ['file'])
-" call ddc#custom#patch_global('sources', ['coc-patched'])
+" call ddc#custom#patch_global('sources', ['coc-lsp'])
 " call ddc#custom#patch_global('sources', ['registers-words'])
-" call ddc#custom#patch_global('sources', ['win32yank'])
+" call ddc#custom#patch_global('sources', ['tabnine'])
+" call ddc#custom#patch_global('sources', ['win32yank.exe'])
 '''
 
 [[plugins]]
@@ -212,6 +245,8 @@ depends = ['ddc.vim', 'nvim-treesitter']
 [[plugins]]
 repo = 'LumaKernel/ddc-file'
 depends = ['ddc.vim']
+# repo = '~/ghq/github.com/LumaKernel/ddc-file'
+# merged = 0
 
 [[plugins]]
 repo = 'matsui54/ddc-buffer'
@@ -224,58 +259,31 @@ depends = ['ddc.vim']
 hook_add = '''
 command! -bar EditTabNineConfig execute 'edit' ddc_tabnine#config_dir() . '/tabnine_config.json'
 '''
+# repo = '~/ghq/github.com/LumaKernel/ddc-tabnine'
+# merged = 0
+# hook_add = '''
+# " let g:ddc_tabnine#storage_dir = expand('~/xxx-my-tabnine/binaries')
+# " let g:ddc_tabnine#disable_auto_install = v:true
+# '''
 
 [[plugins]]
 repo = 'delphinus/ddc-tmux'
 depends = ['ddc.vim']
 
 [[plugins]]
-repo = 'LumaKernel/ddc-win32yank'
-depends = ['ddc.vim']
-
-[[plugins]]
 repo = 'LumaKernel/ddc-registers-words'
 depends = ['ddc.vim']
+# repo = '~/ghq/github.com/LumaKernel/ddc-registers-words'
+# merged = 0
 
 [[plugins]]
-repo = 'LumaKernel/ddc-coc-patched'
-rev = 'v0.0.0-2021-09-16'
+repo = 'LumaKernel/ddc-run'
+depends = ['ddc.vim']
+# repo = '~/ghq/github.com/LumaKernel/ddc-run'
+# merged = 0
+
+[[plugins]]
+repo = '~/ghq/github.com/LumaKernel/ddc-coc-patched'
+merged = 0
+# rev = 'v0.0.0-2021-09-17-1'
 depends = ['ddc.vim', 'coc-patched.nvim']
-
-
-
-# Debug
-
-# [[plugins]]
-# repo = '~/ghq/github.com/LumaKernel/ddc-coc-patched'
-# if = 1
-# depends = ['ddc.vim', 'coc-patched.nvim']
-# merged = 0
-
-# [[plugins]]
-# repo = '~/ghq/github.com/LumaKernel/ddc-win32yank'
-# if = 1
-# depends = ['ddc.vim']
-# merged = 0
-# 
-# [[plugins]]
-# repo = '~/ghq/github.com/LumaKernel/ddc-registers-words'
-# if = 1
-# depends = ['ddc.vim']
-# merged = 0
-
-# [[plugins]]
-# repo = '~/ghq/github.com/LumaKernel/ddc-file'
-# if = 1
-# depends = ['ddc.vim']
-# merged = 0
-
-# [[plugins]]
-# repo = '~/ghq/github.com/LumaKernel/ddc-tabnine'
-# if = 1
-# depends = ['ddc.vim']
-# merged = 0
-# hook_add = '''
-# " let g:ddc_tabnine#storage_dir = expand('~/xxx-my-tabnine/binaries')
-# " let g:ddc_tabnine#disable_auto_install = v:true
-# '''

@@ -40,6 +40,12 @@ if !empty($VIM_TS_LSP_MODE)
 endif
 
 
+if g:mode is# "light"
+  let g:complete_mode = "none"
+  let g:lsp_mode = "none"
+  let g:ts_lsp_mode = "none"
+endif
+
 if g:complete_mode is# "coc"
   let g:lsp_mode = "coc"
 endif

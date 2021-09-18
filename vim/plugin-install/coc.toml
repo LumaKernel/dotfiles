@@ -1,8 +1,9 @@
+# coc.nvim
 [[plugins]]
-# repo = '~/ghq/github.com/LumaKernel/coc-patched.nvim'
+repo = '~/ghq/github.com/LumaKernel/coc-patched.nvim'
 
-repo = 'LumaKernel/coc-patched.nvim'
-rev = 'v0.0.0-2021-09-16'
+# repo = 'LumaKernel/coc-patched.nvim'
+# rev = 'v0.0.0-2021-09-17-1'
 
 # repo = 'neoclide/coc-patched.nvim'
 # rev = 'release'
@@ -96,7 +97,6 @@ if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
     \   'coc-prisma',
     \   'coc-python',
     \   'coc-svelte',
-    \   'coc-tabnine',
     \   'coc-yaml',
     \   'coc-tsserver',
     \   'coc-deno',
