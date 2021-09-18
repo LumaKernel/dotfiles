@@ -21,9 +21,7 @@ sudo apt-get install fd-find -y
 sudo apt-get install opam -y
 # opam init -n >/dev/null --disable-sandboxing
 
-# ---- go
 sudo apt-get install python-software-properties -y
-sudo apt-get install golang-stable -y
 
 sudo apt-get install silversearcher-ag -y
 sudo apt-get install ripgrep -y

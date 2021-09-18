@@ -1,3 +1,1 @@
-function tf
-  terraform $argv
-end
+alias tf=terraform

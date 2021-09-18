@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euxo pipefail
+
 # link 先がディレクトリなら失敗する
 # ( -n で強制できるけど危ないかもしれないので )
 
