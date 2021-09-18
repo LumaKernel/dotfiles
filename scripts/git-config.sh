@@ -29,7 +29,6 @@ git config --global alias.lg3-specific "log --graph --abbrev-commit --decorate -
 # git push --force を弱めた版， ローカルのほうが新しい場合のみ
 git config --global alias.please "push --force-with-lease"
 git config --global alias.commend 'commit --amend --no-edit'
-git config --global alias.it '!git init && git commit -m “root” --allow-empty'
 
 git config --global alias.stsh 'stash --keep-index'
 git config --global alias.staash 'stash --include-untracked'

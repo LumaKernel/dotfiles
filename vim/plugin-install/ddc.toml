@@ -120,6 +120,7 @@ call ddc#custom#patch_global({
     \   name: {
     \     'mark': 'SNIP',
     \     'minAutoCompleteLength': 2,
+    \     'dup': v:true,
     \   },
     \ },
     \ 'sourceParams': {
