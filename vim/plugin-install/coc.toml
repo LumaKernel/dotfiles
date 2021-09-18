@@ -28,9 +28,9 @@ if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
     set signcolumn=yes
   endif
 
-  inoremap <silent><expr> <C-n>
-        \ pumvisible() ? "\<C-n>" :
-        \ coc#refresh()
+  " inoremap <silent><expr> <C-n>
+  "       \ pumvisible() ? "\<C-n>" :
+  "       \ coc#refresh()
 
   inoremap <silent><expr> <C-g> coc#refresh()
 
