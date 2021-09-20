@@ -141,14 +141,14 @@ if test -z "$GOROOT"; then
 fi
 
 # -- gem
-if command -v gem >/dev/null 2>&1; then
-  if test -z "$GEM_BIN_DIR"; then
-    export GEM_BIN_DIR=$(gem environment gemdir)/bin
-    export PATH="$GEM_BIN_DIR:$PATH"
-  fi
-else
-  echo "[info/healthcheck/.bashrc] gem not installed."
-fi
+# if command -v gem >/dev/null 2>&1; then
+#   if test -z "$GEM_BIN_DIR"; then
+#     export GEM_BIN_DIR=$(gem environment gemdir)/bin
+#     export PATH="$GEM_BIN_DIR:$PATH"
+#   fi
+# else
+#   echo "[info/healthcheck/.bashrc] gem not installed."
+# fi
 
 # -- wasmer
 if test -z "$WASMER_DIR"; then
@@ -159,11 +159,11 @@ fi
 
 # -- opam TODO
 # $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-if command -v opam >/dev/null 2>&1; then
-  eval `opam env`
-else
-  echo "[info/healthcheck/.bashrc] opam not installed."
-fi
+# if command -v opam >/dev/null 2>&1; then
+#   eval `opam env`
+# else
+#   echo "[info/healthcheck/.bashrc] opam not installed."
+# fi
 
 # -- deno
 if test -z "$DENO_INSTALL"; then
@@ -177,11 +177,12 @@ if test -z "$PYENV_ROOT"; then
   export PATH="$PYENV_ROOT/bin:$PATH"
 fi
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-else
-  echo "[info/healthcheck/.bashrc] pyenv not installed."
-fi
+# TODO: too slow
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# else
+#   echo "[info/healthcheck/.bashrc] pyenv not installed."
+# fi
 
 # -- gpg
 export GPG_TTY="$(tty)"
@@ -267,14 +268,14 @@ fi
 complete -C /usr/bin/terraform terraform
 
 # wasmer
-if ! command -v wasmer >/dev/null; then
-  export WASMER_DIR="$HOME/.wasmer"
-  if test -s "$WASMER_DIR/wasmer.sh"; then
-    source "$WASMER_DIR/wasmer.sh"
-  else
-    echo "[info/healthcheck/.bashrc] wasmer not found."
-  fi
-fi
+# if ! command -v wasmer >/dev/null; then
+#   export WASMER_DIR="$HOME/.wasmer"
+#   if test -s "$WASMER_DIR/wasmer.sh"; then
+#     source "$WASMER_DIR/wasmer.sh"
+#   else
+#     echo "[info/healthcheck/.bashrc] wasmer not found."
+#   fi
+# fi
 
 if [[ -z $NO_FISH ]] ; then
   export NO_FISH=

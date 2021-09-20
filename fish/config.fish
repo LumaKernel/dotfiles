@@ -21,16 +21,18 @@ set -g fish_key_bindings fish_user_key_bindings
 set fish_color_command brcyan
 
 # -- powerline-shell
-function fish_prompt
-  powerline-shell --shell bare $status
-end
+# TODO: slow
+# function fish_prompt
+#   powerline-shell --shell bare $status
+# end
 
 # -- rbenv
-if command -v rbenv >/dev/null 2>&1
-  source (rbenv init -|psub)
-else
-  echo "[info/healthcheck/config.fish] rbenv not installed."
-end
+# TODO: slow
+# if command -v rbenv >/dev/null 2>&1
+#   source (rbenv init -|psub)
+# else
+#   echo "[info/healthcheck/config.fish] rbenv not installed."
+# end
 
 # -- cd improved
 functions --copy cd cd_default
@@ -58,8 +60,9 @@ function done_enter --on-event fish_postexec
 end
 
 # venv
-set -x VIRTUAL_ENV_DISABLE_PROMPT 1
-activate_venv
+# TODO: slow
+# set -x VIRTUAL_ENV_DISABLE_PROMPT 1
+# activate_venv
 
 # tabtab source for packages
 [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
