@@ -9,9 +9,9 @@ call ddc#custom#alias('source', 'coc-lsp', 'coc-patched')
 call ddc#custom#alias('source', 'win32yank.exe', 'run')
 call ddc#custom#alias('source', 'recent', 'registers-words')
 let g:ddc_sources = [
+      \ 'tabnine',
       \ 'coc-lsp',
       \ 'treesitter',
-      \ 'tabnine',
       \ 'recent',
       \ 'tmux',
       \ 'around',
@@ -20,6 +20,13 @@ let g:ddc_sources = [
       \ 'neosnippet',
       \ 'win32yank.exe',
       \ 'nextword',
+    \ ]
+let g:ddc_sources = [
+      \ 'tabnine',
+      \ 'coc-lsp',
+      \ 'tmux',
+      \ 'file',
+      \ 'neosnippet',
     \ ]
 
 if !executable('win32yank.exe')
@@ -237,7 +244,7 @@ call ddc#enable()
 " call ddc#custom#patch_global('sources', ['file'])
 " call ddc#custom#patch_global('sources', ['coc-lsp'])
 " call ddc#custom#patch_global('sources', ['registers-words'])
-" call ddc#custom#patch_global('sources', ['tabnine'])
+call ddc#custom#patch_global('sources', ['tabnine'])
 " call ddc#custom#patch_global('sources', ['win32yank.exe'])
 '''
 
@@ -277,14 +284,14 @@ repo = 'matsui54/ddc-buffer'
 depends = ['ddc.vim']
 
 [[plugins]]
-repo = 'LumaKernel/ddc-tabnine'
+# repo = 'LumaKernel/ddc-tabnine'
 if = '!IsPrivateMode()'
 depends = ['ddc.vim']
 hook_add = '''
 command! -bar EditTabNineConfig execute 'edit' ddc_tabnine#config_dir() . '/tabnine_config.json'
 '''
-# repo = '~/ghq/github.com/LumaKernel/ddc-tabnine'
-# merged = 0
+repo = '~/ghq/github.com/LumaKernel/ddc-tabnine'
+merged = 0
 # hook_add = '''
 # " let g:ddc_tabnine#storage_dir = expand('~/xxx-my-tabnine/binaries')
 # " let g:ddc_tabnine#disable_auto_install = v:true

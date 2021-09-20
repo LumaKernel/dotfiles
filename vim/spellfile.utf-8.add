@@ -591,3 +591,5 @@ deoppet
 pnpx
 submodule
 powershell
+taskkill
+sigterm

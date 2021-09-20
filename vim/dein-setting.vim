@@ -17,6 +17,7 @@ if filereadable(s:api_token_path)
   let g:dein#install_github_api_token = get(readfile(s:api_token_path), 0, '')
 endif
 
+let g:dein#install_check_diff = v:true
 
 filetype plugin indent off
 let g:dein_ns = printf(
