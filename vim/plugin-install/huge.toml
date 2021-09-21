@@ -56,12 +56,12 @@ set helplang=ja
 [[plugins]]
 repo = 'itchyny/vim-gitbranch'
 if = "has('patch-8.2.0001') || has('nvim')"
+on_source = 'lightline.vim'
 
 # Status Line
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 if = "has('patch-8.2.0001') || has('nvim')"
-depends = []
 hook_add = '''
 let g:lightline = {
   \   'colorscheme': 'seoul256',
@@ -126,12 +126,18 @@ function! MyReadonly()
 endfunction
 
 function! MyFilename()
+  let path = vital#vital#import("Path")
   if &buftype is# 'help'
     return ''
   elseif &filetype is# 'fern'
     return ''
   endif
-  return expand('%:t')
+  let full = expand('%:p')
+  let rel = path.relative(full, getcwd())
+  if rel[0] ==# '.'
+    return full
+  endif
+  return rel
 endfunction
 
 if executable('stat')
@@ -245,9 +251,9 @@ if = '!g:from_pwsh && !has("nvim")'
 
 [[plugins]]
 repo = 'RRethy/vim-illuminate'
+if = 'has("nvim")'
 
 [[plugins]]
-if = 0
 repo = 'tyru/caw.vim'
 
 # Fern Plugins
@@ -280,6 +286,7 @@ augroup END
 
 [[plugins]]
 repo = 'lambdalisue/fern-bookmark.vim'
+on_path = '^fern://'
 depends = 'fern.vim'
 
 # Snippet
@@ -322,6 +329,10 @@ repo = 'Shougo/neosnippet-snippets'
 # Window Manager
 [[plugins]]
 repo = 't9md/vim-choosewin'
+on_cmd = [
+  'ChooseWin',
+  'ChooseWinSwap',
+]
 hook_add = '''
 nnoremap <Leader>cw :<C-u>ChooseWin<CR>
 nnoremap <Leader>cs :<C-u>ChooseWinSwap<CR>
@@ -337,6 +348,14 @@ build = './install --all'
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 depends = 'fzf'
+on_cmd = [
+  'Files',
+  'GFiles',
+  'History',
+  'Buffers',
+  'Colors',
+  'Commands',
+]
 hook_add = '''
 if has('win32')
   " Windows: preview は相性があまりよくない
@@ -454,6 +473,7 @@ build = 'make'
 # Git Utility
 [[plugins]]
 repo = 'lambdalisue/gina.vim'
+on_cmd = 'Gina'
 hook_post_source = '''
 " -- status の設定
 call gina#custom#command#alias('status', 's')
@@ -492,6 +512,7 @@ xnoremap <silent> <Leader>bro :Browse<CR>
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
+on_map = { xn = '<Plug>(LiveEasyAlign)' }
 hook_add = '''
 xmap ga <Plug>(LiveEasyAlign)
 nmap ga <Plug>(LiveEasyAlign)
@@ -499,9 +520,21 @@ nmap ga <Plug>(LiveEasyAlign)
 
 [[plugins]]
 repo = 'HiPhish/info.vim'
+on_cmd = 'Info'
 
 [[plugins]]
 repo = 'mattn/emmet-vim'
+on_ft = [
+  'markdown',
+  'html',
+  'rust',
+  'javascript',
+  'jsx',
+  'javascriptreact',
+  'typescript',
+  'tsx',
+  'typescriptreact',
+]
 # for preact
 # let g:user_emmet_settings = emmet#merge(get(g:, 'user_emmet_settings'), { 'jsx': { 'attribute_name': {'class': 'class'}}})
 hook_add = '''
@@ -526,9 +559,10 @@ repo = 'AndrewRadev/splitjoin.vim'
 repo = 'rhysd/conflict-marker.vim'
 # [x, ]x : jumps
 
+# 重いときに j/k を叩きまくった後の硬直を緩和してくれる
 [[plugins]]
 repo = 'rhysd/accelerated-jk'
-# 重いときに j/k を叩きまくった後の硬直を緩和してくれる
+on_map = {n = '<Plug>(accelerated_jk'}
 hook_add = '''
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
@@ -539,30 +573,37 @@ nmap gk <Plug>(accelerated_jk_k)
 [[plugins]]
 repo = 'HerringtonDarkholme/yats.vim'
 if = '!has("nvim")'
-on_ft = ["typescript", "typescriptreact"]
+on_ft = [
+  "javascript",
+  "jsx",
+  "javascriptreact",
+  "typescript",
+  "typescriptreact",
+  "tsx",
+]
 
 [[plugins]]
 repo = 'othree/yajs.vim'
 if = '!has("nvim")'
-on_ft = ["javascript", "typescript", "javascriptreact", "typescriptreact"]
+on_ft = [
+  "javascript",
+  "typescript",
+  "javascriptreact",
+  "typescriptreact"
+]
 
 [[plugins]]
 repo = 'rhysd/committia.vim'
+on_ft = 'gitcommit'
+on_path = 'COMMIT_EDITMSG$'
 hook_add = '''
 let g:committia_hooks = {}
 function! g:committia_hooks.edit_open(info)
-  " Additional settings
-  " setlocal spell
-
-  " If no commit message, start with insert mode
   if a:info.vcs ==# 'git' && getline(1) ==# ''
     startinsert
   endif
-
-  " Scroll the diff window from insert mode
-  " Map <C-n> and <C-p>
-  nmap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
-  nmap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
+  " nmap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+  " nmap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
 endfunction
 '''
 
@@ -793,23 +834,25 @@ command! CoqSwitchStyle call CoqSwitchStyle()
 # Lang: Svelte
 [[plugins]]
 repo = 'evanleck/vim-svelte'
+on_ft = 'svelte'
 on_path = '\.svelte$'
 rev = 'main'
 
 # Lang: Markdown
 [[plugins]]
 repo = 'rhysd/vim-gfm-syntax'
-on_ft = "markdown"
+on_ft = 'markdown'
 
 # Lang: Prisma
 [[plugins]]
 repo = 'pantharshit00/vim-prisma'
+on_path = '\.prisma$'
 
 # --------------
 
 [[plugins]]
-if = "has('nvim')"
 repo = 'LumaKernel/nvim-visual-eof.lua'
+if = "has('nvim')"
 hook_post_source ='''
 lua require'visual-eof'.setup { hl_EOL = 'NonText'; }
 '''
@@ -963,6 +1006,7 @@ repo = 'Shougo/deoplete-nextword'
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 if = 'has("nvim")'
+hook_post_update = 'TSUpdate'
 on_ft = [
   'javascript',
   'javascriptreact',
@@ -1046,6 +1090,71 @@ repo = 'vim-denops/denops.vim'
 
 [[plugins]]
 repo = 'luma-dev/dps-godoc'
+depends = ["denops.vim"]
+on_cmd = 'Godoc'
+on_path = '^godoc://'
+on_source = 'denops.vim'
 
 [[plugins]]
 repo = 'LumaKernel/as-it-is.vim'
+on_cmd = [
+  'Waii',
+  'Uaii',
+  'Aaii',
+]
+
+[[plugins]]
+repo = 'subnut/nvim-ghost.nvim'
+if = 'has("nvim")'
+merged = 0
+on_cmd = 'GhostTextEnable'
+hook_add = '''
+let g:nvim_ghost_disabled = 1
+'''
+hook_post_source = '''
+function! s:setup_ghost(amatch) abort
+  if get(g:, 'nvim_ghost_disabled', 0)
+    return
+  endif
+  if &buftype !=# 'nofile'
+    return
+  endif
+  if &ft !=# ''
+    return
+  endif
+  exe 'file' matchlist(a:amatch, '[^/\\]*$')[0]
+endfunction
+augroup nvim_ghost_user_autocommands
+  au!
+  au User www.reddit.com,www.stackoverflow.com set filetype=markdown
+  au User www.reddit.com,www.github.com set filetype=markdown
+  au User *github.com set filetype=markdown
+  au User *.com,*.net,*.io,*.jp,*.org call <SID>setup_ghost(expand("<amatch>"))
+augroup END
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-jplus'
+on_map = {n = '<Plug>'}
+hook_add = '''
+  nmap J <Plug>(jplus)
+'''
+
+[[plugins]]
+repo = 'lambdalisue/reword.vim'
+on_map = ':'
+
+[[plugins]]
+repo = 'lambdalisue/suda.vim'
+on_event = 'BufRead'
+hook_add = '''
+  let g:suda_smart_edit = v:true
+'''
+
+# Speed up nvim startup time
+[[plugins]]
+repo = 'lewis6991/impatient.nvim'
+if = 'has("nvim")'
+hook_source = '''
+lua require('impatient')
+'''

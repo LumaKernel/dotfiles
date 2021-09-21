@@ -5,6 +5,8 @@ repo = 'Shougo/dein.vim'
 # Fern
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
+on_cmd = "Fern"
+on_path = '^fern://'
 hook_add = '''
 let g:fern#profile = 0
 let g:fern#disable_viewer_auto_duplication = 1
@@ -204,6 +206,7 @@ endfunction
 
 let g:startify_commands = [
       \   ':echo "hi"',
+      \   ':GhostTextEnable',
       \   ':call dein#recache_runtimepath()',
       \   ':call dein#check_update()',
       \   ':call dein#build()',
@@ -235,6 +238,9 @@ augroup END
 
 [[plugins]]
 repo = 'thinca/vim-ref'
+on_cmd = 'Ref'
 
 [[plugins]]
 repo = 'osyo-manga/ref-lynx'
+on_source = 'vim-ref'
+depends = 'vim-ref'

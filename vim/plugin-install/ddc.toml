@@ -1,6 +1,9 @@
 # ddc.vim
 [[plugins]]
 repo = 'Shougo/ddc.vim'
+depends = ['denops.vim']
+on_event = 'InsertEnter'
+on_source = 'denops.vim'
 hook_add = '''
 set completeopt=menuone
 '''
@@ -24,6 +27,7 @@ let g:ddc_sources = [
 let g:ddc_sources = [
       \ 'tabnine',
       \ 'coc-lsp',
+      \ 'recent',
       \ 'tmux',
       \ 'file',
       \ 'neosnippet',
@@ -251,44 +255,54 @@ call ddc#custom#patch_global('sources', ['tabnine'])
 [[plugins]]
 repo = 'Shougo/ddc-around'
 depends = ['ddc.vim']
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-sorter_rank'
 depends = ['ddc.vim']
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-matcher_head'
 depends = ['ddc.vim']
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'matsui54/ddc-matcher_fuzzy'
 depends = ['ddc.vim']
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-nextword'
 depends = ['ddc.vim']
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'delphinus/ddc-treesitter'
 if = 'has("nvim")'
 depends = ['ddc.vim', 'nvim-treesitter']
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'LumaKernel/ddc-file'
 depends = ['ddc.vim']
+on_source = 'ddc.vim'
 # repo = '~/ghq/github.com/LumaKernel/ddc-file'
 # merged = 0
 
 [[plugins]]
 repo = 'matsui54/ddc-buffer'
 depends = ['ddc.vim']
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'LumaKernel/ddc-tabnine'
 if = '!IsPrivateMode()'
 depends = ['ddc.vim']
+on_source = 'ddc.vim'
 hook_add = '''
 command! -bar EditTabNineConfig execute 'edit' ddc_tabnine#config_dir() . '/tabnine_config.json'
+command! -bar TabNineConfig execute EditTabNineConfig
 '''
 # repo = '~/ghq/github.com/LumaKernel/ddc-tabnine'
 # merged = 0
@@ -300,24 +314,28 @@ command! -bar EditTabNineConfig execute 'edit' ddc_tabnine#config_dir() . '/tabn
 [[plugins]]
 repo = 'delphinus/ddc-tmux'
 depends = ['ddc.vim']
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'LumaKernel/ddc-registers-words'
 depends = ['ddc.vim']
+on_source = 'ddc.vim'
 # repo = '~/ghq/github.com/LumaKernel/ddc-registers-words'
 # merged = 0
 
 [[plugins]]
 repo = 'LumaKernel/ddc-run'
 depends = ['ddc.vim']
+on_source = 'ddc.vim'
 # repo = '~/ghq/github.com/LumaKernel/ddc-run'
 # merged = 0
 
 [[plugins]]
 repo = 'LumaKernel/ddc-coc-patched'
-rev = 'v0.0.0-2021-09-18'
+rev = 'v0.0.0-2021-09-20'
 
 # repo = '~/ghq/github.com/LumaKernel/ddc-coc-patched'
 # merged = 0
 
 depends = ['ddc.vim', 'coc-patched.nvim']
+on_source = 'ddc.vim'
