@@ -126,9 +126,9 @@ fi
 
 if [[ -n "$is_WSL" ]] && command -v wslpath >/dev/null 2>/dev/null; then
   echo '    - cdwin : Go to win home.'
-  [[ -z "$WinUserName" ]] && export WinUserName="$(cmd.exe /c echo %UserName% 2>/dev/null | tr -d '\n' | tr -d '\r')"
+  [[ -z "$WinUserName" ]] && export WinUserName="$(wslvar username 2>/dev/null | tr -d '\n' | tr -d '\r')"
   [[ -z "$WinHome" ]] \
-    && export WinHome="$(wslpath c:/users/$WinUserName)"
+    && export WinHome="$(wslpath "c:/users/$WinUserName")"
   alias cdwin="cd $WinHome"
 fi
 

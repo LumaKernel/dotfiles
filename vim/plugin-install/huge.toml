@@ -61,6 +61,7 @@ on_source = 'lightline.vim'
 # Status Line
 [[plugins]]
 repo = 'itchyny/lightline.vim'
+depends = ['vim-gitbranch']
 if = "has('patch-8.2.0001') || has('nvim')"
 hook_add = '''
 let g:lightline = {
@@ -473,7 +474,6 @@ build = 'make'
 # Git Utility
 [[plugins]]
 repo = 'lambdalisue/gina.vim'
-on_cmd = 'Gina'
 hook_post_source = '''
 " -- status の設定
 call gina#custom#command#alias('status', 's')
@@ -1005,6 +1005,7 @@ repo = 'Shougo/deoplete-nextword'
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
+merged = 0
 if = 'has("nvim")'
 hook_post_update = 'TSUpdate'
 on_ft = [

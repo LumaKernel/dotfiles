@@ -83,10 +83,10 @@
   "eslint.format.enable": true,
   "eslint.autoFixOnSave": true,
   "emmet.priority": 30,
-  "deno.codeLens.references": true,
-  "deno.codeLens.referencesAllFunctions": true,
-  "deno.codeLens.implementations": true,
-  "codeLens.enable": true,
+  "deno.codeLens.references": false,
+  "deno.codeLens.referencesAllFunctions": false,
+  "deno.codeLens.implementations": false,
+  "codeLens.enable": false,
   "go.goplsOptions": {
     "staticcheck": true
   },

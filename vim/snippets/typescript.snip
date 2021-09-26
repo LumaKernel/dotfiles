@@ -122,6 +122,13 @@ options     head
     };
   }
 
+snippet dts_react_patch
+  declare namespace JSX {
+    interface IntrinsicElements {
+      rb: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+    }
+  }
+
 # Deno snippets
 snippet deno_import_io
   import * as io from "https://deno.land/std/io/mod.ts";

@@ -1,0 +1,14 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND",
+    "err": {
+      "name": "pnpm",
+      "message": "No package.json (or package.yaml, or package.json5) was found in \"/home/luma/dotfiles\".",
+      "code": "ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND",
+      "stack": "pnpm: No package.json (or package.yaml, or package.json5) was found in \"/home/luma/dotfiles\".\n    at readProjectManifest (/home/luma/.fnm/node-versions/v14.17.5/installation/pnpm-global/5/node_modules/.pnpm/pnpm@6.15.1/node_modules/pnpm/dist/pnpm.cjs:40369:13)\n    at async Object.readProjectManifestOnly (/home/luma/.fnm/node-versions/v14.17.5/installation/pnpm-global/5/node_modules/.pnpm/pnpm@6.15.1/node_modules/pnpm/dist/pnpm.cjs:40373:28)\n    at async Object.readProjectManifestOnly (/home/luma/.fnm/node-versions/v14.17.5/installation/pnpm-global/5/node_modules/.pnpm/pnpm@6.15.1/node_modules/pnpm/dist/pnpm.cjs:40592:24)\n    at async Object.handler (/home/luma/.fnm/node-versions/v14.17.5/installation/pnpm-global/5/node_modules/.pnpm/pnpm@6.15.1/node_modules/pnpm/dist/pnpm.cjs:129469:24)\n    at async /home/luma/.fnm/node-versions/v14.17.5/installation/pnpm-global/5/node_modules/.pnpm/pnpm@6.15.1/node_modules/pnpm/dist/pnpm.cjs:133641:20\n    at async run (/home/luma/.fnm/node-versions/v14.17.5/installation/pnpm-global/5/node_modules/.pnpm/pnpm@6.15.1/node_modules/pnpm/dist/pnpm.cjs:133616:34)\n    at async runPnpm (/home/luma/.fnm/node-versions/v14.17.5/installation/pnpm-global/5/node_modules/.pnpm/pnpm@6.15.1/node_modules/pnpm/dist/pnpm.cjs:133826:5)\n    at async /home/luma/.fnm/node-versions/v14.17.5/installation/pnpm-global/5/node_modules/.pnpm/pnpm@6.15.1/node_modules/pnpm/dist/pnpm.cjs:133818:7"
+    }
+  }
+}

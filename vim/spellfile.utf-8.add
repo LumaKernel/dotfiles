@@ -593,3 +593,6 @@ submodule
 powershell
 taskkill
 sigterm
+Hydratable
+rustup
+unsilent

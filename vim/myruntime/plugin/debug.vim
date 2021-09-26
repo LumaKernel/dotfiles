@@ -4,6 +4,10 @@
 nnoremap <silent> tt :<C-u>call translate_it#cword_or_close()<CR>
 xnoremap <silent> tt :<C-u>call translate_it#visual()<CR>
 
+if has('nvim')
+  nnoremap <silent> <C-L> :<C-U>call CloseRemainedFloat()<CR><C-L>
+endif
+
 finish
 
 function s:dump() abort
@@ -21,6 +25,7 @@ augroup DEBUG-eventcheck
 augroup END
 
 function! CloseRemainedFloat() abort
+  silent! call coc#float#close_all()
   for win_id in nvim_tabpage_list_wins(0)
     let config = nvim_win_get_config(win_id)
     if get(config, 'relative') isnot ''
@@ -28,10 +33,6 @@ function! CloseRemainedFloat() abort
     endif
   endfor
 endfunction
-
-if has('nvim')
-  nnoremap <silent> <C-L> :<C-U>call CloseRemainedFloat()<CR><C-L>
-endif
 
 finish
 

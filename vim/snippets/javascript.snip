@@ -31,9 +31,16 @@ options     head
 snippet     esm-this-dir
 alias       dirname-esm
 options     head
-  import {join, dirname} from 'path'
+  import {resolve, dirname} from 'path'
   import {fileURLToPath} from 'url'
-  join(dirname(fileURLToPath(import.meta.url), "foo");
+  resolve(dirname(fileURLToPath(import.meta.url)), "foo");
+
+snippet     esm-this-dir-2
+alias       dirname-esm-2
+options     head
+  import * as path from 'path'
+  import * as url from 'url'
+  path.resolve(path.dirname(url.fileURLToPath(import.meta.url)), "foo");
 
 snippet     eslint-linter-config
 alias       eslint-type-jsdoc

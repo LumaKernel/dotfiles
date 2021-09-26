@@ -29,3 +29,10 @@ alias       no-lockfile-npmrc
 alias       lockfile-no-npmrc
 options     head
   package-lock=false
+
+snippet     pnpm-public-hoist-pattern-default
+options     head
+  public-hoist-pattern[]=*types*
+  public-hoist-pattern[]=*eslint*
+  public-hoist-pattern[]=@prettier/plugin-*
+  public-hoist-pattern[]=*prettier-plugin-*

@@ -1,1 +1,1 @@
-alias checkhealth="nvim +checkhealth"
+alias checkhealth="nviml +checkhealth +tabon"

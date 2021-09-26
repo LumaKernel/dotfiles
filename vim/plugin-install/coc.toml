@@ -3,7 +3,7 @@
 # repo = '~/ghq/github.com/LumaKernel/coc-patched.nvim'
 
 repo = 'LumaKernel/coc-patched.nvim'
-rev = 'v0.0.0-2021-09-20'
+rev = 'v0.0.0-2021-09-21'
 
 # repo = 'neoclide/coc-patched.nvim'
 # rev = 'release'
@@ -90,7 +90,6 @@ if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
 
   let g:coc_global_extensions = [
     \   'coc-diagnostic',
-    \   'coc-emmet',
     \   'coc-eslint',
     \   'coc-go',
     \   'coc-json',

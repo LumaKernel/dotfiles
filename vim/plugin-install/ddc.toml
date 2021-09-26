@@ -8,17 +8,19 @@ hook_add = '''
 set completeopt=menuone
 '''
 hook_post_source = '''
-call ddc#custom#alias('source', 'coc-lsp', 'coc-patched')
+call ddc#custom#alias('source', 'coc-ls', 'coc-patched')
 call ddc#custom#alias('source', 'win32yank.exe', 'run')
 call ddc#custom#alias('source', 'recent', 'registers-words')
+call ddc#custom#alias('source', 'file-buffer', 'file')
 let g:ddc_sources = [
       \ 'tabnine',
-      \ 'coc-lsp',
+      \ 'coc-ls',
       \ 'treesitter',
       \ 'recent',
       \ 'tmux',
       \ 'around',
       \ 'buffer',
+      \ 'file-buffer',
       \ 'file',
       \ 'neosnippet',
       \ 'win32yank.exe',
@@ -26,9 +28,12 @@ let g:ddc_sources = [
     \ ]
 let g:ddc_sources = [
       \ 'tabnine',
-      \ 'coc-lsp',
+      \ 'coc-ls',
       \ 'recent',
       \ 'tmux',
+      \ 'around',
+      \ 'buffer',
+      \ 'file-buffer',
       \ 'file',
       \ 'neosnippet',
     \ ]
@@ -60,6 +65,7 @@ call ddc#custom#patch_global({
     \     'matchers': ['matcher_full_fuzzy'],
     \     'minAutoCompleteLength': 4,
     \     'maxCandidates': 5,
+    \     'dup': v:true,
     \   },
     \ },
     \ 'sourceParams': {
@@ -131,7 +137,7 @@ call ddc#custom#patch_global({
     \ 'sourceOptions': {
     \   name: {
     \     'mark': 'SNIP',
-    \     'minAutoCompleteLength': 2,
+    \     'minAutoCompleteLength': 10000,
     \     'dup': v:true,
     \   },
     \ },
@@ -169,7 +175,7 @@ call ddc#custom#patch_global({
     \   },
     \ }})
 
-let name = 'coc-lsp'
+let name = 'coc-ls'
 call ddc#custom#patch_global({
     \ 'sourceOptions': {
     \   name: {
@@ -177,8 +183,9 @@ call ddc#custom#patch_global({
     \     'isVolatile': v:true,
     \     'maxCandidates': 30,
     \     'matchers': ['matcher_full_fuzzy'],
-    \     'forceCompletionPattern': '\{|\.|:|->|''|"',
+    \     'forceCompletionPattern': '\{|\.|:|->|''|"|<',
     \     'minAutoCompleteLength': 1,
+    \     'dup': v:true,
     \   },
     \ },
     \ 'sourceParams': {
@@ -210,6 +217,39 @@ call ddc#custom#patch_global({
     \ },
     \ 'sourceParams': {
     \   name: {
+    \     'bufMaxCandidates': 0,
+    \     'followSymlinks': v:true,
+    \   },
+    \ }})
+call ddc#custom#patch_filetype(
+    \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
+    \ 'sourceOptions': {
+    \   name: {
+    \     'forceCompletionPattern': '\S\\\S*',
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \     'mode': 'win32',
+    \   },
+    \ }})
+
+let name = 'file-buffer'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'F',
+    \     'isVolatile': v:true,
+    \     'forceCompletionPattern': '\S/\S*',
+    \     'dup': v:true,
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \     'cwdMaxCandidates': 0,
+    \     'followSymlinks': v:true,
+    \     'projFromCwdMaxCandidates': [],
+    \     'projFromBufMaxCandidates': [],
     \   },
     \ }})
 call ddc#custom#patch_filetype(
@@ -246,9 +286,9 @@ call ddc#enable()
 " Debug
 " call ddc#custom#patch_global('sources', ['around'])
 " call ddc#custom#patch_global('sources', ['file'])
-" call ddc#custom#patch_global('sources', ['coc-lsp'])
+" call ddc#custom#patch_global('sources', ['coc-ls'])
 " call ddc#custom#patch_global('sources', ['registers-words'])
-call ddc#custom#patch_global('sources', ['tabnine'])
+" call ddc#custom#patch_global('sources', ['tabnine'])
 " call ddc#custom#patch_global('sources', ['win32yank.exe'])
 '''
 
@@ -297,7 +337,6 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'LumaKernel/ddc-tabnine'
-if = '!IsPrivateMode()'
 depends = ['ddc.vim']
 on_source = 'ddc.vim'
 hook_add = '''
@@ -332,7 +371,7 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'LumaKernel/ddc-coc-patched'
-rev = 'v0.0.0-2021-09-20'
+rev = 'v0.0.0-2021-09-21'
 
 # repo = '~/ghq/github.com/LumaKernel/ddc-coc-patched'
 # merged = 0
