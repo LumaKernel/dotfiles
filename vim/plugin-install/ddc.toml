@@ -28,6 +28,7 @@ let g:ddc_sources = [
     \ ]
 let g:ddc_sources = [
       \ 'tabnine',
+      \ 'coc-ls',
       \ 'recent',
       \ 'tmux',
       \ 'around',
@@ -148,6 +149,7 @@ let name = 'tabnine'
 call ddc#custom#patch_global({
     \ 'sourceOptions': {
     \   name: {
+    \     'matchers': [],
     \     'mark': 'TN',
     \     'maxCandidates': 5,
     \     'isVolatile': v:true,
@@ -181,8 +183,8 @@ call ddc#custom#patch_global({
     \     'isVolatile': v:true,
     \     'maxCandidates': 30,
     \     'matchers': ['matcher_full_fuzzy'],
+    \     'minAutoCompleteLength': 10000,
     \     'forceCompletionPattern': '\{|\.|:|->|''|"|<',
-    \     'minAutoCompleteLength': 1,
     \     'dup': v:true,
     \   },
     \ },
