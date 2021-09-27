@@ -28,14 +28,12 @@ let g:ddc_sources = [
     \ ]
 let g:ddc_sources = [
       \ 'tabnine',
-      \ 'coc-ls',
       \ 'recent',
       \ 'tmux',
       \ 'around',
       \ 'buffer',
       \ 'file-buffer',
       \ 'file',
-      \ 'neosnippet',
     \ ]
 
 if !executable('win32yank.exe')
@@ -279,6 +277,13 @@ call ddc#custom#patch_global({
 
 inoremap <silent><expr> <C-n>
     \ pumvisible() ? '<C-n>' : ddc#manual_complete()
+
+inoremap <silent><expr> <C-s><C-n> ddc#manual_complete()
+inoremap <silent><expr> <C-s><C-f> ddc#manual_complete(['file-buf', 'file'])
+inoremap <silent><expr> <C-s><C-l> ddc#manual_complete(['coc-ls'])
+inoremap <silent><expr> <C-x><C-l> ddc#manual_complete(['coc-ls'])
+inoremap <silent><expr> <C-s><C-s> ddc#manual_complete(['neosnippet'])
+inoremap <silent><expr> <C-x><C-s> ddc#manual_complete(['neosnippet'])
 
 " call timer_start(1000, {->execute('call ddc#enable()')})
 call ddc#enable()
