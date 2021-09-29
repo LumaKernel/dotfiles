@@ -91,6 +91,8 @@ set viewdir=$HOME/.vim_view/
 set splitbelow
 set splitright
 
+set shortmess=asToOFcI
+
 
 augroup my_IME_setting
   autocmd!

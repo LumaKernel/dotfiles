@@ -190,7 +190,7 @@ if executable('stat')
   endfunction
 
   augroup MyStatCache
-    autocmd BufEnter * call g:MyStatCacheDeleteThis()
+    autocmd BufEnter ++nested * call g:MyStatCacheDeleteThis()
   augroup END
 else
   function! MyFilestat()
@@ -270,7 +270,7 @@ function! s:init_fern_preview() abort
 endfunction
 augroup my-fern-preview
   autocmd! *
-  autocmd FileType fern call s:init_fern_preview()
+  autocmd FileType ++nested fern call s:init_fern_preview()
 augroup END
 '''
 
@@ -534,11 +534,14 @@ on_ft = [
   'typescript',
   'tsx',
   'typescriptreact',
+  'vue',
+  'svelte',
 ]
+on_path = '\.mdx\?$'
 # for preact
 # let g:user_emmet_settings = emmet#merge(get(g:, 'user_emmet_settings'), { 'jsx': { 'attribute_name': {'class': 'class'}}})
 hook_add = '''
-  let g:user_emmet_leader_key = "\<C-f>"
+let g:user_emmet_leader_key = "\<C-f>"
 '''
 
 [[plugins]]
@@ -644,7 +647,7 @@ function! s:init_fern_mapping_reload_all() abort
 endfunction
 augroup my-fern-mapping-reload-all
   autocmd! *
-  autocmd FileType fern call s:init_fern_mapping_reload_all()
+  autocmd FileType ++nested fern call s:init_fern_mapping_reload_all()
 augroup END
 '''
 
@@ -717,7 +720,7 @@ endfunction
 
 augroup findent
   autocmd!
-  autocmd BufNewFile,BufReadPost,BufFilePost * call s:my_findent_init()
+  autocmd BufNewFile,BufReadPost,BufFilePost ++nested * call s:my_findent_init()
 augroup END
 '''
 
@@ -803,7 +806,7 @@ endfunction
 
 augroup my-coq
   au!
-  au FileType coq :call MyCoqMaps()
+  au FileType ++nested coq :call MyCoqMaps()
 augroup END
 
 if has('win32')
@@ -936,14 +939,14 @@ augroup my_config_scrollbar_nvim
   autocmd!
   let s:sc_show = "silent! lua require('scrollbar').show()"
   let s:sc_clear = "silent! lua require('scrollbar').clear()"
-  exe "autocmd BufEnter    *" s:sc_show
-  exe "autocmd BufLeave    *" s:sc_clear
+  exe "autocmd BufEnter    * ++nested" s:sc_show
+  exe "autocmd BufLeave    * ++nested" s:sc_clear
 
-  exe "autocmd CursorMoved *" s:sc_show
-  exe "autocmd VimResized  *" s:sc_show
+  exe "autocmd CursorMoved * ++nested" s:sc_show
+  exe "autocmd VimResized  * ++nested" s:sc_show
 
-  exe "autocmd FocusGained *" s:sc_show
-  exe "autocmd FocusLost *" s:sc_clear
+  exe "autocmd FocusGained * ++nested" s:sc_show
+  exe "autocmd FocusLost * ++nested" s:sc_clear
 augroup end
 
 let g:scrollbar_shape = {
@@ -990,8 +993,8 @@ endfunction
 
 augroup spelunker
   autocmd!
-  autocmd BufWinEnter,BufWritePost * call SpelunkerInit()
-  autocmd BufWinEnter,BufWritePost * call timer_start(1000 * 2, function('SpelunkerInit'))
+  autocmd BufWinEnter,BufWritePost ++nested * call SpelunkerInit()
+  autocmd BufWinEnter,BufWritePost ++nested * call timer_start(1000 * 2, function('SpelunkerInit'))
 augroup END
 '''
 
@@ -1127,10 +1130,10 @@ function! s:setup_ghost(amatch) abort
 endfunction
 augroup nvim_ghost_user_autocommands
   au!
-  au User www.reddit.com,www.stackoverflow.com set filetype=markdown
-  au User www.reddit.com,www.github.com set filetype=markdown
-  au User *github.com set filetype=markdown
-  au User *.com,*.net,*.io,*.jp,*.org call <SID>setup_ghost(expand("<amatch>"))
+  au User www.reddit.com,www.stackoverflow.com ++nested set filetype=markdown
+  au User www.reddit.com,www.github.com ++nested set filetype=markdown
+  au User *github.com ++nested set filetype=markdown
+  au User *.com,*.net,*.io,*.jp,*.org ++nested call <SID>setup_ghost(expand("<amatch>"))
 augroup END
 '''
 
@@ -1138,7 +1141,7 @@ augroup END
 repo = 'osyo-manga/vim-jplus'
 on_map = {n = '<Plug>'}
 hook_add = '''
-  nmap J <Plug>(jplus)
+nmap J <Plug>(jplus)
 '''
 
 [[plugins]]
@@ -1149,13 +1152,12 @@ on_map = ':'
 repo = 'lambdalisue/suda.vim'
 on_event = 'BufRead'
 hook_add = '''
-  let g:suda_smart_edit = v:true
+let g:suda_smart_edit = v:true
 '''
 
-# Speed up nvim startup time
 [[plugins]]
-repo = 'lewis6991/impatient.nvim'
-if = 'has("nvim")'
-hook_source = '''
-lua require('impatient')
+repo = 'liuchengxu/vista.vim'
+on_cmd = 'Vista'
+hook_add = '''
+nnoremap <silent> <Space>ac :<c-u>Vista coc<cr>
 '''

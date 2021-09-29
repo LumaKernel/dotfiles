@@ -158,6 +158,11 @@ repo = 'antoinemadec/coc-fzf'
 depends = ['coc.nvim']
 rev = 'release'
 
+[[plugins]]
+if = "has('nvim')"
+depends = ['impatient.nvim', 'coc.nvim']
+merged = 0
+repo = 'LumaKernel/nvim-coc-nearest-symbol.lua'
 
 # DEBUG: coc.nvim extension
 

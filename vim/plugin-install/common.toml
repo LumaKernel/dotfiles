@@ -36,7 +36,12 @@ function! FernRevealPwdOrThere() abort
     Fern .
     return ''
   endif
-  let F = vital#vital#import('System.Filepath')
+  try
+    let F = vital#vital#import('System.Filepath')
+  catch
+    return ''
+  endtry
+
   " TODO: VCS まで登ってもいいかも
   let dir = expand('%:p:h')
   if F.contains(dir, getcwd())
@@ -253,4 +258,20 @@ xmap sj <Plug>(columnskip:nonblank:next)
 nmap sk <Plug>(columnskip:nonblank:prev)
 omap sk <Plug>(columnskip:nonblank:prev)
 xmap sk <Plug>(columnskip:nonblank:prev)
+'''
+
+# Speed up nvim startup time
+[[plugins]]
+repo = 'lewis6991/impatient.nvim'
+if = 'has("nvim")'
+hook_source = '''
+lua require('impatient')
+'''
+
+[[plugins]]
+repo = 'nathom/filetype.nvim'
+if = 'has("nvim")'
+depends = 'impatient.nvim'
+hook_source = '''
+let g:did_load_filetypes = 1
 '''
