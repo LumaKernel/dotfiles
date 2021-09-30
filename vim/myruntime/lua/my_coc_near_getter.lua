@@ -1,31 +1,40 @@
+local format = function(sym)
+  if sym['kind'] == nil then
+    return sym['text']
+  end
+
+  return sym['text'] .. '[' .. sym['kind'] .. ']'
+end
+
 local main = function()
   local ok, m = pcall(require, 'coc-nearest-symbol')
   if not ok then
     return ''
   end
-  local n = m:nearest_symbol(vim.fn.CocAction('documentSymbols'), m:get_char_pos())
-  local near = n['here'] or n['prev'] or n['next']
-  if near == nil then
-    return ''
+  local ns = m:all_symbols(vim.fn.CocAction('documentSymbols'), m:get_char_pos())
+  local txt = ''
+
+  for i=1, #ns do
+    if ns[i]['text'] ~= nil then
+      if txt == '' then
+        txt = format(ns[i])
+      else
+        txt = txt .. ' > ' .. format(ns[i])
+      end
+    end
   end
 
-  if near['text'] == nil then
-    return ''
-  end
-
-  if near['kind'] == nil then
-    return near['text']
-  end
-
-  return near['text'] .. '(' .. near['kind'] .. ')'
+  return txt
 end
 
 local wrapped = function()
-  local ok, value = pcall(main)
-  if ok then
-    return value
-  end
-  return ''
+  return main()
 end
+--   local ok, value = pcall(main)
+--   if ok then
+--     return value
+--   end
+--   return ''
+-- end
 
 return wrapped

@@ -857,7 +857,8 @@ on_path = '\.prisma$'
 repo = 'LumaKernel/nvim-visual-eof.lua'
 if = "has('nvim')"
 hook_post_source ='''
-lua require'visual-eof'.setup { hl_EOL = 'NonText'; }
+lua require'visual-eof'.setup { hl_EOL = 'NonText'; no_autocmd = true }
+lua require'my_visual_eof'()
 '''
 
 [[plugins]]
