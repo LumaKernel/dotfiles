@@ -66,6 +66,7 @@ function! health#my#check() abort
   call s:check('brew', ['brew', '--version'], 'Homebrew \(\d\+\.\d\+\.\d\+\)')
   call s:check('rustup', ['rustup', '--version'], 'rustup \([^\n\r]*\)')
   call s:check('cargo', ['cargo', '--version'], 'cargo \(\d\+\.\d\+\.\d\+\)')
+  call s:check('sccache', ['sccache', '--version'], 'sccache \(\%(\d\+\.\)*\%(\d\+\)\)')
   call s:check('goup', ['goup', 'version'], 'goup version v\(\d\+\.\d\+\.\d\+\)')
   call s:check('go', ['go', 'version'], 'go version go\(\d\+\.\d\+\%(\.\d\+\)\?\)')
   call s:check('wasm-pack', ['wasm-pack', '--version'], 'wasm-pack \(\d\+\.\d\+\.\d\+\)')

@@ -1,0 +1,8 @@
+snippet rust_workspace_template
+alias workspace_rust_template
+alias template_workspace_rust
+alias cargo_rust_workspace_template
+options     head
+  [workspace]
+  members = ["member1", "path/to/member2", "crates/*"]
+  exclude = ["crates/foo", "path/to/other"]

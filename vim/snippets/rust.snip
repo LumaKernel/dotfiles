@@ -1,0 +1,7 @@
+snippet cwd
+alias pwd
+alias working_dir
+options head
+  use std::env;
+  let path = env::current_dir()?;
+  println!("The current directory is {}", path.display());

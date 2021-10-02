@@ -157,6 +157,19 @@ if test -z "$WASMER_DIR"; then
   export PATH="$WASMER_DIR/bin:$PATH:$WASMER_DIR/globals/wapm_packages/.bin"
 fi
 
+# -- rust sccache
+if test -z "$RUSTC_WRAPPER_INIT"; then
+  export RUSTC_WRAPPER_INIT=1
+  if test -z "$RUSTC_WRAPPER"; then
+    if command -v sccache >/dev/null 2>&1; then
+      export RUSTC_WRAPPER="$(which sccache)"
+    else
+      echo "[info/healthcheck/.bashrc] sccache not installed."
+    fi
+  fi
+fi
+
+
 # -- opam TODO
 # $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 # if command -v opam >/dev/null 2>&1; then

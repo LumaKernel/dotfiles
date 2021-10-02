@@ -22,6 +22,11 @@
       "filetypes": ["terraform", "tf"],
       "initializationOptions": {}
     }
+    // "protobuf": {
+    //   "command": "protocol-buffers-language-server",
+    //   "args": ["--logfile=/tmp/prbuf-lsp.log", "--loglevel=debug"],
+    //   "filetypes": ["proto"]
+    // }
   },
   "diagnostic-languageserver.linters": {
     "hadolint": {
@@ -93,5 +98,6 @@
   "coc.preferences.enableMessageDialog": false,
   "prettier.onlyUseLocalVersion": true,
   "rust-analyzer.procMacro.enable": true,
-  "rust-analyzer.experimental.procAttrMacros": true
+  "rust-analyzer.experimental.procAttrMacros": true,
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true
 }
