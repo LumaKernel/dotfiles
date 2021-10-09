@@ -1,6 +1,7 @@
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
-if = "g:lsp_mode is# 'vim-lsp'"
+# if = "g:lsp_mode is# 'vim-lsp'"
+merged = 0
 on_ft = [
   'vim',
   'python',
@@ -24,233 +25,236 @@ on_ft = [
   'html',
   'sh',
 ]
-rev = 'dev'
+# rev = 'dev'
 hook_add = '''
-  if g:lsp_mode is# 'vim-lsp'
-    function! MyRef() abort
-      if &ft == 'vim' || &ft == 'help'
-        return 'K'
-      else
-        return ":\<C-u>LspHover\<CR>"
-      endif
-    endfunction
-
-    nnoremap <silent><expr> K MyRef()
-    nnoremap <silent> Q :<C-u>LspCodeAction<CR>
-    xnoremap <silent> Q :<C-u>'<,'>LspCodeAction<CR>
-    nnoremap <silent> gd :<C-u>LspDefinition<CR>
-    nnoremap <silent> gt :<C-u>LspTypeDefinition<CR>
-    nnoremap <silent> gi :<C-u>LspImplementation<CR>
-    nnoremap <silent> <SPACE>ll :<C-u>LspDocumentDiagnostics<CR>
-    nnoremap <silent> ]g :LspNextDiagnostic<CR>
-    nnoremap <silent> [g :LspPreviousDiagnostic<CR>
-    nnoremap <silent> ]e :LspNextError<CR>
-    nnoremap <silent> [e :LspPreviousError<CR>
-    nnoremap <silent> gr :LspRename<CR>
-
-    let g:lsp_virtual_text_prefix = "> "
-    let g:lsp_diagnostics_echo_cursor = 1
-    let g:lsp_virtual_text_enabled = 0
-    let g:lsp_diagnostics_float_cursor = 1
-
-    highlight link LspErrorHighlight Error
-    highlight link LspWarningHighlight Warning
-
-    let g:lsp_signs_priority = 50
-    let g:lsp_semantic_enabled = 1
-
-    let s:ft = [
-      \   'javascript',
-      \   'javascriptreact',
-      \   'typescript',
-      \   'typescriptreact',
-      \   'python',
-      \   'go',
-      \ ]
-
-    setglobal omnifunc=lsp#complete
-
-    " 名前は vim-lsp-settings と衝突しないように
-    " my- をつける
-
-    let g:nvim_venv_pyls = expand('~/.local/venvs/nvim/bin/pyls')
-    if executable(g:nvim_venv_pyls) && 0
-      autocmd User lsp_setup call lsp#register_server({
-        \   'name': 'my-pyls',
-        \   'cmd': {server_info->[g:nvim_venv_pyls]},
-        \   'allowlist': ['python'],
-        \   'workspace_config': {
-        \     'pyls': {
-        \       'plugins': {
-        \         'pyflakes': { 'enabled': v:false },
-        \         'flake8': { 'enabled': v:false },
-        \         'pycodestyle': { 'enabled': v:false },
-        \         'pydocstyle': { 'enabled': v:false },
-        \         'pylint': { 'enabled': v:false },
-        \         'mccabe': { 'enabled': v:false },
-        \         'pyls_mypy': { 'enabled': v:true, 'live_mode': v:false },
-        \       }
-        \     }
-        \   }
-        \ })
-    endif
-
-    if executable("node") && 1
-      autocmd User lsp_setup call lsp#register_server({
-        \   'name': 'my-vfile',
-        \   'cmd': {server_info->['node', '/home/luma/workspace/vfile-reporter-daemon/dist/bin/index.js', 'lsp', '--stdin']},
-        \   'allowlist': ['text', 'markdown'],
-        \ })
-
-    endif
-
-    if executable('rome') && 0
-      augroup my-lsp-rome
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-           \   'name': 'my-rome-lsp',
-           \   'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.config/'))},
-           \   'cmd': {server_info->['rome', 'lsp']},
-           \   'allowlist': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
-           \ })
-      augroup END
-    endif
-
-    let g:deno_latest_bin = expand('~/.cargo/bin/deno')
-
-    if executable(g:deno_latest_bin) && 0
-      augroup my-deno-lsp
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-           \   'name': 'my-deno-lsp',
-           \   'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.git/'))},
-           \   'cmd': {server_info->[g:deno_latest_bin, 'lsp']},
-           \   'allowlist': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
-           \ })
-      augroup END
-    endif
-
-    if executable('prisma-language-server') && 0
-      let g:pls_use_mine = 1
-      let g:pls_path = g:pls_use_mine
-        \ ? '/home/luma/workspace/prisma-language-tools/packages/language-server/bin/prisma-language-server'
-        \ : 'prisma-language-server'
-        " '/home/luma/.config/nvm/14.6.0/bin/prisma-language-server'
-        " '/home/luma/workspace/prisma-language-tools/packages/language-server/dist/src/cli.js'
-      let g:pls_path = '/home/luma/workspace/prisma-language-tools/packages/language-server/dist/src/cli.js'
-
-      augroup my-lsp-prisma
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-           \   'name': 'my-prisma-language-server',
-           \   'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
-           \   'cmd': {server_info->['node', '--trace-warnings', g:pls_path, '--stdio']},
-           \   'allowlist': ['prisma'],
-           \   'workspace_config': {
-           \     'prismaLanguageServer': {
-           \       'prismaFmtBinPath': '/home/luma/.cargo/bin/prisma-fmt',
-           \     }
-           \   },
-           \ })
-      augroup END
-    endif
-
-    let g:my_auto_format = 1
-
-    command! -bar MyLspDocumentFormatSync if g:my_auto_format | exe "silent! LspDocumentFormatSync" | endif
-    command! DisableAutoFormat let g:my_auto_format = 0
-    command! EnableAutoFormat let g:my_auto_format = 1
-
-    let s:format_on_save_ft = [
-      \   "nothing",
-      \ ]
-
-    augroup my-lsp-fmt-on-save
-      let s:cmd = "autocmd BufWritePost <buffer> MyLspDocumentFormatSync"
-      execute "autocmd FileType" join(s:format_on_save_ft, ',') s:cmd
-    augroup END
-
-    let g:lsp_log_file = expand('~/vim-lsp.log')
-    if 0
-      echom "[Warning] LSP Logging is on."
-      call delete(g:lsp_log_file)
-    endif
+function! MyRef() abort
+  if &ft == 'vim' || &ft == 'help'
+    return 'K'
+  else
+    return ":\<C-u>LspHover\<CR>"
   endif
+endfunction
+
+nnoremap <silent><expr> K MyRef()
+nnoremap <silent> Q :<C-u>LspCodeAction<CR>
+xnoremap <silent> Q :<C-u>'<,'>LspCodeAction<CR>
+nnoremap <silent> gd :<C-u>LspDefinition<CR>
+nnoremap <silent> gt :<C-u>LspTypeDefinition<CR>
+nnoremap <silent> gi :<C-u>LspImplementation<CR>
+nnoremap <silent> <SPACE>ll :<C-u>LspDocumentDiagnostics<CR>
+nnoremap <silent> ]g :LspNextDiagnostic<CR>
+nnoremap <silent> [g :LspPreviousDiagnostic<CR>
+nnoremap <silent> ]e :LspNextError<CR>
+nnoremap <silent> [e :LspPreviousError<CR>
+nnoremap <silent> gr :LspRename<CR>
+
+let g:lsp_virtual_text_prefix = "> "
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_virtual_text_enabled = 0
+let g:lsp_diagnostics_float_cursor = 1
+
+highlight link LspErrorHighlight Error
+highlight link LspWarningHighlight Warning
+
+let g:lsp_signs_priority = 50
+let g:lsp_semantic_enabled = 1
+
+let s:ft = [
+  \   'javascript',
+  \   'javascriptreact',
+  \   'typescript',
+  \   'typescriptreact',
+  \   'python',
+  \   'go',
+  \ ]
+
+setglobal omnifunc=lsp#complete
+
+" 名前は vim-lsp-settings と衝突しないように
+" my- をつける
+
+let g:nvim_venv_pyls = expand('~/.local/venvs/nvim/bin/pyls')
+if executable(g:nvim_venv_pyls) && 0
+  autocmd User lsp_setup call lsp#register_server({
+    \   'name': 'my-pyls',
+    \   'cmd': {server_info->[g:nvim_venv_pyls]},
+    \   'allowlist': ['python'],
+    \   'workspace_config': {
+    \     'pyls': {
+    \       'plugins': {
+    \         'pyflakes': { 'enabled': v:false },
+    \         'flake8': { 'enabled': v:false },
+    \         'pycodestyle': { 'enabled': v:false },
+    \         'pydocstyle': { 'enabled': v:false },
+    \         'pylint': { 'enabled': v:false },
+    \         'mccabe': { 'enabled': v:false },
+    \         'pyls_mypy': { 'enabled': v:true, 'live_mode': v:false },
+    \       }
+    \     }
+    \   }
+    \ })
+endif
+
+if executable("node") && 0
+  autocmd User lsp_setup call lsp#register_server({
+    \   'name': 'my-vfile',
+    \   'cmd': {server_info->['node', '/home/luma/workspace/vfile-reporter-daemon/dist/bin/index.js', 'lsp', '--stdin']},
+    \   'allowlist': ['text', 'markdown'],
+    \ })
+
+endif
+
+if executable('rome') && 0
+  augroup my-lsp-rome
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+       \   'name': 'my-rome-lsp',
+       \   'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.config/'))},
+       \   'cmd': {server_info->['rome', 'lsp']},
+       \   'allowlist': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
+       \ })
+  augroup END
+endif
+
+" let g:deno_latest_bin = expand('~/.cargo/bin/deno')
+let g:deno_latest_bin = 'deno'
+
+if executable(g:deno_latest_bin) && 0
+  augroup my-deno-lsp
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+       \   'name': 'my-deno-lsp',
+       \   'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.git/'))},
+       \   'cmd': {server_info->[g:deno_latest_bin, 'lsp']},
+       \   'allowlist': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
+       \ })
+  augroup END
+endif
+
+if executable('prisma-language-server') && 0
+  let g:pls_use_mine = 1
+  let g:pls_path = g:pls_use_mine
+    \ ? '/home/luma/workspace/prisma-language-tools/packages/language-server/bin/prisma-language-server'
+    \ : 'prisma-language-server'
+    " '/home/luma/.config/nvm/14.6.0/bin/prisma-language-server'
+    " '/home/luma/workspace/prisma-language-tools/packages/language-server/dist/src/cli.js'
+  let g:pls_path = '/home/luma/workspace/prisma-language-tools/packages/language-server/dist/src/cli.js'
+
+  augroup my-lsp-prisma
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+       \   'name': 'my-prisma-language-server',
+       \   'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+       \   'cmd': {server_info->['node', '--trace-warnings', g:pls_path, '--stdio']},
+       \   'allowlist': ['prisma'],
+       \   'workspace_config': {
+       \     'prismaLanguageServer': {
+       \       'prismaFmtBinPath': '/home/luma/.cargo/bin/prisma-fmt',
+       \     }
+       \   },
+       \ })
+  augroup END
+endif
+
+let g:my_auto_format = 1
+
+command! -bar MyLspDocumentFormatSync if g:my_auto_format | exe "silent! LspDocumentFormatSync" | endif
+command! DisableAutoFormat let g:my_auto_format = 0
+command! EnableAutoFormat let g:my_auto_format = 1
+
+let s:format_on_save_ft = [
+  \   "nothing",
+  \ ]
+
+augroup my-lsp-fmt-on-save
+  let s:cmd = "autocmd BufWritePost <buffer> MyLspDocumentFormatSync"
+  execute "autocmd FileType" join(s:format_on_save_ft, ',') s:cmd
+augroup END
+
+let g:lsp_log_file = expand('~/vim-lsp.log')
+if 0
+  echom "[Warning] LSP Logging is on."
+  call delete(g:lsp_log_file)
+endif
 '''
 
 [[plugins]]
-if = "g:lsp_mode == 'vim-lsp'"
-repo = 'LumaKernel/vim-lsp-settings'
+# if = "g:lsp_mode == 'vim-lsp'"
+# repo = 'LumaKernel/vim-lsp-settings'
+repo = 'mattn/vim-lsp-settings'
 depends = 'vim-lsp'
 # ~/.local/share/vim-lsp-settings/servers
 hook_add = '''
-  let g:lsp_settings = {
-      \   'pyls': {
-      \     'disabled': 1,
-      \     'workspace_config': {
-      \       'pyls': {
-      \         'plugins': {
-      \           'pyflakes': { 'enabled': v:false },
-      \           'flake8': { 'enabled': v:false },
-      \           'pycodestyle': { 'enabled': v:false },
-      \           'pydocstyle': { 'enabled': v:false },
-      \           'pylint': { 'enabled': v:false },
-      \           'mccabe': { 'enabled': v:false },
-      \         }
-      \       }
-      \     }
-      \   },
-      \   'typescript-language-server': {
-      \     'disabled': 1,
-      \     'workspace_config': {
-      \       'typescript': {
-      \         'preferences': {
-      \           'importModuleSpecifier': 'non-relative',
-      \         }
-      \       }
-      \     }
-      \   },
-      \   'efm-langserver': {
-      \     'disabled': 1,
-      \   },
-      \ }
+let g:lsp_settings = {
+    \   'pyls': {
+    \     'disabled': 1,
+    \     'workspace_config': {
+    \       'pyls': {
+    \         'plugins': {
+    \           'pyflakes': { 'enabled': v:false },
+    \           'flake8': { 'enabled': v:false },
+    \           'pycodestyle': { 'enabled': v:false },
+    \           'pydocstyle': { 'enabled': v:false },
+    \           'pylint': { 'enabled': v:false },
+    \           'mccabe': { 'enabled': v:false },
+    \         }
+    \       }
+    \     }
+    \   },
+    \   'typescript-language-server': {
+    \     'disabled': 1,
+    \     'workspace_config': {
+    \       'typescript': {
+    \         'preferences': {
+    \           'importModuleSpecifier': 'non-relative',
+    \         }
+    \       }
+    \     }
+    \   },
+    \   'deno': {
+    \     'disabled': 0,
+    \   },
+    \   'efm-langserver': {
+    \     'disabled': 1,
+    \   },
+    \ }
 '''
 
-[[plugins]]
-repo = 'lighttiger2505/deoplete-vim-lsp'
-if = "g:lsp_mode is# 'vim-lsp' && 0"
-depends = ['vim-lsp', 'deoplete.nvim']
+# [[plugins]]
+# repo = 'lighttiger2505/deoplete-vim-lsp'
+# if = "g:lsp_mode is# 'vim-lsp' && 0"
+# depends = ['vim-lsp', 'deoplete.nvim']
 
 [[plugins]]
 if = "g:lsp_mode is# 'vim-lsp' && 0"
 repo = 'tsuyoshicho/vim-efm-langserver-settings'
 depends = ['vim-lsp']
 hook_add = '''
-  let g:efm_langserver_settings#config_file = expand('~/dotfiles/vim/efm-settings.yml')
-  let g:efm_langserver_settings#customlist = 1
-  let g:efm_langserver_settings#filetype_whitelist = [
-    \   'python',
-    \   'css',
-    \   'scss',
-    \   'sass',
-    \   'less',
-    \   'vue',
-    \   'html',
-    \   'yaml',
-    \   'sh',
-    \   'json',
-    \   'json5',
-    \   'markdown',
-    \   'vim',
-    \   'javascript',
-    \   'typescript',
-    \   'typescriptreact',
-    \ ]
+let g:efm_langserver_settings#config_file = expand('~/dotfiles/vim/efm-settings.yml')
+let g:efm_langserver_settings#customlist = 1
+let g:efm_langserver_settings#filetype_whitelist = [
+  \   'python',
+  \   'css',
+  \   'scss',
+  \   'sass',
+  \   'less',
+  \   'vue',
+  \   'html',
+  \   'yaml',
+  \   'sh',
+  \   'json',
+  \   'json5',
+  \   'markdown',
+  \   'vim',
+  \   'javascript',
+  \   'typescript',
+  \   'typescriptreact',
+  \ ]
 
-  if 0
-    echom "[Warning] efm Logging is on."
-    let g:efm_langserver_settings#debug = 5
-    let g:efm_langserver_settings#debug_file = expand('~/efm.log')
-    call delete(g:efm_langserver_settings#debug_file)
-  endif
+if 0
+  echom "[Warning] efm Logging is on."
+  let g:efm_langserver_settings#debug = 5
+  let g:efm_langserver_settings#debug_file = expand('~/efm.log')
+  call delete(g:efm_langserver_settings#debug_file)
+endif
 '''

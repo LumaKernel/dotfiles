@@ -50,6 +50,7 @@ if dein#load_state(g:dein_dir)
       call dein#load_toml(s:dir .. '/plugin-install/ddc.toml')
     endif
     if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
+      " call dein#load_toml(s:dir .. '/plugin-install/vim-lsp.toml')
       call dein#load_toml(s:dir .. '/plugin-install/coc.toml')
       call dein#load_toml(s:dir .. '/plugin-install/ddc.toml')
     endif

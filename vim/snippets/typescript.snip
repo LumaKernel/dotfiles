@@ -180,3 +180,19 @@ alias exists_deno
       return false;
     }
   };
+
+
+snippet esbuild-omit-import-node-ns
+options head
+  /** @type {import('esbuild').Plugin} */
+  const omitImportNodeNSPlugin = {
+    name: 'omit-import-node-ns',
+    setup(build) {
+      build.onResolve({filter: /^node:/}, (args) => {
+        return {
+          path: args.path.slice(5),
+          external: true,
+        };
+      });
+    },
+  };

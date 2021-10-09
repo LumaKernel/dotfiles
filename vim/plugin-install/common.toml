@@ -183,7 +183,7 @@ endfunction
 function! s:MyRefs()
   return [
         \   { 'line': 'GNU Make Manual' , 'cmd': 'Ref lynx https://www.gnu.org/software/make/manual/make.html' },
-        \   { 'line': 'ECMA262' , 'cmd': 'Ref lynx https://tc39.es/ecma262' },
+        \   { 'line': 'ECMA262' , 'cmd': 'Ref lynx https://tc39.es/ecma262/' },
         \ ]
 endfunction
 

@@ -1,11 +1,15 @@
 # ddc.vim
 [[plugins]]
 repo = 'Shougo/ddc.vim'
+
+# repo = '~/ghq/github.com/Shougo/ddc.vim'
+# merged = 0
+
 depends = ['denops.vim']
 on_event = 'InsertEnter'
 on_source = 'denops.vim'
 hook_add = '''
-set completeopt=menuone
+set completeopt=menuone,noinsert,noselect
 '''
 hook_post_source = '''
 call ddc#custom#alias('source', 'coc-ls', 'coc-patched')
@@ -155,6 +159,7 @@ call ddc#custom#patch_global({
     \     'isVolatile': v:true,
     \     'minAutoCompleteLength': 2,
     \     'forceCompletionPattern': '.[^(]',
+    \     'dup': v:true,
     \   },
     \ },
     \ 'sourceParams': {
@@ -175,6 +180,24 @@ call ddc#custom#patch_global({
     \   },
     \ }})
 
+let name = 'vim-lsp'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'VIM_LSP',
+    \     'isVolatile': v:true,
+    \     'maxCandidates': 30,
+    \     'forceCompletionPattern': '\{|\.|:|->|''|"|<',
+    \     'dup': v:true,
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \   },
+    \ }})
+
+    "\     'matchers': ['matcher_full_fuzzy'],
+    "\     'minAutoCompleteLength': 10000,
 let name = 'coc-ls'
 call ddc#custom#patch_global({
     \ 'sourceOptions': {
@@ -182,8 +205,8 @@ call ddc#custom#patch_global({
     \     'mark': '',
     \     'isVolatile': v:true,
     \     'maxCandidates': 30,
-    \     'matchers': ['matcher_full_fuzzy'],
-    \     'minAutoCompleteLength': 10000,
+    \     'minAutoCompleteLength': 1,
+    \     'matchers': [],
     \     'forceCompletionPattern': '\{|\.|:|->|''|"|<',
     \     'dup': v:true,
     \   },
@@ -297,6 +320,8 @@ call ddc#enable()
 " call ddc#custom#patch_global('sources', ['registers-words'])
 " call ddc#custom#patch_global('sources', ['tabnine'])
 " call ddc#custom#patch_global('sources', ['win32yank.exe'])
+" call ddc#custom#patch_global('sources', ['vim-lsp'])
+" inoremap <silent><expr> <C-s><C-d> ddc#manual_complete(['vim-lsp'])
 '''
 
 [[plugins]]
@@ -370,6 +395,17 @@ on_source = 'ddc.vim'
 # merged = 0
 
 [[plugins]]
+# repo = '~/ghq/github.com/LumaKernel/ddc-vim-lsp'
+# rev = 'oncallback'
+
+if = 0
+repo = '~/ghq/github.com/shun/ddc-vim-lsp'
+merged = 0
+
+depends = ['ddc.vim', 'vim-lsp']
+on_source = 'ddc.vim'
+
+[[plugins]]
 repo = 'LumaKernel/ddc-run'
 depends = ['ddc.vim']
 on_source = 'ddc.vim'
@@ -378,8 +414,9 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'LumaKernel/ddc-coc-patched'
-rev = 'v0.0.0-2021-09-21'
+rev = 'v0.0.0-2021-10-09'
 
+# if = 1
 # repo = '~/ghq/github.com/LumaKernel/ddc-coc-patched'
 # merged = 0
 
