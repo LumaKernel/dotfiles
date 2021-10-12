@@ -1,7 +1,7 @@
-
 function! s:dein_opam_settings() abort
-  if executable('opam')
-    let opamshare = substitute(system('opam config var share'),'\n$','','')
+  " if executable('opam')
+    " let opamshare = substitute(system('opam config var share'),'\n$','','')
+    let opamshare = '/.opam/default/share'
     let plugins = ['/merlin/vim', '/ocp-indent/vim']
     for plugin in plugins
       let path = opamshare .. plugin
@@ -9,7 +9,7 @@ function! s:dein_opam_settings() abort
         call dein#add(path, { 'name': 'opam-share-plugins' .. substitute(plugin, '/', '-', '') })
       endif
     endfor
-  endif
+  " endif
 endfunction
 
 let s:api_token_path = expand('~/dotfiles/.apikey')
@@ -43,16 +43,18 @@ if dein#load_state(g:dein_dir)
     call dein#add(g:dein_dir)
     call dein#add(resolve(s:dir .. '/myruntime'), { 'merged' : 1 })
     call dein#load_toml(s:dir .. '/plugin-install/common.toml')
+    call dein#load_toml(s:dir .. '/plugin-install/common-lazy.toml', {'lazy': 1})
     if g:mode is# 'huge'
       call dein#load_toml(s:dir .. '/plugin-install/huge.toml')
+      call dein#load_toml(s:dir .. '/plugin-install/huge-lazy.toml', {'lazy': 1})
     endif
     if g:complete_mode is# 'ddc'
-      call dein#load_toml(s:dir .. '/plugin-install/ddc.toml')
+      call dein#load_toml(s:dir .. '/plugin-install/ddc.toml', {'lazy': 1})
     endif
     if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
       " call dein#load_toml(s:dir .. '/plugin-install/vim-lsp.toml')
       call dein#load_toml(s:dir .. '/plugin-install/coc.toml')
-      call dein#load_toml(s:dir .. '/plugin-install/ddc.toml')
+      call dein#load_toml(s:dir .. '/plugin-install/ddc.toml', {'lazy': 1})
     endif
     if g:lsp_mode is# 'vim-lsp'
       call dein#load_toml(s:dir .. '/plugin-install/vim-lsp.toml')

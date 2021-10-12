@@ -1,5 +1,3 @@
-let s:F = vital#vital#import('System.Filepath')
-
 function! s:fzfize(fname) abort
   let fname = a:fname
   let fname = substitute(fname, '^\~/', '', '')
@@ -32,6 +30,7 @@ function! s:vcs_root(from) abort
 
   let start = from
   let last = from
+  let s:F = vital#vital#import('System.Filepath')
 
   while 1
     if isdirectory(from .. s:F.separator() .. '.git')
@@ -57,6 +56,7 @@ function! GF_fzf_improve(from, target, search_vcs_root) abort
   endif
 
   let cwd = getcwd()
+  let s:F = vital#vital#import('System.Filepath')
   if s:F.contains(from, cwd)
     let from = cwd
   endif

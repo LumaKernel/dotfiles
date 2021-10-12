@@ -211,6 +211,8 @@ let g:startify_commands = [
       \   ':GhostTextEnable',
       \   ':call dein#recache_runtimepath()',
       \   ':call dein#check_update()',
+      \   ':call dein#update()',
+      \   ":call dein#update(['ddc-file','ddc-tabnine','ddc-run','ddc-coc-patched','ddc-registers-words'])",
       \   ':call dein#build()',
       \   ':call dein#remote_plugins()',
       \   ':DeinClean',
@@ -236,28 +238,6 @@ augroup init_vim
   au User StartifyReady silent! nunmap <buffer> T
   au User StartifyReady silent! nunmap <buffer> T
 augroup END
-'''
-
-[[plugins]]
-repo = 'thinca/vim-ref'
-on_cmd = 'Ref'
-
-[[plugins]]
-repo = 'osyo-manga/ref-lynx'
-on_cmd = 'Ref'
-on_source = 'vim-ref'
-depends = 'vim-ref'
-
-[[plugins]]
-repo = 'LumaKernel/columnskip.vim'
-on_map = '<Plug>'
-hook_add = '''
-nmap sj <Plug>(columnskip:nonblank:next)
-omap sj <Plug>(columnskip:nonblank:next)
-xmap sj <Plug>(columnskip:nonblank:next)
-nmap sk <Plug>(columnskip:nonblank:prev)
-omap sk <Plug>(columnskip:nonblank:prev)
-xmap sk <Plug>(columnskip:nonblank:prev)
 '''
 
 # Speed up nvim startup time

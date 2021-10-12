@@ -5,7 +5,7 @@
 repo = 'LumaKernel/coc-patched.nvim'
 rev = 'v0.0.0-2021-10-09'
 
-# repo = 'neoclide/coc-patched.nvim'
+# repo = 'neoclide/coc.nvim'
 # rev = 'release'
 # rev = 'master'
 # rev = '03c9add7cd867a013102dcb45fb4e75304d227d7'

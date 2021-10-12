@@ -1,0 +1,28 @@
+[[plugins]]
+repo = 'thinca/vim-ref'
+on_cmd = 'Ref'
+
+[[plugins]]
+repo = 'osyo-manga/ref-lynx'
+on_cmd = 'Ref'
+on_source = 'vim-ref'
+depends = 'vim-ref'
+
+[[plugins]]
+repo = 'LumaKernel/columnskip.vim'
+on_map = '<Plug>'
+hook_add = '''
+nmap sj <Plug>(columnskip:nonblank:next)
+omap sj <Plug>(columnskip:nonblank:next)
+xmap sj <Plug>(columnskip:nonblank:next)
+nmap sk <Plug>(columnskip:nonblank:prev)
+omap sk <Plug>(columnskip:nonblank:prev)
+xmap sk <Plug>(columnskip:nonblank:prev)
+'''
+
+[[plugins]]
+repo = 'LumaKernel/rotcase.vim'
+on_map = '<Plug>'
+hook_add = '''
+nmap <space>r <Plug>(rotcase:rot-all)
+'''

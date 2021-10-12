@@ -6,7 +6,7 @@ repo = 'Shougo/ddc.vim'
 # merged = 0
 
 depends = ['denops.vim']
-on_event = 'InsertEnter'
+on_event = ['InsertEnter', 'CursorHold', 'BufRead']
 on_source = 'denops.vim'
 hook_add = '''
 set completeopt=menuone,noinsert,noselect
@@ -15,12 +15,14 @@ hook_post_source = '''
 call ddc#custom#alias('source', 'coc-ls', 'coc-patched')
 call ddc#custom#alias('source', 'win32yank.exe', 'run')
 call ddc#custom#alias('source', 'recent', 'registers-words')
+call ddc#custom#alias('source', 'search', 'registers-words')
 call ddc#custom#alias('source', 'file-buffer', 'file')
 let g:ddc_sources = [
       \ 'tabnine',
       \ 'coc-ls',
       \ 'treesitter',
       \ 'recent',
+      \ 'search',
       \ 'tmux',
       \ 'around',
       \ 'buffer',
@@ -31,12 +33,11 @@ let g:ddc_sources = [
       \ 'nextword',
     \ ]
 let g:ddc_sources = [
-      \ 'tabnine',
       \ 'coc-ls',
-      \ 'recent',
+      \ 'tabnine',
+      \ 'search',
       \ 'tmux',
       \ 'around',
-      \ 'buffer',
       \ 'file-buffer',
       \ 'file',
     \ ]
@@ -51,6 +52,8 @@ if g:lsp_mode isnot# 'coc'
   call filter(g:ddc_sources, 'v:val !~# "coc-.*"')
 endif
 
+call ddc#custom#patch_global('autoCompleteDelay', 100)
+call ddc#custom#patch_global('autoCompleteEvents', ['InsertEnter', 'TextChangedI'])
 call ddc#custom#patch_global('sources', g:ddc_sources)
 
 call ddc#custom#patch_global('sourceOptions', {
@@ -102,6 +105,20 @@ call ddc#custom#patch_global({
     \ 'sourceParams': {
     \   name: {
     \     'registers': '/"0123456789',
+    \   },
+    \ }})
+
+let name = 'search'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'S',
+    \     'maxCandidates': 4,
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \     'registers': '/',
     \   },
     \ }})
 
@@ -196,8 +213,6 @@ call ddc#custom#patch_global({
     \   },
     \ }})
 
-    "\     'matchers': ['matcher_full_fuzzy'],
-    "\     'minAutoCompleteLength': 10000,
 let name = 'coc-ls'
 call ddc#custom#patch_global({
     \ 'sourceOptions': {
@@ -205,8 +220,8 @@ call ddc#custom#patch_global({
     \     'mark': '',
     \     'isVolatile': v:true,
     \     'maxCandidates': 30,
+    \     'matchers': ['matcher_full_fuzzy'],
     \     'minAutoCompleteLength': 1,
-    \     'matchers': [],
     \     'forceCompletionPattern': '\{|\.|:|->|''|"|<',
     \     'dup': v:true,
     \   },
