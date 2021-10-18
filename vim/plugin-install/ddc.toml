@@ -17,6 +17,9 @@ call ddc#custom#alias('source', 'win32yank.exe', 'run')
 call ddc#custom#alias('source', 'recent', 'registers-words')
 call ddc#custom#alias('source', 'search', 'registers-words')
 call ddc#custom#alias('source', 'file-buffer', 'file')
+call ddc#custom#alias('source', 'pick', 'eval')
+
+" all sources
 let g:ddc_sources = [
       \ 'tabnine',
       \ 'coc-ls',
@@ -31,11 +34,12 @@ let g:ddc_sources = [
       \ 'neosnippet',
       \ 'win32yank.exe',
       \ 'nextword',
+      \ 'pick',
     \ ]
+
 let g:ddc_sources = [
       \ 'coc-ls',
       \ 'tabnine',
-      \ 'search',
       \ 'tmux',
       \ 'around',
       \ 'file-buffer',
@@ -52,8 +56,8 @@ if g:lsp_mode isnot# 'coc'
   call filter(g:ddc_sources, 'v:val !~# "coc-.*"')
 endif
 
-call ddc#custom#patch_global('autoCompleteDelay', 100)
-call ddc#custom#patch_global('autoCompleteEvents', ['InsertEnter', 'TextChangedI'])
+" call ddc#custom#patch_global('autoCompleteDelay', 100)
+" call ddc#custom#patch_global('autoCompleteEvents', ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CompleteDone'])
 call ddc#custom#patch_global('sources', g:ddc_sources)
 
 call ddc#custom#patch_global('sourceOptions', {
@@ -68,7 +72,7 @@ call ddc#custom#patch_global({
     \ 'sourceOptions': {
     \   name: {
     \     'mark': 'A',
-    \     'matchers': ['matcher_full_fuzzy'],
+    \     'matchers': [],
     \     'minAutoCompleteLength': 4,
     \     'maxCandidates': 5,
     \     'dup': v:true,
@@ -257,6 +261,9 @@ call ddc#custom#patch_global({
     \   name: {
     \     'bufMaxCandidates': 0,
     \     'followSymlinks': v:true,
+    \     'projMarkers': ['.git', 'package.json'],
+    \     'projFromCwdMaxCandidates': [1000],
+    \     'projFromBufMaxCandidates': [1000, 1000],
     \   },
     \ }})
 call ddc#custom#patch_filetype(
@@ -303,6 +310,23 @@ call ddc#custom#patch_filetype(
     \   },
     \ }})
 
+let name = 'pick'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'P',
+    \     'isVolatile': v:true,
+    \     'minAutoCompleteLength': 10000,
+    \     'matchers': ['matcher_fuzzy'],
+    \     'sorters': [],
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \     'expr': 'g:ddc_pick_items',
+    \   },
+    \ }})
+
 let name = 'treesitter'
 call ddc#custom#patch_global({
     \ 'sourceOptions': {
@@ -318,24 +342,39 @@ call ddc#custom#patch_global({
 inoremap <silent><expr> <C-n>
     \ pumvisible() ? '<C-n>' : ddc#manual_complete()
 
+
+let g:ddc_pick_items = []
+
+function! s:pick(word)
+  let g:ddc_pick_items = extend([{ 'word': a:word }], g:ddc_pick_items)
+  if len(g:ddc_pick_items) > 100
+    let g:ddc_pick_items = g:ddc_pick_items[:-2]
+  endif
+endfunction
+
+nmap <silent> * :<c-u>call <sid>pick(expand('<cword>'))<cr><Plug>(asterisk-z*)
+
 inoremap <silent><expr> <C-s><C-n> ddc#manual_complete()
 inoremap <silent><expr> <C-s><C-f> ddc#manual_complete(['file-buf', 'file'])
 inoremap <silent><expr> <C-s><C-l> ddc#manual_complete(['coc-ls'])
 inoremap <silent><expr> <C-x><C-l> ddc#manual_complete(['coc-ls'])
 inoremap <silent><expr> <C-s><C-s> ddc#manual_complete(['neosnippet'])
 inoremap <silent><expr> <C-x><C-s> ddc#manual_complete(['neosnippet'])
+inoremap <silent><expr> <C-s><C-p> ddc#manual_complete(['pick'])
+inoremap <silent><expr> <C-x><C-p> ddc#manual_complete(['pick'])
 
 " call timer_start(1000, {->execute('call ddc#enable()')})
 call ddc#enable()
 
 " Debug
 " call ddc#custom#patch_global('sources', ['around'])
-" call ddc#custom#patch_global('sources', ['file'])
+" call ddc#custom#patch_global('sources', ['file-buffer', 'file'])
 " call ddc#custom#patch_global('sources', ['coc-ls'])
 " call ddc#custom#patch_global('sources', ['registers-words'])
 " call ddc#custom#patch_global('sources', ['tabnine'])
 " call ddc#custom#patch_global('sources', ['win32yank.exe'])
 " call ddc#custom#patch_global('sources', ['vim-lsp'])
+" call ddc#custom#patch_global('sources', ['pick'])
 " inoremap <silent><expr> <C-s><C-d> ddc#manual_complete(['vim-lsp'])
 '''
 
@@ -410,12 +449,11 @@ on_source = 'ddc.vim'
 # merged = 0
 
 [[plugins]]
-# repo = '~/ghq/github.com/LumaKernel/ddc-vim-lsp'
-# rev = 'oncallback'
+repo = 'shun/ddc-vim-lsp'
 
 if = 0
-repo = '~/ghq/github.com/shun/ddc-vim-lsp'
-merged = 0
+# repo = '~/ghq/github.com/shun/ddc-vim-lsp'
+# merged = 0
 
 depends = ['ddc.vim', 'vim-lsp']
 on_source = 'ddc.vim'
@@ -425,6 +463,13 @@ repo = 'LumaKernel/ddc-run'
 depends = ['ddc.vim']
 on_source = 'ddc.vim'
 # repo = '~/ghq/github.com/LumaKernel/ddc-run'
+# merged = 0
+
+[[plugins]]
+repo = 'LumaKernel/ddc-eval'
+depends = ['ddc.vim']
+on_source = 'ddc.vim'
+# repo = '~/ghq/github.com/LumaKernel/ddc-eval'
 # merged = 0
 
 [[plugins]]

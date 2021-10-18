@@ -98,7 +98,11 @@ endfunction
 repo = 'haya14busa/vim-asterisk'
 hook_add = '''
 let g:asterisk#keeppos = 1
-map *  <Plug>(asterisk-z*)
+if g:complete_mode !=# 'ddc'
+  nmap *  <Plug>(asterisk-z*)
+endif
+vmap *  <Plug>(asterisk-z*)
+omap *  <Plug>(asterisk-z*)
 map #  <Plug>(asterisk-z*)N
 map g* <Plug>(asterisk-gz*)
 map g# <Plug>(asterisk-gz*)N

@@ -694,54 +694,6 @@ let g:nayvy_import_path_format = 'all_absolute'
 '''
 
 [[plugins]]
-repo = 'sentriz/vim-print-debug'
-on_map = "<space>p"
-hook_add = '''
-function! s:my_print_debug() abort
-  if exists('t:print_debug_current_nr')
-    if t:print_debug_current_nr >= 96 + 26
-      let t:print_debug_current_nr = 96
-    endif
-  endif
-  if !&modifiable
-    echohl WarningMsg
-    echomsg "[my print debug] not modifiable..."
-    echohl None
-    return
-  endif
-  call print_debug#print_debug()
-endfunction
-
-nnoremap <Space>p :<C-u>call <SID>my_print_debug()<CR>
-
-" let g:my_debug_style = [
-"   \   'color:red',
-"   \   'background:black',
-"   \   'display:inline-block',
-"   \   'padding:0.2em',
-"   \   'font-size:1em',
-"   \ ]
-" call map(g:my_debug_style, {_, v -> printf("%s !important;", v)})
-" let g:my_debug_style = join(g:my_debug_style, '')
-
-" let g:my_html_print_debug = printf('<span style="%s">_x_[XXX]_x_: {}</span>', g:my_debug_style)
-
-let g:print_debug_templates = {
-  \   'go':              'fmt.Printf("_x_[XXX]_x_ {}\n")',
-  \   'python':          'logging.error(f"_x_[XXX]_x_ {}")',
-  \   'javascript':      'console.log(`_x_[XXX]_x_ {}`);',
-  \   'javascriptreact': 'console.log(`_x_[XXX]_x_ {}`);',
-  \   'typescript':      'console.log(`_x_[XXX]_x_ {}`);',
-  \   'typescriptreact': 'console.log(`_x_[XXX]_x_ {}`);',
-  \   'vue':             'console.log(`_x_[XXX]_x_ {}`);',
-  \   'svelte':          'console.log(`_x_[XXX]_x_ {}`);',
-  \   'c':               'printf(_x_[XXX]_x_ {}\n");',
-  \   'cpp':             'std::cout << ("_x_[XXX]_x_ {}\n") << std::endl;',
-  \   'rust':            'println!("_x_[XXX]_x_ {}");',
-  \ }
-'''
-
-[[plugins]]
 repo = 'Xuyuanp/scrollbar.nvim'
 on_event = 'CursorHold'
 hook_add = '''
