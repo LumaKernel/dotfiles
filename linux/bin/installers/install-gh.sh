@@ -5,7 +5,7 @@ SCRIPTS_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
 # shellcheck source=../../utils/shared.sh
 source "$SCRIPTS_DIR/utils/shared.sh"
 
-VERSION="2.0.0"
+VERSION="2.2.0"
 
 cd /tmp || exit
 

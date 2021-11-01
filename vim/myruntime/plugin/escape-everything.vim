@@ -13,7 +13,7 @@ endfunction
 
 " escape regex(7)
 function! Regex7Escape(str) abort
-  return escape(a:str, '?.[]^(){}\$|')
+  return escape(a:str, '*?.[]^(){}\$|')
 endfunction
 
 " escape vim pattern

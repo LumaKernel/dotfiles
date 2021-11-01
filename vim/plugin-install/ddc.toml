@@ -1,6 +1,7 @@
 # ddc.vim
 [[plugins]]
 repo = 'Shougo/ddc.vim'
+merged = 0
 
 # repo = '~/ghq/github.com/Shougo/ddc.vim'
 # merged = 0
@@ -20,22 +21,22 @@ call ddc#custom#alias('source', 'file-buffer', 'file')
 call ddc#custom#alias('source', 'pick', 'eval')
 
 " all sources
-let g:ddc_sources = [
-      \ 'tabnine',
-      \ 'coc-ls',
-      \ 'treesitter',
-      \ 'recent',
-      \ 'search',
-      \ 'tmux',
-      \ 'around',
-      \ 'buffer',
-      \ 'file-buffer',
-      \ 'file',
-      \ 'neosnippet',
-      \ 'win32yank.exe',
-      \ 'nextword',
-      \ 'pick',
-    \ ]
+" let g:ddc_sources = [
+"       \ 'tabnine',
+"       \ 'coc-ls',
+"       \ 'treesitter',
+"       \ 'recent',
+"       \ 'search',
+"       \ 'tmux',
+"       \ 'around',
+"       \ 'buffer',
+"       \ 'file-buffer',
+"       \ 'file',
+"       \ 'neosnippet',
+"       \ 'win32yank.exe',
+"       \ 'nextword',
+"       \ 'pick',
+"     \ ]
 
 let g:ddc_sources = [
       \ 'coc-ls',
@@ -57,7 +58,7 @@ if g:lsp_mode isnot# 'coc'
 endif
 
 " call ddc#custom#patch_global('autoCompleteDelay', 100)
-" call ddc#custom#patch_global('autoCompleteEvents', ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CompleteDone'])
+call ddc#custom#patch_global('autoCompleteEvents', ['TextChangedI', 'TextChangedP'])
 call ddc#custom#patch_global('sources', g:ddc_sources)
 
 call ddc#custom#patch_global('sourceOptions', {
@@ -476,7 +477,6 @@ on_source = 'ddc.vim'
 repo = 'LumaKernel/ddc-coc-patched'
 rev = 'v0.0.0-2021-10-09'
 
-# if = 1
 # repo = '~/ghq/github.com/LumaKernel/ddc-coc-patched'
 # merged = 0
 
