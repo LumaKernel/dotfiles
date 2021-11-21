@@ -40,7 +40,6 @@ call ddc#custom#alias('source', 'pick', 'eval')
 
 let g:ddc_sources = [
       \ 'coc-ls',
-      \ 'tabnine',
       \ 'tmux',
       \ 'around',
       \ 'file-buffer',

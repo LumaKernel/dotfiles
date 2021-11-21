@@ -35,6 +35,8 @@
       "args": [
         "-f",
         "json",
+        "-t",
+        "style",
         "-"
       ],
       "parseJson": {
