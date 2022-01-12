@@ -160,6 +160,8 @@ fi
 # -- rust sccache
 if test -z "$RUSTC_WRAPPER_INIT"; then
   export RUSTC_WRAPPER_INIT=1
+  export SCCACHE_REDIS_PORT=6982
+  export SCCACHE_REDIS=redis://localhost:$SCCACHE_REDIS_PORT
   if test -z "$RUSTC_WRAPPER"; then
     if command -v sccache >/dev/null 2>&1; then
       export RUSTC_WRAPPER="$(which sccache)"
