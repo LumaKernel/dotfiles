@@ -25,6 +25,7 @@ function clean_history
     if _is_cmd_force $hist
       or _is_cmd_sudo_danger $hist
       or _is_cmd_rm $hist
+      or _is_cmd_kill $hist
       if test -n "$is_force"
         history delete --exact --case-sensitive $hist
       else

@@ -18,6 +18,7 @@ call ddc#custom#alias('source', 'win32yank.exe', 'run')
 call ddc#custom#alias('source', 'recent', 'registers-words')
 call ddc#custom#alias('source', 'search', 'registers-words')
 call ddc#custom#alias('source', 'file-buffer', 'file')
+call ddc#custom#alias('source', 'node-modules', 'file')
 call ddc#custom#alias('source', 'pick', 'eval')
 
 " all sources
@@ -39,6 +40,7 @@ call ddc#custom#alias('source', 'pick', 'eval')
 "     \ ]
 
 let g:ddc_sources = [
+      \ 'node-modules',
       \ 'coc-ls',
       \ 'tmux',
       \ 'around',
@@ -248,6 +250,60 @@ call ddc#custom#patch_filetype(
     \   },
     \ }})
 
+let name = 'node-modules'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'NODE',
+    \     'isVolatile': v:true,
+    \     'minAutoCompleteLength': 10000,
+    \     'forceCompletionPattern':
+    \       '(?:'
+    \         . '\bimport|'
+    \         . '\bfrom|'
+    \         . '\brequire\s*\(|'
+    \         . '\bresolve\s*\(|'
+    \         . '\bimport\s*\('
+    \       . ')'
+    \       . '\s*(?:''|"|`)[^''"`]*',
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \     'cwdMaxCandidates': 0,
+    \     'bufMaxCandidates': 0,
+    \     'followSymlinks': v:true,
+    \     'projMarkers': ['node_modules'],
+    \     'projFromCwdMaxCandidates': [],
+    \     'projFromBufMaxCandidates': [],
+    \     'beforeResolve': 'node_modules',
+    \     'displayFile': '',
+    \     'displayDir': '',
+    \     'displaySym': '',
+    \     'displaySymFile': '',
+    \     'displaySymDir': '',
+    \     'displayCwd': '',
+    \     'displayBuf': '',
+    \   },
+    \ }})
+call ddc#custom#patch_filetype(
+    \ [
+    \   'javascript',
+    \   'typescript',
+    \   'javascriptreact',
+    \   'typescriptreact',
+    \   'tsx',
+    \ ], {
+    \ 'sourceOptions': {
+    \   name: {
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \     'projFromBufMaxCandidates': [1000, 1000, 1000],
+    \   },
+    \ }})
+
 let name = 'file'
 call ddc#custom#patch_global({
     \ 'sourceOptions': {
@@ -255,6 +311,7 @@ call ddc#custom#patch_global({
     \     'mark': 'F',
     \     'isVolatile': v:true,
     \     'forceCompletionPattern': '\S/\S*',
+    \     'dup': v:true,
     \   },
     \ },
     \ 'sourceParams': {
@@ -264,6 +321,11 @@ call ddc#custom#patch_global({
     \     'projMarkers': ['.git', 'package.json'],
     \     'projFromCwdMaxCandidates': [1000],
     \     'projFromBufMaxCandidates': [1000, 1000],
+    \     'displayFile': '',
+    \     'displayDir': '',
+    \     'displaySym': '',
+    \     'displaySymFile': '',
+    \     'displaySymDir': '',
     \   },
     \ }})
 call ddc#custom#patch_filetype(
@@ -283,7 +345,7 @@ let name = 'file-buffer'
 call ddc#custom#patch_global({
     \ 'sourceOptions': {
     \   name: {
-    \     'mark': 'F',
+    \     'mark': 'FB',
     \     'isVolatile': v:true,
     \     'forceCompletionPattern': '\S/\S*',
     \     'dup': v:true,
@@ -295,6 +357,11 @@ call ddc#custom#patch_global({
     \     'followSymlinks': v:true,
     \     'projFromCwdMaxCandidates': [],
     \     'projFromBufMaxCandidates': [],
+    \     'displayFile': '',
+    \     'displayDir': '',
+    \     'displaySym': '',
+    \     'displaySymFile': '',
+    \     'displaySymDir': '',
     \   },
     \ }})
 call ddc#custom#patch_filetype(
@@ -356,6 +423,7 @@ nmap <silent> * :<c-u>call <sid>pick(expand('<cword>'))<cr><Plug>(asterisk-z*)
 
 inoremap <silent><expr> <C-s><C-n> ddc#manual_complete()
 inoremap <silent><expr> <C-s><C-f> ddc#manual_complete(['file-buf', 'file'])
+inoremap <silent><expr> <C-s><C-g> ddc#manual_complete(['file-buf'])
 inoremap <silent><expr> <C-s><C-l> ddc#manual_complete(['coc-ls'])
 inoremap <silent><expr> <C-x><C-l> ddc#manual_complete(['coc-ls'])
 inoremap <silent><expr> <C-s><C-s> ddc#manual_complete(['neosnippet'])
@@ -369,6 +437,7 @@ call ddc#enable()
 " Debug
 " call ddc#custom#patch_global('sources', ['around'])
 " call ddc#custom#patch_global('sources', ['file-buffer', 'file'])
+" call ddc#custom#patch_global('sources', ['node-modules'])
 " call ddc#custom#patch_global('sources', ['coc-ls'])
 " call ddc#custom#patch_global('sources', ['registers-words'])
 " call ddc#custom#patch_global('sources', ['tabnine'])
@@ -410,11 +479,11 @@ depends = ['ddc.vim', 'nvim-treesitter']
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'LumaKernel/ddc-file'
+# repo = 'LumaKernel/ddc-file'
 depends = ['ddc.vim']
 on_source = 'ddc.vim'
-# repo = '~/ghq/github.com/LumaKernel/ddc-file'
-# merged = 0
+repo = '~/ghq/github.com/LumaKernel/ddc-file'
+merged = 0
 
 [[plugins]]
 repo = 'matsui54/ddc-buffer'
