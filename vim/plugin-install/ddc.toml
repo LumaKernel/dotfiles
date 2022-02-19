@@ -479,11 +479,11 @@ depends = ['ddc.vim', 'nvim-treesitter']
 on_source = 'ddc.vim'
 
 [[plugins]]
-# repo = 'LumaKernel/ddc-file'
+repo = 'LumaKernel/ddc-file'
 depends = ['ddc.vim']
 on_source = 'ddc.vim'
-repo = '~/ghq/github.com/LumaKernel/ddc-file'
-merged = 0
+# repo = '~/ghq/github.com/LumaKernel/ddc-file'
+# merged = 0
 
 [[plugins]]
 repo = 'matsui54/ddc-buffer'

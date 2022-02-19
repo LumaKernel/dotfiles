@@ -241,11 +241,6 @@ augroup END
 # repo = 'lambdalisue/fern-mapping-git.vim'
 # depends = 'fern.vim'
 
-[[plugins]]
-repo = 'lambdalisue/fern-bookmark.vim'
-on_path = '^fern://'
-depends = 'fern.vim'
-
 # Window Manager
 [[plugins]]
 repo = 't9md/vim-choosewin'

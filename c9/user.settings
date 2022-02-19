@@ -1,0 +1,433 @@
+{
+    "ace": {
+        "@keyboardmode": "vim",
+        "@showGutter": true,
+        "@theme": "ace/theme/cloud9_night",
+        "statusbar": {
+            "@show": true
+        },
+        "@showInvisibles": true,
+        "@behavioursEnabled": true
+    },
+    "build": {
+        "@autobuild": false
+    },
+    "collab": {
+        "@timeslider-visible": false
+    },
+    "debug": {
+        "@autoshow": true,
+        "@pause": 0
+    },
+    "extensions": {
+        "@scm-panel-used": true,
+        "amazonwebservices.aws-toolkit-vscode": {
+            "json()": "{\"cfnSchemaVersion\":\"v5.4.8\",\"samSchemaVersion\":\"v5.4.8\",\"awsToolkitMostRecentVersion\":\"1.33.0\",\"telemetryClientId\":\"185405f6-4674-4cdd-ab69-022be25cf320\",\"telemetryId\":\"[[\\\"us-east-1:820fd6d1-95c0-4ca4-bffb-3f01d32da842\\\",\\\"us-east-1:12f1d0ef-2fe1-4656-9be2-2b01e3f4f7ee\\\"]]\",\"recentCredentials\":[\"profile:default\"],\"region\":[\"us-east-1\"],\"globalsMostRecentVersion\":\"1.35.0\"}"
+        }
+    },
+    "general": {
+        "@skin": "dark"
+    },
+    "key-bindings": {
+        "json()": [
+            {
+                "command": "find",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "findnext",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "gotoline",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "hidesearchreplace",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "jumptodef",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "save",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "showprocesslist",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "expandSnippet",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "findAll",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "findprevious",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "findReferences",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "focusTree",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "lambdaUploadFunction",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "newfile",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "quickfix",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "redo",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "reloadpreview",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "renameVar",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "replace",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "restartc9",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "reverttosaved",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "reverttosavedall",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "saveas",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "searchinfiles",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "undo",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "gotoanything",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "gotocommand",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "gotofile",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "gotosymbol",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "gototab",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "outline",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "toggleconsole",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "toggletree",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "closeallbutme",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "closealltabs",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "closepane",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "closetab",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "gototabright",
+                "keys": {
+                    "win": [
+                        "Ctrl-Tab"
+                    ]
+                }
+            },
+            {
+                "command": "gototableft",
+                "keys": {
+                    "win": [
+                        "Ctrl-Shift-Tab"
+                    ]
+                }
+            },
+            {
+                "command": "nexttab",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "previoustab",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "gotopanedown",
+                "keys": {
+                    "win": [
+                        "Alt-J"
+                    ]
+                }
+            },
+            {
+                "command": "gotopaneleft",
+                "keys": {
+                    "win": [
+                        "Alt-H"
+                    ]
+                }
+            },
+            {
+                "command": "gotopaneright",
+                "keys": {
+                    "win": [
+                        "Alt-L"
+                    ]
+                }
+            },
+            {
+                "command": "gotopaneup",
+                "keys": {
+                    "win": [
+                        "Alt-K"
+                    ]
+                }
+            },
+            {
+                "command": "opentermhere",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "command": "selectOrFindNext",
+                "keys": {
+                    "win": [
+                        ""
+                    ]
+                }
+            }
+        ]
+    },
+    "openfiles": {
+        "@show": false
+    },
+    "output": {},
+    "preview": {
+        "@default": "preview.raw",
+        "@running_app": true
+    },
+    "projecttree": {
+        "@showhidden": true
+    },
+    "statusbar": {
+        "@show": true
+    },
+    "tabs": {
+        "@show": true
+    },
+    "terminal": {
+        "noclosequestion": {
+            "json()": true
+        }
+    }
+}

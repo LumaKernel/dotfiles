@@ -1,6 +1,12 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
+[[plugins]]
+repo = 'LumaKernel/ssher.vim'
+
+# repo = '~/ghq/github.com/LumaKernel/ssher.vim'
+# merged = 0
+
 # Fern
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
@@ -91,6 +97,12 @@ function! s:hijack_directory() abort
   endif
   exe 'Fern' path
 endfunction
+'''
+
+[[plugins]]
+repo = 'lambdalisue/fern-bookmark.vim'
+hook_add = '''
+let g:fern#scheme#bookmark#store#file = '~/.fern/bookmark.json'
 '''
 
 # Asterisk Improved
