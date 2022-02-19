@@ -223,9 +223,9 @@ fi
 # -- docker
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
-export UID="$(id -u)"
-export GID="$(id -g)"
-export UID_GID="$(id -u):$(id -g)"
+export UID="$(id -u)" || true
+export GID="$(id -g)" || true
+export UID_GID="$(id -u):$(id -g)" || true
 
 # -- tmux and fish
 if [[ -z $TMUX ]] ; then
