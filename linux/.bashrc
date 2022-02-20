@@ -223,19 +223,23 @@ fi
 # -- docker
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
-export UID="$(id -u)" || true
-export GID="$(id -g)" || true
-export UID_GID="$(id -u):$(id -g)" || true
+if test "$LUMA_SET_UID" = 1; then
+  export UID="$(id -u)" || true
+  export GID="$(id -g)" || true
+  export UID_GID="$(id -u):$(id -g)" || true
+fi
 
 # -- tmux and fish
-if [[ -z $TMUX ]] ; then
-  # gpg-agent --daemon --allow-preset-passphrase
-  command -v fish >/dev/null 2>&1 >/dev/null \
-    && command -v tmux >/dev/null 2>&1 >/dev/null \
-    && exec tmux
-  return
-else
-  echo "[info/.bashrc] tmux is running: \$TMUX=$TMUX"
+if test "$LUMA_AUTO_TMUX" = 1; then
+  if [[ -z $TMUX ]] ; then
+    # gpg-agent --daemon --allow-preset-passphrase
+    command -v fish >/dev/null 2>&1 >/dev/null \
+      && command -v tmux >/dev/null 2>&1 >/dev/null \
+      && exec tmux
+    return
+  else
+    echo "[info/.bashrc] tmux is running: \$TMUX=$TMUX"
+  fi
 fi
 
 # tfenv

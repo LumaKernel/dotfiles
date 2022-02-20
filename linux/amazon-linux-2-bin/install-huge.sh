@@ -9,6 +9,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 nvm install node
 
 # tools
+sudo yum groupinstall -y "Development Tools"
 sudo yum install -y gcc git
 sudo amazon-linux-extras install epel -y
 sudo yum install util-linux-user -y
