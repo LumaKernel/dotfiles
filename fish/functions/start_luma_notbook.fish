@@ -4,5 +4,5 @@ function start_luma_notebook
     return 1
   end
   mkdir -p "$HOME/luma-notebooks"
-  docker run -p 10001:8888 -v "$HOME/luma-notebooks:/home/luma/luma-notebooks" luma-kernel/luma-notebooks
+  docker run -p 10001:8888 -v "$HOME/luma-notebooks:/home/luma/luma-notebooks" lumakernel/luma-notebooks
 end
