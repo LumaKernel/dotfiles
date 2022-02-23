@@ -1,10 +1,10 @@
-function start_luma_notebook
+function luma_notebook_start
   if ! _luma_power_check
     return 1
   end
 
   if test -z "$LUMA_NOTEBOOK_TOKEN"
-    echo "[error] run setup_luma_notebook_token to set LUMA_NOTEBOOK_TOKEN"
+    echo "[error] run luma_notebook_setup _token to set LUMA_NOTEBOOK_TOKEN"
     return 1
   end
 

@@ -1,4 +1,4 @@
-function build_luma_notebook
+function luma_notebook_build
   if ! _luma_power_check
     return 1
   end
