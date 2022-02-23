@@ -21,3 +21,8 @@ Windows Registry Editor Version 5.00
 
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
 "ShowSecondsInSystemClock"=dword:00000001
+
+; --
+; https://twitter.com/Ryzen_g502_reol/status/1486277589454884866
+; context menu type
+[-HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}]
