@@ -3,5 +3,5 @@ function luma_notebook_setup_token
     return 1
   end
 
-  echo "LUMA_NOTEBOOK_TOKEN="(openssl rand -hex 64) >> "$HOME/local_profile.sh"
+  echo "export LUMA_NOTEBOOK_TOKEN="(openssl rand -hex 24) >> "$HOME/local_profile.sh"
 end
