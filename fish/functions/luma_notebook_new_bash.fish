@@ -1,4 +1,4 @@
-function luma_notebook_start
+function luma_notebook_new_bash
   if ! _luma_power_check
     return 1
   end
