@@ -17,4 +17,8 @@ function luma_notebook_build
   cd "$HOME/luma-jupyter"
   docker pull lumakernel/luma-notebook
   make build/luma-notebook
+
+  if test "$DO_PUSH" = 1
+    make push/luma-notebook
+  end
 end
