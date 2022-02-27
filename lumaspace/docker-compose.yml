@@ -7,9 +7,7 @@ services:
       - "9980:8080"
     build:
       context: ./docker/entrance/
-      dockerfile: ./docker/entrance/Dockerfile
   caddy:
     network_mode: host
     build:
       context: ./docker/caddy/
-      dockerfile: ./docker/caddy/Dockerfile
