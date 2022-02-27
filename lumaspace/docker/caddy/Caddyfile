@@ -1,0 +1,11 @@
+space {
+  proxy loaclhost:9980
+}
+
+space:11999 {
+  proxy localhost:9999
+}
+
+space:12001 {
+  proxy localhost:10001
+}

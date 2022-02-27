@@ -1,0 +1,2 @@
+FROM caddy
+COPY Caddyfile .
