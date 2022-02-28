@@ -3,11 +3,11 @@ version: "3.8"
 services:
   entrance:
     network_mode: host
-    ports:
-      - "9980:8080"
     build:
-      context: ./docker/entrance/
+      context: .
+      dockerfile: ./docker/entrance/Dockerfile
   caddy:
     network_mode: host
     build:
-      context: ./docker/caddy/
+      context: .
+      dockerfile: ./docker/caddy/Dockerfile
