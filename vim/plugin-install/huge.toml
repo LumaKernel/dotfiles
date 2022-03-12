@@ -115,12 +115,12 @@ call gina#custom#command#option('s', '--short')
 call gina#custom#command#alias('log', 'lg')
 call gina#custom#command#option('lg', '--graph')
 
-nnoremap <silent> <Leader>st :<C-u>Gina s<CR>
-nnoremap <silent> <Leader>cc :<C-u>Gina compare<CR>
-nnoremap <silent> <Leader>com :<C-u>tabnew \| Gina commit<CR>:split \| Gina diff --cached<CR>:wincmd w<CR>
-nnoremap <silent> <Leader>dd :<C-u>Gina diff HEAD<CR>
-nnoremap <silent> <Leader>lg :<C-u>Gina lg<CR>
-nnoremap <silent> <Leader>bla :<C-u>Gina blame<CR>
+nnoremap <silent> <SPACE>st :<C-u>Gina s<CR>
+nnoremap <silent> <SPACE>cc :<C-u>Gina compare<CR>
+nnoremap <silent> <SPACE>gc :<C-u>tabnew \| Gina commit<CR>:split \| Gina diff --cached<CR>:wincmd w<CR>
+nnoremap <silent> <SPACE>dd :<C-u>Gina diff HEAD<CR>
+nnoremap <silent> <SPACE>lg :<C-u>Gina lg<CR>
+nnoremap <silent> <SPACE>bla :<C-u>Gina blame<CR>
 
 function! s:Browse(line1, line2) abort
   let save = @@
