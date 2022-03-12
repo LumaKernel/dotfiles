@@ -1,0 +1,16 @@
+{
+  "workbench.colorTheme": "Default Dark+",
+  "terminal.integrated.sendKeybindingsToShell": true,
+  "terminal.integrated.commandsToSkipShell": [
+      "-workbench.action.quickOpen"
+  ],
+  "editor.unicodeHighlight.allowedCharacters": "ノ！",
+  "editor.renderWhitespace": "boundary",
+  "breadcrumbs.enabled": false,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "jupyter.askForKernelRestart": false,
+  "files.insertFinalNewline": true,
+  "notebook.lineNumbers": "on",
+  "editor.bracketPairColorization.enabled": true
+}
