@@ -3,5 +3,5 @@ function luma_notebook_start_alone
     return 1
   end
 
-  docker run --rm --name luma-notebook-alone -p 10002:8888 lumakernel/luma-notebook
+  docker run --rm --name luma-notebook-alone -p 9997:8888 lumakernel/luma-notebook
 end

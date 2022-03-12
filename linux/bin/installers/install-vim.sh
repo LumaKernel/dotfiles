@@ -32,7 +32,9 @@ git reset --hard HEAD
 git checkout "$TAG"
 
 # make distclean
-./configure --enable-fail-if-missing --with-features=huge --with-compiledby=luma --prefix="$HOME/.local/build/vim/$NAME"
+export INSTALL_DIR="$HOME/.local/bin"
+mkdir -p "$INSTALL_DIR"
+./configure --enable-fail-if-missing --with-features=huge --with-compiledby=luma --prefix="$PREFIX"
 make
 sudo make install
-sudo update-alternatives --install "$HOME/.local/bin/vim" vim "$HOME/.local/build/vim/$NAME/bin/vim" $PRIORITY
+sudo update-alternatives --install "$INSTALL_DIR/vim" vim "$HOME/.local/build/vim/$NAME/bin/vim" $PRIORITY

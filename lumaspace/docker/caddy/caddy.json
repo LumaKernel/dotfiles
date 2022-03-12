@@ -32,8 +32,239 @@
             }
           }]
         },
-        "space:11999": {
-          "listen": [":11999"],
+        "space:18000": {
+          "listen": [":18000"],
+          "automatic_https": {
+            "disable": true
+          },
+          "routes": [
+            {
+              "handle": [{
+                "handler": "reverse_proxy",
+                "upstreams": [{
+                  "dial": "localhost:8000"
+                }]
+              }]
+            }
+          ],
+          "tls_connection_policies": [{
+            "certificate_selection": {
+              "any_tag": ["server"]
+            }
+          }]
+        },
+        "space:18080": {
+          "listen": [":18080"],
+          "automatic_https": {
+            "disable": true
+          },
+          "routes": [
+            {
+              "handle": [{
+                "handler": "reverse_proxy",
+                "upstreams": [{
+                  "dial": "localhost:8080"
+                }]
+              }]
+            }
+          ],
+          "tls_connection_policies": [{
+            "certificate_selection": {
+              "any_tag": ["server"]
+            }
+          }]
+        },
+        "space:18888": {
+          "listen": [":18888"],
+          "automatic_https": {
+            "disable": true
+          },
+          "routes": [
+            {
+              "handle": [{
+                "handler": "reverse_proxy",
+                "upstreams": [{
+                  "dial": "localhost:8888"
+                }]
+              }]
+            }
+          ],
+          "tls_connection_policies": [{
+            "certificate_selection": {
+              "any_tag": ["server"]
+            }
+          }]
+        },
+        "space:13000": {
+          "listen": [":13000"],
+          "automatic_https": {
+            "disable": true
+          },
+          "routes": [
+            {
+              "handle": [{
+                "handler": "reverse_proxy",
+                "upstreams": [{
+                  "dial": "localhost:3000"
+                }]
+              }]
+            }
+          ],
+          "tls_connection_policies": [{
+            "certificate_selection": {
+              "any_tag": ["server"]
+            }
+          }]
+        },
+        "space:13001": {
+          "listen": [":13001"],
+          "automatic_https": {
+            "disable": true
+          },
+          "routes": [
+            {
+              "handle": [{
+                "handler": "reverse_proxy",
+                "upstreams": [{
+                  "dial": "localhost:3001"
+                }]
+              }]
+            }
+          ],
+          "tls_connection_policies": [{
+            "certificate_selection": {
+              "any_tag": ["server"]
+            }
+          }]
+        },
+        "space:13002": {
+          "listen": [":13002"],
+          "automatic_https": {
+            "disable": true
+          },
+          "routes": [
+            {
+              "handle": [{
+                "handler": "reverse_proxy",
+                "upstreams": [{
+                  "dial": "localhost:3002"
+                }]
+              }]
+            }
+          ],
+          "tls_connection_policies": [{
+            "certificate_selection": {
+              "any_tag": ["server"]
+            }
+          }]
+        },
+        "space:13030": {
+          "listen": [":13030"],
+          "automatic_https": {
+            "disable": true
+          },
+          "routes": [
+            {
+              "handle": [{
+                "handler": "reverse_proxy",
+                "upstreams": [{
+                  "dial": "localhost:3030"
+                }]
+              }]
+            }
+          ],
+          "tls_connection_policies": [{
+            "certificate_selection": {
+              "any_tag": ["server"]
+            }
+          }]
+        },
+        "space:13031": {
+          "listen": [":13031"],
+          "automatic_https": {
+            "disable": true
+          },
+          "routes": [
+            {
+              "handle": [{
+                "handler": "reverse_proxy",
+                "upstreams": [{
+                  "dial": "localhost:3032"
+                }]
+              }]
+            }
+          ],
+          "tls_connection_policies": [{
+            "certificate_selection": {
+              "any_tag": ["server"]
+            }
+          }]
+        },
+        "space:13032": {
+          "listen": [":13032"],
+          "automatic_https": {
+            "disable": true
+          },
+          "routes": [
+            {
+              "handle": [{
+                "handler": "reverse_proxy",
+                "upstreams": [{
+                  "dial": "localhost:3032"
+                }]
+              }]
+            }
+          ],
+          "tls_connection_policies": [{
+            "certificate_selection": {
+              "any_tag": ["server"]
+            }
+          }]
+        },
+        "space:13033": {
+          "listen": [":13033"],
+          "automatic_https": {
+            "disable": true
+          },
+          "routes": [
+            {
+              "handle": [{
+                "handler": "reverse_proxy",
+                "upstreams": [{
+                  "dial": "localhost:3033"
+                }]
+              }]
+            }
+          ],
+          "tls_connection_policies": [{
+            "certificate_selection": {
+              "any_tag": ["server"]
+            }
+          }]
+        },
+        "space:13034": {
+          "listen": [":13034"],
+          "automatic_https": {
+            "disable": true
+          },
+          "routes": [
+            {
+              "handle": [{
+                "handler": "reverse_proxy",
+                "upstreams": [{
+                  "dial": "localhost:3033"
+                }]
+              }]
+            }
+          ],
+          "tls_connection_policies": [{
+            "certificate_selection": {
+              "any_tag": ["server"]
+            }
+          }]
+        },
+        "space:19997": {
+          "listen": [":19997"],
           "automatic_https": {
             "disable": true
           },
@@ -53,8 +284,8 @@
             }
           }]
         },
-        "space:12001": {
-          "listen": [":12001"],
+        "space:19998": {
+          "listen": [":19998"],
           "automatic_https": {
             "disable": true
           },
@@ -63,7 +294,28 @@
               "handle": [{
                 "handler": "reverse_proxy",
                 "upstreams": [{
-                  "dial": "localhost:10001"
+                  "dial": "localhost:9999"
+                }]
+              }]
+            }
+          ],
+          "tls_connection_policies": [{
+            "certificate_selection": {
+              "any_tag": ["server"]
+            }
+          }]
+        },
+        "space:19999": {
+          "listen": [":19999"],
+          "automatic_https": {
+            "disable": true
+          },
+          "routes": [
+            {
+              "handle": [{
+                "handler": "reverse_proxy",
+                "upstreams": [{
+                  "dial": "localhost:9999"
                 }]
               }]
             }

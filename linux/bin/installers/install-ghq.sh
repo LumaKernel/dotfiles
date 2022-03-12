@@ -6,9 +6,9 @@ SCRIPTS_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
 source "$SCRIPTS_DIR/utils/shared.sh"
 
 if command -v go 2>/dev/null; then
-  go get github.com/x-motemen/ghq
+  go install github.com/x-motemen/ghq@latest
 else
   echo "[Error] go not installed."
-  echo "[Hint] Install goup."
-  echo "[Hint] Run 'goup install'"
+  echo "[Hint] Install goenv."
+  echo "[Hint] Run 'goenv install'"
 fi

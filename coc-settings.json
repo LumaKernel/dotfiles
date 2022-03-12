@@ -30,15 +30,20 @@
   },
   "diagnostic-languageserver.linters": {
     "hadolint": {
-      "command": "hadolint",
-      "sourceName": "hadolint",
+      "command": "docker",
       "args": [
+        "run",
+        "--rm",
+        "-i",
+        "hadolint/hadolint",
+        "hadolint",
         "-f",
         "json",
         "-t",
         "style",
         "-"
       ],
+      "sourceName": "hadolint",
       "parseJson": {
         "line": "line",
         "column": "column",

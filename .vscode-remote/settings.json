@@ -2,7 +2,7 @@
   "workbench.colorTheme": "Default Dark+",
   "terminal.integrated.sendKeybindingsToShell": true,
   "terminal.integrated.commandsToSkipShell": [
-      "-workbench.action.quickOpen"
+    "-workbench.action.quickOpen"
   ],
   "editor.unicodeHighlight.allowedCharacters": "ノ！",
   "editor.renderWhitespace": "boundary",

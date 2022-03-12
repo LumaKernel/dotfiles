@@ -15,7 +15,6 @@ sudo apt-get install python3 python3-venv python3-pip -y
 sudo apt-get install clang -y
 sudo apt-get install source-highlight -y
 sudo apt-get install exuberant-ctags -y
-sudo apt-get install fd-find -y
 
 # ---- ocaml
 sudo apt-get install opam -y

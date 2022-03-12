@@ -31,5 +31,9 @@ git fetch
 git reset --hard HEAD
 git checkout "$TAG"
 make USERNAME=luma HOSTNAME= CMAKE_BUILD_TYPE=RelWithDebInfo
-make install CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="$HOME/.local/build/nvim/$NAME"
-sudo update-alternatives --install "$HOME/.local/bin/nvim" nvim "$HOME/.local/build/nvim/$NAME/bin/nvim" $PRIORITY
+export PREFIX_DIR="$HOME/.local/build/nvim/$NAME"
+mkdir -p "$PREFIX_DIR"
+make install CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="$PREFIX_DIR"
+export INSTALL_DIR="$HOME/.local/bin"
+mkdir -p "$INSTALL_DIR"
+sudo update-alternatives --install "$INSTALL_DIR/nvim" nvim "$HOME/.local/build/nvim/$NAME/bin/nvim" $PRIORITY
