@@ -4,7 +4,7 @@ function luma_notebook_start
   end
 
   if test -z "$LUMA_NOTEBOOK_TOKEN"
-    echo "[error] run luma_notebook_setup _token to set LUMA_NOTEBOOK_TOKEN"
+    echo "[error] run luma_notebook_setup_token to set LUMA_NOTEBOOK_TOKEN"
     return 1
   end
 
