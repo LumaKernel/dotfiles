@@ -1,10 +1,5 @@
 [
   {
-    "key": "ctrl+alt+`",
-    "command": "workbench.action.terminal.focusTabs",
-    "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
-  },
-  {
     "key": "shift+k",
     "command": "editor.action.showHover",
     "when": "editorTextFocus && neovim.mode == 'normal'"
@@ -28,5 +23,15 @@
   {
     "key": "ctrl+alt+n",
     "command": "-workbench.action.files.newUntitledFile"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "-workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+alt+`",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
   }
 ]
