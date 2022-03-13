@@ -1,0 +1,127 @@
+# Color Schemes
+[[plugins]]
+repo = 'NLKNguyen/papercolor-theme'
+[[plugins]]
+repo = 'jacoborus/tender.vim'
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+[[plugins]]
+repo = 'joshdick/onedark.vim'
+hook_add = 'let g:switch_color_scheme_default = "onedark"'
+[[plugins]]
+repo = 'rhysd/vim-color-spring-night'
+[[plugins]]
+repo = 'dracula/vim'
+name = 'colorscheme-dracula-vim'
+[[plugins]]
+repo = 'jpo/vim-railscasts-theme'
+[[plugins]]
+repo = 'junegunn/seoul256.vim'
+[[plugins]]
+repo = 'fcpg/vim-orbital'
+[[plugins]]
+repo = 'drewtempelmeyer/palenight.vim'
+[[plugins]]
+repo = 'AlessandroYorba/Sierra'
+[[plugins]]
+repo = 'cormacrelf/vim-colors-github'
+[[plugins]]
+repo = 'bluz71/vim-nightfly-guicolors'
+[[plugins]]
+repo = 'mhartington/oceanic-next'
+[[plugins]]
+repo = 'glepnir/zephyr-nvim'
+[[plugins]]
+if = 'has("nvim")'
+repo = 'tjdevries/colorbuddy.vim'
+[[plugins]]
+repo = 'sainnhe/edge'
+
+# Vim Doc
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+# Fuzzy Finder
+[[plugins]]
+repo = 'junegunn/fzf'
+merged = 0
+build = './install --all'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+hook_add = '''
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+let g:quickrun_config['_'] = {
+    \   'outputter' : 'quickfix',
+    \   'runner' : has('+job') ? 'job' : 'vimproc'
+    \ }
+nnoremap <expr> <Leader>0 ":ccl\|QuickRun\<CR>"
+" nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+'''
+
+# Git Utility
+[[plugins]]
+repo = 'lambdalisue/gina.vim'
+hook_post_source = '''
+" -- status の設定
+call gina#custom#command#alias('status', 's')
+call gina#custom#command#option('s', '--short')
+
+call gina#custom#command#alias('log', 'lg')
+call gina#custom#command#option('lg', '--graph')
+
+nnoremap <silent> <SPACE>st :<C-u>Gina s<CR>
+nnoremap <silent> <SPACE>cc :<C-u>Gina compare<CR>
+nnoremap <silent> <SPACE>gc :<C-u>tabnew \| Gina commit<CR>:split \| Gina diff --cached<CR>:wincmd w<CR>
+nnoremap <silent> <SPACE>dd :<C-u>Gina diff HEAD<CR>
+nnoremap <silent> <SPACE>lg :<C-u>Gina lg<CR>
+nnoremap <silent> <SPACE>bla :<C-u>Gina blame<CR>
+
+function! s:Browse(line1, line2) abort
+  let save = @@
+  let @@ = ''
+  if filereadable(expand('%'))
+    execute printf('%d,%dGina browse --yank :', a:line1, a:line2)
+  else
+    Gina browse --yank
+  endif
+  if !empty(@@)
+    execute "OpenBrowser" @@
+  endif
+  let @@ = save
+endfunction
+
+command! -range Browse call <SID>Browse(<line1>, <line2>)
+command! -range GitHubBrowse call <SID>Borwse(<line1>, <line2>)
+nnoremap <silent> <Leader>bro :Browse<CR>
+xnoremap <silent> <Leader>bro :Browse<CR>
+'''
+
+[[plugins]]
+repo = 'LumaKernel/vim-messages-qf'
+if = 0
+merged = 0
+hook_add = '''
+command! -bar MessagesQF call g:messages_qf#messages() | Cedit
+'''
+
+[[plugins]]
+repo = 'kana/vim-altr'
+# call altr#define('src/%.css', 'dist/%.css')
+hook_add = '''
+nmap <SPACE>ap <Plug>(altr-back)
+nmap <SPACE>an <Plug>(altr-forward)
+'''
+
+[[plugins]]
+repo = 'Quramy/tsuquyomi'
+if = "g:ts_lsp_mode is# 'tsu'"
+hook_add = '''
+let g:tsuquyomi_disable_quickfix = 1
+'''
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+let g:indentLine_setConceal = 0
+'''

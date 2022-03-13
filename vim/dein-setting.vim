@@ -20,13 +20,24 @@ endif
 let g:dein#install_check_diff = v:true
 
 filetype plugin indent off
-let g:dein_ns = printf(
-  \ '%s--%s--%s--%s',
-  \ g:mode,
-  \ g:complete_mode,
-  \ g:lsp_mode,
-  \ g:ts_lsp_mode
-\ )
+if exists('g:vscode')
+  let g:mode = 'huge'
+  let g:complete_mode = 'none'
+  let g:lsp_mode = 'none'
+  let g:ts_lsp_mode = 'none'
+  let g:is_native = v:false
+
+  let g:dein_ns = 'vscode'
+else
+  let g:is_native = v:true
+  let g:dein_ns = printf(
+    \ '%s--%s--%s--%s',
+    \ g:mode,
+    \ g:complete_mode,
+    \ g:lsp_mode,
+    \ g:ts_lsp_mode
+  \ )
+endif
 let g:dein_dir = has('nvim') ? expand(printf('~/.cache/dein/nvim-%s', g:dein_ns)) : expand(printf('~/.cache/dein/vim-%s', g:dein_ns))
 let g:dein_repo_dir = g:dein_dir .. '/repos/github.com/Shougo/dein.vim'
 
@@ -44,9 +55,17 @@ if dein#load_state(g:dein_dir)
     call dein#add(resolve(s:dir .. '/myruntime'), { 'merged' : 1 })
     call dein#load_toml(s:dir .. '/plugin-install/common.toml')
     call dein#load_toml(s:dir .. '/plugin-install/common-lazy.toml', {'lazy': 1})
+    if g:is_native
+      call dein#load_toml(s:dir .. '/plugin-install/common-native.toml')
+      call dein#load_toml(s:dir .. '/plugin-install/common-native-lazy.toml', {'lazy': 1})
+    endif
     if g:mode is# 'huge'
       call dein#load_toml(s:dir .. '/plugin-install/huge.toml')
       call dein#load_toml(s:dir .. '/plugin-install/huge-lazy.toml', {'lazy': 1})
+      if g:is_native
+        call dein#load_toml(s:dir .. '/plugin-install/huge-native.toml')
+        call dein#load_toml(s:dir .. '/plugin-install/huge-native-lazy.toml', {'lazy': 1})
+      endif
     endif
     if g:complete_mode is# 'ddc'
       call dein#load_toml(s:dir .. '/plugin-install/ddc.toml', {'lazy': 1})

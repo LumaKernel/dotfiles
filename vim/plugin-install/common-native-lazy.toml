@@ -1,0 +1,9 @@
+[[plugins]]
+repo = 'thinca/vim-ref'
+on_cmd = 'Ref'
+
+[[plugins]]
+repo = 'osyo-manga/ref-lynx'
+on_cmd = 'Ref'
+on_source = 'vim-ref'
+depends = 'vim-ref'
