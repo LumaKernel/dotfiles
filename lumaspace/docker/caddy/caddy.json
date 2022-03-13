@@ -294,7 +294,7 @@
               "handle": [{
                 "handler": "reverse_proxy",
                 "upstreams": [{
-                  "dial": "localhost:9999"
+                  "dial": "localhost:9998"
                 }]
               }]
             }
