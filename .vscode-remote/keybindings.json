@@ -33,5 +33,25 @@
     "key": "ctrl+alt+`",
     "command": "workbench.action.terminal.toggleTerminal",
     "when": "terminal.active"
+  },
+  {
+    "key": "] g",
+    "command": "editor.action.marker.next",
+    "when": "editorFocus && neovim.mode == 'normal'"
+  },
+  {
+    "key": "alt+f8",
+    "command": "-editor.action.marker.next",
+    "when": "editorFocus"
+  },
+  {
+    "key": "[ g",
+    "command": "editor.action.marker.prev",
+    "when": "editorFocus && neovim.mode == 'normal'"
+  },
+  {
+    "key": "shift+alt+f8",
+    "command": "-editor.action.marker.prev",
+    "when": "editorFocus"
   }
 ]

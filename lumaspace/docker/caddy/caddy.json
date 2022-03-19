@@ -2,329 +2,483 @@
   "apps": {
     "tls": {
       "certificates": {
-        "load_files": [{
-          "certificate": "/srv/certs/server.cert.pem",
-          "key": "/srv/certs/server.key.pem",
-          "tags": ["server"]
-        }]
+        "load_files": [
+          {
+            "certificate": "/srv/certs/server.cert.pem",
+            "key": "/srv/certs/server.key.pem",
+            "tags": [
+              "server"
+            ]
+          }
+        ]
       }
     },
     "http": {
       "servers": {
         "space:443": {
-          "listen": [":443"],
+          "listen": [
+            ":443"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:80"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:80"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:18000": {
-          "listen": [":18000"],
+          "listen": [
+            ":18000"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:8000"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:8000"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:18080": {
-          "listen": [":18080"],
+          "listen": [
+            ":18080"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:8080"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:8080"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:18888": {
-          "listen": [":18888"],
+          "listen": [
+            ":18888"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:8888"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:8888"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:13000": {
-          "listen": [":13000"],
+          "listen": [
+            ":13000"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:3000"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:3000"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:13001": {
-          "listen": [":13001"],
+          "listen": [
+            ":13001"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:3001"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:3001"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:13002": {
-          "listen": [":13002"],
+          "listen": [
+            ":13002"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:3002"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:3002"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:13030": {
-          "listen": [":13030"],
+          "listen": [
+            ":13030"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:3030"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:3030"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:13031": {
-          "listen": [":13031"],
+          "listen": [
+            ":13031"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:3032"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:3031"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:13032": {
-          "listen": [":13032"],
+          "listen": [
+            ":13032"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:3032"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:3032"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:13033": {
-          "listen": [":13033"],
+          "listen": [
+            ":13033"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:3033"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:3033"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:13034": {
-          "listen": [":13034"],
+          "listen": [
+            ":13034"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:3033"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:3034"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:19997": {
-          "listen": [":19997"],
+          "listen": [
+            ":19997"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:9999"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:9999"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:19998": {
-          "listen": [":19998"],
+          "listen": [
+            ":19998"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:9998"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:9998"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         },
         "space:19999": {
-          "listen": [":19999"],
+          "listen": [
+            ":19999"
+          ],
           "automatic_https": {
             "disable": true
           },
           "routes": [
             {
-              "handle": [{
-                "handler": "reverse_proxy",
-                "upstreams": [{
-                  "dial": "localhost:9999"
-                }]
-              }]
+              "handle": [
+                {
+                  "handler": "reverse_proxy",
+                  "upstreams": [
+                    {
+                      "dial": "localhost:9999"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "tls_connection_policies": [{
-            "certificate_selection": {
-              "any_tag": ["server"]
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": [
+                  "server"
+                ]
+              }
             }
-          }]
+          ]
         }
       }
     }

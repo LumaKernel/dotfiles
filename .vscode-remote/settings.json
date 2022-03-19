@@ -20,11 +20,17 @@
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
   "eslint.rules.customizations": [
     {
       "rule": "prettier/*",
       "severity": "off"
     }
   ],
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "problems.showCurrentInStatus": true,
+  "html.format.enable": false,
+  "json.format.enable": false
 }
