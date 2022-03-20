@@ -37,6 +37,7 @@ sudo apt-get install -y \
   net-tools \
   iproute2 \
   tmux \
+  sqlite3 \
   shellcheck
 
 # Docker
