@@ -370,8 +370,26 @@ nnoremap <Leader>sp :<C-u>SLoad __1<CR>
 nnoremap <silent> <Leader>y :<C-u>%y+<CR>
 nnoremap <silent> <Leader>v ggVGs<ESC>"+P
 
+inoremap # X<C-h>#
+
+function s:n_GTGT()
+  let smartindent_save = &smartindent
+  set nosmartindent
+  normal! >>
+  let &smartindent = smartindent_save
+endfunction
+
+function s:x_GT()
+  let smartindent_save = &smartindent
+  set nosmartindent
+  normal! >gv
+  let &smartindent = smartindent_save
+endfunction
+
+nnoremap <silent> >> <CMD>:call <SID>n_GTGT()<CR>
+xnoremap <silent> > <CMD>:call <SID>x_GT()<CR>
+
 xnoremap <silent> <LT> <LT>gv
-xnoremap <silent> > >gv
 
 noremap <expr> 0 getline('.')[: col('.') - 2] =~# '^\s\+$' ? '0' : '^'
 " }}}
