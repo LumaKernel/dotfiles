@@ -35,7 +35,11 @@
   - Color Picker
   - Dokcer Desktop
     - 自動起動
+  - https://github.com/QL-Win/QuickLook
   - Oracle VM VirtualBox + Vagrant
+  - OBS
+  - Voicemeeter
+  - audacity
 - [CorvusSKK](https://nathancorvussolis.github.io/)
   - 試運転中...
 - 同一 LAN から WSL2 にアクセスできるようにする

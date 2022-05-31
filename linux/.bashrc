@@ -147,6 +147,12 @@ if test -z "$GOENV_ROOT"; then
   fi
 fi
 
+# -- pnpm
+if test -z "$PNPM_HOME"; then
+  export PNPM_HOME="$HOME/.local/share/pnpm"
+  export PATH="$PNPM_HOME:$PATH"
+fi
+
 # -- gem
 # if command -v gem >/dev/null 2>&1; then
 #   if test -z "$GEM_BIN_DIR"; then
