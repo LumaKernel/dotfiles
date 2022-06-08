@@ -63,7 +63,6 @@ let g:nayvy_import_path_format = 'all_absolute'
 
 [[plugins]]
 repo = 'kamykn/spelunker.vim'
-on_event = 'CursorHold'
 hook_add = '''
 let &spellfile = expand('$HOME/dotfiles/vim/spellfile.utf-8.add')
 let g:spelunker_spell_bad_group = 'Warning'
@@ -78,10 +77,9 @@ function! SpelunkerInit(...) abort
   endif
 endfunction
 
-augroup spelunker
+augroup my_spelunker
   autocmd!
-  autocmd BufWinEnter,BufWritePost ++nested * call SpelunkerInit()
-  autocmd BufWinEnter,BufWritePost ++nested * call timer_start(1000 * 2, function('SpelunkerInit'))
+  autocmd BufWinEnter,BufWritePost,CursorHold * ++nested call SpelunkerInit()
 augroup END
 '''
 

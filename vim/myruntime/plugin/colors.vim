@@ -113,6 +113,13 @@ function! g:my_color_fixes.PaperColor()
   hi Comment ctermfg=244
 endfunction
 
+function! g:my_color_fixes.zephyr()
+  hi Comment guifg=#BBBBBB
+  hi Error guibg=#5f0000
+  hi Warning guibg=#434300 guifg=White
+  hi Comment ctermfg=244
+endfunction
+
 " }}}
 
 

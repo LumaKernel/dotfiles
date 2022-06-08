@@ -667,12 +667,24 @@ if = '!has("nvim")'
 repo = 'nvim-treesitter/nvim-treesitter'
 if = 'has("nvim")'
 on_event = 'BufRead'
+on_cmd = [
+  'TSUpdate',
+  'TSInstallInfo',
+  'TSInstall',
+  'TSInstallSync',
+]
 depends = 'impatient.nvim'
 hook_post_update = 'TSUpdate'
 hook_post_source = '''
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",
+    ensure_installed = "all",
+    ignore_install = {
+      "toml",
+    },
+    disable = {
+      "toml",
+    },
     indent = {
       enable = true,
     },

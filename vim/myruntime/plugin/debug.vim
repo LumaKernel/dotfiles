@@ -25,7 +25,7 @@ function s:dump() abort
   return string([&nu, &rnu])
 endfunction
 
-let s:evs = ['BufLeave', 'BufEnter', 'BufNew', 'WinNew', 'WinEnter', 'WinLeave', 'InsertLeave', 'InsertEnter', 'FocusGained', 'FocusLost']
+let s:evs = ['BufAdd', 'BufLeave', 'BufEnter', 'BufNew', 'WinNew', 'WinEnter', 'WinLeave', 'InsertLeave', 'InsertEnter', 'FocusGained', 'FocusLost']
 
 augroup DEBUG-eventcheck
   autocmd!
