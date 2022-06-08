@@ -135,3 +135,5 @@ if test "$is_WSL" = '1'
     end
   end
 end
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH

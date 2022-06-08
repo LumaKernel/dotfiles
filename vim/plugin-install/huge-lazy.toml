@@ -62,6 +62,14 @@ let g:nayvy_import_path_format = 'all_absolute'
 '''
 
 [[plugins]]
+# Zl: 候補から修正
+# ZL: 候補からbuffer内全修正
+# Zc/ZC: 入力して修正
+# Zf/ZF: 最初の候補で修正
+# Zg: good
+# Zw: wrong
+# Zug: undo good
+# Zuw: undo wrong
 repo = 'kamykn/spelunker.vim'
 hook_add = '''
 let &spellfile = expand('$HOME/dotfiles/vim/spellfile.utf-8.add')

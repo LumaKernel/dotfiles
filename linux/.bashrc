@@ -273,15 +273,9 @@ if test -z "$DVM_DIR"; then
   fi
 fi
 
-# fnm
-if test -z "$FNM_DIR"; then
-  export FNM_DIR="$HOME/.fnm"
-  export PATH="$FNM_DIR:$PATH"
-  if command -v fnm >/dev/null 1>&2; then
-    eval "`fnm env`"
-  else
-    echo "[info/healthcheck/.bashrc] fnm not installed."
-  fi
+# volta
+if test -z "$VOLTA_HOME"; then
+  export PATH="$VOLTA_HOME/bin:$PATH"
 fi
 
 # serverless
