@@ -8,7 +8,7 @@ if [ "$(whoami)" == "root" ]; then
 fi
 
 SCRIPT_DIR="$(realpath "$(dirname "$0")")"
-SCRIPTS_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
+DOTFILES_DIR="$(dirname "$(dirname "$(dirname "$SCRIPT_DIR")")")"
 
 if test "$LUMA_POWER" != "1"; then
   echo 'export LUMA_POWER=1' >> "$HOME/local_profile.sh"
@@ -36,11 +36,12 @@ sudo apt-get install -y \
   iproute2 \
   tmux \
   sqlite3 \
-  shellcheck
+  shellcheck \
+  trash-cli
 
-"${SCRIPT_DIR}/../scripts/git-config.sh"
-"${SCRIPT_DIR}/../scripts/setup-vim-python3.sh"
-"${SCRIPT_DIR}/linux/bin/set-installers/huge.sh"
+"${DOTFILES_DIR}/linux/scripts/git-config.sh"
+"${DOTFILES_DIR}/linux/scripts/setup-vim-python3.sh"
+"${DOTFILES_DIR}/linux/bin/set-installers/huge.sh"
 curl -fsSL https://code-server.dev/install.sh | sh
 
 echo "[info] TODO"

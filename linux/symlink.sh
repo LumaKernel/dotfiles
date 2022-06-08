@@ -23,6 +23,7 @@ sudo ln -sf "$HOME"/dotfiles/.tmux-powerlinerc "$HOME"/.tmux-powerlinerc
 sudo ln -sf "$HOME"/dotfiles/flake8 "$HOME"/.config/flake8
 sudo ln -sf "$HOME"/dotfiles/pycodestyle "$HOME"/.config/pycodestyle
 
+mkdir -p "$HOME"/.config/fish
 sudo ln -sf "$HOME"/dotfiles/fish/config.fish "$HOME"/.config/fish/config.fish
 
 mkdir -p "$HOME"/.config/powerline-shell
