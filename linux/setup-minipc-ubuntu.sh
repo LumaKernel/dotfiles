@@ -8,7 +8,7 @@ if [ "$(whoami)" == "root" ]; then
 fi
 
 SCRIPT_DIR="$(realpath "$(dirname "$0")")"
-DOTFILES_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
+DOTFILES_DIR="$(dirname "$SCRIPT_DIR")"
 
 if test "$LUMA_POWER" != "1"; then
   echo 'export LUMA_POWER=1' >> "$HOME/local_profile.sh"
