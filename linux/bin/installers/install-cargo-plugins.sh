@@ -8,6 +8,6 @@ source "$SCRIPTS_DIR/utils/shared.sh"
 cargo install cargo-watch
 cargo install cargo-install-update
 cargo install cargo-outdated
-cargo install cargo-add
+cargo install cargo-edit
 cargo install cargo-expand
 cargo install cargo-generate

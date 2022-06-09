@@ -97,10 +97,6 @@ export FZF_DEFAULT_OPTS="$(printf -- '--tabstop=4 --reverse --preview "%s || %s 
 export LESS='-R --no-init -g -j10 --quit-if-one-screen'
 export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
 
-# ---- nvm
-# export NVM_DIR="$HOME/nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # ---- cargo
 if test -z "$CARGO_BIN_PATH"; then
   export CARGO_BIN_PATH="$HOME/.cargo/bin"
@@ -135,7 +131,7 @@ fi
 # -- go
 if test -z "$GO_PATH"; then
   export GO_PATH="/usr/local/go/bin"
-  export PATH="$GO_PATH:$PATH"
+  export PATH="$GO_PATH:$HOME/go/bin:$PATH"
 fi
 
 # -- pnpm

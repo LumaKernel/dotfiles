@@ -7,3 +7,5 @@ source "$SCRIPTS_DIR/utils/shared.sh"
 
 cargo install tokei
 cargo install procs
+cargo install sccache
+cargo install wasm-pack

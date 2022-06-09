@@ -82,6 +82,13 @@ function! health#my#check() abort
   call s:check('perl', ['perl', '--version'], 'perl[^\n\r]*v\(\%(\d\+\.\)*\%(\d\+\)\)')
   call s:check('speedtest', ['speedtest', '--version'], '[^\n\r]*\(\%(\d\+\.\)\+\%(\d\+\)\)')
 
+  call health#report_start('Rust tools')
+  call s:check('rustc', ['rustc', '--version'], '\(\d\+\.\d\+\.\d\+\)')
+  call s:check('cargo-watch', ['cargo-watch', '--version'], '\(\d\+\.\d\+\.\d\+\)')
+  call s:check('cargo-add', ['cargo-add', '--version'], '\(\d\+\.\d\+\.\d\+\)')
+  call s:check('cargo-expand', ['cargo-expand', '--version'], '\(\d\+\.\d\+\.\d\+\)')
+  call s:check('cargo-generate', ['cargo-generate', '--version'], '\(\d\+\.\d\+\.\d\+\)')
+
   call health#report_start('my: OCaml Environment')
   call s:check('opam', ['opam', '--version'], '\(\d\+\.\d\+\.\d\+\)')
   call s:check('ocaml', ['ocaml', '--version'], 'The OCaml toplevel, version \(\d\+\.\d\+\.\d\+\)')

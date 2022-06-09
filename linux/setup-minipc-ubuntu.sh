@@ -39,7 +39,8 @@ sudo apt-get install -y \
   shellcheck \
   trash-cli \
   lynx \
-  lcov
+  lcov \
+  libssl-dev
 
 "${DOTFILES_DIR}/linux/scripts/git-config.sh"
 "${DOTFILES_DIR}/linux/scripts/setup-vim-python3.sh"
