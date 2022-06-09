@@ -9,6 +9,5 @@ if command -v go 2>/dev/null; then
   go install github.com/x-motemen/ghq@latest
 else
   echo "[Error] go not installed."
-  echo "[Hint] Install goenv."
-  echo "[Hint] Run 'goenv install'"
+  echo "[Hint] Install go."
 fi

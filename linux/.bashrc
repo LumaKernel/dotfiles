@@ -132,19 +132,10 @@ if [[ -n "$is_WSL" ]] && command -v wslpath >/dev/null 2>/dev/null; then
   alias cdwin="cd $WinHome"
 fi
 
-# -- goenv
-if test -z "$GOENV_ROOT"; then
-  export GOENV_ROOT="$HOME/.goenv"
-  export PATH="$GOENV_ROOT/bin:$PATH"
-
-  if command -v goenv >/dev/null 2>&1; then
-    eval "$(goenv init -)"
-    export PATH="$GOROOT/bin:$PATH:$GOPATH/bin"
-    export GO111MODULE="on"
-  else
-    echo "[info/healthcheck/.bashrc] goenv not installed."
-    echo "[info/healthcheck/.bashrc] To re-check goenv, set -x GOENV_ROOT."
-  fi
+# -- go
+if test -z "$GO_PATH"; then
+  export GO_PATH="/usr/local/go/bin"
+  export PATH="$GO_PATH:$PATH"
 fi
 
 # -- pnpm

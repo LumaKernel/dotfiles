@@ -9,8 +9,7 @@ bash "$SCRIPTS_DIR/bin/installers/install-volta.sh"
 ~/.volta/bin/volta install node
 bash "$SCRIPTS_DIR/bin/installers/install-dvm.sh"
 ~/.dvm/bin/dvm install
-bash "$SCRIPTS_DIR/bin/installers/install-goenv.sh"
-~/.goenv/bin/goenv install 1.18.3
+bash "$SCRIPTS_DIR/bin/installers/install-go.sh"
 bash "$SCRIPTS_DIR/bin/installers/install-bat.sh"
 bash "$SCRIPTS_DIR/bin/installers/install-fd.sh"
 bash "$SCRIPTS_DIR/bin/installers/install-gh.sh"
