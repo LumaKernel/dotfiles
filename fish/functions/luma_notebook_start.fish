@@ -10,5 +10,5 @@ function luma_notebook_start
 
   mkdir -p "$HOME/luma-notebooks" || true
 
-  docker run --name luma-notebook -p 9998:8888 -v "$HOME/luma-notebooks:/home/luma/luma-notebooks" -e NOTEBOOK_ARGS=--NotebookApp.token="$LUMA_NOTEBOOK_TOKEN" lumakernel/luma-notebook
+  docker run --name luma-notebook -d -p 9998:8888 -v "$HOME/luma-notebooks:/home/luma/luma-notebooks" -e NOTEBOOK_ARGS=--NotebookApp.token="$LUMA_NOTEBOOK_TOKEN" lumakernel/luma-notebook
 end
