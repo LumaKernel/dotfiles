@@ -6,7 +6,7 @@
 # apt-add-repository ppa:fish-shell/release-3 -y
 # apt-add-repository ppa:git-core/ppa -y
 
-sudo apt-get update -y
+sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get autoremove -y
 

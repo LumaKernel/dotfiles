@@ -14,9 +14,8 @@ if test "$LUMA_POWER" != "1"; then
   echo 'export LUMA_POWER=1' >> "$HOME/local_profile.sh"
 fi
 
-apt update
 sudo apt-add-repository -y ppa:fish-shell/release-3
-sudo apt update
+sudo apt-get update
 sudo apt-get install -y \
   git \
   jq \
