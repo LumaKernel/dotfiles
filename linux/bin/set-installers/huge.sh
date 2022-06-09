@@ -6,7 +6,7 @@ SCRIPTS_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
 source "$SCRIPTS_DIR/utils/shared.sh"
 
 bash "$SCRIPTS_DIR/bin/installers/install-volta.sh"
-~/.volta/volta install node
+~/.volta/bin/volta install node
 bash "$SCRIPTS_DIR/bin/installers/install-dnm.sh"
 ~/.dvm/bin/dvm install
 bash "$SCRIPTS_DIR/bin/installers/install-bat.sh"
