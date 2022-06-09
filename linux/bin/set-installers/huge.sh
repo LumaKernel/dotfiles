@@ -9,11 +9,12 @@ bash "$SCRIPTS_DIR/bin/installers/install-volta.sh"
 ~/.volta/bin/volta install node
 bash "$SCRIPTS_DIR/bin/installers/install-dvm.sh"
 ~/.dvm/bin/dvm install
+bash "$SCRIPTS_DIR/bin/installers/install-goenv.sh"
+~/.goenv/bin/goenv install 1.18.3
 bash "$SCRIPTS_DIR/bin/installers/install-bat.sh"
 bash "$SCRIPTS_DIR/bin/installers/install-fd.sh"
 bash "$SCRIPTS_DIR/bin/installers/install-gh.sh"
 bash "$SCRIPTS_DIR/bin/installers/install-ghq.sh"
-bash "$SCRIPTS_DIR/bin/installers/install-goenv.sh"
 bash "$SCRIPTS_DIR/bin/installers/install-pet.sh"
 bash "$SCRIPTS_DIR/bin/installers/install-pyenv.sh"
 bash "$SCRIPTS_DIR/bin/installers/install-speedtest.sh"
