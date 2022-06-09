@@ -37,7 +37,9 @@ sudo apt-get install -y \
   tmux \
   sqlite3 \
   shellcheck \
-  trash-cli
+  trash-cli \
+  lynx \
+  lcov
 
 "${DOTFILES_DIR}/linux/scripts/git-config.sh"
 "${DOTFILES_DIR}/linux/scripts/setup-vim-python3.sh"
