@@ -8,7 +8,10 @@ function luma_notebook_start
     return 1
   end
 
-  mkdir -p "$HOME/luma-notebooks" || true
+  set LUMA_NOTEBOOKS_DIR "$HOME/luma-notebooks"
+  if ! test -e "$LUMA_NOTEBOOKS_DIR"
+    git clone "https://github.com/github.com/LumaKernel/luma-notebooks" "$LUMA_NOTEBOOKS_DIR"
+  end
 
   docker run --name luma-notebook -d -p 9998:8888 -v "$HOME/luma-notebooks:/home/luma/luma-notebooks" -e NOTEBOOK_ARGS=--NotebookApp.token="$LUMA_NOTEBOOK_TOKEN" lumakernel/luma-notebook
 end
