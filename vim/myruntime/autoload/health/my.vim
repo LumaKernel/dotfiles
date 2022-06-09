@@ -80,7 +80,7 @@ function! health#my#check() abort
   call s:check('lcov', ['lcov', '--version'], 'LCOV version \(\%(\d\+\.\)*\%(\d\+\)\)')
   call s:check('ruby', ['ruby', '--version'], 'ruby \(\%(\d\+\.\)*\%(\d\+\)\)')
   call s:check('perl', ['perl', '--version'], 'perl[^\n\r]*v\(\%(\d\+\.\)*\%(\d\+\)\)')
-  call s:check('speedtest', ['speedtest', '--version'], '[^\n\r]*\(\%(\d\+\.\)*\%(\d\+\)\)')
+  call s:check('speedtest', ['speedtest', '--version'], '[^\n\r]*\(\%(\d\+\.\)\+\%(\d\+\)\)')
 
   call health#report_start('my: OCaml Environment')
   call s:check('opam', ['opam', '--version'], '\(\d\+\.\d\+\.\d\+\)')
