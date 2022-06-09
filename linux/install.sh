@@ -22,7 +22,6 @@ sudo apt-get install opam -y
 
 sudo apt-get install python-software-properties -y
 
-sudo apt-get install silversearcher-ag -y
 sudo apt-get install ripgrep -y
 
 sudo apt-get install tmux -y

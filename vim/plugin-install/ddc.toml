@@ -422,8 +422,8 @@ endfunction
 nmap <silent> * :<c-u>call <sid>pick(expand('<cword>'))<cr><Plug>(asterisk-z*)
 
 inoremap <silent><expr> <C-s><C-n> ddc#manual_complete()
-inoremap <silent><expr> <C-s><C-f> ddc#manual_complete(['file-buf', 'file'])
-inoremap <silent><expr> <C-s><C-g> ddc#manual_complete(['file-buf'])
+inoremap <silent><expr> <C-s><C-f> ddc#manual_complete(['file-buffer', 'file'])
+inoremap <silent><expr> <C-s><C-g> ddc#manual_complete(['file-buffer'])
 inoremap <silent><expr> <C-s><C-l> ddc#manual_complete(['coc-ls'])
 inoremap <silent><expr> <C-x><C-l> ddc#manual_complete(['coc-ls'])
 inoremap <silent><expr> <C-s><C-s> ddc#manual_complete(['neosnippet'])
