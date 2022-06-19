@@ -130,6 +130,12 @@ if [[ -n "$is_WSL" ]] && command -v wslpath >/dev/null 2>/dev/null; then
 fi
 
 # -- go
+if test -z "$PYTHON_TOOLS_PATH"; then
+  export PYTHON_TOOLS_PATH="$HOME/.local/venvs/tools/bin"
+  export PATH="$PATH:$PYTHON_TOOLS_PATH"
+fi
+
+# -- go
 if test -z "$GO_PATH"; then
   export GO_PATH="/usr/local/go/bin"
   export PATH="$GO_PATH:$HOME/go/bin:$PATH"
@@ -263,8 +269,16 @@ fi
 
 # volta
 if test -z "$VOLTA_HOME"; then
+  export VOLTA_HOME="$HOME/.volta"
   export PATH="$VOLTA_HOME/bin:$PATH"
 fi
+
+# bit
+if test -z "$BIT_HOME"; then
+  export BIT_HOME="$HOME/bin"
+  export PATH="$BIT_HOME:$PATH"
+fi
+
 
 # serverless
 if test -z "$SERVERLESS_DIR"; then
@@ -303,3 +317,7 @@ source "$HOME/dotfiles/common/bash_functions.sh"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 return
+
+# bit
+export PATH="$PATH:/home/luma/bin"
+# bit end

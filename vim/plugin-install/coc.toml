@@ -94,7 +94,6 @@ if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
     \   'coc-go',
     \   'coc-json',
     \   'coc-prisma',
-    \   'coc-python',
     \   'coc-svelte',
     \   'coc-yaml',
     \   'coc-tsserver',
