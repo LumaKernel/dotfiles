@@ -17,6 +17,7 @@ call ddc#custom#alias('source', 'coc-ls', 'coc-patched')
 call ddc#custom#alias('source', 'win32yank.exe', 'run')
 call ddc#custom#alias('source', 'recent', 'registers-words')
 call ddc#custom#alias('source', 'search', 'registers-words')
+call ddc#custom#alias('source', 'file-assets-public', 'file')
 call ddc#custom#alias('source', 'file-buffer', 'file')
 call ddc#custom#alias('source', 'node-modules', 'file')
 call ddc#custom#alias('source', 'pick', 'eval')
@@ -41,6 +42,7 @@ call ddc#custom#alias('source', 'pick', 'eval')
 
 let g:ddc_sources = [
       \ 'node-modules',
+      \ 'file-assets-public',
       \ 'coc-ls',
       \ 'tmux',
       \ 'around',
@@ -277,6 +279,55 @@ call ddc#custom#patch_global({
     \     'projFromCwdMaxCandidates': [],
     \     'projFromBufMaxCandidates': [],
     \     'beforeResolve': 'node_modules',
+    \     'displayFile': '',
+    \     'displayDir': '',
+    \     'displaySym': '',
+    \     'displaySymFile': '',
+    \     'displaySymDir': '',
+    \     'displayCwd': '',
+    \     'displayBuf': '',
+    \   },
+    \ }})
+call ddc#custom#patch_filetype(
+    \ [
+    \   'javascript',
+    \   'typescript',
+    \   'javascriptreact',
+    \   'typescriptreact',
+    \   'tsx',
+    \ ], {
+    \ 'sourceOptions': {
+    \   name: {
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \     'projFromBufMaxCandidates': [1000, 1000, 1000],
+    \   },
+    \ }})
+
+let name = 'file-assets-public'
+call ddc#custom#patch_global({
+    \ 'sourceOptions': {
+    \   name: {
+    \     'mark': 'PUBLIC',
+    \     'isVolatile': v:true,
+    \     'minAutoCompleteLength': 10000,
+    \     'forceCompletionPattern':
+    \       '(?:'
+    \         . '\b(?:href|url|path|uri|src)=(?:"|'')'
+    \       . ')'
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   name: {
+    \     'cwdMaxCandidates': 0,
+    \     'bufMaxCandidates': 0,
+    \     'followSymlinks': v:true,
+    \     'projMarkers': ['.next'],
+    \     'projFromCwdMaxCandidates': [],
+    \     'projFromBufMaxCandidates': [],
+    \     'beforeResolve': 'public',
     \     'displayFile': '',
     \     'displayDir': '',
     \     'displaySym': '',
@@ -543,10 +594,11 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'LumaKernel/ddc-coc-patched'
-rev = 'v0.0.0-2021-10-09'
+# rev = 'v0.0.0-2021-10-09'
+rev = 'v0.0.0-2022-08-16'
 
 # repo = '~/ghq/github.com/LumaKernel/ddc-coc-patched'
 # merged = 0
 
-depends = ['ddc.vim', 'coc-patched.nvim']
+depends = ['ddc.vim', 'coc-patching.nvim']
 on_source = 'ddc.vim'

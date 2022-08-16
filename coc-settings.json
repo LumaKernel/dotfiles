@@ -94,6 +94,12 @@
   "tsserver.formatOnType": true,
   "eslint.format.enable": true,
   "eslint.autoFixOnSave": true,
+  "eslint.rules.customizations": [
+    {
+       "rule": "prettier/*",
+       "severity": "off"
+    }
+  ],
   "emmet.priority": 30,
   "deno.codeLens.references": false,
   "deno.codeLens.referencesAllFunctions": false,
@@ -109,5 +115,6 @@
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "svelte.enable-ts-plugin": true,
   "javascript.autoClosingTags": false,
-  "typescript.autoClosingTags": false
+  "typescript.autoClosingTags": false,
+  "rust.clippy_preference": "on"
 }
