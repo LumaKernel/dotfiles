@@ -30,3 +30,6 @@ depends = ["vital.vim"]
 [[plugins]]
 repo = 'lambdalisue/vital-Whisky'
 depends = ["vital.vim"]
+
+[[plugins]]
+repo = 'mattn/vim-sonictemplate'

@@ -52,7 +52,7 @@ let s:dir = expand('<sfile>:h')
 if dein#load_state(g:dein_dir)
   call dein#begin(g:dein_dir)
     call dein#add(g:dein_dir)
-    call dein#add(resolve(s:dir .. '/myruntime'), { 'merged' : 1 })
+    call dein#add(resolve(s:dir .. '/myruntime'), { 'merged' : 0 })
     call dein#load_toml(s:dir .. '/plugin-install/common.toml')
     call dein#load_toml(s:dir .. '/plugin-install/common-lazy.toml', {'lazy': 1})
     if g:is_native

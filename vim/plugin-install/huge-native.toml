@@ -55,6 +55,16 @@ let g:quickrun_config['_'] = {
     \   'outputter' : 'quickfix',
     \   'runner' : has('+job') ? 'job' : 'vimproc'
     \ }
+
+let g:quickrun_config.rust_cp = {
+    \   'exec': 'bash -ec ' .. "'" ..
+    \       'export RUSTFLAGS=-Awarnings' .. " ; " ..
+    \       'rustup run 1.42.0 --install cargo build --bin %S:t:r --target-dir cp.target --quiet' .. " ; " ..
+    \       'time rustup run 1.42.0 cargo run %o --bin %S:t:r --target-dir cp.target --quiet' .. " ; " ..
+    \       "'",
+    \   'hook/shebang/enable': 0,
+    \   'runner/vimproc/updatetime': 50,
+    \ }
 nnoremap <expr> <Leader>0 ":ccl\|QuickRun\<CR>"
 " nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 '''

@@ -33,3 +33,5 @@ if exists('b:opened_from_cedit')
   set buftype=
   nnoremap <buffer><silent> <CR> :<C-u>call <SID>qfedit()<CR>
 endif
+
+set nowinfixheight

@@ -7,8 +7,8 @@
 # rev = 'v0.0.0-2021-10-09'
 
 repo = 'LumaKernel/coc-patching.nvim'
-rev = 'v0.0.0-2022-08-16'
-build = 'yarn install --frozen-lockfile && yarn build'
+rev = 'v0.0.0-2022-08-29'
+build = 'yarn install --frozen-lockfile'
 
 # repo = 'neoclide/coc.nvim'
 # rev = 'release'

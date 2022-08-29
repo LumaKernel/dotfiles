@@ -179,6 +179,7 @@ set wrapscan
 set hlsearch
 nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><ESC>
 nnoremap <silent> <C-c> :<C-u>nohlsearch<CR><ESC>
+nnoremap <silent> <SPACE>j :ccl<CR>
 
 set diffopt+=vertical
 
