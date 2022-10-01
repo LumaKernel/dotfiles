@@ -136,10 +136,26 @@ endfunction
 function! s:cp_rs_run()
   " <Leader>k#{i}
   for i in range(char2nr("a"), char2nr("z"))
+    if nr2char(i) ==# 'k'
+      continue
+    endif
     execute
           \'nnoremap <expr><buffer> <Leader>k' .. nr2char(i) ..
           \' ":ccl\|QuickRun' ..
           \' -type rust_cp' ..
+          \' -input input/" .. expand("%:t:r") .. "/' .. nr2char(i) .. '.in.txt' ..
+          \'\<CR>"'
+  endfor
+
+  " <Leader>kk#{i}
+  for i in range(char2nr("a"), char2nr("z"))
+    if nr2char(i) ==# 'k'
+      continue
+    endif
+    execute
+          \'nnoremap <expr><buffer> <Leader>kk' .. nr2char(i) ..
+          \' ":ccl\|QuickRun' ..
+          \' -type rust_cp_v' ..
           \' -input input/" .. expand("%:t:r") .. "/' .. nr2char(i) .. '.in.txt' ..
           \'\<CR>"'
   endfor

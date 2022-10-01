@@ -56,11 +56,19 @@ let g:quickrun_config['_'] = {
     \   'runner' : has('+job') ? 'job' : 'vimproc'
     \ }
 
-let g:quickrun_config.rust_cp = {
-    \   'exec': 'bash -ec ' .. "'" ..
+let s:base_rust_cp =
     \       'export RUSTFLAGS=-Awarnings' .. " ; " ..
     \       'rustup run 1.42.0 --install cargo build --bin %S:t:r --target-dir cp.target --quiet' .. " ; " ..
-    \       'time rustup run 1.42.0 cargo run %o --bin %S:t:r --target-dir cp.target --quiet' .. " ; " ..
+    \       'time rustup run 1.42.0 cargo run %o --bin %S:t:r --target-dir cp.target --quiet' .. " ; "
+let g:quickrun_config.rust_cp = {
+    \   'exec': 'bash -ec ' .. "'" .. s:base_rust_cp .. "'",
+    \   'hook/shebang/enable': 0,
+    \   'runner/vimproc/updatetime': 50,
+    \ }
+let g:quickrun_config.rust_cp_v = {
+    \   'exec': 'bash -ec ' .. "'" ..
+    \       'export RUST_BACKTRACE=1' .. " ; " ..
+    \       s:base_rust_cp ..
     \       "'",
     \   'hook/shebang/enable': 0,
     \   'runner/vimproc/updatetime': 50,

@@ -9,6 +9,7 @@ git config --global core.autocrlf false
 git config --global core.excludesfile ~/.gitignore_global
 
 git config --global url."git@github.com:".pushInsteadOf "https://github.com/"
+git config --global url."git@gitlab.com:".insteadOf "https://gitlab.com/"
 
 git config --global gc.pruneExpire "2.month.ago"
 

@@ -1,36 +1,17 @@
-# 参考
-# /etc/skel/.bashrc
-# http://www.unixuser.org/~euske/doc/bashtips/bashrc.html
+# shellcheck shell=bash
 
-# インタラクティブではない場合，終了
+# Return if not interactive.
 case $- in
     *i*) ;;
       *) return;;
 esac
 
-echo '.bashrc'
-echo '    - for macOS'
+echo "[info/.bashrc] mac mode"
 
-# -- vim の環境変数を削除
-unset VIM
-unset VIMRUNTIME
-unset MYVIMRC
-unset MYGVIMRC
-
-# -- user installed bin
-export PATH=$PATH:$HOME/bin
-
-# -- delete my fish envs
-export powerline_fish_key_bindings=
-export powerline_fish_bind_mode=
-
-# -- tmux and fish
-if [[ -z $NO_TMUX ]] ; then
-  export NO_TMUX=1
-  command -v fish >/dev/null 2>&1 && exec tmux
+if test -x /opt/homebrew/bin/brew; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  echo "[warn/.bashrc] Brew not installed"
 fi
 
-if [[ -z $NO_FISH ]] ; then
-  export NO_FISH=
-  command -v fish >/dev/null 2>&1 && exec fish
-fi
+source "${HOME}/dotfiles/common/bashrc.sh"

@@ -5,6 +5,14 @@ set fish_greeting
 set -x SHELL_NAME fish
 set -e NO_FISH
 
+set -l LOCAL_PROFILE_FILEPATH "$HOME/local_profile.fish"
+if test -f "$LOCAL_PROFILE_FILEPATH"
+  echo "[info/config.fish/local_profile] $LOCAL_PROFILE_FILEPATH found"
+  source "$LOCAL_PROFILE_FILEPATH"
+else
+  echo "[warn/config.fish/local_profile] $LOCAL_PROFILE_FILEPATH not found"
+end
+
 if test -z "$LUMA_WORLD_FISH_FUNCTIONS"
   set -g LUMA_WORLD_FISH_FUNCTIONS "$HOME/dotfiles/fish/functions"
   set -g fish_function_path "$LUMA_WORLD_FISH_FUNCTIONS" $fish_function_path

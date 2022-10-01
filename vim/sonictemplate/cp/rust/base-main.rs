@@ -1,7 +1,8 @@
 #![allow(clippy::needless_range_loop)]
+#![allow(unused_imports)]
 #[macro_use]
 extern crate cp;
-#[allow(unused_imports)]
+use cp::luma::polyfill::*;
 use cp::luma::util::ord::*;
 use cp::luma::with_inf::*;
 use std::cmp::{max, min};
