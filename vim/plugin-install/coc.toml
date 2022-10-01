@@ -6,15 +6,15 @@
 # repo = 'LumaKernel/coc-patched.nvim'
 # rev = 'v0.0.0-2021-10-09'
 
-repo = 'LumaKernel/coc-patching.nvim'
-rev = 'v0.0.0-2022-08-29'
-build = 'yarn install --frozen-lockfile'
-
-# repo = 'neoclide/coc.nvim'
-# rev = 'release'
-# rev = 'master'
-# rev = '03c9add7cd867a013102dcb45fb4e75304d227d7'
+# repo = 'LumaKernel/coc-patching.nvim'
+# rev = 'v0.0.0-2022-08-29'
 # build = 'yarn install --frozen-lockfile'
+
+repo = 'neoclide/coc.nvim'
+# rev = 'release'
+rev = 'master'
+# rev = '03c9add7cd867a013102dcb45fb4e75304d227d7'
+build = 'yarn install --frozen-lockfile'
 # repo = '/home/luma/ghq/github.com/neoclide/coc.nvim'
 merged = 0
 if = "g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'"
@@ -33,11 +33,10 @@ if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
     set signcolumn=yes
   endif
 
-  " inoremap <silent><expr> <C-n>
-  "       \ pumvisible() ? "\<C-n>" :
-  "       \ coc#refresh()
-
-  inoremap <silent><expr> <C-g> coc#refresh()
+  inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
+  inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+  inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
+  inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
 
   nmap <silent> [g <Plug>(coc-diagnostic-prev)
   nmap <silent> ]g <Plug>(coc-diagnostic-next)

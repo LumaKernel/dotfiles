@@ -1,5 +1,6 @@
 # ddc.vim
 [[plugins]]
+if = 0
 repo = 'Shougo/ddc.vim'
 merged = 0
 
