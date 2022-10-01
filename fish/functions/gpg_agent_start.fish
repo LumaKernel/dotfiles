@@ -4,14 +4,13 @@ function gpg_agent_start
     set GPG_AGENT_RUNNING (pgrep -x gpg-agent 2> /dev/null)
     if test -n "$GPG_AGENT_RUNNING"
       echo "gpg-agent is already running."
+      set -gx GPG_TTY (tty)
     else
       echo "gpg-agent starting..."
-      set -x GPG_TTY (tty)
+      set -gx GPG_TTY (tty)
       LANG=C gpg-connect-agent updatestartuptty /bye
-      set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
     end
 
-    set -gx GPG_TTY (tty)
     set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
     echo "env var configured."
     echo "Use ssh-add ... to add SSH keys."
