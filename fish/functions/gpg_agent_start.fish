@@ -11,7 +11,9 @@ function gpg_agent_start
       LANG=C gpg-connect-agent updatestartuptty /bye
     end
 
-    set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+    if test -z "$LUMA_IS_MAC"
+      set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+    end
     echo "env var configured."
     echo "Use ssh-add ... to add SSH keys."
   else
