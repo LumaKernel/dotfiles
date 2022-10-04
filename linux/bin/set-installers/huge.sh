@@ -7,6 +7,7 @@ source "$SCRIPTS_DIR/utils/shared.sh"
 
 bash "$SCRIPTS_DIR/bin/installers/install-volta.sh"
 ~/.volta/bin/volta install node
+~/.volta/bin/volta install yarn
 bash "$SCRIPTS_DIR/bin/installers/install-dvm.sh"
 ~/.dvm/bin/dvm install
 bash "$SCRIPTS_DIR/bin/installers/install-go.sh"
