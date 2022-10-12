@@ -100,9 +100,9 @@ if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
     \   'coc-prisma',
     \   'coc-svelte',
     \   'coc-yaml',
-    \   'coc-tsserver',
     \   'coc-deno',
     \   'coc-tsdetect',
+    \   'coc-tsserver',
     \ ]
 
   let g:my_coc_debug = 0
@@ -172,4 +172,4 @@ repo = 'LumaKernel/nvim-coc-nearest-symbol.lua'
 # repo = '~/ghq/github.com/LumaKernel/vim-tsdetect'
 # depends = ['coc.nvim']
 # merged = 0
-# if = 0
+# if = 1
