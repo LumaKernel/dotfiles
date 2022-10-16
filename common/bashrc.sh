@@ -76,8 +76,8 @@ export NEXTWORD_DATA_PATH="$HOME/.local/share/nextword/nextword-data-large"
 
 # ---- fzf
 # export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export FZF_DEFAULT_COMMAND='rg --hidden --files'
-export FZF_CTRL_T_COMMAND='fd --hidden --exclude ".git" $dir'
+export FZF_DEFAULT_COMMAND='rg --hidden --files --iglob !venv'
+export FZF_CTRL_T_COMMAND='fd --hidden --exclude ".git" --exclude "venv" $dir'
 file_viewer="( \
   command -v bat 2>&1 >/dev/null && \
   bat --pager=never --color=always --style=numbers {} 2>/dev/null || \

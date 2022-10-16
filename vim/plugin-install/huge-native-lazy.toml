@@ -293,7 +293,7 @@ command! -bang Colors call fzf#vim#colors({'options': '--preview ""'}, <bang>0)
 
 
 function! RipgrepFzf(query, fullscreen) abort
-  let command_fmt = 'rg --hidden --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let command_fmt = 'rg --hidden --column --line-number --no-heading --color=always --smart-case --iglob !venv -- %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': [
