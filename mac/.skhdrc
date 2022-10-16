@@ -149,9 +149,21 @@ ctrl + alt - f : yabai -m window --toggle float --grid 3:3:2:0:1:1
 # toggle sticky(+float), topmost, picture-in-picture
 # alt - p : yabai -m window --toggle sticky --toggle topmost --toggle pip
 
-ctrl - m : skhd -k "return"
-ctrl - h : skhd -k "backspace"
-ctrl - 0x21 : skhd -k "escape"
+ctrl - m [
+  "iTerm2" ~
+  "terminal" ~
+  * : skhd -k "return"
+]
+ctrl - h [
+  "iTerm2" ~
+  "terminal" ~
+  * : skhd -k "backspace"
+]
+ctrl - 0x21 [
+  "iTerm2" ~
+  "terminal" ~
+  * : skhd -k "escape"
+]
 
 shift + cmd - h : skhd -k "left"
 shift + cmd - l : skhd -k "right"
