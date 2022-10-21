@@ -1,3 +1,3 @@
-function rm_dot_next
+function rm_.next
   /bin/rm -r ./.next
 end

@@ -5,7 +5,10 @@ repo = 'tyru/caw.vim'
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
 hook_add = '''
-let g:neosnippet#snippets_directory = expand('~/dotfiles/vim/snippets')
+let g:neosnippet#snippets_directory = [
+  \   expand('~/dotfiles/vim/snippets'),
+  \   expand('~/ghq/github.com/LumaKernel/lib-cpp'),
+  \ ]
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)

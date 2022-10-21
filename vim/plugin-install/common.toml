@@ -32,4 +32,6 @@ repo = 'lambdalisue/vital-Whisky'
 depends = ["vital.vim"]
 
 [[plugins]]
-repo = 'mattn/vim-sonictemplate'
+# repo = 'mattn/vim-sonictemplate'
+# repo = 'LumaKernel/vim-sonictemplate-empty'
+repo = '~/ghq/github.com/LumaKernel/vim-sonictemplate-empty'

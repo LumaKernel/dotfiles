@@ -45,6 +45,7 @@ endfunction
 
 function! s:cp_cpp()
   call s:cp_input()
+  call s:cp_cpp_run()
 endfunction
 
 function! s:cp_rs()
@@ -64,12 +65,19 @@ function! s:on_after_src_open()
   return ""
 endfunction
 
+function! s:cp_cpp_src_expr(c)
+  let after_open = ''
+  if !filereadable(a:c .. ".cpp")
+    let after_open = ":Template "
+  endif
+  return ":call mkdir('input/" .. a:c .. "', 'p') | e " .. a:c .. ".cpp " .. " \<CR>" .. after_open
+endfunction
+
 function! s:cp_cpp_src()
   " <Leader>f#{a} で :e #{a}.cpp
   for i in range(char2nr("a"), char2nr("z"))
     execute
-          \"nnoremap <Leader>f" .. nr2char(i) .. " " ..
-          \":e " .. nr2char(i) .. ".cpp\<CR>"
+          \"nnoremap <expr><Leader>f" .. nr2char(i) .. " <SID>cp_cpp_src_expr('" .. nr2char(i) .. "')"
   endfor
 endfunction
 
@@ -124,11 +132,16 @@ function! s:cp_input_input()
 endfunction
 
 function! s:cp_cpp_run()
-  " <Leader>#{i} で "%:r" .. _in#{i} を input として % を実行
-  for i in range(1, 9)
+  " <Leader>k#{i}
+  for i in range(char2nr("a"), char2nr("z"))
+    if nr2char(i) ==# 'k'
+      continue
+    endif
     execute
-          \'nnoremap <expr><buffer> <Leader>' .. i ..
-          \' ":ccl\|QuickRun -input " .. expand("%:r") .. "_in' .. i ..
+          \'nnoremap <expr><buffer> <Leader>k' .. nr2char(i) ..
+          \' ":ccl\|QuickRun' ..
+          \' -type cpp_cp' ..
+          \' -input input/" .. expand("%:t:r") .. "/' .. nr2char(i) .. '.in.txt' ..
           \'\<CR>"'
   endfor
 endfunction
