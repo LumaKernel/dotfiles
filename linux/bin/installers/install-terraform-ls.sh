@@ -7,7 +7,7 @@ SCRIPTS_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
 # shellcheck source=../../utils/shared.sh
 source "$SCRIPTS_DIR/utils/shared.sh"
 
-VERSION="0.16.3"
+VERSION="0.29.3"
 
 cd /tmp
 FILENAME="terraform-ls_${VERSION}_linux_amd64.zip"
