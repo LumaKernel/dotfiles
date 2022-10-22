@@ -36,9 +36,9 @@ if [[ ! -e "$HOME/.config/fish/functions/fisher.fish" ]] ; then
   curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 fi
 
-command -v pip >/dev/null 2>&1
-if [[ "$?" != "0" ]]; then
-  pyenv install 3.8.1
-  pyenv global 3.8.1
-  eval "$(pyenv init)"
-fi
+# command -v pip >/dev/null 2>&1
+# if [[ "$?" != "0" ]]; then
+#   pyenv install 3.8.1
+#   pyenv global 3.8.1
+#   eval "$(pyenv init)"
+# fi
