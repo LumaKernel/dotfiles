@@ -141,7 +141,7 @@ if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
     endif
     if exists('b:tsdetect_is_node') && !b:tsdetect_is_node
       " buggy
-      " CocCommand deno.cache
+      CocCommand deno.cache
     endif
   endfunction
 
