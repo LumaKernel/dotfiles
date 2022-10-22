@@ -3,6 +3,7 @@ ctrl + cmd - h : yabai -m window --focus prev
 ctrl + cmd - l : yabai -m window --focus next
 
 # balance size of windows
+# 0x18 = '='
 ctrl + alt - 0x18 : yabai -m space --balance
 
 # toggle window zoom
@@ -18,7 +19,7 @@ ctrl - m [
   * : skhd -k "return"
 ]
 ctrl - h : skhd -k "backspace"
-# 0x21 = [
+# 0x21 = '['
 ctrl - 0x21 [
   "iTerm2" ~
   "terminal" ~
