@@ -54,6 +54,11 @@ ctrl + cmd - n : yabai -m space --focus next
 ctrl + cmd - j : skhd -k "ctrl - down"
 ctrl + cmd - k : skhd -k "ctrl - up"
 
+# recent well-known apps
+ctrl + cmd - i : ~/dotfiles/mac/scripts/yabai_recent_iterm2.sh
+ctrl + cmd - g : ~/dotfiles/mac/scripts/yabai_recent_slack.sh
+ctrl + cmd - b : ~/dotfiles/mac/scripts/yabai_recent_chrome.sh
+
 # common mistakes
 cmd - h : skhd -k ""
 cmd - q : skhd -k ""
