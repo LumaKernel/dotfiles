@@ -163,7 +163,7 @@ rev = 'release'
 
 [[plugins]]
 if = "has('nvim')"
-depends = ['impatient.nvim', 'coc.nvim']
+depends = ['coc.nvim']
 repo = 'LumaKernel/nvim-coc-nearest-symbol.lua'
 
 # DEBUG: coc.nvim extension

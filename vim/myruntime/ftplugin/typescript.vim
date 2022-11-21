@@ -20,7 +20,7 @@ elseif g:ts_lsp_mode is# "tsu"
   nnoremap <buffer> gd :<C-u>TsuDefinition<CR>
   nnoremap <buffer> gt :<C-u>TsuTypeDefinition<CR>
   nnoremap <buffer> gr :<C-u>TsuRenameSymbol<CR>
-  nnoremap <buffer> <SPACE>ll :<C-u>TsuGeterr<CR>
+  " nnoremap <buffer> <SPACE>ll :<C-u>TsuGeterr<CR>
   nnoremap <buffer> K :<C-u>echo tsuquyomi#hint()<CR>
   nnoremap <buffer> <SPACE>si :<C-u>TsuImport<CR>
 endif

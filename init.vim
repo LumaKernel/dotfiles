@@ -67,7 +67,6 @@ silent! let g:is_wsl =
 
 " option basic {{{
 let g:mapleader = "\<SPACE>"
-syntax enable
 
 if has('nvim') && g:mode is# 'huge'
   set foldmethod=expr
@@ -402,6 +401,10 @@ if (v:version < 802 && !has('nvim')) || (v:version < 800 && has('nvim'))
   finish
 endif
 
+if filereadable(expand('~/local_profile.vim'))
+  source ~/local_profile.vim
+endif
+
 " nvim {{{
 if has('nvim')
   if has('win32unix') || has('win32')
@@ -451,6 +454,9 @@ endfunction
 if g:from_pwsh
   call g:SetupPwsh()
 endif
+
+let g:opamshare = substitute(system('opam var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 if !g:from_pwsh && g:mode is# 'huge'
   augroup init-vim

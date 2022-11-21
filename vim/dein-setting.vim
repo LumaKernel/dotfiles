@@ -87,7 +87,10 @@ if dein#load_state(g:dein_dir)
   endif
 endif
 
+" let &runtimepath = resolve(s:dir .. '/myruntime') .. ',' .. &runtimepath .. ',' .. resolve(s:dir .. '/myruntime/after')
+
 filetype plugin indent on
+syntax enable
 
 augroup init_vim
   if v:vim_did_enter

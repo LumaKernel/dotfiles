@@ -20,6 +20,13 @@
       "args": ["serve"],
       "filetypes": ["terraform", "tf"],
       "initializationOptions": {}
+    },
+    "ocaml": {
+      "command": "ocamllsp",
+      "args": [],
+      "filetypes": ["ocaml", "reason"],
+      "initializationOptions": {},
+      "settings": {}
     }
     // "protobuf": {
     //   "command": "protocol-buffers-language-server",
@@ -115,5 +122,6 @@
   "svelte.enable-ts-plugin": true,
   "javascript.autoClosingTags": false,
   "typescript.autoClosingTags": false,
-  "rust.clippy_preference": "on"
+  "rust.clippy_preference": "on",
+  "rust-analyzer.disableProgressNotifications": true
 }

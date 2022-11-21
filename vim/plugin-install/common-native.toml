@@ -20,6 +20,7 @@ let s:fern_default_exclude_pats = [
   \   '^yarn.lock$',
   \   '^package-lock.json$',
   \   '^pnpm-lock.yaml$',
+  \   '^filebrowser.db$',
   \ ]
 
 function! s:GetFernExclude() abort
@@ -221,20 +222,4 @@ augroup init_vim
   au User StartifyReady silent! nunmap <buffer> T
   au User StartifyReady silent! nunmap <buffer> T
 augroup END
-'''
-
-# Speed up nvim startup time
-[[plugins]]
-repo = 'lewis6991/impatient.nvim'
-if = 'has("nvim")'
-hook_source = '''
-lua require('impatient')
-'''
-
-[[plugins]]
-repo = 'nathom/filetype.nvim'
-if = 'has("nvim")'
-depends = 'impatient.nvim'
-hook_source = '''
-let g:did_load_filetypes = 1
 '''

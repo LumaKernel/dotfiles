@@ -315,7 +315,6 @@ nnoremap <silent><expr> ,cf ':<C-u>Files<CR>' .. expand('<cfile>')
 nnoremap <silent><expr> ,cdf ':<C-u>GFiles<CR>' .. expand('<cword>')
 nnoremap <silent><expr> ,cdd ':<C-u>GFiles?<CR>' .. expand('<cword>')
 nnoremap <silent> <Leader>i :<C-u>History<CR>
-nnoremap <silent> <Leader>ls :<C-u>Buffers<CR>
 nnoremap <silent> <Leader>col :<C-u>Colors<CR>
 
 function! s:RgPrompt() abort
@@ -534,35 +533,47 @@ on_path = '\.qs$'
 
 # Lang: Coq
 [[plugins]]
-repo = 'LumaKernel/coqpit.vim'
+repo = '/home/luma/coq-handle/plg'
+merged = 0
+if = 0
+on_ft = 'coq'
+hook_source = '''
+'''
+
+[[plugins]]
+# repo = 'LumaKernel/coqpit.vim'
+if = 1
+repo = '~/ghq/github.com/LumaKernel/coqpit.vim'
 on_ft = 'coq'
 hook_source = '''
 let g:coqpit_auto_move=1
 let g:coqpit_one_window=0
 
 function! MyCoqMaps()
-  nnoremap <silent> <C-C> :CoqLaunch<CR>
-  nnoremap <silent> <Leader>j :CoqNext<CR>
-  nnoremap <silent> <Leader>k :CoqBack<CR>
-  nnoremap <silent> <Leader>l :CoqToCursor<CR>
-  nnoremap <silent> <Leader>g :CoqToLast<CR>
-  nnoremap <silent> <Leader>t :MoveToTop<CR>
+  nnoremap <buffer><silent> <C-C> :CoqLaunch<CR>
+  nnoremap <buffer><silent> <Space>j :CoqNext<CR>
+  nnoremap <buffer><silent> <Space>k :CoqBack<CR>
+  nnoremap <buffer><silent> <Space>l :CoqToCursor<CR>
+  nnoremap <buffer><silent> <Space>g :CoqToLast<CR>
+  nnoremap <buffer><silent> <Space>t :MoveToTop<CR>
 
-  nnoremap <Leader>compute :CoqQuery Compute .<Left>
-  nnoremap <Leader>print :CoqQuery Print .<Left>
-  nnoremap <Leader>check :CoqQuery Check .<Left>
-  nnoremap <Leader>search :CoqQuery Search ().<Left><Left>
+  nnoremap <buffer> <Space>qc :CoqQuery Compute .<Left>
+  nnoremap <buffer> <Space>qp :CoqQuery Print .<Left>
+  nnoremap <buffer> <Space>qk :CoqQuery Check .<Left>
+  nnoremap <buffer> <Space>qs :CoqQuery Search ().<Left><Left>
 endfunction
 
 augroup my-coq
   au!
-  au FileType ++nested coq :call MyCoqMaps()
+  au FileType coq :call MyCoqMaps()
 augroup END
 
-if has('win32')
-  let g:coqpit_coq_executable = 'C:\Coq8.10\bin\coqidetop.exe'
-elseif has('unix')
-  let g:coqpit_coq_executable = expand('~/.local/bin/coq/V8.11.1/bin/coqidetop')
+if !exists('g:coqpit_coq_executable')
+  if has('win32')
+    let g:coqpit_coq_executable = 'C:\Coq8.10\bin\coqidetop.exe'
+  elseif has('unix')
+    let g:coqpit_coq_executable = expand('~/.local/bin/coq/V8.11.1/bin/coqidetop')
+  endif
 endif
 
 function! CoqSwitchStyle() abort
@@ -673,7 +684,6 @@ on_cmd = [
   'TSInstall',
   'TSInstallSync',
 ]
-depends = 'impatient.nvim'
 hook_post_update = 'TSUpdate'
 hook_post_source = '''
 lua <<EOF

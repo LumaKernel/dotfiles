@@ -98,7 +98,6 @@ nnoremap <silent> <SPACE>st :<C-u>Gina s<CR>
 nnoremap <silent> <SPACE>cc :<C-u>Gina compare<CR>
 nnoremap <silent> <SPACE>gc :<C-u>tabnew \| Gina commit<CR>:split \| Gina diff --cached<CR>:wincmd w<CR>
 nnoremap <silent> <SPACE>dd :<C-u>Gina diff HEAD<CR>
-nnoremap <silent> <SPACE>lg :<C-u>Gina lg<CR>
 nnoremap <silent> <SPACE>bla :<C-u>Gina blame<CR>
 
 function! s:Browse(line1, line2) abort
