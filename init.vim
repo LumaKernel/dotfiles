@@ -456,7 +456,9 @@ if g:from_pwsh
 endif
 
 let g:opamshare = substitute(system('opam var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+if isdirectory(g:opamshare)
+  execute "set rtp+=" . g:opamshare . "/merlin/vim"
+endif
 
 if !g:from_pwsh && g:mode is# 'huge'
   augroup init-vim

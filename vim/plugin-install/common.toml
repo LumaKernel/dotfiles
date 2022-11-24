@@ -35,3 +35,6 @@ depends = ["vital.vim"]
 # repo = 'mattn/vim-sonictemplate'
 # repo = 'LumaKernel/vim-sonictemplate-empty'
 repo = '~/ghq/github.com/LumaKernel/vim-sonictemplate-empty'
+
+[[plugins]]
+repo = 'pechorin/any-jump.vim'
