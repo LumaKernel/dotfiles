@@ -102,7 +102,7 @@ fi
 export fish_key_bindings=
 export fish_bind_mode=
 
-# -- go
+# -- python
 if test -z "$PYTHON_TOOLS_PATH"; then
   export PYTHON_TOOLS_PATH="$HOME/.local/venvs/tools/bin"
   export PATH="$PATH:$PYTHON_TOOLS_PATH"
@@ -112,6 +112,12 @@ fi
 if test -z "$GO_PATH"; then
   export GO_PATH="/usr/local/go/bin"
   export PATH="$GO_PATH:$HOME/go/bin:$PATH"
+fi
+
+# -- 
+if test -z "$GHCUP_PATH"; then
+  export GHCUP_PATH="$HOME/.ghcup/bin"
+  export PATH="$GHCUP_PATH:$PATH"
 fi
 
 # -- pnpm
