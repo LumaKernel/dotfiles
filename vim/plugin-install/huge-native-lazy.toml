@@ -531,6 +531,11 @@ on_ft = 'ps1'
 repo = 'gootorov/q-sharp.vim'
 on_path = '\.qs$'
 
+# Lang: lalrpop (rust LR parser generator)
+[[plugins]]
+repo = 'qnighy/lalrpop.vim'
+on_path = '\.lalrpop$'
+
 # Lang: Coq
 [[plugins]]
 repo = '/home/luma/coq-handle/plg'
