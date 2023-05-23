@@ -293,7 +293,23 @@ command! -bang Colors call fzf#vim#colors({'options': '--preview ""'}, <bang>0)
 
 
 function! RipgrepFzf(query, fullscreen) abort
-  let command_fmt = 'rg --hidden --column --line-number --no-heading --color=always --smart-case --iglob !venv -- %s || true'
+  let ignore = [
+    \ '.git/',
+    \ 'node_modules/',
+    \ 'dist/',
+    \ 'build/',
+    \ '*.tsbuildinfo',
+    \ '.next/',
+    \ '.turbo/',
+    \ 'venv/',
+    \ 'yarn.lock',
+    \ 'package-lock.json',
+    \ 'pnpm-lock.yaml',
+    \ 'Gemfile.lock',
+    \ 'composer.lock',
+  \ ]
+  let ignore_flages = join(map(copy(ignore), {_, v -> printf('--iglob "!%s"', v)}), ' ')
+  let command_fmt = 'rg --hidden --column --line-number --no-heading --color=always ' . ignore_flages . ' --smart-case -- %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': [
