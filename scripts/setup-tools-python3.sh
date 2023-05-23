@@ -2,7 +2,7 @@
 set -euo pipefail
 
 VENV="tools"
-TO_INSTALL="kaggle pylint jedi-language-server"
+TO_INSTALL="kaggle pylint jedi-language-server openai"
 
 
 mkdir -p "$HOME/.local/venvs" || true
