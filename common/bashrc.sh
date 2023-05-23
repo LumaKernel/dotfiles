@@ -15,6 +15,12 @@ else
   echo "[warn/.bashrc/local_profile] $LOCAL_PROFILE_FILEPATH not found"
 fi
 
+# https://code.visualstudio.com/docs/terminal/shell-integration
+if test "$TERM_PROGRAM" == "vscode"; then
+  source "$(code --locate-shell-integration-path bash)"
+  export NO_FISH=1
+fi
+
 # shell name
 export SHELL_NAME=bash
 
