@@ -612,6 +612,11 @@ rev = 'main'
 repo = 'rhysd/vim-gfm-syntax'
 on_ft = 'markdown'
 
+# Lang: PlantUML
+[[plugins]]
+repo = 'aklt/plantuml-syntax'
+# on_ft = 'pu'
+
 # Lang: Prisma
 [[plugins]]
 repo = 'pantharshit00/vim-prisma'
