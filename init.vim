@@ -117,9 +117,6 @@ else
 endif
 set wildignorecase
 
-set foldmethod=marker
-set foldlevel=2
-
 set backup
 
 let s:backupdir = expand('~/.tmp/vim/backup')

@@ -122,6 +122,6 @@
   "svelte.enable-ts-plugin": true,
   "javascript.autoClosingTags": false,
   "typescript.autoClosingTags": false,
-  "rust.clippy_preference": "on",
+  "rust-analyzer.checkOnSave.command": "clippy",
   "rust-analyzer.disableProgressNotifications": true
 }

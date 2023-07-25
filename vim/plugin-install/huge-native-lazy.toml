@@ -553,13 +553,21 @@ repo = 'qnighy/lalrpop.vim'
 on_path = '\.lalrpop$'
 
 # Lang: Coq
-[[plugins]]
-repo = '/home/luma/coq-handle/plg'
-merged = 0
-if = 0
-on_ft = 'coq'
-hook_source = '''
-'''
+# [[plugins]]
+# repo = '/home/luma/coq-handle/plg'
+# merged = 0
+# if = 0
+# on_ft = 'coq'
+# hook_source = '''
+# '''
+
+# Lang: Rust
+# [[plugins]]
+# repo = 'rust-lang/rust.vim'
+# on_path = '\.rs$'
+# hook_add = '''
+# let g:rust_fold = 2
+# '''
 
 [[plugins]]
 # repo = 'LumaKernel/coqpit.vim'
@@ -710,6 +718,11 @@ on_cmd = [
   'TSInstall',
   'TSInstallSync',
 ]
+hook_add = '''
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable
+'''
 hook_post_update = 'TSUpdate'
 hook_post_source = '''
 lua <<EOF

@@ -152,3 +152,9 @@ let g:indentLine_setConceal = 0
 [[plugins]]
 repo = 'github/copilot.vim'
 if = 'has("nvim")'
+hook_add = '''
+let g:copilot_filetypes = {
+  \   'text': 0,
+  \   'markdown': 0,
+  \ }
+'''
