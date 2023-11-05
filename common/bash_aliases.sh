@@ -5,7 +5,11 @@ echo "[info/enter] common/bash_aliases.sh"
 alias ..='cd ..'
 alias ~='cd ~'
 
-alias ls='ls --color=auto --show-control-chars --time-style=long-iso -FH -A'
+if test -z "$LUMA_IS_MAC"; then
+  alias ls='ls --color=auto --show-control-chars --time-style=long-iso -FH -A'
+else
+  alias ls='ls -Fla'
+fi
 alias ll='ls -lA'
 
 alias relogin='exec $SHELL -l'
