@@ -15,6 +15,10 @@ else
   echo "[warn/.bashrc/local_profile] $LOCAL_PROFILE_FILEPATH not found"
 fi
 
+# for mac
+# https://support.apple.com/en-us/HT208050
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # https://code.visualstudio.com/docs/terminal/shell-integration
 if test "$TERM_PROGRAM" == "vscode"; then
   source "$(code --locate-shell-integration-path bash)"
