@@ -48,18 +48,6 @@ shopt -s checkwinsize  # ${COLUMNS} と ${LINES} を winsize に同期
 shopt -s no_empty_cmd_completion  # 何も入力してないなら補完しない
 shopt -s nocaseglob  # glob で ignorecase
 
-# ---- history 向上
-
-# i: 直前の履歴 30件を表示する。引数がある場合は過去 1000件を検索
-function i {
-    if [ "$1" ]; then history 1000 | grep "$@"; else history 30; fi
-}
-
-# I: 直前の履歴 30件を表示する。引数がある場合は過去のすべてを検索
-function I {
-    if [ "$1" ]; then history | grep "$@"; else history 30; fi
-}
-
 command -v powerline-shell >/dev/null 2>&1
 if (( ! $? )) ; then
 
@@ -120,7 +108,7 @@ if test -z "$GO_PATH"; then
   export PATH="$GO_PATH:$HOME/go/bin:$PATH"
 fi
 
-# -- 
+# -- ghcup
 if test -z "$GHCUP_PATH"; then
   export GHCUP_PATH="$HOME/.ghcup/bin"
   export PATH="$GHCUP_PATH:$PATH"
@@ -130,6 +118,12 @@ fi
 if test -z "$PNPM_HOME"; then
   export PNPM_HOME="$HOME/.local/share/pnpm"
   export PATH="$PNPM_HOME:$PATH"
+fi
+
+# -- elan
+if test -z "$ELAN_HOME"; then
+  export ELAN_HOME="$HOME/.elan"
+  export PATH="$ELAN_HOME/bin:$PATH"
 fi
 
 # -- gem
@@ -151,14 +145,17 @@ fi
 
 # -- rust sccache
 if test -z "$RUSTC_WRAPPER_INIT"; then
-  export RUSTC_WRAPPER_INIT=1
-  export SCCACHE_REDIS_PORT=6982
-  export SCCACHE_REDIS=redis://localhost:$SCCACHE_REDIS_PORT
-  if test -z "$RUSTC_WRAPPER"; then
-    if command -v sccache >/dev/null 2>&1; then
-      export RUSTC_WRAPPER="$(which sccache)"
-    else
-      echo "[info/healthcheck/.bashrc] sccache not installed."
+  # TODO
+  if test 0 = 1; then
+    export RUSTC_WRAPPER_INIT=1
+    export SCCACHE_REDIS_PORT=6982
+    export SCCACHE_REDIS=redis://localhost:$SCCACHE_REDIS_PORT
+    if test -z "$RUSTC_WRAPPER"; then
+      if command -v sccache >/dev/null 2>&1; then
+        export RUSTC_WRAPPER="$(which sccache)"
+      else
+        echo "[info/healthcheck/.bashrc] sccache not installed."
+      fi
     fi
   fi
 fi
@@ -271,6 +268,12 @@ if test -z "$SERVERLESS_DIR"; then
   export PATH="$SERVERLESS_DIR:$PATH"
 fi
 
+# bun
+if test -z "$BUN_INSTALL"; then
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH=$BUN_INSTALL/bin:$PATH
+fi
+
 # -- browser
 # used by, for example gh cli
 if command -v wslview >/dev/null 2>&1; then
@@ -302,7 +305,3 @@ source "$HOME/dotfiles/common/bash_functions.sh"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 return
-
-# bit
-export PATH="$PATH:/home/luma/bin"
-# bit end
