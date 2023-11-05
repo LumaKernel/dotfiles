@@ -12,20 +12,6 @@ ctrl + cmd - f : yabai -m window --toggle zoom-fullscreen
 # float / unfloat window and center on screen
 ctrl + alt - f : yabai -m window --toggle float --grid 3:3:2:0:1:1
 
-# terminal like
-ctrl - m [
-  "iTerm2" ~
-  "terminal" ~
-  * : skhd -k "return"
-]
-ctrl - h : skhd -k "backspace"
-# 0x21 = '['
-ctrl - 0x21 [
-  "iTerm2" ~
-  "terminal" ~
-  * : skhd -k "escape"
-]
-
 # common mistakes in terminal
 cmd - n [
   "iTerm2" : skhd -k "alt - n"
@@ -39,16 +25,6 @@ cmd - w [
   "iTerm2" : skhd -k ""
   "terminal" : skhd -k ""
 ]
-
-# vim-like arrow alternatives
-shift + cmd - h : skhd -k "left"
-shift + cmd - l : skhd -k "right"
-shift + cmd - j : skhd -k "down"
-shift + cmd - k : skhd -k "up"
-
-# space switch without animation
-ctrl + cmd - p : yabai -m space --focus prev
-ctrl + cmd - n : yabai -m space --focus next
 
 # shortcut for ctrl+<up>/<down>
 ctrl + cmd - j : skhd -k "ctrl - down"
