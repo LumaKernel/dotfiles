@@ -145,6 +145,38 @@ let g:print_debug_templates = {
 repo = 'vim-denops/denops.vim'
 # let g:denops#debug = 1
 
+[[plugins]]
+repo = 'LumaKernel/quick-tex.vim'
+depends = ['denops.vim']
+hook_add = '''
+function! s:setup_quick_tex_init_text()
+  call denops#notify("quick-tex", "recipe:semisemi", [])
+endfunction
+function! s:setup_quick_tex_init_lean()
+  call denops#notify("quick-tex", "recipe:space", [])
+  call denops#notify("quick-tex", "recipe:semisemi", [])
+endfunction
+
+function! s:setup_quick_tex_init()
+  augroup quick-tex-init
+    au!
+    au FileType text call <SID>setup_quick_tex_init_text()
+    au FileType lean,coq call <SID>setup_quick_tex_init_lean()
+  augroup END
+
+  if &filetype ==# 'text'
+    call <SID>setup_quick_tex_init_text()
+  elseif &filetype ==# 'lean' || &filetype ==# 'coq'
+    call <SID>setup_quick_tex_init_lean()
+  endif
+endfunction
+
+augroup quick-tex-init-setup
+  au!
+  au User DenopsPluginPost:quick-tex call <SID>setup_quick_tex_init()
+augroup END
+'''
+
 # [[plugins]]
 # repo = '~/projs/jupyter.vim'
 # depends = ['denops.vim']
