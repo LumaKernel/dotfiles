@@ -27,6 +27,13 @@
       "filetypes": ["ocaml", "reason"],
       "initializationOptions": {},
       "settings": {}
+    },
+    "lean": {
+      "command": "lean",
+      "args": ["--server"],
+      "filetypes": ["lean"],
+      "initializationOptions": {},
+      "settings": {}
     }
     // "protobuf": {
     //   "command": "protocol-buffers-language-server",
