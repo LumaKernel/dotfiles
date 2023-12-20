@@ -34,12 +34,16 @@ TO_DIRNAME="$HOME"/.local/share/code-server/User
 TO="$HOME"/.local/share/code-server/User/settings.json
 if ! is_symlink "$TO"; then
   mkdir -p "$TO_DIRNAME"
-  sudo ln -sf "$HOME/dotfiles/.vscode-remote/settings.json" "$TO"
+  sudo ln -sf "$HOME/dotfiles/vscode/user/settings.json" "$TO"
+else
+  echo "[warn] $TO already exists and not symlink"
 fi
 
 TO_DIRNAME="$HOME"/.local/share/code-server/User
 TO="$HOME"/.local/share/code-server/User/keybindings.json
 if ! is_symlink "$TO"; then
   mkdir -p "$TO_DIRNAME"
-  sudo ln -sf "$HOME/dotfiles/.vscode-remote/keybindings.json" "$TO"
+  sudo ln -sf "$HOME/dotfiles/vscode/user/keybindings.json" "$TO"
+else
+  echo "[warn] $TO already exists and not symlink"
 fi
