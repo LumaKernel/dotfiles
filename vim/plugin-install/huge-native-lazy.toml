@@ -710,7 +710,8 @@ if = '!has("nvim")'
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
-if = 'has("nvim")'
+# if = 'has("nvim")'
+if = 0
 on_event = 'BufRead'
 on_cmd = [
   'TSUpdate',
