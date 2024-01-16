@@ -99,5 +99,29 @@ nmap J <Plug>(jplus)
 '''
 
 [[plugins]]
+repo = 'wuelnerdotexe/vim-astro'
+on_ft = 'astro'
+hook_add = '''
+let g:astro_typescript = 'enable'
+'''
+
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
+# [[plugins]]
+# repo = 'Julian/lean.nvim'
+# depends = ['plenary.nvim']
+# on_ft = 'lean'
+# hook_source = '''
+# lua <<EOF
+# require('lean').setup {
+#   lsp = { enable = true },
+#   mappings = false,
+# }
+# EOF
+# '''
+
+[[plugins]]
 repo = 'lambdalisue/reword.vim'
 on_map = ':'

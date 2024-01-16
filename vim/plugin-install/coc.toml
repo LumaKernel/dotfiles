@@ -14,7 +14,7 @@ repo = 'neoclide/coc.nvim'
 # rev = 'release'
 rev = 'master'
 # rev = '03c9add7cd867a013102dcb45fb4e75304d227d7'
-build = 'yarn install --frozen-lockfile'
+build = 'npm ci'
 # repo = '/home/luma/ghq/github.com/neoclide/coc.nvim'
 merged = 0
 if = "g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'"
@@ -103,6 +103,7 @@ if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
     \   'coc-deno',
     \   'coc-tsdetect',
     \   'coc-tsserver',
+    \   '@yaegassy/coc-astro',
     \ ]
 
   let g:my_coc_debug = 0
