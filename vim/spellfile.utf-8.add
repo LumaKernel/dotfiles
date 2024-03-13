@@ -181,6 +181,7 @@ inoremap
 insertable
 interable
 interop
+intuitionistic
 ioutil
 ipaddr
 ipam
@@ -364,6 +365,7 @@ runtimes
 rustc
 rustup
 sbin
+scrutinee
 sdk
 semver
 sendgrid
@@ -395,6 +397,7 @@ staticcheck
 stderr
 stdin
 stdout
+stmt
 strconv
 stringified
 stringify
@@ -424,6 +427,7 @@ terraformrc
 testacc
 testargs
 testbin
+textarea
 tfenv
 tffmt
 tfplan
@@ -519,6 +523,3 @@ xsel
 yaegassy
 yaml
 zenml
-stmt
-scrutinee
-intuitionistic
