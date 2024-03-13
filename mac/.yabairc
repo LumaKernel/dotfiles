@@ -34,6 +34,7 @@ yabai -m config mouse_action1 move
 yabai -m config mouse_action2 resize
 yabai -m config mouse_drop_action swap
 yabai -m rule --add app="^(Google )?Chrome$" title="^Picture in Picture$" manage=off opacity=1.0 border=off
+yabai -m rule --add app="^(Google )?Chrome$" title="picture-in-picture" manage=off opacity=1.0 border=off
 yabai -m rule --add app="^(Google )?Chrome$" opacity=1.0
 
 yabai -m rule --add app="^Installer$" sticky=off manage=off
