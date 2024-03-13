@@ -143,7 +143,6 @@ let g:print_debug_templates = {
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
-# let g:denops#debug = 1
 
 [[plugins]]
 repo = 'LumaKernel/quick-tex.vim'
