@@ -5,9 +5,6 @@ SCRIPTS_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
 # shellcheck source=../../utils/shared.sh
 source "$SCRIPTS_DIR/utils/shared.sh"
 
-bash "$SCRIPTS_DIR/bin/installers/install-volta.sh"
-~/.volta/bin/volta install node
-~/.volta/bin/volta install yarn
 bash "$SCRIPTS_DIR/bin/installers/install-dvm.sh"
 ~/.dvm/bin/dvm install
 bash "$SCRIPTS_DIR/bin/installers/install-go.sh"
@@ -24,4 +21,4 @@ bash "$SCRIPTS_DIR/bin/installers/install-rustup.sh"
 bash "$SCRIPTS_DIR/bin/installers/install-cargo-plugins.sh"
 bash "$SCRIPTS_DIR/bin/installers/install-rust-tools.sh"
 bash "$SCRIPTS_DIR/bin/installers/install-vim.sh"
-bash "$SCRIPTS_DIR/bin/installers/install-nvim.sh" "v0.7.0"
+bash "$SCRIPTS_DIR/bin/installers/install-nvim.sh" "v0.9.5"
