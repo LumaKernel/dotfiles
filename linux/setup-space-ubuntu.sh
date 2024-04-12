@@ -50,14 +50,11 @@ echo \
       $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
 sudo usermod -a -G docker "$(whoami)"
 
 "${SCRIPT_DIR}/../scripts/git-config.sh"
 "${SCRIPT_DIR}/../scripts/setup-vim-python3.sh"
 "${SCRIPT_DIR}/linux/bin/set-installers/huge.sh"
-curl -fsSL https://code-server.dev/install.sh | sh
 curl -fsSL https://tailscale.com/install.sh | sh
 
 echo "[info] TODO"
