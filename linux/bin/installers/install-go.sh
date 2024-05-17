@@ -5,7 +5,7 @@ SCRIPTS_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
 # shellcheck source=../../utils/shared.sh
 source "$SCRIPTS_DIR/utils/shared.sh"
 
-VERSION=1.18.3
+VERSION=1.22.2
 
 INSTALL_TMP_DIR="/tmp/install-go-tmp"
 rm -rf "$INSTALL_TMP_DIR"
