@@ -117,6 +117,7 @@
   "deno.codeLens.references": false,
   "deno.codeLens.referencesAllFunctions": false,
   "deno.codeLens.implementations": false,
+  "deno.cacheOnSave": true,
   "codeLens.enable": false,
   "go.goplsOptions": {
     "staticcheck": true
