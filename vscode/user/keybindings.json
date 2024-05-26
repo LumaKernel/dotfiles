@@ -54,10 +54,34 @@
     "command": "-editor.action.marker.prev",
     "when": "editorFocus"
   },
+  // Full screen mode
   {
+    // エディターにいるとき + ターミナル空いている: ctrl+k z でターミナルを閉じる
     "key": "ctrl+k z",
+    "when": "editorFocus && view.terminal.visible",
+    "command": "workbench.action.togglePanel"
+  },
+  {
+    // エディターにいるとき + ターミナル閉じている: ctrl+k z でターミナルを開く
+    "key": "ctrl+k z",
+    "when": "editorFocus && !view.terminal.visible",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "workbench.action.togglePanel",
+        // TODO: なんかきれいに動かない
+        // https://github.com/microsoft/vscode/issues/204810
+        "workbench.action.focusLastEditorGroup"
+      ]
+    }
+  },
+  {
+    // ターミナルにいるときは ctrl+k z で全画面を単に切り替える
+    "key": "ctrl+k z",
+    "when": "terminalFocus",
     "command": "workbench.action.toggleMaximizedPanel"
   },
+
   {
     "key": "ctrl+k j",
     "command": "workbench.action.terminal.focus"
