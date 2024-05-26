@@ -1,23 +1,82 @@
 {
   "workbench.colorTheme": "Default Dark+",
+
   "terminal.integrated.macOptionIsMeta": true,
   "terminal.integrated.sendKeybindingsToShell": true,
-  "files.autoSave": "afterDelay",
   "terminal.integrated.scrollback": 10000,
-  "terminal.integrated.commandsToSkipShell": ["-workbench.action.quickOpen"],
+  "terminal.integrated.shellIntegration.decorationsEnabled": "never",
+  "terminal.integrated.enableMultiLinePasteWarning": "auto",
+  "terminal.integrated.commandsToSkipShell": [
+    "-workbench.action.quickOpen",
+    "-workbench.action.terminal.focusFind"
+  ],
+
   "editor.unicodeHighlight.allowedCharacters": "ノ！",
   "editor.renderWhitespace": "boundary",
-  "git.confirmSync": false,
-  "git.autofetch": true,
-  "jupyter.askForKernelRestart": false,
-  "files.insertFinalNewline": true,
-  "notebook.lineNumbers": "on",
+  "editor.minimap.enabled": false,
+  "editor.autoClosingBrackets": "never",
   "editor.bracketPairColorization.enabled": true,
-  "eslint.codeActionsOnSave.rules": ["source.fixAll.eslint"],
-  "eslint.format.enable": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.stickyScroll.enabled": false,
+  "editor.tabSize": 2,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
+  },
+
+  "files.autoSave": "afterDelay",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+
+  "go.formatTool": "goimports",
+
+  "git.confirmSync": false,
+  "git.autofetch": true,
+
+  "search.exclude": {
+    "**/node_modules": false
+  },
+  "tabnine.experimentalAutoImports": true,
+
+  "remote.SSH.remotePlatform": {
+    "space": "linux"
+  },
+
+  "jupyter.askForKernelRestart": false,
+  "jupyter.themeMatplotlibPlots": true,
+  "jupyter.interactiveWindow.textEditor.autoAddNewCell": false,
+
+  "notebook.undoRedoPerCell": false,
+  "notebook.lineNumbers": "on",
+  "notebook.outline.showCodeCells": true,
+
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false,
+    "yaml": false
+  },
+  "git.enableSmartCommit": true,
+  "workbench.settings.applyToAllProfiles": [
+    "terminal.integrated.shellIntegration.decorationsEnabled",
+    "editor.stickyScroll.enabled"
+  ],
+
+  "eslint.codeActionsOnSave.rules": ["source.fixAll.eslint"],
+  "eslint.format.enable": true,
+  "eslint.rules.customizations": [
+    {
+      "rule": "prettier/*",
+      "severity": "off"
+    }
+  ],
+
+  "[markdown]": {
+    "editor.renderWhitespace": "all"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -31,16 +90,15 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "eslint.rules.customizations": [
-    {
-      "rule": "prettier/*",
-      "severity": "off"
-    }
-  ],
-  "editor.tabSize": 2,
-  "problems.showCurrentInStatus": true,
+
   "html.format.enable": false,
   "json.format.enable": false,
-  "editor.inlineSuggest.enabled": true,
-  "diffEditor.renderSideBySide": false
+
+  "problems.showCurrentInStatus": true,
+
+  "diffEditor.renderSideBySide": false,
+
+  "githubPullRequests.pullBranch": "never",
+  "remoteHub.commitDirectlyWarning": "off",
+  "prisma.showPrismaDataPlatformNotification": false
 }
