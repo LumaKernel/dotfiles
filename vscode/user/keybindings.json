@@ -2,7 +2,7 @@
   {
     "key": "shift+k",
     "command": "editor.action.showHover",
-    "when": "editorTextFocus && neovim.mode == 'normal'"
+    "when": "editorTextFocus && vim.mode == 'Normal'"
   },
   {
     "key": "ctrl+tab",
@@ -37,7 +37,7 @@
   {
     "key": "] g",
     "command": "editor.action.marker.next",
-    "when": "editorFocus && neovim.mode == 'normal'"
+    "when": "editorFocus && vim.mode == 'Normal'"
   },
   {
     "key": "alt+f8",
@@ -47,11 +47,19 @@
   {
     "key": "[ g",
     "command": "editor.action.marker.prev",
-    "when": "editorFocus && neovim.mode == 'normal'"
+    "when": "editorFocus && vim.mode == 'Normal'"
   },
   {
     "key": "shift+alt+f8",
     "command": "-editor.action.marker.prev",
     "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+k z",
+    "command": "workbench.action.toggleMaximizedPanel"
+  },
+  {
+    "key": "ctrl+k j",
+    "command": "workbench.action.terminal.focus"
   }
 ]
