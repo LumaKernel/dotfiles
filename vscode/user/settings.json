@@ -5,7 +5,7 @@
   "terminal.integrated.sendKeybindingsToShell": true,
   "terminal.integrated.scrollback": 10000,
   "terminal.integrated.shellIntegration.decorationsEnabled": "never",
-  "terminal.integrated.enableMultiLinePasteWarning": "auto",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
   "terminal.integrated.commandsToSkipShell": [
     "-workbench.action.quickOpen",
     "-workbench.action.terminal.focusFind"
@@ -72,6 +72,25 @@
     }
   ],
 
+  "html.format.enable": false,
+  "json.format.enable": false,
+
+  "problems.showCurrentInStatus": true,
+
+  "diffEditor.renderSideBySide": false,
+
+  "githubPullRequests.pullBranch": "never",
+  "remoteHub.commitDirectlyWarning": "off",
+  "prisma.showPrismaDataPlatformNotification": false,
+  "workbench.editor.editorActionsLocation": "hidden",
+  "files.watcherExclude": {
+    "**/.bloop": true,
+    "**/.metals": true,
+    "**/.ammonite": true
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  "github.copilot.editor.enableCodeActions": false,
+
   "[markdown]": {
     "editor.renderWhitespace": "all"
   },
@@ -90,15 +109,7 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
-  "html.format.enable": false,
-  "json.format.enable": false,
-
-  "problems.showCurrentInStatus": true,
-
-  "diffEditor.renderSideBySide": false,
-
-  "githubPullRequests.pullBranch": "never",
-  "remoteHub.commitDirectlyWarning": "off",
-  "prisma.showPrismaDataPlatformNotification": false
+  "[lean4]": {
+    "github.copilot.editor.enableAutoCompletions": false
+  },
 }
