@@ -82,8 +82,27 @@
     "command": "workbench.action.toggleMaximizedPanel"
   },
 
+  // full terminal switch
+  {
+    // エディターにいるとき: ctrl+k t でターミナルを全画面で開く
+    "key": "ctrl+k t",
+    "when": "editorFocus",
+    "command": "workbench.action.toggleMaximizedPanel",
+  },
+  {
+    // ターミナルにいるとき: ctrl+k t でエディターに戻る
+    "key": "ctrl+k t",
+    "when": "terminalFocus",
+    "command": "workbench.action.togglePanel"
+  },
+
   {
     "key": "ctrl+k j",
     "command": "workbench.action.terminal.focus"
-  }
+  },
+  {
+    "key": "ctrl+k k",
+    "when": "terminalFocus",
+    "command": "workbench.action.focusActiveEditorGroup"
+  },
 ]
