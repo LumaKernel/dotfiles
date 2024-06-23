@@ -42,6 +42,10 @@ set fish_color_command brcyan
 #   echo "[info/healthcheck/config.fish] rbenv not installed."
 # end
 
+if test "$LUMA_IS_MAC" = 1
+  alias sed gsed
+end
+
 # -- cd improved
 functions --copy cd cd_default
 function cd
