@@ -55,7 +55,8 @@
     "plaintext": false,
     "markdown": true,
     "scminput": false,
-    "yaml": false
+    "yaml": false,
+    "lean4": false
   },
   "git.enableSmartCommit": true,
   "workbench.settings.applyToAllProfiles": [
@@ -111,5 +112,5 @@
   },
   "[lean4]": {
     "github.copilot.editor.enableAutoCompletions": false
-  },
+  }
 }
