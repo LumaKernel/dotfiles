@@ -87,7 +87,7 @@
     // エディターにいるとき: ctrl+k t でターミナルを全画面で開く
     "key": "ctrl+k t",
     "when": "editorFocus",
-    "command": "workbench.action.toggleMaximizedPanel",
+    "command": "workbench.action.toggleMaximizedPanel"
   },
   {
     // ターミナルにいるとき: ctrl+k t でエディターに戻る
@@ -105,4 +105,9 @@
     "when": "terminalFocus",
     "command": "workbench.action.focusActiveEditorGroup"
   },
+  {
+    "key": "g r",
+    "command": "editor.action.rename",
+    "when": "listFocus && !inputFocus"
+  }
 ]
