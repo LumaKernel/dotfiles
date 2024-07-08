@@ -1,1 +1,180 @@
-{"title":"ctrl-{m,h,]} to {enter, delete, escape} (terminal like keymaps)","rules":[{"description":"ctrl-m to enter","manipulators":[{"type":"basic","from":{"modifiers":{"mandatory":["left_control"]},"key_code":"m"},"to":[{"repeat":true,"key_code":"return_or_enter"}]}]},{"description":"ctrl-h to delete","manipulators":[{"type":"basic","from":{"modifiers":{"mandatory":["left_control"]},"key_code":"h"},"to":[{"repeat":true,"key_code":"delete_or_backspace"}]}]},{"description":"ctrl-] to escape","manipulators":[{"type":"basic","from":{"modifiers":{"mandatory":["left_control"]},"key_code":"close_bracket"},"to":[{"repeat":false,"key_code":"delete_or_backspace"}]}]}]}
+{
+  "title": "ctrl-{m,h,]} to {enter, delete, escape} (terminal like keymaps)",
+  "rules": [
+    {
+      "description": "ctrl-m to enter",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": ["left_control"] },
+            "key_code": "m"
+          },
+          "to": [{ "repeat": true, "key_code": "return_or_enter" }]
+        }
+      ]
+    },
+    {
+      "description": "ctrl-h to delete",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": ["left_control"] },
+            "key_code": "h"
+          },
+          "to": [{ "repeat": true, "key_code": "delete_or_backspace" }]
+        }
+      ]
+    },
+    {
+      "description": "ctrl-] to escape",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": { "mandatory": ["left_control"] },
+            "key_code": "close_bracket"
+          },
+          "to": [{ "repeat": false, "key_code": "delete_or_backspace" }]
+        }
+      ]
+    },
+    {
+      "description": "cmd + ctrl - n: (yabai) next space",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "n",
+            "modifiers": {
+              "mandatory": ["command", "control"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "d=$(/opt/homebrew/bin/yabai -m query --spaces | /opt/homebrew/bin/jq '.[] | select (.[\"has-focus\"] == true) | .display'); /opt/homebrew/bin/yabai -m space --focus next; sleep 0.05; /opt/homebrew/bin/yabai -m display --focus $d"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "cmd + ctrl - p: (yabai) prev space",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "p",
+            "modifiers": {
+              "mandatory": ["command", "control"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "d=$(/opt/homebrew/bin/yabai -m query --spaces | /opt/homebrew/bin/jq '.[] | select (.[\"has-focus\"] == true) | .display'); /opt/homebrew/bin/yabai -m space --focus prev; sleep 0.05; /opt/homebrew/bin/yabai -m display --focus $d"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "cmd + ctrl - k: (yabai) ",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": ["command", "control"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow",
+              "modifiers": ["control"],
+              "repeat": false
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+
+    {
+      "description": "(vim like) cmd + shift - h: left",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": ["command", "shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "(vim like) cmd + shift - j: down",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": ["command", "shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "down_arrow"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "(vim like) cmd + shift - k: up",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": ["command", "shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "(vim like) cmd + shift - l: right",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": ["command", "shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}
