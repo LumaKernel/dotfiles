@@ -52,7 +52,7 @@
           },
           "to": [
             {
-              "shell_command": "d=$(/opt/homebrew/bin/yabai -m query --spaces | /opt/homebrew/bin/jq '.[] | select (.[\"has-focus\"] == true) | .display'); /opt/homebrew/bin/yabai -m space --focus next; sleep 0.05; /opt/homebrew/bin/yabai -m display --focus $d"
+              "shell_command": "d=$(/opt/homebrew/bin/yabai -m query --spaces | /opt/homebrew/bin/jq '.[] | select (.[\"has-focus\"] == true) | .display'); /opt/homebrew/bin/yabai -m space --focus next; sleep 0.01; /opt/homebrew/bin/yabai -m display --focus $d"
             }
           ],
           "type": "basic"
@@ -71,7 +71,7 @@
           },
           "to": [
             {
-              "shell_command": "d=$(/opt/homebrew/bin/yabai -m query --spaces | /opt/homebrew/bin/jq '.[] | select (.[\"has-focus\"] == true) | .display'); /opt/homebrew/bin/yabai -m space --focus prev; sleep 0.05; /opt/homebrew/bin/yabai -m display --focus $d"
+              "shell_command": "d=$(/opt/homebrew/bin/yabai -m query --spaces | /opt/homebrew/bin/jq '.[] | select (.[\"has-focus\"] == true) | .display'); /opt/homebrew/bin/yabai -m space --focus prev; sleep 0.01; /opt/homebrew/bin/yabai -m display --focus $d"
             }
           ],
           "type": "basic"
