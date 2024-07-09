@@ -12,9 +12,15 @@ NAME=nightly
 PRIORITY=10
 
 if test -n "$1"; then
-  TAG=$1
-  NAME=$1
-  PRIORITY=20
+  if test "$1" = "lat"; then
+    TAG=v0.10.0
+    NAME=v0.10.0
+    PRIORITY=30
+  else
+    TAG=$1
+    NAME=$1
+    PRIORITY=20
+  fi
 fi
 
 sudo apt-get update
