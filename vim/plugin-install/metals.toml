@@ -1,0 +1,112 @@
+[[plugins]]
+repo = 'scalameta/nvim-metals'
+if = 'has("nvim")'
+depends = ['nvim-lua/plenary.nvim']
+hook_post_source = '''
+lua << EOF
+local fn = vim.fn
+local opts = function()
+  local metals_config = require("metals").bare_config()
+
+  metals_config.settings = {
+     showImplicitArguments = true,
+     excludedPackages = {
+       "akka.actor.typed.javadsl",
+       "com.github.swagger.akka.javadsl"
+     }
+  }
+
+  metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+  metals_config.on_attach = function()
+  end
+
+  metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = {
+        prefix = '~',
+      }
+    }
+  )
+  return metals_config
+end
+local metals_config = opts()
+local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { 'scala', 'sbt', 'java' },
+  callback = function()
+    require("metals").initialize_or_attach(metals_config)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover)
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
+    vim.keymap.set("n", "gf", vim.lsp.buf.references)
+    vim.keymap.set("n", "gds", vim.lsp.buf.document_symbol)
+    vim.keymap.set("n", "gws", vim.lsp.buf.workspace_symbol)
+    vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.run)
+    vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help)
+    vim.keymap.set("n", "gr", vim.lsp.buf.rename)
+    vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+    vim.keymap.set("n", "]g", vim.diagnostic.goto_next)
+    vim.keymap.set("n", "[g", vim.diagnostic.goto_prev)
+  end,
+  group = nvim_metals_group,
+})
+EOF
+'''
+
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lsp'
+
+[[plugins]]
+repo = 'hrsh7th/cmp-vsnip'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+
+[[plugins]]
+repo = 'hrsh7th/nvim-cmp'
+# on_event = ['InsertEnter']
+# depends = [
+#   'cmp-nvim-lsp',
+#   'cmp-vsnip',
+#   'vim-vsnip',
+# ]
+hook_post_source = '''
+lua << EOF
+local cmp = require'cmp'
+local conf = {
+  sources = cmp.config.sources(
+    {
+        { name = "nvim_lsp" },
+        { name = "vsnip" },
+    },
+    {
+        { name = 'buffer' },
+    }
+  ),
+  snippet = {
+    expand = function(args)
+      -- Comes from vsnip
+      fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    -- None of this made sense to me when first looking into this since there
+    -- is no vim docs, but you can't have select = true here _unless_ you are
+    -- also using the snippet stuff. So keep in mind that if you remove
+    -- snippets you need to remove this select
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+  }),
+}
+cmp.setup(conf)
+EOF
+'''
+

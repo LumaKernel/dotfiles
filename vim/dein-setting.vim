@@ -75,6 +75,9 @@ if dein#load_state(g:dein_dir)
       call dein#load_toml(s:dir .. '/plugin-install/coc.toml')
       call dein#load_toml(s:dir .. '/plugin-install/ddc.toml', {'lazy': 1})
     endif
+    if g:complete_mode is# 'metals'
+      call dein#load_toml(s:dir .. '/plugin-install/metals.toml')
+    endif
     if g:lsp_mode is# 'vim-lsp'
       call dein#load_toml(s:dir .. '/plugin-install/vim-lsp.toml')
     endif

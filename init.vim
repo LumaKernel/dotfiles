@@ -15,7 +15,7 @@ if !empty($VIM_MODE)
   let g:mode = $VIM_MODE
 endif
 
-" "ddc" | "coc" | "none"
+" "ddc" | "coc" | "metals" | "none"
 let g:complete_mode = "coc"
 if !empty($VIM_COMPLETE_MODE)
   let g:complete_mode = $VIM_COMPLETE_MODE

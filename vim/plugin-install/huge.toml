@@ -176,6 +176,11 @@ augroup quick-tex-init-setup
 augroup END
 '''
 
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+if = 'has("nvim")'
+
+
 # [[plugins]]
 # repo = '~/projs/jupyter.vim'
 # depends = ['denops.vim']
