@@ -423,6 +423,7 @@ endif
 " }}}
 
 source ~/dotfiles/vim/dein-setting.vim
+" source ~/dotfiles/vim/dpp-setting.vim
 
 " gvim {{{
 if has('gui_running')
