@@ -109,5 +109,10 @@
     "key": "g r",
     "command": "editor.action.rename",
     "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl-k r",
+    "command": "editor.action.rename",
+    "when": "vim.mode == 'Normal'"
   }
 ]
