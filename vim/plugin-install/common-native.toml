@@ -17,10 +17,12 @@ let s:fern_default_exclude_pats = [
   \   '^dist$',
   \   '^:Zone\.Identifier$',
   \   '^__pycache__$',
-  \   '^yarn.lock$',
-  \   '^package-lock.json$',
-  \   '^pnpm-lock.yaml$',
-  \   '^filebrowser.db$',
+  \   '^yarn\.lock$',
+  \   '^package-lock\.json$',
+  \   '^pnpm-lock\.yaml$',
+  \   '^filebrowser\.db$',
+  \   '\.class$',
+  \   '\.tasty$',
   \ ]
 
 function! s:GetFernExclude() abort
