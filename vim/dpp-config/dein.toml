@@ -1,0 +1,9 @@
+# TODO: WIP!!
+[[plugins]]
+repo = 'LumaKernel/nvim-visual-eof.lua'
+on_event = 'CursorHold'
+if = "has('nvim')"
+hook_post_source ='''
+lua require'visual-eof'.setup { hl_EOL = 'NonText'; no_autocmd = true }
+lua require'my_visual_eof'()
+'''

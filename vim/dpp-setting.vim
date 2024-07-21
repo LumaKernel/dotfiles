@@ -19,7 +19,7 @@ if dpp#min#load_state(s:dpp_base)
     autocmd!
     autocmd User DenopsReady unsilent echom 4
     autocmd User DenopsReady
-      \ call dpp#make_state(s:dpp_base, '/Users/luma/dotfiles/demo-conifg/main.ts')
+      \ call dpp#make_state(s:dpp_base, expand('~/dotfiles/dpp-config/main.ts'))
   augroup END
   execute 'set runtimepath^=' .. s:denops_src
 endif
