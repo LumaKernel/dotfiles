@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "K", vim.lsp.buf.hover)
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
     vim.keymap.set("n", "gf", vim.lsp.buf.references)
-    vim.keymap.set("n", "gds", vim.lsp.buf.document_symbol)
+    vim.keymap.set("n", "gs", vim.lsp.buf.document_symbol)
     vim.keymap.set("n", "gws", vim.lsp.buf.workspace_symbol)
     vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.run)
     vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help)
