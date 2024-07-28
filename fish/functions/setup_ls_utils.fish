@@ -3,15 +3,36 @@ function setup_ls_utils
     set -g LUMA_WORLD_SETUP_LS_UTILS 1
     switch (uname)
       case Linux
-        function ls
-          command -v exa >/dev/null 2>/dev/null
-            and exa --all $argv
-            or /bin/ls --color=auto --show-control-chars --time-style=long-iso -FH -A $argv
+        if command -v exa >/dev/null 2>/dev/null
+          function ls
+            exa --all $argv
+          end
+          function ll
+            exa --tree --long --all --level 1 $argv
+          end
+        else
+          function ls
+            /bin/ls --color=auto --show-control-chars --time-style=long-iso -FH -A $argv
+          end
+          function ll
+            /bin/ls -lA $argv
+          end
         end
-        function ll
-          command -v exa >/dev/null 2>/dev/null
-            and exa --tree --long --all --level 1 $argv
-            or /bin/ls -lA $argv
+      case Darwin
+        if command -v exa >/dev/null 2>/dev/null
+          function ls
+            exa --all $argv
+          end
+          function ll
+            exa --tree --long --all --level 1 $argv
+          end
+        else
+          function ls
+            command ls -G -A $argv
+          end
+          function ll
+            command ls -G -lA $argv
+          end
         end
     end
   end
