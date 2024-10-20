@@ -112,5 +112,6 @@
   },
   "[lean4]": {
     "github.copilot.editor.enableAutoCompletions": false
-  }
+  },
+  "codeQL.telemetry.enableTelemetry": true
 }
