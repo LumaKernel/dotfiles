@@ -6,6 +6,7 @@ SCRIPTS_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
 source "$SCRIPTS_DIR/utils/shared.sh"
 
 cargo install tokei
+cargo install eza
 cargo install procs
 cargo install sccache
 cargo install wasm-pack

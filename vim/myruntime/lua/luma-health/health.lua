@@ -105,7 +105,7 @@ M.check = function()
 
   vim.health.start('my: Additional Commands')
   check('bat', {'bat', '--version'}, general_ver)
-  check('exa', {'exa', '--version'}, general_ver)
+  check('eza', {'eza', '--version'}, general_ver)
   check('procs', {'procs', '--version'}, general_ver)
   check('fd', {{'fd', '--version'}, {'fdfind', '--version'}}, general_ver)
   check('tidy', {'tidy', '--version'}, general_ver)

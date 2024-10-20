@@ -275,8 +275,8 @@ hook_add = '''
 "   if executable('bat')
 "     let file_viewer = 'bat --pager=never --color=always --style=numbers {} 2>/dev/null'
 "   endif
-"   if executable('exa')
-"     let dir_viewer = 'exa --tree --color always {}'
+"   if executable('eza')
+"     let dir_viewer = 'eza --tree --color always {}'
 "   endif
 "   let $FZF_DEFAULT_OPTS = printf('--tabstop=4 --preview-window hidden:up --preview "%s || %s"', file_viewer, dir_viewer)
 " endif

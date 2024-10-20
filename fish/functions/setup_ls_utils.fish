@@ -3,12 +3,12 @@ function setup_ls_utils
     set -g LUMA_WORLD_SETUP_LS_UTILS 1
     switch (uname)
       case Linux
-        if command -v exa >/dev/null 2>/dev/null
+        if command -v eza >/dev/null 2>/dev/null
           function ls
-            exa --all $argv
+            eza --all $argv
           end
           function ll
-            exa --tree --long --all --level 1 $argv
+            eza --tree --long --all --level 1 $argv
           end
         else
           function ls
@@ -19,12 +19,12 @@ function setup_ls_utils
           end
         end
       case Darwin
-        if command -v exa >/dev/null 2>/dev/null
+        if command -v eza >/dev/null 2>/dev/null
           function ls
-            exa --all $argv
+            eza --all $argv
           end
           function ll
-            exa --tree --long --all --level 1 $argv
+            eza --tree --long --all --level 1 $argv
           end
         else
           function ls
