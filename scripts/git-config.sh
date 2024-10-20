@@ -15,6 +15,7 @@ git config --global gc.pruneExpire "2.month.ago"
 
 git config --global core.editor nvim
 
+git config --global blame.ignoreRevsFile .git-blame-ignore-revs
 
 # https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
 
