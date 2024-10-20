@@ -6,6 +6,7 @@ __pycache__/
 yarn-error.log
 *:Zone.Identifier
 local_init.vim
+*.__luma_rust_target/
 .vim/
 :w
 [
