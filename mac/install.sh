@@ -11,6 +11,9 @@ command -v brew >/dev/null 2>&1 ||
 
 brew bundle --file="$HOME/dotfiles/Brewfile"
 
+# cargo install
+# TODO: linux?
+"$HOME/dotfiles/linux/bin/installers/install-rust-tools.sh"
 
 # 以下，git で自分でインストール
 
