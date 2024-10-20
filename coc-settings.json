@@ -105,13 +105,26 @@
     "javascript": "javascriptreact"
   },
   "tsserver.formatOnType": true,
+  "tsserver.useLocalTsdk": true,
   "eslint.format.enable": true,
   "eslint.autoFixOnSave": true,
   "eslint.rules.customizations": [
     {
        "rule": "prettier/*",
        "severity": "off"
-    }
+    },
+    // {
+    //    "rule": "@typescript-eslint/prefer-readonly-parameter-types",
+    //    "severity": "off"
+    // },
+    {
+       "rule": "max-lines-per-function",
+       "severity": "off"
+    },
+    {
+       "rule": "max-statements",
+       "severity": "off"
+    },
   ],
   "emmet.priority": 30,
   "deno.codeLens.references": false,
@@ -127,6 +140,12 @@
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.experimental.procAttrMacros": true,
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+  "rust-analyzer.server.extraEnv": {
+      "CARGO_TARGET_DIR": "target/analyzer"
+  },
+  "rust-analyzer.check.extraArgs": [
+      "--target-dir=target/analyzer"
+  ],
   "svelte.enable-ts-plugin": true,
   "javascript.autoClosingTags": false,
   "typescript.autoClosingTags": false,
