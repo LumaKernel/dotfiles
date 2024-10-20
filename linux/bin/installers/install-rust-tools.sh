@@ -10,3 +10,7 @@ cargo install eza
 cargo install procs
 cargo install sccache
 cargo install wasm-pack
+cargo install cargo-watch
+cargo install cargo-generate
+cargo install leptosfmt
+cargo install trunk
