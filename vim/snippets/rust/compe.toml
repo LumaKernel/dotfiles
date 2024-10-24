@@ -1,0 +1,22 @@
+[temp]
+prefix = ['temp', 'cp_temp']
+body = """
+#![allow(unused_imports, non_snake_case, unused_variables, dead_code)]
+use proconio::input;
+#[rustfmt::skip] use std::collections::{BinaryHeap, HashMap, HashSet, VecDeque};
+
+fn main() {
+    input! {
+      N: usize,
+      A: [i64; N],
+      X: [(i64, i64); N],
+    };
+
+    println!("{}", A.iter().sum::<i64>());
+}
+"""
+
+[graph]
+prefix = ['graph']
+body = """
+"""

@@ -32,6 +32,26 @@ repo = 'lambdalisue/vital-Whisky'
 depends = ["vital.vim"]
 
 [[plugins]]
+repo = 'uga-rosa/denippet.vim'
+depends = ["denops.vim"]
+hook_add = '''
+imap <C-k> <Plug>(denippet-expand)
+let s:denippet_dir = expand('~/dotfiles/vim/snippets')
+
+call denippet#load(s:denippet_dir .. '/rust/compe.toml', 'rust')
+call denippet#load(s:denippet_dir .. '/cpp/compe.toml', 'cpp')
+call denippet#load(s:denippet_dir .. '/dockerfile/common.toml', 'dockerfile')
+call denippet#load(s:denippet_dir .. '/dosini/common.toml', 'dosini')
+call denippet#load(s:denippet_dir .. '/html/common.toml', 'html')
+call denippet#load(s:denippet_dir .. '/json/common.toml', 'json')
+call denippet#load(s:denippet_dir .. '/make/common.toml', 'make')
+call denippet#load(s:denippet_dir .. '/ps1/common.toml', 'ps1')
+call denippet#load(s:denippet_dir .. '/sh/common.toml', 'sh', 'bash')
+call denippet#load(s:denippet_dir .. '/typescript/common.toml', 'typescript')
+call denippet#load(s:denippet_dir .. '/vim-help-text/common.toml', 'help')
+'''
+
+[[plugins]]
 # repo = 'mattn/vim-sonictemplate'
 # repo = 'LumaKernel/vim-sonictemplate-empty'
 repo = '~/ghq/github.com/LumaKernel/vim-sonictemplate-empty'

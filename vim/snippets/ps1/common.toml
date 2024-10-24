@@ -1,0 +1,10 @@
+# TODO: sudo でいいのでは
+[rerun_as_admin]
+prefix = ["rerun_as_admin", "admin_rerun", "shoukaku"]
+body = '''
+If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+  $arguments = "& '" + $MyInvocation.MyCommand.Definition + "'"
+  Start-Process powershell -Verb runAs -ArgumentList $arguments
+  Break
+}
+'''

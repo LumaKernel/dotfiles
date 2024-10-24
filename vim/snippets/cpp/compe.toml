@@ -1,0 +1,421 @@
+[put]
+prefix = ["p"]
+body = '''
+cout << ${0:TARGET} << endl;
+'''
+
+[emplace_back]
+prefix = ["emp"]
+body = '''
+emplace_back(${0:TARGET});
+'''
+
+[push_back]
+prefix = ["pb"]
+body = '''
+push_back(${0:TARGET});
+'''
+
+[lib]
+prefix = ["lib"]
+body = '''
+// @import header
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+// @@
+// @ ${1}
+// @snippet ${2}
+${0}
+'''
+
+[random]
+prefix = ["random"]
+body = '''
+random_device rnd;
+mt19937 mt(rnd());
+uniform_int_distribution<ull> rd(0, ull(-1));
+'''
+
+[random_discard]
+prefix = ["random_discard"]
+body = '''
+discard_block_engine<mt19937, 100, 97> dis(rnd());
+'''
+
+[bigfloat_boost]
+alias = "boost_bigfloat"
+body = '''
+#include <boost/multiprecision/cpp_dec_float.hpp>
+namespace mp = boost::multiprecision;
+using float100 = mp::cpp_dec_float_100;
+// using float1000 = mp::number< mp::cpp_dec_float< 1000 > >;
+// using float1000ex = mp::number< mp::cpp_dec_float< 1000, std::uint64_t > >;
+'''
+
+[time_test]
+prefix = ["time_test"]
+body = '''
+// TIME test {{{
+#define TIME(label, T, procedure) {\
+  std::cout << #label << " : ";\
+  clock_t beg = clock();\
+  for(int i = 0; i < T; i++) procedure;\
+  clock_t las = clock();\
+  std::cout << double(las - beg) / CLOCKS_PER_SEC << "s" << std::endl;\
+  }
+// }}}
+'''
+
+[dump]
+prefix = ["dump"]
+body = '''
+// #undef DEBUG
+// #define DEBUG
+// DEBUG {{{
+#include <array>
+#include <deque>
+#include <iostream>
+#include <list>
+#include <queue>
+#include <stack>
+#include <tuple>
+#include <valarray>
+#include <vector>
+template < int n, class... T >
+typename std::enable_if< (n >= sizeof...(T)) >::type __output_tuple(
+  std::ostream &, std::tuple< T... > const &) {}
+template < int n, class... T >
+typename std::enable_if< (n < sizeof...(T)) >::type __output_tuple(
+  std::ostream &os, std::tuple< T... > const &t) {
+  os << (n == 0 ? "" : ", ") << std::get< n >(t);
+  __output_tuple< n + 1 >(os, t);
+}
+template < class... T >
+std::ostream &operator<<(std::ostream &os, std::tuple< T... > const &t) {
+  os << "(";
+  __output_tuple< 0 >(os, t);
+  os << ")";
+  return os;
+}
+template < class T, class U >
+std::ostream &operator<<(std::ostream &os, std::pair< T, U > const &p) {
+  os << "(" << p.first << ", " << p.second << ")";
+  return os;
+}
+template < class T >
+std::ostream &operator<<(std::ostream &os, const std::stack< T > &a) {
+  os << "{";
+  for(auto tmp = a; tmp.size(); tmp.pop())
+    os << (a.size() == tmp.size() ? "" : ", ") << tmp.top();
+  os << "}";
+  return os;
+}
+template < class T, class Container, class Compare >
+std::ostream &operator<<(std::ostream &os,
+                         std::priority_queue< T, Container, Compare > a) {
+  os << "{ (top) ";
+  while(a.size()) os << a.top() << (a.size() == 1 ? "" : ", "), a.pop();
+  os << " }";
+  return os;
+}
+template < class T, class Container >
+std::ostream &operator<<(std::ostream &os, std::queue< T, Container > a) {
+  os << "{ ";
+  while(a.size()) os << a.front() << (a.size() == 1 ? "" : ", "), a.pop();
+  os << " }";
+  return os;
+}
+#ifdef DEBUG
+#if !defined(DEBUG_OUT)
+#define DEBUG_OUT std::cerr
+#endif
+#define dump(...)                                                                \
+[&]() {                                                                        \
+  auto __debug_tap = std::make_tuple(__VA_ARGS__);                             \
+  DEBUG_OUT << "[" << __LINE__ << "] " << #__VA_ARGS__ << " = " << __debug_tap \
+    << std::endl;                                                      \
+}()
+template < class T >
+inline void dump2D(T &d, size_t sizey, size_t sizex) {
+  for(size_t i = 0; i < sizey; i++) {
+    DEBUG_OUT << "\t";
+    for(size_t j = 0; j < sizex; j++)
+      DEBUG_OUT << d[i][j] << (j + 1 == sizex ? "" : "\t");
+    DEBUG_OUT << std::endl;
+  }
+}
+template < class T >
+inline void dump1D(T &d, size_t sizey) {
+  for(size_t i = 0; i < sizey; i++) {
+    DEBUG_OUT << d[i] << (i + 1 == sizey ? "" : " ");
+  }
+  DEBUG_OUT << std::endl;
+}
+template <
+class T, class = typename std::iterator_traits< decltype(begin(T())) >::value_type,
+class = typename std::enable_if< !std::is_same< T, std::string >::value >::type >
+std::ostream &operator<<(std::ostream &os, const T &a) {
+  os << "{";
+  for(auto ite = begin(a); ite != end(a); ++ite)
+    os << (ite == begin(a) ? "" : ", ") << *ite;
+  os << "}";
+  return os;
+}
+#else
+#define dump(...) ((void) 42)
+#define dump2D(...) ((void) 42)
+#define dump1D(...) ((void) 42)
+template <
+class T, class = typename std::iterator_traits< decltype(begin(T())) >::value_type,
+class = typename std::enable_if< !std::is_same< T, std::string >::value >::type >
+std::ostream &operator<<(std::ostream &os, const T &a) {
+  for(auto ite = begin(a); ite != end(a); ++ite)
+    os << (ite == begin(a) ? "" : " ") << *ite;
+  return os;
+}
+#endif
+// }}}
+'''
+
+[includes]
+prefix = ["includes"]
+body = '''
+// includes {{{
+#include<iostream>
+#include<iomanip>
+#include<algorithm>
+#include<vector>
+#include<stack>
+#include<queue>
+#include<map>
+#include<set>
+#include<tuple>
+#include<cmath>
+#include<random>
+#include<cassert>
+#include<bitset>
+#include<cstdlib>
+// #include<deque>
+// #include<multiset>
+// #include<cstring>
+// #include<bits/stdc++.h>
+// }}}
+'''
+
+[temp]
+prefix = ["temp"]
+body = '''
+// includes {{{
+#include<iostream>
+#include<iomanip>
+#include<algorithm>
+#include<vector>
+#include<stack>
+#include<queue>
+#include<map>
+#include<set>
+#include<tuple>
+#include<cmath>
+#include<random>
+#include<cassert>
+#include<bitset>
+#include<cstdlib>
+// #include<deque>
+// #include<multiset>
+// #include<cstring>
+// #include<bits/stdc++.h>
+// }}}
+using namespace std;
+using ll = long long;
+
+int main() {
+  std::ios::sync_with_stdio(false), std::cin.tie(0);
+  return 0;
+}
+'''
+
+[temptree]
+prefix = ["temptree"]
+body = '''
+// includes {{{
+#include<iostream>
+#include<iomanip>
+#include<algorithm>
+#include<vector>
+#include<stack>
+#include<queue>
+#include<map>
+#include<set>
+#include<tuple>
+#include<cmath>
+#include<random>
+#include<cassert>
+#include<bitset>
+#include<cstdlib>
+// #include<deque>
+// #include<multiset>
+// #include<cstring>
+// #include<bits/stdc++.h>
+// }}}
+using namespace std;
+using ll = long long;
+
+const int N = 1e5${0};
+std::vector<std::vector<int>> g;
+int n;
+int main() {
+  std::ios::sync_with_stdio(false), std::cin.tie(0);
+  cin >> n;
+  g.resize(n);
+  for(int i = 0; i < n - 1; i++) {
+    int a, b; std::cin >> a >> b;
+    a--; b--;
+    g[a].emplace_back(b);
+    g[b].emplace_back(a);
+  }
+  return 0;
+}
+'''
+
+[tempgraph] 
+prefix = ["tempgraph"]
+body = '''
+// includes {{{
+#include<iostream>
+#include<iomanip>
+#include<algorithm>
+#include<vector>
+#include<stack>
+#include<queue>
+#include<map>
+#include<set>
+#include<tuple>
+#include<cmath>
+#include<random>
+#include<cassert>
+// #include<deque>
+// #include<multiset>
+// #include<bitset>
+// #include<cstring>
+// #include<bits/stdc++.h>
+// }}}
+using namespace std;
+using ll = long long;
+
+const int N = 1e5${0};
+std::vector<std::vector<int>> g;
+int n, m;
+int main() {
+  std::ios::sync_with_stdio(false), std::cin.tie(0);
+  cin >> n >> m;
+  g.resize(n);
+  for(int i = 0; i < m; i++) {
+    int a, b; std::cin >> a >> b;
+    a--; b--;
+    g[a].emplace_back(b);
+    g[b].emplace_back(a);
+  }
+  return 0;
+}
+'''
+
+[yes]
+prefix = ["yes"]
+body = '''
+#define POS(x) cout<<((x)?"POSSIBLE":"IMPOSSIBLE")<<endl;
+#define Pos(x) cout<<((x)?"Possible":"Impossible")<<endl;
+#define YES(x) cout<<((x)?"YES":"NO")<<endl;
+#define Yes(x) cout<<((x)?"Yes":"No")<<endl;
+#define yes(x) cout<<((x)?"yes":"no")<<endl;
+${0}
+'''
+
+[smax]
+prefix = ["smax"]
+body = '''
+template <class T, class U> inline void smax(T &a, U b) { a = a > b ? a : b; }
+template <class T, class U> inline void smin(T &a, U b) { a = a < b ? a : b; }
+${0}
+'''
+
+[neighbor4]
+prefix = ["neighbor4"]
+body = '''
+int dx[] = {1, 0, -1, 0};
+int dy[] = {0, 1, 0, -1};
+${0}
+'''
+
+[neighbor8]
+prefix = ["neighbor8"]
+body = '''
+int dx[] = {1, 0, 1, 1, -1, 0, -1, -1};
+int dy[] = {0, 1, 1, -1, 0, -1, -1, 1};
+${0}
+'''
+
+[time_stack]
+prefix = ["time_stack"]
+body = '''
+// time stack {{{
+#include <stack>
+stack< clock_t > __time_stack;
+inline void push_time() { __time_stack.push(clock()); }
+inline double pop_time() {
+  clock_t last = clock();
+  clock_t begin = __time_stack.top();
+  __time_stack.pop();
+  return double(last - begin) / CLOCKS_PER_SEC;
+}
+// }}}
+${0}
+'''
+
+[time]
+prefix = ["time"]
+body = '''
+// you must write return 0; !!
+// time measuring {{{
+#ifdef DEBUG
+#ifdef USE_COUT
+#define main __main(); int main() { clock_t beg = clock(); __main(); clock_t end = clock(); cout << "time: " << double(end - beg) / CLOCKS_PER_SEC << "s" << endl; } int __main
+#else
+#define main __main(); int main() { clock_t beg = clock(); __main(); clock_t end = clock(); cerr << "time: " << double(end - beg) / CLOCKS_PER_SEC << "s" << endl; } int __main
+#endif
+#endif
+// }}}
+${0}
+'''
+
+[safeout]
+prefix = ["safeout"]
+body = '''
+// safe output arg1 / arg2
+// never forget to use fixed
+/// safeout {{{ ///
+void safeout(long long sum, long long m) {
+  using ld = long double;
+  long long f = sum / m;
+  ld s = ld(sum % m) / (ld) m;
+  if(f >= 10) {
+    s += sum % 10;
+    cout << f/10 << s << endl;
+  } else {
+    cout << (ld) sum / (ld) m << endl;
+  }
+}
+/// }}} ///
+${0}
+'''
+
+[rep]
+prefix = ["rep"]
+body = '''
+#define rep(i, a, b) for(ll i = (ll) (a); i < (ll) (b); i++)
+#define repi(i, a, b) for(ll i = (ll) (a); i <= (ll) (b); i++)
+#define rrep(i, a, b) for(ll i = (ll) (b) - 1; i >= (ll) (a); i--)
+#define rrepi(i, a, b) for(ll i = (ll) (b); i >= (ll) (a); i--)
+${0}
+'''

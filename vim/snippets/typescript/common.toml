@@ -1,0 +1,79 @@
+[node-debug]
+prefix = ["node-debug", "file-debug", "dump-node", "node-dump"]
+body = '''
+import * as fs from "fs";
+import * as util from "util";
+import * as path from "path";
+import { homedir } from "os";
+
+const debugLogFile = path.resolve(homedir(), "node-debug.log");
+
+export const dump = (obj) => {
+  fs.appendFileSync(
+    debugLogFile,
+    `"\x60"`${new Date().toLocaleTimeString()}: ${util.inspect(obj)}\n`"\x60"`,
+  );
+};
+'''
+
+[node_debug_req]
+prefix = [
+  "node_debug_req",
+  "debug_node_req",
+  "file_debug_req",
+  "node_debug_cjs",
+]
+body = '''
+export const dump = (obj: unknown) => {
+  const fs = require('fs');
+  const util = require('util');
+  const path = require('path');
+  const { homedir } = require('os');
+  const debugLogFile = path.resolve(homedir(), 'node-debug.log');
+
+  fs.appendFileSync(debugLogFile, \`${new Date().toLocaleTimeString()}: ${util.inspect(obj)}\n\`);
+};
+'''
+
+[processenv]
+prefix = [
+  "processenv",
+  "env-process",
+  "env-process",
+  "declare-processenv",
+]
+body = '''
+declare namespace NodeJS {
+  interface ProcessEnv {
+    readonly NODE_ENV?: 'development' | 'production' | 'test'
+  }
+}
+'''
+
+[import_meta_env]
+prefix = [
+  "import_meta_env",
+  "env_import_meta",
+  "env_meta_import",
+  "declare_import_meta_env",
+]
+body = '''
+declare interface ImportMeta {
+  env: {
+    GITHUB_AUTH_TOKEN: string;
+    NODE_ENV: 'development' | 'production';
+    PORT?: string;
+    PWD: string;
+  };
+}
+'''
+
+[dts_react_patch]
+prefix = ["dts_react_patch"]
+body = '''
+declare namespace JSX {
+  interface IntrinsicElements {
+    rb: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+  }
+}
+'''

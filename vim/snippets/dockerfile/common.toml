@@ -1,0 +1,21 @@
+[apt-clean]
+prefix = [
+  "apt-clean",
+  "clean-apt",
+]
+body = '''
+  && rm -rf /var/lib/apt/lists
+'''
+
+[hadolint-ignore-strict-version]
+prefix = [
+  "no-version",
+  "version-no",
+  "skip-version",
+  "ignore-strict-version",
+  "hadolint-ignore-strict-version",
+]
+body = '''
+# hadolint ignore=DL3008
+'''
+

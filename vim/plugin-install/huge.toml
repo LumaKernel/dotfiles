@@ -1,48 +1,6 @@
 [[plugins]]
 repo = 'tyru/caw.vim'
 
-# Snippet
-[[plugins]]
-repo = 'Shougo/neosnippet.vim'
-hook_add = '''
-let g:neosnippet#snippets_directory = [
-  \   expand('~/dotfiles/vim/snippets'),
-  \ ]
-  " TODO:
-  " \   expand('~/ghq/github.com/LumaKernel/lib-cpp'),
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-'''
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-# [[plugins]]
-# repo = 'Shougo/deoppet.nvim'
-# if = 'has("nvim")'
-# hook_post_source = '''
-# call deoppet#initialize()
-# call deoppet#custom#option(
-#   \   'snippets',
-#   \   [{'path':expand('~/dotfiles/vim/snippets/')}],
-#   \ )
-# 
-# imap <expr><C-k>
-#   \ deoppet#expandable()
-#   \ ? "\<Plug>(deoppet_expand)"
-#   \ : "\<Plug>(deoppet_jump_backward)"
-# imap <C-b> <Plug>(deoppet_jump_backward)
-# smap <C-k> <Plug>(deoppet_jump_forward)
-# smap <C-b> <Plug>(deoppet_jump_backward)
-# 
-# function! EditSnippet() abort
-#   let snip_path = expand(printf('~/dotfiles/vim/snippets/%s.snip', &l:filetype))
-#   execute 'edit' fnameescape(snip_path)
-# endfunction
-# 
-# command! -bar EditSnippet call EditSnippet()
-# '''
-
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
