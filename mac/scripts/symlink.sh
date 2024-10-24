@@ -9,6 +9,12 @@ sudo ln -sf "$HOME"/dotfiles/mac/.bashrc "$HOME"/.bashrc
 sudo ln -sf "$HOME"/dotfiles/mac/.yabairc "$HOME"/.yabairc
 sudo ln -sf "$HOME"/dotfiles/mac/.skhdrc "$HOME"/.skhdrc
 
+MACSKK_DICT_BASE_DIR="$HOME"/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Dictionaries
+mkdir -p "$MACSKK_DICT_BASE_DIR"
+for f in $(find "$HOME"/dotfiles/skk-dict -type f); do
+  cp "$HOME"/dotfiles/skk-dict/"$(basename "$f")" "$MACSKK_DICT_BASE_DIR"
+done
+
 is_symlink_mac() {
   is_symlink_TYPE="$(stat -f %Sp "$1" | cut -b 1)"
   test "$is_symlink_TYPE" = l
