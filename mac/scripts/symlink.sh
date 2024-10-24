@@ -9,10 +9,14 @@ sudo ln -sf "$HOME"/dotfiles/mac/.bashrc "$HOME"/.bashrc
 sudo ln -sf "$HOME"/dotfiles/mac/.yabairc "$HOME"/.yabairc
 sudo ln -sf "$HOME"/dotfiles/mac/.skhdrc "$HOME"/.skhdrc
 
+mkdir -p "$HOME"/.config/alacritty
+sudo ln -sf "$HOME"/dotfiles/alacritty/alacritty.toml "$HOME"/.config/alacritty/alacritty.toml
+
 MACSKK_DICT_BASE_DIR="$HOME"/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Dictionaries
 mkdir -p "$MACSKK_DICT_BASE_DIR"
 for f in $(find "$HOME"/dotfiles/skk-dict -type f); do
-  cp "$HOME"/dotfiles/skk-dict/"$(basename "$f")" "$MACSKK_DICT_BASE_DIR"
+  cp "$f" "$MACSKK_DICT_BASE_DIR"
+  # sudo ln -sf "$f" "$MACSKK_DICT_BASE_DIR"/"$(basename "$f")"
 done
 
 is_symlink_mac() {
