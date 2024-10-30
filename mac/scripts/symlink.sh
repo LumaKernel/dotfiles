@@ -2,6 +2,8 @@
 
 set -euxo pipefail
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 source "${HOME}/dotfiles/common/symlink.sh"
 
 sudo ln -sf "$HOME"/dotfiles/mac/.bash_profile "$HOME"/.bash_profile
@@ -12,12 +14,7 @@ sudo ln -sf "$HOME"/dotfiles/mac/.skhdrc "$HOME"/.skhdrc
 mkdir -p "$HOME"/.config/alacritty
 sudo ln -sf "$HOME"/dotfiles/alacritty/alacritty.toml "$HOME"/.config/alacritty/alacritty.toml
 
-MACSKK_DICT_BASE_DIR="$HOME"/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Dictionaries
-mkdir -p "$MACSKK_DICT_BASE_DIR"
-for f in $(find "$HOME"/dotfiles/skk-dict -type f); do
-  cp "$f" "$MACSKK_DICT_BASE_DIR"
-  # sudo ln -sf "$f" "$MACSKK_DICT_BASE_DIR"/"$(basename "$f")"
-done
+"$SCRIPT_DIR"/update_skk_jisyo.sh
 
 is_symlink_mac() {
   is_symlink_TYPE="$(stat -f %Sp "$1" | cut -b 1)"
