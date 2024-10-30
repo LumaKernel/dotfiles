@@ -117,14 +117,14 @@
     //    "rule": "@typescript-eslint/prefer-readonly-parameter-types",
     //    "severity": "off"
     // },
-    {
-       "rule": "max-lines-per-function",
-       "severity": "off"
-    },
-    {
-       "rule": "max-statements",
-       "severity": "off"
-    },
+    // {
+    //    "rule": "max-lines-per-function",
+    //    "severity": "off"
+    // },
+    // {
+    //    "rule": "max-statements",
+    //    "severity": "off"
+    // },
   ],
   "emmet.priority": 30,
   "deno.codeLens.references": false,
