@@ -1,7 +1,7 @@
 [script_dir]
 prefix = 'script_dir'
 body = '''
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPT_DIR=\$( cd -- "\$( dirname -- "\${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 '''
 
 [wsl_notify]
@@ -11,5 +11,5 @@ prefix = [
   'notify_wsl',
 ]
 body = '''
-powershell.exe -command New-BurntToastNotification -Text $0
+powershell.exe -command New-BurntToastNotification -Text \$0
 '''
