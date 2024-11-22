@@ -80,6 +80,9 @@ let g:enable_spelunker_vim = 1
 let g:spelunker_disable_auto_group = 1
 
 function! SpelunkerInit(...) abort
+  if !empty(getcmdwintype())
+    return
+  endif
   if line('$') < 2000
     call spelunker#check()
   endif

@@ -1,0 +1,30 @@
+[[plugins]]
+repo = 'Shougo/ddc-source-lsp'
+depends = ['ddc.vim']
+
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+depends = ['ddc-source-lsp']
+lua_add = '''
+local capabilities = require("ddc_source_lsp").make_client_capabilities()
+local lspconfig = require("lspconfig")
+lspconfig.denols.setup({
+  capabilities = capabilities,
+})
+lspconfig.rust_analyzer.setup {
+  capabilities = capabilities,
+  settings = {
+    ['rust-analyzer'] = {
+      procMacro = { enable = true },
+      experimental = { procAttrMacros = true },
+      cargo = { loadOutDirsFromCheck = true },
+      check = {
+        extraArgs = { "--target-dir=target/rust-analyzer" },
+      },
+      checkOnSave = {
+        command = "clippy",
+      },
+    },
+  },
+}
+'''

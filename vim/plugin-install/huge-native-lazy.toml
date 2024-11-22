@@ -316,8 +316,10 @@ function! RipgrepFzf(query, fullscreen) abort
     \   '--preview-window', 'hidden:up:noborder',
     \   '--phony',
     \   '--query', a:query,
-    \   '--bind', 'change:reload:'.reload_command
+    \   '--bind', 'ctrl-/:toggle-preview',
+    \   '--bind', 'change:reload:' .. reload_command,
     \ ]}
+    " \   '--bind', 'ctrl-/:change-preview-window(hidden|)',
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 

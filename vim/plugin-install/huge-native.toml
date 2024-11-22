@@ -180,6 +180,14 @@ function! s:luma_copilot_suggest() abort
   endif
 endfunction
 
+function! s:luma_copilot_accept_line() abort
+  if s:copilot_is_suggesting()
+    return copilot#AcceptLine()
+  else
+    return "\<C-l>"
+  endif
+endfunction
+
 function! s:luma_copilot_accept() abort
   if s:copilot_is_suggesting()
     return copilot#Accept()
@@ -190,10 +198,12 @@ endfunction
 
 imap <script><silent><nowait><expr> <Plug>(luma-copilot-suggest) <SID>luma_copilot_suggest()
 imap <script><silent><nowait><expr> <Plug>(luma-copilot-accept) <SID>luma_copilot_accept()
+imap <script><silent><nowait><expr> <Plug>(luma-copilot-accept-line) <SID>luma_copilot_accept_line()
 imap <C-f> <Plug>(luma-copilot-suggest)
 imap <M-]> <Plug>(copilot-next)
 imap <M-[> <Plug>(copilot-previous)
 imap <C-i> <Plug>(luma-copilot-accept)
+imap <C-l> <Plug>(luma-copilot-accept-line)
 
 augroup my-copilot
   autocmd!

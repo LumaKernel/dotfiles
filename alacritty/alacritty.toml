@@ -1,3 +1,9 @@
 [window]
 option_as_alt = "Both"
 decorations = "None"
+
+# https://github.com/toml-lang/toml/issues/657
+[[keyboard.bindings]]
+key = "Slash"
+mods = "Control"
+chars = "\u001f"

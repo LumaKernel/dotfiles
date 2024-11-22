@@ -21,7 +21,7 @@ let g:dein#install_check_diff = v:true
 
 filetype plugin indent off
 if exists('g:vscode')
-  let g:mode = 'huge'
+  let g:huge_mode = 'no'
   let g:complete_mode = 'none'
   let g:lsp_mode = 'none'
   let g:ts_lsp_mode = 'none'
@@ -31,11 +31,12 @@ if exists('g:vscode')
 else
   let g:is_native = v:true
   let g:dein_ns = printf(
-    \ '%s--%s--%s--%s',
-    \ g:mode,
+    \ 'huge_mode=%s--complete=%s--lsp=%s--ts_lsp=%s--hl=%s',
+    \ g:huge_mode,
     \ g:complete_mode,
     \ g:lsp_mode,
-    \ g:ts_lsp_mode
+    \ g:ts_lsp_mode,
+    \ g:hl_mode,
   \ )
 endif
 let g:dein_dir = has('nvim') ? expand(printf('~/.cache/dein/nvim-%s', g:dein_ns)) : expand(printf('~/.cache/dein/vim-%s', g:dein_ns))
@@ -59,7 +60,7 @@ if dein#load_state(g:dein_dir)
       call dein#load_toml(s:dir .. '/plugin-install/common-native.toml')
       call dein#load_toml(s:dir .. '/plugin-install/common-native-lazy.toml', {'lazy': 1})
     endif
-    if g:mode is# 'huge'
+    if g:huge_mode is# 'yes'
       call dein#load_toml(s:dir .. '/plugin-install/huge.toml')
       call dein#load_toml(s:dir .. '/plugin-install/huge-lazy.toml', {'lazy': 1})
       if g:is_native
@@ -73,10 +74,13 @@ if dein#load_state(g:dein_dir)
     if g:complete_mode is# 'coc' && g:lsp_mode is# 'coc'
       " call dein#load_toml(s:dir .. '/plugin-install/vim-lsp.toml')
       call dein#load_toml(s:dir .. '/plugin-install/coc.toml')
-      call dein#load_toml(s:dir .. '/plugin-install/ddc.toml', {'lazy': 1})
+      " call dein#load_toml(s:dir .. '/plugin-install/ddc.toml', {'lazy': 1})
     endif
     if g:complete_mode is# 'metals'
       call dein#load_toml(s:dir .. '/plugin-install/metals.toml')
+    endif
+    if g:lsp_mode is# 'nvim-lsp'
+      call dein#load_toml(s:dir .. '/plugin-install/nvim-lsp.toml')
     endif
     if g:lsp_mode is# 'vim-lsp'
       call dein#load_toml(s:dir .. '/plugin-install/vim-lsp.toml')
