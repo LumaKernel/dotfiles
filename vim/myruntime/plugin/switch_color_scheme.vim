@@ -1,6 +1,6 @@
 " color scheme 設定永続化
 
-let s:save_file = expand('~/.vim-color-schme')
+let s:save_file = get(g:, 'switch_color_scheme_save_file', expand('~/.config/nvim/vim-color-schme.txt'))
 
 function! s:load_color_scheme() abort
   let name = get(g:, 'switch_color_scheme_default', 0)
@@ -49,3 +49,9 @@ endfunction
 
 command! -bar -nargs=* SwitchColorScheme call <SID>switch_color_scheme(<q-args>)
 command! -bar LoadColorScheme call <SID>load_color_scheme()
+
+if has('vim_starting')
+  autocmd VimEnter * ++once ++nested LoadColorScheme
+else
+  call s:load_color_scheme()
+endif

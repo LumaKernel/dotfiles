@@ -1,8 +1,6 @@
 # ddc.vim
 [[plugins]]
-if = 0
 repo = 'Shougo/ddc.vim'
-merged = 0
 
 # repo = '~/ghq/github.com/Shougo/ddc.vim'
 # merged = 0
@@ -13,491 +11,548 @@ on_source = 'denops.vim'
 hook_add = '''
 set completeopt=menuone,noinsert,noselect
 '''
-hook_post_source = '''
-call ddc#custom#alias('source', 'coc-ls', 'coc-patched')
-call ddc#custom#alias('source', 'win32yank.exe', 'run')
-call ddc#custom#alias('source', 'recent', 'registers-words')
-call ddc#custom#alias('source', 'search', 'registers-words')
-call ddc#custom#alias('source', 'file-assets-public', 'file')
-call ddc#custom#alias('source', 'file-buffer', 'file')
-call ddc#custom#alias('source', 'node-modules', 'file')
-call ddc#custom#alias('source', 'pick', 'eval')
+lua_post_source = '''
+local alias = vim.fn['ddc#custom#alias']
+local patch_global = vim.fn['ddc#custom#patch_global']
+local patch_filetype = vim.fn['ddc#custom#patch_filetype']
 
-" all sources
-" let g:ddc_sources = [
-"       \ 'tabnine',
-"       \ 'coc-ls',
-"       \ 'treesitter',
-"       \ 'recent',
-"       \ 'search',
-"       \ 'tmux',
-"       \ 'around',
-"       \ 'buffer',
-"       \ 'file-buffer',
-"       \ 'file',
-"       \ 'neosnippet',
-"       \ 'win32yank.exe',
-"       \ 'nextword',
-"       \ 'pick',
-"     \ ]
+patch_global('ui', 'pum')
+alias('source', 'win32yank.exe', 'run')
+alias('source', 'recent', 'registers-words')
+alias('source', 'search', 'registers-words')
+alias('source', 'file-assets-public', 'file')
+alias('source', 'file-buffer', 'file')
+alias('source', 'node-modules', 'file')
+alias('source', 'pick', 'eval')
+alias('source', 'nvim-lsp', 'lsp')
 
-let g:ddc_sources = [
-      \ 'node-modules',
-      \ 'file-assets-public',
-      \ 'coc-ls',
-      \ 'tmux',
-      \ 'around',
-      \ 'file-buffer',
-      \ 'file',
-    \ ]
+-- local sources = {
+--   'tabnine',
+--   'coc-ls',
+--   'treesitter',
+--   'recent',
+--   'search',
+--   'tmux',
+--   'around',
+--   'buffer',
+--   'file-buffer',
+--   'file',
+--   'win32yank.exe',
+--   'nextword',
+--   'pick',
+-- }
 
-if !executable('win32yank.exe')
-  call filter(g:ddc_sources, 'v:val isnot# "win32yank.exe"')
-endif
-if !has('nvim')
-  call filter(g:ddc_sources, 'v:val isnot# "treesitter"')
-endif
-if g:lsp_mode isnot# 'coc'
-  call filter(g:ddc_sources, 'v:val !~# "coc-.*"')
-endif
+local sources = {
+  'nvim-lsp',
+  'denippet',
+  'node-modules',
+  'file-assets-public',
+  'tmux',
+  'around',
+  'file-buffer',
+  'file',
+}
 
-" call ddc#custom#patch_global('autoCompleteDelay', 100)
-call ddc#custom#patch_global('autoCompleteEvents', ['TextChangedI', 'TextChangedP'])
-call ddc#custom#patch_global('sources', g:ddc_sources)
+if vim.fn.executable('win32yank.exe') == 1 then
+  sources = vim.tbl_filter(function(x)
+    return x ~= 'win32yank.exe'
+  end, sources)
+end
 
-call ddc#custom#patch_global('sourceOptions', {
-    \ '_': {
-    \   'matchers': ['matcher_fuzzy'],
-    \   'sorters': ['sorter_rank'],
-    \   'ignoreCase': v:true,
-    \ }})
+if vim.g.lsp_mode ~= 'coc' then
+  sources = vim.tbl_filter(function(x)
+    return not string.match(x, '^coc-.*')
+  end, sources)
+end
 
-let name = 'around'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'A',
-    \     'matchers': [],
-    \     'minAutoCompleteLength': 4,
-    \     'maxCandidates': 5,
-    \     'dup': v:true,
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'maxSize': 500,
-    \   },
-    \ }})
+if vim.g.lsp_mode ~= 'nvim-lsp' then
+  sources = vim.tbl_filter(function(x)
+    return x ~= 'nvim-lsp'
+  end, sources)
+end
 
-let name = 'win32yank.exe'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'CLIP',
-    \     'maxCandidates': 20,
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'cmd': ['win32yank.exe', '-o'],
-    \   },
-    \ }})
+patch_global('autoCompleteEvents', {'TextChangedI', 'TextChangedP'})
+patch_global('sources', sources)
 
-let name = 'recent'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'R',
-    \     'maxCandidates': 20,
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'registers': '/"0123456789',
-    \   },
-    \ }})
+patch_global('sourceOptions', {
+  _ = {
+    matchers = {'matcher_fuzzy'},
+    sorters = {'sorter_rank'},
+    ignoreCase = true,
+  },
+})
 
-let name = 'search'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'S',
-    \     'maxCandidates': 4,
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'registers': '/',
-    \   },
-    \ }})
+local name = 'around'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'A',
+      matchers = {},
+      minAutoCompleteLength = 4,
+      maxItems = 5,
+      dup = true,
+    },
+  },
+  sourceParams = {
+    [name] = {
+      maxSize = 500,
+    },
+  },
+})
 
-let name = 'buffer'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'B',
-    \     'minAutoCompleteLength': 4,
-    \     'maxCandidates': 5,
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'requireSameFiletype': v:false,
-    \   },
-    \ }})
+local name = 'win32yank.exe'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'CLIP',
+      maxItems = 20,
+    },
+  },
+  sourceParams = {
+    [name] = {
+      cmd = {'win32yank.exe', '-o'},
+    },
+  },
+})
 
-let name = 'nextword'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'EN',
-    \     'maxCandidates': 4,
-    \     'isVolatile': v:true,
-    \     'minAutoCompleteLength': 3,
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \   },
-    \ }})
+local name = 'recent'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'R',
+      maxItems = 20,
+    },
+  },
+  sourceParams = {
+    [name] = {
+      registers = '/"0123456789',
+    },
+  },
+})
 
-let name = 'neosnippet'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'SNIP',
-    \     'minAutoCompleteLength': 10000,
-    \     'dup': v:true,
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \   },
-    \ }})
+local name = 'search'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'S',
+      maxItems = 4,
+    },
+  },
+  sourceParams = {
+    [name] = {
+      registers = '/',
+    },
+  },
+})
 
-let name = 'tabnine'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'matchers': [],
-    \     'mark': 'TN',
-    \     'maxCandidates': 5,
-    \     'isVolatile': v:true,
-    \     'minAutoCompleteLength': 2,
-    \     'forceCompletionPattern': '.[^(]',
-    \     'dup': v:true,
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \   },
-    \ }})
+local name = 'buffer'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'B',
+      minAutoCompleteLength = 4,
+      maxItems = 5,
+    },
+  },
+  sourceParams = {
+    [name] = {
+      requireSameFiletype = false,
+    },
+  },
+})
 
-let name = 'tmux'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'TMUX',
-    \     'maxCandidates': 5,
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \   },
-    \ }})
+local name = 'nextword'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'EN',
+      maxItems = 4,
+      isVolatile = true,
+      minAutoCompleteLength = 3,
+    },
+  },
+  sourceParams = {
+    [name] = {},
+  },
+})
 
-let name = 'vim-lsp'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'VIM_LSP',
-    \     'isVolatile': v:true,
-    \     'maxCandidates': 30,
-    \     'forceCompletionPattern': '\{|\.|:|->|''|"|<',
-    \     'dup': v:true,
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \   },
-    \ }})
+local name = 'tabnine'
 
-let name = 'coc-ls'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': '',
-    \     'isVolatile': v:true,
-    \     'maxCandidates': 30,
-    \     'matchers': ['matcher_full_fuzzy'],
-    \     'minAutoCompleteLength': 1,
-    \     'forceCompletionPattern': '\{|\.|:|->|''|"|<',
-    \     'dup': v:true,
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'include': v:null,
-    \     'exclude': ['F', 'A', 'B'],
-    \   },
-    \ }})
-call ddc#custom#patch_filetype(
-    \ ['json'], {
-    \ 'sourceOptions': {
-    \   name: {
-    \     'matchers': [],
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \   },
-    \ }})
+local name = 'tmux'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'TMUX',
+      maxItems = 5,
+    },
+  },
+  sourceParams = {
+    [name] = {},
+  },
+})
 
-let name = 'node-modules'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'NODE',
-    \     'isVolatile': v:true,
-    \     'minAutoCompleteLength': 10000,
-    \     'forceCompletionPattern':
-    \       '(?:'
-    \         . '\bimport|'
-    \         . '\bfrom|'
-    \         . '\brequire\s*\(|'
-    \         . '\bresolve\s*\(|'
-    \         . '\bimport\s*\('
-    \       . ')'
-    \       . '\s*(?:''|"|`)[^''"`]*',
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'cwdMaxCandidates': 0,
-    \     'bufMaxCandidates': 0,
-    \     'followSymlinks': v:true,
-    \     'projMarkers': ['node_modules'],
-    \     'projFromCwdMaxCandidates': [],
-    \     'projFromBufMaxCandidates': [],
-    \     'beforeResolve': 'node_modules',
-    \     'displayFile': '',
-    \     'displayDir': '',
-    \     'displaySym': '',
-    \     'displaySymFile': '',
-    \     'displaySymDir': '',
-    \     'displayCwd': '',
-    \     'displayBuf': '',
-    \   },
-    \ }})
-call ddc#custom#patch_filetype(
-    \ [
-    \   'javascript',
-    \   'typescript',
-    \   'javascriptreact',
-    \   'typescriptreact',
-    \   'tsx',
-    \ ], {
-    \ 'sourceOptions': {
-    \   name: {
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'projFromBufMaxCandidates': [1000, 1000, 1000],
-    \   },
-    \ }})
+local name = 'vim-lsp'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'VIM_LSP',
+      isVolatile = true,
+      maxItems = 30,
+      forceCompletionPattern = '\\{|\\.|:|->|\'|"|<',
+      dup = true,
+    },
+  },
+  sourceParams = {
+    [name] = {},
+  },
+})
 
-let name = 'file-assets-public'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'PUBLIC',
-    \     'isVolatile': v:true,
-    \     'minAutoCompleteLength': 10000,
-    \     'forceCompletionPattern':
-    \       '(?:'
-    \         . '\b(?:href|url|path|uri|src)=(?:"|'')'
-    \       . ')'
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'cwdMaxCandidates': 0,
-    \     'bufMaxCandidates': 0,
-    \     'followSymlinks': v:true,
-    \     'projMarkers': ['.next'],
-    \     'projFromCwdMaxCandidates': [],
-    \     'projFromBufMaxCandidates': [],
-    \     'beforeResolve': 'public',
-    \     'displayFile': '',
-    \     'displayDir': '',
-    \     'displaySym': '',
-    \     'displaySymFile': '',
-    \     'displaySymDir': '',
-    \     'displayCwd': '',
-    \     'displayBuf': '',
-    \   },
-    \ }})
-call ddc#custom#patch_filetype(
-    \ [
-    \   'javascript',
-    \   'typescript',
-    \   'javascriptreact',
-    \   'typescriptreact',
-    \   'tsx',
-    \ ], {
-    \ 'sourceOptions': {
-    \   name: {
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'projFromBufMaxCandidates': [1000, 1000, 1000],
-    \   },
-    \ }})
+local name = 'coc-ls'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = '',
+      isVolatile = true,
+      maxItems = 30,
+      matchers = {'matcher_full_fuzzy'},
+      minAutoCompleteLength = 1,
+      forceCompletionPattern = '\\{|\\.|:|->|\'|"|<',
+      dup = true,
+    },
+  },
+  sourceParams = {
+    [name] = {
+      include = nil,
+      exclude = {'F', 'A', 'B'},
+    },
+  },
+})
 
-let name = 'file'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'F',
-    \     'isVolatile': v:true,
-    \     'forceCompletionPattern': '\S/\S*',
-    \     'dup': v:true,
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'bufMaxCandidates': 0,
-    \     'followSymlinks': v:true,
-    \     'projMarkers': ['.git', 'package.json'],
-    \     'projFromCwdMaxCandidates': [1000],
-    \     'projFromBufMaxCandidates': [1000, 1000],
-    \     'displayFile': '',
-    \     'displayDir': '',
-    \     'displaySym': '',
-    \     'displaySymFile': '',
-    \     'displaySymDir': '',
-    \   },
-    \ }})
-call ddc#custom#patch_filetype(
-    \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
-    \ 'sourceOptions': {
-    \   name: {
-    \     'forceCompletionPattern': '\S\\\S*',
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'mode': 'win32',
-    \   },
-    \ }})
+patch_filetype({ 'json' }, {
+  sourceOptions = {
+    name = {
+      matchers = {},
+    },
+  },
+  sourceParams = {
+    name = {},
+  },
+})
 
-let name = 'file-buffer'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'FB',
-    \     'isVolatile': v:true,
-    \     'forceCompletionPattern': '\S/\S*',
-    \     'dup': v:true,
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'cwdMaxCandidates': 0,
-    \     'followSymlinks': v:true,
-    \     'projFromCwdMaxCandidates': [],
-    \     'projFromBufMaxCandidates': [],
-    \     'displayFile': '',
-    \     'displayDir': '',
-    \     'displaySym': '',
-    \     'displaySymFile': '',
-    \     'displaySymDir': '',
-    \   },
-    \ }})
-call ddc#custom#patch_filetype(
-    \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
-    \ 'sourceOptions': {
-    \   name: {
-    \     'forceCompletionPattern': '\S\\\S*',
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'mode': 'win32',
-    \   },
-    \ }})
+local name = 'node-modules'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'NODE',
+      isVolatile = true,
+      minAutoCompleteLength = 10000,
+      forceCompletionPattern =
+        '(?:'
+          .. '\\bimport|'
+          .. '\\bfrom|'
+          .. '\\brequire\\s*\\(|'
+          .. '\\bresolve\\s*\\(|'
+          .. '\\bimport\\s*\\('
+        .. ')'
+        .. '\\s*(?:\'|"|`)[^\'"`]*',
+    },
+  },
+  sourceParams = {
+    [name] = {
+      cwdMaxCandidates = 0,
+      bufMaxCandidates = 0,
+      followSymlinks = true,
+      projMarkers = {'node_modules'},
+      projFromCwdMaxCandidates = {},
+      projFromBufMaxCandidates = {},
+      beforeResolve = 'node_modules',
+      displayFile = '',
+      displayDir = '',
+      displaySym = '',
+      displaySymFile = '',
+      displaySymDir = '',
+      displayCwd = '',
+      displayBuf = '',
+    },
+  },
+})
+patch_filetype(
+  {
+    'javascript',
+    'typescript',
+    'javascriptreact',
+    'typescriptreact',
+    'tsx',
+  }, {
+    sourceOptions = {
+      [name] = {},
+    },
+    sourceParams = {
+      [name] = {
+        projFromBufMaxCandidates = {1000, 1000, 1000},
+      },
+    },
+  }
+)
 
-let name = 'pick'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'P',
-    \     'isVolatile': v:true,
-    \     'minAutoCompleteLength': 10000,
-    \     'matchers': ['matcher_fuzzy'],
-    \     'sorters': [],
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \     'expr': 'g:ddc_pick_items',
-    \   },
-    \ }})
-
-let name = 'treesitter'
-call ddc#custom#patch_global({
-    \ 'sourceOptions': {
-    \   name: {
-    \     'mark': 'TS',
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   name: {
-    \   },
-    \ }})
-
-inoremap <silent><expr> <C-n>
-    \ pumvisible() ? '<C-n>' : ddc#manual_complete()
+local name = 'file-assets-public'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'PUBLIC',
+      isVolatile = true,
+      minAutoCompleteLength = 10000,
+      forceCompletionPattern =
+        '(?:'
+          .. '\b(?:href|url|path|uri|src)=(?:"|\'|`)'
+        .. ')',
+    },
+  },
+  sourceParams = {
+    [name] = {
+      cwdMaxCandidates = 0,
+      bufMaxCandidates = 0,
+      followSymlinks = true,
+      projMarkers = {'.next'},
+      projFromCwdMaxCandidates = {},
+      projFromBufMaxCandidates = {},
+      beforeResolve = 'public',
+      displayFile = '',
+      displayDir = '',
+      displaySym = '',
+      displaySymFile = '',
+      displaySymDir = '',
+      displayCwd = '',
+      displayBuf = '',
+    },
+  },
+})
+patch_filetype(
+  {
+    'javascript',
+    'typescript',
+    'javascriptreact',
+    'typescriptreact',
+    'tsx',
+  }, {
+    sourceOptions = {
+      [name] = {},
+    },
+    sourceParams = {
+      [name] = {
+        projFromBufMaxCandidates = {1000, 1000, 1000},
+      },
+    },
+  }
+)
 
 
-let g:ddc_pick_items = []
+local name = 'file'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'F',
+      isVolatile = true,
+      forceCompletionPattern = '\\S/\\S*',
+      dup = true,
+    },
+  },
+  sourceParams = {
+    [name] = {
+      bufMaxCandidates = 0,
+      followSymlinks = true,
+      projMarkers = {'.git', 'package.json'},
+      projFromCwdMaxCandidates = {1000},
+      projFromBufMaxCandidates = {1000, 1000},
+      displayFile = '',
+      displayDir = '',
+      displaySym = '',
+      displaySymFile = '',
+      displaySymDir = '',
+    },
+  },
+})
+patch_filetype(
+  { 'ps1', 'dosbatch', 'autohotkey', 'registry' }, {
+    sourceOptions = {
+      [name] = {
+        forceCompletionPattern = '\\S\\\\\\S*',
+      },
+    },
+    sourceParams = {
+      [name] = {
+        mode = 'win32',
+      },
+    },
+  }
+)
 
-function! s:pick(word)
-  let g:ddc_pick_items = extend([{ 'word': a:word }], g:ddc_pick_items)
-  if len(g:ddc_pick_items) > 100
-    let g:ddc_pick_items = g:ddc_pick_items[:-2]
-  endif
-endfunction
+local name = 'file-buffer'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'FB',
+      isVolatile = true,
+      forceCompletionPattern = '\\S/\\S*',
+      dup = true,
+    },
+  },
+  sourceParams = {
+    [name] = {
+      cwdMaxCandidates = 0,
+      followSymlinks = true,
+      projFromCwdMaxCandidates = {},
+      projFromBufMaxCandidates = {},
+      displayFile = '',
+      displayDir = '',
+      displaySym = '',
+      displaySymFile = '',
+      displaySymDir = '',
+    },
+  },
+})
+patch_filetype(
+  { 'ps1', 'dosbatch', 'autohotkey', 'registry' }, {
+    sourceOptions = {
+      [name] = {
+        forceCompletionPattern = '\\S\\\\\\S*',
+      },
+    },
+    sourceParams = {
+      [name] = {
+        mode = 'win32',
+      },
+    },
+  }
+)
 
-nmap <silent> * :<c-u>call <sid>pick(expand('<cword>'))<cr><Plug>(asterisk-z*)
+local name = 'pick'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'P',
+      isVolatile = true,
+      minAutoCompleteLength = 10000,
+      matchers = {'matcher_fuzzy'},
+      sorters = {},
+    },
+  },
+  sourceParams = {
+    [name] = {
+      expr = 'g:ddc_pick_items',
+    },
+  },
+})
 
-inoremap <silent><expr> <C-s><C-n> ddc#manual_complete()
-inoremap <silent><expr> <C-s><C-f> ddc#manual_complete(['file-buffer', 'file'])
-inoremap <silent><expr> <C-s><C-g> ddc#manual_complete(['file-buffer'])
-inoremap <silent><expr> <C-s><C-l> ddc#manual_complete(['coc-ls'])
-inoremap <silent><expr> <C-x><C-l> ddc#manual_complete(['coc-ls'])
-inoremap <silent><expr> <C-s><C-s> ddc#manual_complete(['neosnippet'])
-inoremap <silent><expr> <C-x><C-s> ddc#manual_complete(['neosnippet'])
-inoremap <silent><expr> <C-s><C-p> ddc#manual_complete(['pick'])
-inoremap <silent><expr> <C-x><C-p> ddc#manual_complete(['pick'])
+local name = 'treesitter'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'TS',
+    },
+  },
+  sourceParams = {
+    [name] = {},
+  },
+})
 
-" call timer_start(1000, {->execute('call ddc#enable()')})
-call ddc#enable()
+local name = 'denippet'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = '',
+    },
+  },
+  sourceParams = {
+    [name] = {},
+  },
+})
 
-" Debug
-" call ddc#custom#patch_global('sources', ['around'])
-" call ddc#custom#patch_global('sources', ['file-buffer', 'file'])
-" call ddc#custom#patch_global('sources', ['node-modules'])
-" call ddc#custom#patch_global('sources', ['coc-ls'])
-" call ddc#custom#patch_global('sources', ['registers-words'])
-" call ddc#custom#patch_global('sources', ['tabnine'])
-" call ddc#custom#patch_global('sources', ['win32yank.exe'])
-" call ddc#custom#patch_global('sources', ['vim-lsp'])
-" call ddc#custom#patch_global('sources', ['pick'])
-" inoremap <silent><expr> <C-s><C-d> ddc#manual_complete(['vim-lsp'])
+local name = 'nvim-lsp'
+patch_global({
+  sourceOptions = {
+    [name] = {
+      mark = 'LS',
+      forceCompletionPattern = '\\.\\w*|:\\w*|->\\w*',
+    },
+  },
+  sourceParams = {
+    [name] = {
+      lspEngine = 'nvim-lsp',
+      enableResolveItem = true,
+      enableAdditionalTextEdit = true,
+    },
+  },
+})
+
+vim.keymap.set('i', '<C-n>', function()
+  if vim.fn['pum#visible']() then
+    vim.fn['pum#map#insert_relative'](1)
+  else
+    vim.fn['ddc#map#manual_complete']()
+  end
+end, { silent = true })
+
+vim.keymap.set('i', '<C-p>', function()
+  if vim.fn['pum#visible']() then
+    vim.fn['pum#map#insert_relative'](-1)
+  else
+    vim.fn['ddc#map#manual_complete']()
+  end
+end, { silent = true })
+
+vim.keymap.set('i', '<C-y>', 'pum#map#confirm()', { silent = true, expr = true })
+
+vim.g.ddc_pick_items = {}
+local pick = function(word)
+  vim.g.ddc_pick_items = vim.list_extend({{ word = word }}, vim.g.ddc_pick_items)
+  if #vim.g.ddc_pick_items > 100 then
+    vim.g.ddc_pick_items = vim.list_slice(vim.g.ddc_pick_items, 1, -2)
+  end
+end
+vim.keymap.set('n', '*', function()
+  pick(vim.fn.expand('<cword>'))
+  return '<Plug>(asterisk-z*)'
+end, { silent = true, expr = true })
+
+vim.keymap.set('i', '<C-s><C-n>', function()
+  return vim.fn['ddc#map#manual_complete']()
+end, { silent = true })
+vim.keymap.set('i', '<C-s><C-f>', function()
+  return vim.fn['ddc#map#manual_complete']({'file-buffer', 'file'})
+end, { silent = true })
+vim.keymap.set('i', '<C-s><C-g>', function()
+  return vim.fn['ddc#map#manual_complete']({'file-buffer'})
+end, { silent = true })
+vim.keymap.set('i', '<C-s><C-l>', function()
+  return vim.fn['ddc#map#manual_complete']({'coc-ls'})
+end, { silent = true })
+vim.keymap.set('i', '<C-x><C-l>', function()
+  return vim.fn['ddc#map#manual_complete']({'coc-ls'})
+end, { silent = true })
+vim.keymap.set('i', '<C-s><C-s>', function()
+  return vim.fn['ddc#map#manual_complete']({'denippet'})
+end, { silent = true })
+vim.keymap.set('i', '<C-x><C-s>', function()
+  return vim.fn['ddc#map#manual_complete']({'denippet'})
+end, { silent = true })
+vim.keymap.set('i', '<C-s><C-p>', function()
+  return vim.fn['ddc#map#manual_complete']({'pick'})
+end, { silent = true })
+vim.keymap.set('i', '<C-x><C-p>', function()
+  return vim.fn['ddc#map#manual_complete']({'pick'})
+end, { silent = true })
+
+vim.fn['ddc#enable']()
 '''
+
+[[plugins]]
+repo = 'Shougo/ddc-ui-pum'
+depends = ['ddc.vim', 'pum.vim']
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/pum.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-around'
@@ -594,6 +649,7 @@ on_source = 'ddc.vim'
 # merged = 0
 
 [[plugins]]
+if = 0
 repo = 'LumaKernel/ddc-coc-patched'
 # rev = 'v0.0.0-2021-10-09'
 rev = 'v0.0.0-2022-08-16'

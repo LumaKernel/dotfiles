@@ -6,11 +6,12 @@ set -euxo pipefail
 # ( -n で強制できるけど危ないかもしれないので )
 
 
-sudo ln -sf "$HOME"/dotfiles/init.vim "$HOME"/.vimrc
+# ~/.config/nvim
+# sudo ln -sf "$HOME"/dotfiles/init.vim "$HOME"/.vimrc
 
 mkdir -p "$HOME"/.config/nvim
-sudo ln -sf "$HOME"/dotfiles/init.vim "$HOME"/.config/nvim/init.vim
-sudo ln -sf "$HOME"/dotfiles/ginit.vim "$HOME"/.config/nvim/ginit.vim
+sudo ln -sf "$HOME"/dotfiles/init.lua "$HOME"/.config/nvim/init.lua
+# sudo ln -sf "$HOME"/dotfiles/ginit.vim "$HOME"/.config/nvim/ginit.vim
 
 
 sudo ln -sf "$HOME"/dotfiles/.gitignore_global "$HOME"/.gitignore_global

@@ -1,3 +1,3 @@
 function nviml --wraps nvim
-  VIM_MODE=light nvim $argv
+  VIM_MODE_PRESET=light nvim $argv
 end
