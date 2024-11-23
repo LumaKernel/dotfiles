@@ -1,7 +1,7 @@
 
 let b:ale_fixers = ['prettier', 'eslint']
 
-if g:ts_lsp_mode is# "lsp" && g:lsp_mode == "vim-lsp"
+if g:lsp_mode == "vim-lsp" && g:ts_lsp_mode is# "lsp"
   command! -buffer -nargs=0 -bar OrganizeImports LspCodeAction source.organizeImports
   command! -buffer -nargs=0 -bar OrganizeImportsSync LspCodeActionSync source.organizeImports
   command! -buffer -nargs=0 -bar TypeScriptFormatSync OrganizeImportsSync | LspDocumentFormatSync

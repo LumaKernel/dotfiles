@@ -11,7 +11,7 @@ function nvim_bench
     for i in (seq 1 $T)
       /bin/rm -f /tmp/nvim-startuptime
       eval $NVIM_RUN' +"autocmd VimEnter * ++nested qa!" --startuptime /tmp/nvim-startuptime'
-      set -l this (cat /tmp/nvim-startuptime | tail -n 1 | awk '{print $1}')
+      set -l this (cat /tmp/nvim-startuptime | tail -n 2 | head -n 1 | awk '{print $1}')
       echo $i: $this ms
       set sum (math -- $sum + $this)
       /bin/rm -f /tmp/nvim-startuptime

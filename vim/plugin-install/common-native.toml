@@ -114,7 +114,7 @@ function! s:repeat(str, num)
 endfunction
 
 let g:my_startify_message = [
-      \   "\uf120  Welcome to \ue7c5 !",
+      \   "Welcome! MODE_PRESET: " .. g:mode_preset,
       \ ]
 
 let g:startify_enable_special = 0
@@ -208,10 +208,10 @@ let g:startify_commands = [
       \ ]
 
 let g:startify_lists = [
-      \ { 'type': 'commands',  'header': ["   \uf489 コマンド"] },
-      \ { 'type': function('s:MyColorSelections'),  'header': ["   \u26a1 カラーテーマ"] },
-      \ { 'type': function('s:MyRefs'),  'header': ["   \uf002 リファレンス"] },
-      \ { 'type': function('s:MyLinks'),  'header': ["   \u26a1 便利リンク"] },
+      \ { 'type': 'commands',  'header': ["   :: コマンド"] },
+      \ { 'type': function('s:MyColorSelections'),  'header': ["   // カラーテーマ"] },
+      \ { 'type': function('s:MyRefs'),  'header': ["   <> リファレンス"] },
+      \ { 'type': function('s:MyLinks'),  'header': ["   !! 便利リンク"] },
       \ ]
 
 nnoremap <silent> ,s :<C-u>Startify \| only<CR>
