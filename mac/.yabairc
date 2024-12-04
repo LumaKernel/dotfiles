@@ -5,21 +5,22 @@ yabai -m config mouse_follows_focus off
 yabai -m config focus_follows_mouse off
 yabai -m config window_origin_display default
 yabai -m config window_placement second_child
-yabai -m config window_topmost off
+# yabai -m config window_topmost off
 yabai -m config window_shadow off
 yabai -m config window_animation_duration 0.0
+yabai -m config window_animation_easing 0.0
 yabai -m config window_opacity_duration 0.0
-yabai -m config active_window_opacity 1
-yabai -m config normal_window_opacity 1
+# yabai -m config active_window_opacity 1
+# yabai -m config normal_window_opacity 1
 yabai -m config window_opacity on
 yabai -m config insert_feedback_color 0xffd75f5f
-yabai -m config active_window_border_color 0xff975799
-yabai -m config normal_window_border_color 0xff555555
-yabai -m config window_border_width 5
-yabai -m config window_border_radius 12
-yabai -m config window_border_blur off
-yabai -m config window_border_hidpi on
-yabai -m config window_border on
+# yabai -m config active_window_border_color 0xff975799
+# yabai -m config normal_window_border_color 0xff555555
+# yabai -m config window_border_width 5
+# yabai -m config window_border_radius 12
+# yabai -m config window_border_blur off
+# yabai -m config window_border_hidpi on
+# yabai -m config window_border on
 yabai -m config split_ratio 0.50
 yabai -m config split_type auto
 yabai -m config auto_balance off
@@ -33,24 +34,29 @@ yabai -m config mouse_modifier fn
 yabai -m config mouse_action1 move
 yabai -m config mouse_action2 resize
 yabai -m config mouse_drop_action swap
-yabai -m rule --add app="^(Google )?Chrome$" title="^Picture in Picture$" manage=off opacity=1.0 border=off
-yabai -m rule --add app="^(Google )?Chrome$" title="picture-in-picture" manage=off opacity=1.0 border=off
-yabai -m rule --add app="^(Google )?Chrome$" opacity=1.0
+# yabai -m rule --add app='^(Google )?Chrome$' title='^Picture in Picture$' manage=off opacity=1.0 border=off
+# yabai -m rule --add app='^(Google )?Chrome$' title='picture-in-picture' manage=off opacity=1.0 border=off
+# yabai -m rule --add app='^(Google )?Chrome$' opacity=1.0
 
-yabai -m rule --add app="^Installer$" sticky=off manage=off
-yabai -m rule --add app="^Scroll Reverser$" sticky=off manage=off
-yabai -m rule --add app="^System Preferences$" sticky=off manage=off
-yabai -m rule --add app="^Karabiner-Elements$" sticky=off manage=off
-yabai -m rule --add app="^Books$" title="^Books$" sticky=off manage=off
-yabai -m rule --add app="ScanSnap" sticky=off manage=off
+yabai -m rule --add app='^Installer$' sticky=off manage=off
+yabai -m rule --add app='^Scroll Reverser$' sticky=off manage=off
+yabai -m rule --add app='^System Preferences$' sticky=off manage=off
+yabai -m rule --add app='^Karabiner-Elements$' sticky=off manage=off
+yabai -m rule --add app='^Books$' title='^Books$' sticky=off manage=off
+yabai -m rule --add app='ScanSnap' sticky=off manage=off
 
-yabai -m rule --add app="^iTerm2$" opacity=1.0
-yabai -m rule --add app="^Books$" opacity=1.0
-yabai -m rule --add app="^Photo Booth$" opacity=1.0 sticky=off manage=off layer=above
+yabai -m rule --add app='^iTerm2$' opacity=0.7 sticky=on
+yabai -m rule --add app='^Books$' opacity=1.0
+# yabai -m rule --add app='^Photo Booth$' opacity=1.0 sticky=off manage=off layer=above
 
-yabai -m rule --add app="^Adobe " opacity=1.0
+yabai -m rule --add app='^Adobe ' opacity=1.0
 
-yabai -m rule --add app="^Obsidian$" title="^Obsidian$" manage=off
-yabai -m rule --add app="^Obsidian$" opacity=1.0
+yabai -m rule --add app='^Obsidian$' title='^Obsidian$' manage=off
+yabai -m rule --add app='^Obsidian$' opacity=1.0
 
-echo "yabai configuration loaded.."
+indices=$(yabai -m rule --list | jq '.[].index')
+for index in $indices; do
+  yabai -m rule --apply $index
+done
+
+echo 'yabai configuration loaded..'
