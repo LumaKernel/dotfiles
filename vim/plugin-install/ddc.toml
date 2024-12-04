@@ -473,6 +473,7 @@ patch_global({
   sourceOptions = {
     [name] = {
       mark = 'LS',
+      matchers = {'matcher_full_fuzzy'},
       forceCompletionPattern = '\\.\\w*|:\\w*|->\\w*',
     },
   },

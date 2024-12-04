@@ -6,18 +6,6 @@ repo = 'Shougo/dein.vim'
 repo = 'haya14busa/vim-asterisk'
 hook_add = '''
 let g:asterisk#keeppos = 1
-if g:complete_mode !=# 'ddc'
-  nmap *  <Plug>(asterisk-z*)
-endif
-vmap *  <Plug>(asterisk-z*)
-omap *  <Plug>(asterisk-z*)
-map #  <Plug>(asterisk-z*)N
-map g* <Plug>(asterisk-gz*)
-map g# <Plug>(asterisk-gz*)N
-xmap *  <Plug>(asterisk-z*)
-xmap #  <Plug>(asterisk-z*)N
-xmap g* <Plug>(asterisk-gz*)
-xmap g# <Plug>(asterisk-gz*)N
 '''
 
 # Vital Vim
@@ -30,11 +18,3 @@ depends = ["vital.vim"]
 [[plugins]]
 repo = 'lambdalisue/vital-Whisky'
 depends = ["vital.vim"]
-
-[[plugins]]
-# repo = 'mattn/vim-sonictemplate'
-# repo = 'LumaKernel/vim-sonictemplate-empty'
-repo = '~/ghq/github.com/LumaKernel/vim-sonictemplate-empty'
-
-[[plugins]]
-repo = 'pechorin/any-jump.vim'

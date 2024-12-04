@@ -25,42 +25,10 @@ elseif g:ts_lsp_mode is# "tsu"
   nnoremap <buffer> <SPACE>si :<C-u>TsuImport<CR>
 endif
 
-function! MyTsFormat()
-  let save_cursor = getcurpos()
-  %!prettier --loglevel silent --stdin-filepath %
-  if v:shell_error
-    undo
-    call setpos('.', save_cursor)
-    return
-  endif
-  %!eslint_d --stdin --stdin-filename % --fix-to-stdout
-  if v:shell_error
-    undo
-    call setpos('.', save_cursor)
-    return
-  endif
-  call setpos('.', save_cursor)
-endfunction
-
-function! MyTsFormatEslintd()
-  let save_cursor = getcurpos()
-  %!eslint_d --stdin --stdin-filename % --fix-to-stdout
-  if v:shell_error
-    undo
-    call setpos('.', save_cursor)
-    return
-  endif
-  call setpos('.', save_cursor)
-endfunction
-
-if executable('eslint_d')
-  nnoremap <leader>ss :silent! call MyTsFormatEslintd()<CR>
-endif
-
 setlocal foldmethod=indent
 setlocal foldnestmax=5
 setlocal foldlevel=1
 setlocal tabstop=2
 setlocal shiftwidth=2
 
-command! -buffer -bar DenoCache !deno cache --unstable %
+command! -buffer -bar DenoCache !deno cache %

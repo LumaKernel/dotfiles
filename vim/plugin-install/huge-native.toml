@@ -36,6 +36,8 @@ if = 'has("nvim")'
 repo = 'tjdevries/colorbuddy.vim'
 [[plugins]]
 repo = 'sainnhe/edge'
+[[plugins]]
+repo = 'rebelot/kanagawa.nvim'
 
 # Vim Doc
 [[plugins]]

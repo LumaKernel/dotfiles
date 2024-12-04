@@ -8,24 +8,36 @@ nmap ga <Plug>(LiveEasyAlign)
 
 [[plugins]]
 repo = 'mattn/emmet-vim'
-on_ft = [
-  'markdown',
-  'html',
-  'rust',
-  'javascript',
-  'jsx',
-  'javascriptreact',
-  'typescript',
-  'tsx',
-  'typescriptreact',
-  'vue',
-  'svelte',
+# on_ft = [
+#   'markdown',
+#   'html',
+#   'rust',
+#   'javascript',
+#   'jsx',
+#   'javascriptreact',
+#   'typescript',
+#   'tsx',
+#   'typescriptreact',
+#   'vue',
+#   'svelte',
+# ]
+on_path = [
+  '\.mdx\?$',
+  '\.tsx\?$',
+  '\.jsx\?$',
+  '\.vue$',
+  '\.svelte$',
+  '\.rs$',
+  '\.htm$',
+  '\.html$',
+  '\.xml$',
+  '\.xml$',
 ]
-on_path = '\.mdx\?$'
 # for preact
 # let g:user_emmet_settings = emmet#merge(get(g:, 'user_emmet_settings'), { 'jsx': { 'attribute_name': {'class': 'class'}}})
 hook_add = '''
-let g:user_emmet_leader_key = "\<C-f>"
+" let g:user_emmet_install_global = 0
+let g:user_emmet_leader_key = v:false
 '''
 
 [[plugins]]
@@ -124,3 +136,25 @@ let g:astro_typescript = 'enable'
 [[plugins]]
 repo = 'lambdalisue/reword.vim'
 on_map = ':'
+
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+lua_add = '''
+local group = vim.api.nvim_create_augroup('skkeleton-initialize-pre', { clear = true })
+vim.api.nvim_create_autocmd({ 'User' }, {
+  pattern = 'skkeleton-initialize-pre',
+  group = group,
+  callback = function()
+    vim.fn['skkeleton#config']({
+      eggLikeNewline = true,
+    })
+    -- vim.fn['skkeleton#register_kanatable']('rom', {
+    --   -- ['z '] = {'\u3000', ''},
+    --   -- ['z '] = {''},
+    -- })
+  end,
+})
+
+-- TODO
+-- vim.keymap.set({'i', 'c', 't'}, '<C-a>', '<Plug>(skkeleton-toggle)')
+'''

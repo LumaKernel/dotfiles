@@ -573,7 +573,7 @@ on_path = '\.lalrpop$'
 
 [[plugins]]
 # repo = 'LumaKernel/coqpit.vim'
-if = 1
+if = 0
 repo = '~/ghq/github.com/LumaKernel/coqpit.vim'
 on_ft = 'coq'
 hook_source = '''
@@ -809,15 +809,8 @@ let g:suda_smart_edit = v:true
 '''
 
 [[plugins]]
-repo = 'liuchengxu/vista.vim'
-on_cmd = 'Vista'
-hook_add = '''
-nnoremap <silent> <Space>ac :<c-u>Vista coc<cr>
-'''
-
-[[plugins]]
 repo = 'simeji/winresizer'
-on_map = "<space>w"
+on_map = "<SPACE>w"
 hook_add = '''
-let g:winresizer_start_key = '<space>w'
+let g:winresizer_start_key = '<SPACE>w'
 '''

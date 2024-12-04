@@ -7,10 +7,12 @@ repo = 'neovim/nvim-lspconfig'
 depends = ['ddc-source-lsp']
 lua_add = '''
 local capabilities = require("ddc_source_lsp").make_client_capabilities()
-local lspconfig = require("lspconfig")
-lspconfig.denols.setup({
+local lspconfig = require 'lspconfig'
+local util = require 'lspconfig.util'
+lspconfig.denols.setup {
   capabilities = capabilities,
-})
+  root_dir = util.root_pattern('deno.json', 'deno.jsonc', '.git', 'package.json'),
+}
 lspconfig.rust_analyzer.setup {
   capabilities = capabilities,
   settings = {
