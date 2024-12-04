@@ -1,0 +1,26 @@
+{
+  "title": "Util",
+  "rules": [
+    {
+      "description": "Toggle iTerm2",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": [
+                "left_gui"
+              ]
+            },
+            "key_code": "j"
+          },
+          "to": [
+            {
+              "shell_command": "bash --login -c '\"$HOME\"/dotfiles/mac/commands/toggle-minimize-iterm2.sh'"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
