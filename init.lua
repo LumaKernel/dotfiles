@@ -172,7 +172,7 @@ end
 
 if vim.fn.has('guirunning') == 1 or vim.fn.exists('&termguicolors') == 1 then
   if vim.fn.exists('&pumblend') == 1 then
-    vim.o.pumblend = 20
+    vim.o.pumblend = 0
   end
   if vim.fn.exists('&winblend') == 1 then
     vim.o.winblend = 20
@@ -228,67 +228,75 @@ vim.api.nvim_create_user_command(
   {}
 )
 
-vim.api.nvim_set_keymap('n', 'ZZ', '<NOP>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'ZQ', '<NOP>', { noremap = true })
+-----------------------------------------------------------
+---- Keymaps
+-----------------------------------------------------------
 
-vim.api.nvim_set_keymap('n', 'th', '<C-W>h', { noremap = true })
-vim.api.nvim_set_keymap('n', 'tj', '<C-W>j', { noremap = true })
-vim.api.nvim_set_keymap('n', 'tk', '<C-W>k', { noremap = true })
-vim.api.nvim_set_keymap('n', 'tl', '<C-W>l', { noremap = true })
-vim.api.nvim_set_keymap('n', 'tw', '<C-W>w', { noremap = true })
+vim.keymap.set('n', 'ZZ', '<NOP>', { noremap = true })
+vim.keymap.set('n', 'ZQ', '<NOP>', { noremap = true })
 
-vim.api.nvim_set_keymap('n', 'tH', '<C-W>H', { noremap = true })
-vim.api.nvim_set_keymap('n', 'tJ', '<C-W>J', { noremap = true })
-vim.api.nvim_set_keymap('n', 'tK', '<C-W>K', { noremap = true })
-vim.api.nvim_set_keymap('n', 'tL', '<C-W>L', { noremap = true })
-vim.api.nvim_set_keymap('n', 'tr', '<C-W>r', { noremap = true })
+vim.keymap.set('n', 'th', '<C-W>h', { noremap = true })
+vim.keymap.set('n', 'tj', '<C-W>j', { noremap = true })
+vim.keymap.set('n', 'tk', '<C-W>k', { noremap = true })
+vim.keymap.set('n', 'tl', '<C-W>l', { noremap = true })
+vim.keymap.set('n', 'tw', '<C-W>w', { noremap = true })
 
-vim.api.nvim_set_keymap('n', 't=', '<C-W>=', { noremap = true })
-vim.api.nvim_set_keymap('n', 't>', '<C-W>>', { noremap = true })
-vim.api.nvim_set_keymap('n', 't<', '<C-W><', { noremap = true })
-vim.api.nvim_set_keymap('n', 't+', '<C-W>+', { noremap = true })
-vim.api.nvim_set_keymap('n', 't-', '<C-W>-', { noremap = true })
+vim.keymap.set('n', 'tH', '<C-W>H', { noremap = true })
+vim.keymap.set('n', 'tJ', '<C-W>J', { noremap = true })
+vim.keymap.set('n', 'tK', '<C-W>K', { noremap = true })
+vim.keymap.set('n', 'tL', '<C-W>L', { noremap = true })
+vim.keymap.set('n', 'tr', '<C-W>r', { noremap = true })
 
-vim.api.nvim_set_keymap('n', 'tt', '<Nop>', { noremap = true })
+vim.keymap.set('n', 't=', '<C-W>=', { noremap = true })
+vim.keymap.set('n', 't>', '<C-W>>', { noremap = true })
+vim.keymap.set('n', 't<', '<C-W><', { noremap = true })
+vim.keymap.set('n', 't+', '<C-W>+', { noremap = true })
+vim.keymap.set('n', 't-', '<C-W>-', { noremap = true })
 
-vim.api.nvim_set_keymap('n', 's', '<Nop>', { noremap = true })
-vim.api.nvim_set_keymap('x', 's', '<Nop>', { noremap = true })
+vim.keymap.set('n', 'tt', '<Nop>', { noremap = true })
 
-vim.api.nvim_set_keymap('i', '<C-L>', '<DEL>', { noremap = true })
-vim.api.nvim_set_keymap('c', '<C-D>', '<DEL>', { noremap = true })
+vim.keymap.set('n', 's', '<Nop>', { noremap = true })
+vim.keymap.set('x', 's', '<Nop>', { noremap = true })
 
-vim.api.nvim_set_keymap('n', '<F1>', '<Nop>', { noremap = true })
-vim.api.nvim_set_keymap('x', '<F1>', '<Nop>', { noremap = true })
+vim.keymap.set('i', '<C-L>', '<DEL>', { noremap = true })
+vim.keymap.set('c', '<C-D>', '<DEL>', { noremap = true })
 
-vim.api.nvim_set_keymap('n', '<A-:>', ':', { noremap = true })
-vim.api.nvim_set_keymap('i', '<A-:>', '<C-o>:', { noremap = true })
-vim.api.nvim_set_keymap('t', '<A-:>', '<C-\\><C-n>:', { noremap = true })
+vim.keymap.set('n', '<F1>', '<Nop>', { noremap = true })
+vim.keymap.set('x', '<F1>', '<Nop>', { noremap = true })
 
-vim.api.nvim_set_keymap('n', '<A-/>', '/', { noremap = true })
-vim.api.nvim_set_keymap('i', '<A-/>', '<C-o>/', { noremap = true })
-vim.api.nvim_set_keymap('t', '<A-/>', '<C-\\><C-n>/', { noremap = true })
+vim.keymap.set('n', '<A-:>', ':', { noremap = true })
+vim.keymap.set('i', '<A-:>', '<C-o>:', { noremap = true })
+vim.keymap.set('t', '<A-:>', '<C-\\><C-n>:', { noremap = true })
 
-vim.api.nvim_set_keymap('n', '<A-ESC>', '<ESC>', { noremap = true })
-vim.api.nvim_set_keymap('i', '<A-ESC>', '<ESC>', { noremap = true })
-vim.api.nvim_set_keymap('t', '<A-ESC>', '<C-\\><C-n>', { noremap = true })
+vim.keymap.set('n', '<A-/>', '/', { noremap = true })
+vim.keymap.set('i', '<A-/>', '<C-o>/', { noremap = true })
+vim.keymap.set('t', '<A-/>', '<C-\\><C-n>/', { noremap = true })
 
-vim.api.nvim_set_keymap('n', '<A-]>', '<ESC>', { noremap = true })
-vim.api.nvim_set_keymap('i', '<A-]>', '<ESC>', { noremap = true })
-vim.api.nvim_set_keymap('t', '<A-]>', '<C-\\><C-n>', { noremap = true })
+vim.keymap.set('n', '<A-ESC>', '<ESC>', { noremap = true })
+vim.keymap.set('i', '<A-ESC>', '<ESC>', { noremap = true })
+vim.keymap.set('t', '<A-ESC>', '<C-\\><C-n>', { noremap = true })
+
+vim.keymap.set('n', '<A-]>', '<ESC>', { noremap = true })
+vim.keymap.set('i', '<A-]>', '<ESC>', { noremap = true })
+vim.keymap.set('t', '<A-]>', '<C-\\><C-n>', { noremap = true })
 
 for _, wincmd in ipairs({ 'h', 'j', 'k', 'l' }) do
-  vim.api.nvim_set_keymap('n', '<A-' .. wincmd .. '>', '<CMD>silent! call VimAndTmuxMove("' .. wincmd .. '", 0)<CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('x', '<A-' .. wincmd .. '>', '<CMD>silent! call VimAndTmuxMove("' .. wincmd .. '", 0)<CR>gv', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('i', '<A-' .. wincmd .. '>', '<C-o><CMD>call VimAndTmuxMove("' .. wincmd .. '", 0)<CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('c', '<A-' .. wincmd .. '>', '<C-r>=<C-u>VimAndTmuxMove("' .. wincmd .. '", 1)<CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('t', '<A-' .. wincmd .. '>', '<C-\\><C-n>:<C-u>silent! call VimAndTmuxMove("' .. wincmd .. '", 0)<CR>', { noremap = true, silent = true })
+  vim.keymap.set('n', '<A-' .. wincmd .. '>', '<CMD>silent! call VimAndTmuxMove("' .. wincmd .. '", 0)<CR>', { noremap = true, silent = true })
+  vim.keymap.set('x', '<A-' .. wincmd .. '>', '<CMD>silent! call VimAndTmuxMove("' .. wincmd .. '", 0)<CR>gv', { noremap = true, silent = true })
+  vim.keymap.set('i', '<A-' .. wincmd .. '>', '<C-o><CMD>call VimAndTmuxMove("' .. wincmd .. '", 0)<CR>', { noremap = true, silent = true })
+  vim.keymap.set('c', '<A-' .. wincmd .. '>', '<C-r>=<C-u>VimAndTmuxMove("' .. wincmd .. '", 1)<CR>', { noremap = true, silent = true })
+  vim.keymap.set('t', '<A-' .. wincmd .. '>', '<C-\\><C-n>:<C-u>silent! call VimAndTmuxMove("' .. wincmd .. '", 0)<CR>', { noremap = true, silent = true })
 end
 
-vim.api.nvim_set_keymap('n', '<Leader>y', '<CMD>%y+<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>v', 'ggVGs<ESC>"+P', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>y', '<CMD>%y+<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>v', 'ggVGs<ESC>"+P', { noremap = true, silent = true })
+
+vim.keymap.set({'n', 'v', 'o', 'x'}, '*', '<Plug>(asterisk-z*)')
+vim.keymap.set({'n', 'v', 'o', 'x'}, '#', '<Plug>(asterisk-z*)N')
+vim.keymap.set({'n', 'v', 'o', 'x'}, 'g*', '<Plug>(asterisk-gz*)')
+vim.keymap.set({'n', 'v', 'o', 'x'}, 'g#', '<Plug>(asterisk-gz*)N')
 
 if vim.g.lsp_mode == 'nvim-lsp' then
-  -- ]g
   vim.keymap.set('n', '[g', function()
     -- TODO: 0.11
     -- vim.diagnostic.jump({count= -1,float = true})
@@ -325,14 +333,25 @@ if vim.g.lsp_mode == 'nvim-lsp' then
     signs = false,
     update_in_insert = false,
   })
+
+  vim.keymap.set("n", "gd", function()
+    vim.lsp.buf.definition()
+  end, { noremap = true, silent = true })
+
+  local my_lsp_config_group = vim.api.nvim_create_augroup('my-lsp-config', { clear = true })
+  vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = "*.rs",
+    group = my_lsp_config_group,
+    callback = function()
+      vim.lsp.buf.format({ async = true })
+    end
+  })
+
+  vim.keymap.set("n", "Q", function()
+    vim.lsp.buf.code_action()
+  end)
 end
 
--- vim.api.nvim_set_keymap('n', '>>', [[
---   let smartindent_save = &smartindent
---   set nosmartindent
---   normal! >>
---   let &smartindent = smartindent_save
--- ]], { noremap = true, silent = true })
 _G.n_GTGT = function()
   local smartindent_save = vim.o.smartindent
   vim.o.smartindent = false
@@ -340,12 +359,6 @@ _G.n_GTGT = function()
   vim.o.smartindent = smartindent_save
 end
 vim.api.nvim_set_keymap('n', '>>', '<CMD>lua n_GTGT()<CR>', { noremap = true, silent = true })
--- vim.api.nvim_set_keymap('x', '>', [[
---   let smartindent_save = &smartindent
---   set nosmartindent
---   normal! >gv
---   let &smartindent = smartindent_save
--- ]], { noremap = true, silent = true })
 _G.x_GT = function()
   local smartindent_save = vim.o.smartindent
   vim.o.smartindent = false
@@ -358,20 +371,16 @@ vim.api.nvim_set_keymap('x', '<LT>', '<LT>gv', { noremap = true, silent = true }
 
 vim.api.nvim_set_keymap('n', '0', [[getline('.')[: col('.') - 2] =~# '^\s\+$' ? '0' : '^']], { noremap = true, expr = true })
 
--- if has('gui_running')
---   set guioptions+=e
---   " メニューバーを消す
---   set guioptions-=m
---   " ツールバーを消す
---   set guioptions-=T
---   " スクロールバーを消す
---   set guioptions-=r
---   set guioptions-=R
---   set guioptions-=l
---   set guioptions-=L
--- 
---   set guifont=RictyDiminished\ NF:h11
--- endif
+-- simeji/winresizer
+-- <SPACE>w
+
+vim.cmd('imap <C-t>, <Plug>(emmet-expand-abbr)')
+
+-----------------------------------------------------------
+---- Keymaps End
+-----------------------------------------------------------
+
+
 if vim.fn.has('gui_running') == 1 then
   vim.cmd('set guioptions+=e')
   -- メニューバーを消す
