@@ -343,7 +343,7 @@ if vim.g.lsp_mode == 'nvim-lsp' then
     pattern = "*.rs",
     group = my_lsp_config_group,
     callback = function()
-      vim.lsp.buf.format({ async = true })
+      vim.lsp.buf.format()
     end
   })
 
