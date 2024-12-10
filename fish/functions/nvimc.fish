@@ -1,3 +1,3 @@
 function nvimc --wraps nvim
-  VIM_COMPLETE_MODE=coc VIM_LSP_MODE=coc nvim $argv
+  VIM_MODE_PRESET=compe nvim $argv
 end
