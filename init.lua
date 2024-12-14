@@ -163,6 +163,11 @@ vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 2
 
+vim.o.breakindent = true
+vim.o.breakindentopt = 'shift:2,min:40,sbr'
+vim.o.showbreak = '===>'
+vim.o.linebreak = true
+
 -- set keywordprg=:help
 vim.o.keywordprg = ":help"
 
