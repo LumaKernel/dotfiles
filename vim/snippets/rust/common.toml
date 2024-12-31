@@ -1,0 +1,20 @@
+[dump]
+prefix = ['dump']
+body = """
+fn mem_dump<T>(value: &T) -> String {
+    use std::mem;
+    let view = value as *const _ as *const u8;
+    let size = mem::size_of::<T>();
+    (0..size)
+        .map(|i| {
+            format!(
+                "{:02x}{}",
+                unsafe { *view.add(i) },
+                if i + 1 == size { "" } else { " " }
+            )
+        })
+        .collect::<Vec<String>>()
+        .join("")
+        .to_string()
+}
+"""
