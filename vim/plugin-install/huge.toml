@@ -155,6 +155,7 @@ imap <C-k> <Plug>(denippet-expand)
 let s:denippet_dir = expand('~/dotfiles/vim/snippets')
 
 call denippet#load(s:denippet_dir .. '/rust/compe.toml', 'rust')
+call denippet#load(s:denippet_dir .. '/rust/common.toml', 'rust')
 call denippet#load(s:denippet_dir .. '/cpp/compe.toml', 'cpp')
 call denippet#load(s:denippet_dir .. '/dockerfile/common.toml', 'dockerfile')
 call denippet#load(s:denippet_dir .. '/dosini/common.toml', 'dosini')
