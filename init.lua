@@ -353,6 +353,14 @@ if vim.g.lsp_mode == 'nvim-lsp' then
   })
 
   vim.keymap.set("n", "Q", function()
+    vim.lsp.buf.code_action({
+      filter = function(x)
+        return x.isPreferred and x.kind == "quickfix"
+      end,
+      apply = true,
+    })
+  end)
+  vim.keymap.set("n", "<SPACE>q", function()
     vim.lsp.buf.code_action()
   end)
 end
