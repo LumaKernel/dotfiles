@@ -4,6 +4,9 @@ repo = 'LumaKernel/ssher.vim'
 # repo = '~/ghq/github.com/LumaKernel/ssher.vim'
 # merged = 0
 
+[[plugins]]
+repo = 'LumaKernel/zip.vim'
+
 # Fern
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
