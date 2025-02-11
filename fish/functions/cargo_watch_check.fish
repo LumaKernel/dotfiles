@@ -1,1 +1,1 @@
-alias cargo_watch_check='cargo watch -x check'
+alias cargo_watch_check="cargo_watch_with_warn_check"
