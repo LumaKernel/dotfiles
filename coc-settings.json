@@ -1,4 +1,5 @@
 {
+  "inlayHint.position": "eol",
   "diagnostic.errorSign": ">>",
   "diagnostic.warningSign": "--",
   "diagnostic.infoSign": "..",
