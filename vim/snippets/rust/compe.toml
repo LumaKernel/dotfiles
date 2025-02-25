@@ -21,7 +21,12 @@ let ans = {
 };
 """
 
-[graph]
-prefix = ['graph']
+[rand]
+prefix = ['rand_pcg64_atcoder']
 body = """
+use rand::Rng;
+use rand_core::SeedableRng;
+use rand_pcg::Pcg64Mcg;
+let mut rng = Pcg64Mcg::from_rng(&mut rand::thread_rng()).unwrap();
+// let mut rng = Pcg64Mcg::seed_from_u64(0);
 """
