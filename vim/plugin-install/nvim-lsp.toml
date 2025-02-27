@@ -29,4 +29,37 @@ lspconfig.rust_analyzer.setup {
     },
   },
 }
+
+local lspconfig = require'lspconfig'
+local function buf_cache()
+  local clients = lspconfig.util.get_lsp_clients()
+  local client = vim.tbl_filter(function(c)
+    return c.name == 'denols'
+  end, clients)[1]
+  if client == nil then
+    return
+  end
+  local bufnr = vim.api.nvim_get_current_buf()
+
+  local params = {
+    command = 'deno.cache',
+    arguments = { {}, vim.uri_from_bufnr(bufnr) },
+  }
+  local res = client.request_sync('workspace/executeCommand', params)
+  if res.err then
+    local uri = ctx.params.arguments[2]
+    vim.api.nvim_err_writeln('cache command failed for ' .. vim.uri_to_fname(uri))
+  end
+end
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = {
+    "*.ts",
+    "*.tsx",
+  },
+  group = my_lsp_config_group,
+  callback = function()
+    buf_cache()
+    vim.lsp.buf.format()
+  end
+})
 '''

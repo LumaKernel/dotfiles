@@ -345,7 +345,9 @@ if vim.g.lsp_mode == 'nvim-lsp' then
 
   local my_lsp_config_group = vim.api.nvim_create_augroup('my-lsp-config', { clear = true })
   vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    pattern = "*.rs",
+    pattern = {
+      "*.rs",
+    },
     group = my_lsp_config_group,
     callback = function()
       vim.lsp.buf.format()
