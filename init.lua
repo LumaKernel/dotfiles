@@ -417,6 +417,11 @@ if vim.g.from_pwsh then
   vim.o.cursorcolumn = false
 end
 
+vim.keymap.set({'n', 'v', 'x'}, 'zz', 'zz<Plug>(z1)')
+vim.keymap.set({'n', 'v', 'x'}, '<Plug>(z1)z', 'zt<Plug>(z2)', { noremap = true })
+vim.keymap.set({'n', 'v', 'x'}, '<Plug>(z2)z', 'zb<Plug>(z3)', { noremap = true })
+vim.keymap.set({'n', 'v', 'x'}, '<Plug>(z3)z', 'zz<Plug>(z1)', { noremap = true })
+
 ;(function()
   local opamshare = vim.fn.substitute(vim.fn.system('opam var share'), '\n$', '', '\'')
   if vim.fn.isdirectory(opamshare) == 1 then
