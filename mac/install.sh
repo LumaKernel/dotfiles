@@ -11,7 +11,9 @@ fi
 command -v /opt/homebrew/bin/brew >/dev/null 2>&1 ||
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-/opt/homebrew/bin/brew bundle --file="$HOME/dotfiles/Brewfile"
+command -v brew >/dev/null 2>&1 || export PATH="/opt/homebrew/bin:$PATH"
+
+brew bundle --file="$HOME/dotfiles/Brewfile"
 
 "$HOME/dotfiles/mac/scripts/install_mas.sh"
 
