@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 if [ "`whoami`" != "root" ]; then
   echo "Run with 'sudo'"
   exit 1

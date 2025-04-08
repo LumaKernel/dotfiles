@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 if [ "$(whoami)" == "root" ]; then
   echo "Run in normal user"
   exit 1
