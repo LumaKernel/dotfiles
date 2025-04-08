@@ -13,6 +13,8 @@ command -v /opt/homebrew/bin/brew >/dev/null 2>&1 ||
 
 /opt/homebrew/bin/brew bundle --file="$HOME/dotfiles/Brewfile"
 
+"$HOME/dotfiles/mac/scripts/install_mas.sh"
+
 # cargo install
 # TODO: linux?
 "$HOME/dotfiles/linux/bin/installers/install-rust-tools.sh"
