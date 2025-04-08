@@ -9,6 +9,11 @@ lua_add = '''
 local capabilities = require("ddc_source_lsp").make_client_capabilities()
 local lspconfig = require 'lspconfig'
 local util = require 'lspconfig.util'
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+lspconfig.jsonls.setup {
+  capabilities = capabilities,
+  cmd = { 'npx', '-q', '-p', 'vscode-json-languageserver@1.3.4', 'vscode-json-languageserver', '--stdio' },
+}
 lspconfig.denols.setup {
   capabilities = capabilities,
   root_dir = util.root_pattern('deno.json', 'deno.jsonc', '.git', 'package.json'),

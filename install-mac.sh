@@ -5,19 +5,19 @@ if [ "`whoami`" != "root" ]; then
   exit 1
 fi
 
-if [ -n -d ~/dotfiles ]; then
+if [ ! -d "$HOME/dotfiles" ]; then
   echo "Not found ~/dotfiles/ dirctory."
   exit 1
 fi
 
 # -- symlink の設定
-bash ~/dotfiles/mac/symlink.sh
+"$HOME/dotfiles/mac/scripts/symlink.sh"
 
 # -- git の設定
-bash ~/dotfiles/mac/git-config.sh
+"$HOME/dotfiles/mac/scripts/git-config.sh"
 
 # -- インストール
-bash ~/dotfiles/mac/install.sh
+"$HOME/dotfiles/mac/install.sh"
 
 echo "以下を自分で実行してください"
 echo "git config --global user.name <name>"

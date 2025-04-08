@@ -15,16 +15,6 @@ brew bundle --file="$HOME/dotfiles/Brewfile"
 # TODO: linux?
 "$HOME/dotfiles/linux/bin/installers/install-rust-tools.sh"
 
-# 以下，git で自分でインストール
-
-# -- install tmux-powerline
-if [[ ! -d "$HOME/bin/tmux-powerline" ]] ; then
-  mkdir -p $HOME/bin
-  pushd $HOME/bin
-    git clone https://github.com/erikw/tmux-powerline.git
-  popd
-fi
-
 # -- install tmux-plugins
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]] ; then
   mkdir -p $HOME/.tmux/plugins
@@ -38,10 +28,3 @@ fi
 if [[ ! -e "$HOME/.config/fish/functions/fisher.fish" ]] ; then
   curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 fi
-
-# command -v pip >/dev/null 2>&1
-# if [[ "$?" != "0" ]]; then
-#   pyenv install 3.8.1
-#   pyenv global 3.8.1
-#   eval "$(pyenv init)"
-# fi

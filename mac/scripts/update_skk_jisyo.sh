@@ -9,8 +9,11 @@ for f in $(find "$HOME"/dotfiles/skk-dict -type f); do
 done
 
 f="$HOME/ghq/github.com/LumaKernel/skk-emoji-jisyo/SKK-JISYO.emoji.utf8"
-if [ -f "$f" ]; then
-  cp "$f" "$MACSKK_DICT_BASE_DIR"
-else
+if [ ! -f "$f" ]; then
   echo "[WARN] 辞書ファイルが見つかりません: $f"
+  echo "[INFO] インストールします"
+  dir=$(dirname "$f")
+  mkdir -p "$dir"
+  git clone https://github.com/LumaKernel/skk-emoji-jisyo "$dir"
 fi
+cp "$f" "$MACSKK_DICT_BASE_DIR"

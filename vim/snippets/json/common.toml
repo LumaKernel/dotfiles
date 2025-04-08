@@ -1,13 +1,19 @@
 [schema-prettier]
 prefix = "schema-prettier"
 body = '''
-"$schema": "http://json.schemastore.org/prettierrc",
+"\$schema": "http://json.schemastore.org/prettierrc",
 '''
 
 [schema-tsconfig]
 prefix = "schema-tsconfig"
 body = '''
-"$schema": "http://json.schemastore.org/tsconfig",
+"\$schema": "http://json.schemastore.org/tsconfig",
+'''
+
+[schema-deno-json]
+prefix = "schema-deno-json"
+body = '''
+"\$schema": "https://github.com/denoland/deno/raw/refs/heads/main/cli/schemas/config-file.v1.json",
 '''
 
 [bun-tsconfig]

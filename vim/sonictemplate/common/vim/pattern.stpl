@@ -1,4 +1,0 @@
-\(.*\)).func$
-  function! {{$1}}) abort
-    {{_cursor_}}
-  endfunction
