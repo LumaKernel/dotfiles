@@ -6,10 +6,10 @@ if [ "$(whoami)" == "root" ]; then
 fi
 
 # brew install
-command -v brew >/dev/null 2>&1 ||
+command -v /opt/homebrew/bin/brew >/dev/null 2>&1 ||
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-brew bundle --file="$HOME/dotfiles/Brewfile"
+/opt/homebrew/bin/brew bundle --file="$HOME/dotfiles/Brewfile"
 
 # cargo install
 # TODO: linux?
