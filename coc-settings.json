@@ -152,5 +152,8 @@
   "typescript.autoClosingTags": false,
   "rust-analyzer.checkOnSave.command": "clippy",
   "rust-analyzer.disableProgressNotifications": true,
-  "rust-analyzer.checkOnSave.noDefaultFeatures": null
+  "rust-analyzer.checkOnSave.noDefaultFeatures": null,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
