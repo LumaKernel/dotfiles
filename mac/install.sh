@@ -13,6 +13,7 @@ command -v /opt/homebrew/bin/brew >/dev/null 2>&1 ||
 
 command -v brew >/dev/null 2>&1 || export PATH="/opt/homebrew/bin:$PATH"
 
+sudo softwareupdate --install-rosetta
 brew bundle --file="$HOME/dotfiles/Brewfile"
 
 "$HOME/dotfiles/mac/scripts/install_mas.sh"
