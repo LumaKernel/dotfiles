@@ -2,6 +2,7 @@
 
 function s:cache() abort
   let s:cmdline = getcmdline()
+  return ''
 endfunction
 
 function s:confirm_quit() abort
@@ -23,4 +24,5 @@ function s:set_confirm_quit(...) abort
   augroup END
 endfunction
 
-call timer_start(1000 * 60 * 10, function('s:set_confirm_quit'))
+" call timer_start(1000 * 60 * 10, function('s:set_confirm_quit'))
+" TODO: Neovim最新版で動かなくなった
