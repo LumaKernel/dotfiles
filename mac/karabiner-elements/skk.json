@@ -2,16 +2,14 @@
   "title": "SKK",
   "rules": [
     {
-      "description": "Ctrl-J to Kana on Apple Terminal/iTerm2",
+      "description": "Ctrl-J/l/q hack to Kana key on Apple Terminal/iTerm2/Alacritty/Ghostty",
       "manipulators": [
         {
           "type": "basic",
           "from": {
             "key_code": "j",
             "modifiers": {
-              "mandatory": [
-                "control"
-              ]
+              "mandatory": ["control"]
             }
           },
           "to": [
@@ -24,10 +22,44 @@
               "type": "frontmost_application_if",
               "bundle_identifiers": [
                 "^com\\.googlecode\\.iterm2$",
-                "^com\\.apple\\.Terminal$"
+                "^com\\.apple\\.Terminal$",
+                "^org\\.alacritty$",
+                "^com\\.mitchellh\\.ghostty$"
               ]
             }
           ]
+        },
+        {
+          "conditions": [
+            {
+              "bundle_identifiers": [
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.apple\\.Terminal$",
+                "^org\\.alacritty$",
+                "^com\\.mitchellh\\.ghostty$"
+              ],
+              "type": "frontmost_application_if"
+            },
+            {
+              "input_sources": [
+                {
+                  "input_source_id": "^net\\.mtgto\\.inputmethod\\.macSKK\\.(hiragana|katakana|hankaku)$"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": { "key_code": "l" },
+          "to": [
+            {
+              "select_input_source": {
+                "input_mode_id": "net.mtgto.inputmethod.macSKK.ascii",
+                "input_source_id": "net.mtgto.inputmethod.macSKK.ascii",
+                "language": "en"
+              }
+            }
+          ],
+          "type": "basic"
         }
       ]
     }
