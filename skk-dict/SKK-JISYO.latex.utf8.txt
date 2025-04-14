@@ -273,7 +273,9 @@ BbbQ /ℚ/
 mscrR /ℛ/
 Re /ℜ/
 BbbR /ℝ/
+R /ℝ/
 BbbZ /ℤ/
+Z /ℤ/
 tcohm /Ω/
 mho /℧/
 mfrakZ /ℨ/
