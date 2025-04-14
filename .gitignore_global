@@ -13,3 +13,4 @@ local_init.vim
 ]
 *write wshada wundo wviminfo
 filebrowser.db
+.nvmrc
