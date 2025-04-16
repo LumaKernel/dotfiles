@@ -23,6 +23,8 @@ if test -z "$LUMA_WORLD_FISH_COMPLETE"
   set -g fish_complete_path "$LUMA_WORLD_FISH_COMPLETE" $fish_complete_path
 end
 
+nvm use 22
+
 set -g fish_key_bindings fish_user_key_bindings
 
 # -- color
