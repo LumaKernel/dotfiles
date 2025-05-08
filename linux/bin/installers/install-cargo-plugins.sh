@@ -10,4 +10,5 @@ cargo binstall --no-confirm cargo-outdated
 cargo binstall --no-confirm cargo-edit
 cargo binstall --no-confirm cargo-expand
 cargo binstall --no-confirm cargo-generate
+cargo binstall --no-confirm cargo-insta
 cargo binstall --no-confirm watchexec-cli
