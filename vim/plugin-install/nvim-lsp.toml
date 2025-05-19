@@ -18,6 +18,16 @@ lspconfig.denols.setup {
   capabilities = capabilities,
   root_dir = util.root_pattern('deno.json', 'deno.jsonc', '.git', 'package.json'),
 }
+lspconfig.r_language_server.setup {
+  cmd = { 'docker', 'exec', '-i', 'luma-r', 'R', '--no-echo', '-e', 'languageserver::run()' },
+  settings = {
+    r = {
+      lsp = {
+        diagnostics = false,
+      },
+    },
+  },
+}
 lspconfig.rust_analyzer.setup {
   capabilities = capabilities,
   settings = {
