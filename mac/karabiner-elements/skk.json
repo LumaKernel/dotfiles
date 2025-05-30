@@ -57,6 +57,9 @@
                 "input_source_id": "net.mtgto.inputmethod.macSKK.ascii",
                 "language": "en"
               }
+            },
+            {
+              "key_code": "l"
             }
           ],
           "type": "basic"
