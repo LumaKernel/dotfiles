@@ -19,8 +19,16 @@ fi
 # https://support.apple.com/en-us/HT208050
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# https://code.visualstudio.com/docs/terminal/shell-integration
-if test "$TERM_PROGRAM" == "vscode"; then
+# VSCODE_GIT_ASKPASS_NODE includes "Cursor Helper"
+IS_CURSOR=0
+if [[ -n "$VSCODE_GIT_ASKPASS_NODE" && "$VSCODE_GIT_ASKPASS_NODE" == *"Cursor Helper"* ]]; then
+  echo "[info/.bashrc] Cursor is detected."
+  IS_CURSOR=1
+fi
+export IS_CURSOR
+
+# https://code.visualstudio.com/docs/terminal/shell-integration and not IS_CURSOR
+if test "$TERM_PROGRAM" == "vscode" && test "$IS_CURSOR" = 0; then
   source "$(code --locate-shell-integration-path bash)"
   export NO_FISH=1
 fi
