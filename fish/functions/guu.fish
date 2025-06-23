@@ -1,0 +1,1 @@
+alias guu=git_unpushed_unpulled
