@@ -126,6 +126,10 @@
     //    "rule": "max-statements",
     //    "severity": "off"
     // },
+    // {
+    //    "rule": "max-lines",
+    //    "severity": "off"
+    // },
   ],
   "emmet.priority": 30,
   "deno.codeLens.references": false,
