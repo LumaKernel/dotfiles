@@ -164,6 +164,14 @@ depends = ['coc.nvim']
 repo = 'LumaKernel/nvim-coc-nearest-symbol.lua'
 
 # DEBUG: coc.nvim extension
+# https://github.com/neoclide/coc-prettier/issues/184
+[[plugins]]
+repo = 'LumaKernel/coc-prettier-issue-184'
+rev = 'fix-luma-184-for-me'
+build = 'corepack yarn install --frozen-lockfile'
+depends = ['coc.nvim']
+merged = 0
+if = 1
 
 # [[plugins]]
 # repo = '~/ghq/github.com/LumaKernel/vim-tsdetect'
