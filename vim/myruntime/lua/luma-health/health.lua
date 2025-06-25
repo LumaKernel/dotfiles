@@ -97,6 +97,11 @@ M.check = function()
   check('cargo-expand', {'cargo-expand', '--version'}, '\\d+\\.\\d+\\.\\d+')
   check('cargo-generate', {'cargo-generate', '--version'}, '\\d+\\.\\d+\\.\\d+')
 
+  vim.health.start('AI tools')
+  check('claude', {'claude', '--version'}, '\\d+\\.\\d+\\.\\d+')
+  check('gemini', {'gemini', '--version'}, '\\d+\\.\\d+\\.\\d+')
+  check('similarity-ts', {'similarity-ts', '--version'}, '\\d+\\.\\d+\\.\\d+')
+
   vim.health.start('my: OCaml Environment')
   check('opam', {'opam', '--version'}, '\\d+\\.\\d+\\.\\d+')
   check('ocaml', {'ocaml', '--version'}, 'The OCaml toplevel, version \\d+\\.\\d+\\.\\d+')
