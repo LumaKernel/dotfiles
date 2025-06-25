@@ -22,6 +22,10 @@ sudo ln -sf "$HOME"/dotfiles/.tmux-powerlinerc "$HOME"/.tmux-powerlinerc
 sudo ln -sf "$HOME"/dotfiles/flake8 "$HOME"/.config/flake8
 sudo ln -sf "$HOME"/dotfiles/pycodestyle "$HOME"/.config/pycodestyle
 
+mkdir -p "$HOME"/.claude
+sudo ln -sf "$HOME"/dotfiles/common/claude/CLAUDE.md "$HOME"/.claude/CLAUDE.md
+sudo ln -sf "$HOME"/dotfiles/common/claude/settings.json "$HOME"/.claude/settings.json
+
 mkdir -p "$HOME"/.config/fish
 sudo ln -sf "$HOME"/dotfiles/fish/config.fish "$HOME"/.config/fish/config.fish
 
@@ -36,3 +40,4 @@ sudo ln -sf "$HOME"/dotfiles/nayvy/import_config.nayvy "$HOME"/.config/nayvy/imp
 mkdir -p "$HOME"/.config/nvim
 test ! -d "$HOME"/.config/nvim/coc-settings.json
 sudo ln -sf "$HOME"/dotfiles/coc-settings.json "$HOME"/.config/nvim/coc-settings.json
+
