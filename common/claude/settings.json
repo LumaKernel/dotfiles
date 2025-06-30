@@ -1,6 +1,6 @@
 {
-  "$schema": "https://www.schemastore.org/claude-code-settings.json",
   "permissions": {
+    "defaultMode": "allowEdits",
     "allow": [
       "Bash(cargo clippy:*)",
       "Bash(cargo fmt:*)",
@@ -20,6 +20,11 @@
       "Bash(ls:*)",
       "Bash(mkdir:*)",
       "Bash(mv:*)",
+      "Bash(deno fmt:*)",
+      "Bash(deno check:*)",
+      "Bash(deno lint:*)",
+      "Bash(deno run)",
+      "Bash(deno run --allow-read=.)",
       "Bash(npm ci:*)",
       "Bash(npm i:*)",
       "Bash(npm install:*)",
@@ -30,18 +35,25 @@
       "Bash(npx --no-install tsc:*)",
       "Bash(rg:*)",
       "Bash(tree:*)",
-
-      "mcp__typescript__move_file",
-      "mcp__typescript__move_directory",
-      "mcp__typescript__rename_symbol",
+      "WebFetch(domain:github.com)",
+      "mcp__context7__get-library-docs",
+      "mcp__context7__resolve-library-id",
+      "mcp__github__get_file_contents",
+      "mcp__github__search_code",
       "mcp__typescript__delete_symbol",
       "mcp__typescript__find_references",
       "mcp__typescript__get_definitions",
       "mcp__typescript__get_diagnostics",
       "mcp__typescript__get_module_symbols",
-      "mcp__typescript__get_type_in_module",
+      "mcp__typescript__get_symbols_in_scope",
       "mcp__typescript__get_type_at_symbol",
-      "mcp__typescript__get_symbols_in_scope"
+      "mcp__typescript__get_type_in_module",
+      "mcp__typescript__lsmcp_get_type_at_symbol",
+      "mcp__typescript__move_directory",
+      "mcp__typescript__move_file",
+      "mcp__typescript__rename_symbol",
+      "mcp__typescript__ts_get_diagnostics",
+      "mcp__typescript__lsmcp_get_type_in_module"
     ],
     "deny": [
       "Bash(fish:*)",
@@ -63,5 +75,7 @@
       "Read(.env.local)",
       "Read(.env.local.*)"
     ]
-  }
+  },
+  "model": "opus",
+  "$schema": "https://www.schemastore.org/claude-code-settings.json"
 }

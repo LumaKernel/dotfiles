@@ -29,6 +29,11 @@ gemini -p "WebSearch: ..."
 - 参照等価性、テスタビリティ、構造化、レイヤリングを意識
 - イミュータブルな方法を取る。readonlyを付ける
 
+## Test Best Practices
+
+- 全体: t-wada推奨の方法
+- フロントエンドテスト: Kent C. Dodds の Testing Trophy
+
 ## rmが必要な場合(削除したい場合)
 
 以下のような方法を取る
