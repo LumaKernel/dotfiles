@@ -77,5 +77,8 @@
     ]
   },
   "model": "opus",
+  "env": {
+    "BASH_MAX_TIMEOUT_MS": "900000"
+  },
   "$schema": "https://www.schemastore.org/claude-code-settings.json"
 }
