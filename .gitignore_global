@@ -15,5 +15,5 @@ local_init.vim
 *write wshada wundo wviminfo
 filebrowser.db
 .nvmrc
-*.trash/
-*.trashed/
+*.trash
+*.trashed
