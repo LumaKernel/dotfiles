@@ -1,6 +1,6 @@
 {
   "permissions": {
-    "defaultMode": "allowEdits",
+    "defaultMode": "acceptEdits",
     "allow": [
       "Bash(cargo clippy:*)",
       "Bash(cargo fmt:*)",
@@ -42,6 +42,7 @@
       "mcp__github__search_code",
       "mcp__typescript__delete_symbol",
       "mcp__typescript__find_references",
+      "mcp__typescript__get_all_diagnostics",
       "mcp__typescript__get_definitions",
       "mcp__typescript__get_diagnostics",
       "mcp__typescript__get_module_symbols",
@@ -49,11 +50,11 @@
       "mcp__typescript__get_type_at_symbol",
       "mcp__typescript__get_type_in_module",
       "mcp__typescript__lsmcp_get_type_at_symbol",
+      "mcp__typescript__lsmcp_get_type_in_module",
       "mcp__typescript__move_directory",
       "mcp__typescript__move_file",
       "mcp__typescript__rename_symbol",
-      "mcp__typescript__ts_get_diagnostics",
-      "mcp__typescript__lsmcp_get_type_in_module"
+      "mcp__typescript__ts_get_diagnostics"
     ],
     "deny": [
       "Bash(fish:*)",
