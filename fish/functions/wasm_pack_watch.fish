@@ -5,5 +5,5 @@ function wasm_pack_watch
   else
     set ARGS $argv
   end
-  cargo watch -i "pkg/*" -i "*.{html,ts,js,tsx,svelte,vue,css,scss,sass,less}" -s "wasm-pack $ARGS"
+  watchexec -e rs -r -w src -w Cargo.toml -w Cargo.lock --clear -- wasm-pack $ARGS
 end
