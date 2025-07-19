@@ -45,6 +45,7 @@
       "mcp__playwright__browser_console_messages",
       "mcp__playwright__browser_install",
       "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_wait_for",
       "mcp__typescript__delete_symbol",
       "mcp__typescript__find_references",
       "mcp__typescript__get_all_diagnostics",
