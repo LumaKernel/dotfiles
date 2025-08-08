@@ -17,3 +17,4 @@ filebrowser.db
 .nvmrc
 *.trash
 *.trashed
+*.lsmcp/
