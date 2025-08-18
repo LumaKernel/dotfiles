@@ -18,3 +18,4 @@ filebrowser.db
 *.trash
 *.trashed
 *.lsmcp/
+*.playwright-mcp/
