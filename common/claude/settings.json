@@ -53,6 +53,7 @@
       "mcp__playwright__browser_navigate_forward",
       "mcp__playwright__browser_network_requests",
       "mcp__playwright__browser_press_key",
+      "mcp__playwright__browser_select_option",
       "mcp__playwright__browser_snapshot",
       "mcp__playwright__browser_tab_close",
       "mcp__playwright__browser_tab_new",
