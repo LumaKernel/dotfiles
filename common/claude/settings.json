@@ -38,11 +38,13 @@
       "Bash(npx --no-install prettier:*)",
       "Bash(npx --no-install tsc:*)",
       "Bash(rg:*)",
+      "Bash(tee:*)",
       "Bash(tree:*)",
       "WebFetch(domain:github.com)",
       "mcp__context7__get-library-docs",
       "mcp__context7__resolve-library-id",
       "mcp__github__get_file_contents",
+      "mcp__github__get_pull_request",
       "mcp__github__search_code",
       "mcp__github__search_repositories",
       "mcp__playwright__browser_click",
@@ -80,6 +82,7 @@
       "mcp__typescript__move_file",
       "mcp__typescript__rename_symbol",
       "mcp__typescript__search_symbol_from_index",
+      "mcp__typescript__search_symbols",
       "mcp__typescript__ts_get_diagnostics"
     ],
     "deny": [
