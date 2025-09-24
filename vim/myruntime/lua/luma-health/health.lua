@@ -89,7 +89,7 @@ M.check = function()
   check('lcov', {'lcov', '--version'}, general_ver)
   check('ruby', {'ruby', '--version'}, general_ver)
   check('perl', {'perl', '--version'}, general_ver)
-  check('speedtest', {'speedtest', '--version'}, general_ver)
+  check('fast', {'fast', '--version'}, general_ver)
 
   vim.health.start('Rust tools')
   check('rustc', {'rustc', '--version'}, '\\d+\\.\\d+\\.\\d+')
