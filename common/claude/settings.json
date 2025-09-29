@@ -99,6 +99,7 @@
       "Bash(git push:*)",
       "Bash(git rebase:*)",
       "Bash(git reset:*)",
+      "Bash(git checkout:*)",
       "Bash(git rm:*)",
       "Bash(kill:*)",
       "Bash(killall:*)",
