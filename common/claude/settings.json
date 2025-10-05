@@ -118,5 +118,5 @@
     ],
     "defaultMode": "acceptEdits"
   },
-  "model": "opus"
+  "alwaysThinkingEnabled": true
 }
