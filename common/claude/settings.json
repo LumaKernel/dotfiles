@@ -113,14 +113,15 @@
     "deny": [
       "Bash(fish:*)",
       "Bash(git add:*)",
+      "Bash(git checkout:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(git rebase:*)",
       "Bash(git reset:*)",
-      "Bash(git checkout:*)",
       "Bash(git rm:*)",
       "Bash(kill:*)",
       "Bash(killall:*)",
+      "Bash(pkill:*)",
       "Bash(rm:*)",
       "Bash(sh:*)",
       "Bash(sudo:*)",
@@ -133,5 +134,5 @@
     ],
     "defaultMode": "acceptEdits"
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": false
 }
