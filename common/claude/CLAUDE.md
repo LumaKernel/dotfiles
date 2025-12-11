@@ -12,6 +12,10 @@ Specifically for refactoring:
 
 **NEVER use Edit, MultiEdit, or Write tools for TypeScript refactoring operations that have a corresponding mcp\__typescript_\* tool.**
 
+## CRITICAL: git commit/push not allowed
+
+Never ask/try to git commit/push. Theses commands are controlled by the user.
+
 ## Gemini Search
 
 `gemini` is google gemini cli. You can use it for web search.
