@@ -104,6 +104,7 @@
       "mcp__typescript__lsmcp_get_type_at_symbol",
       "mcp__typescript__lsmcp_get_type_in_module",
       "mcp__typescript__lsp_get_definitions",
+      "mcp__typescript__lsp_get_diagnostics",
       "mcp__typescript__lsp_get_hover",
       "mcp__typescript__move_directory",
       "mcp__typescript__move_file",
