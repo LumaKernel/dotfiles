@@ -26,8 +26,7 @@
       "Bash(gh pr checks:*)",
       "Bash(gh pr comment:*)",
       "Bash(gh pr diff:*)",
-      "Bash(gh pr view:*)",
-      "Bash(gh run view:*)",
+      "Bash(gh run list:*)",
       "Bash(git diff:*)",
       "Bash(git fetch:*)",
       "Bash(git merge-base:*)",
@@ -53,6 +52,9 @@
       "Bash(tee:*)",
       "Bash(test:*)",
       "Bash(tree:*)",
+      "WebSearch",
+      "WebFetch(domain:ui.shadcn.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:github.com)",
       "mcp__context7__get-library-docs",
       "mcp__context7__resolve-library-id",
@@ -98,9 +100,12 @@
       "mcp__typescript__get_diagnostics",
       "mcp__typescript__get_hover",
       "mcp__typescript__get_module_symbols",
+      "mcp__typescript__get_project_overview",
       "mcp__typescript__get_symbols_in_scope",
+      "mcp__typescript__get_symbols_overview",
       "mcp__typescript__get_type_at_symbol",
       "mcp__typescript__get_type_in_module",
+      "mcp__typescript__list_dir",
       "mcp__typescript__lsmcp_get_type_at_symbol",
       "mcp__typescript__lsmcp_get_type_in_module",
       "mcp__typescript__lsp_get_definitions",
@@ -136,6 +141,5 @@
       "Read(.env.local.*)"
     ],
     "defaultMode": "acceptEdits"
-  },
-  "alwaysThinkingEnabled": false
+  }
 }
