@@ -14,6 +14,10 @@ sudo ln -sf "$HOME"/dotfiles/mac/.skhdrc "$HOME"/.skhdrc
 mkdir -p "$HOME"/.config/alacritty
 sudo ln -sf "$HOME"/dotfiles/alacritty/alacritty.toml "$HOME"/.config/alacritty/alacritty.toml
 
+GHOSTTY_CONFIG_DIR="${HOME}/Library/Application Support/com.mitchellh.ghostty"
+mkdir -p "$GHOSTTY_CONFIG_DIR"
+sudo ln -sf "$HOME"/dotfiles/ghostty/config "$GHOSTTY_CONFIG_DIR"/config
+
 "$SCRIPT_DIR"/update_skk_jisyo.sh
 
 is_symlink_mac() {
