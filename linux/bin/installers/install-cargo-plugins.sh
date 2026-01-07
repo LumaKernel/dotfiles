@@ -12,3 +12,4 @@ cargo binstall --no-confirm cargo-expand
 cargo binstall --no-confirm cargo-generate
 cargo binstall --no-confirm cargo-insta
 cargo binstall --no-confirm watchexec-cli
+cargo binstall --no-confirm cargo-tarpaulin
