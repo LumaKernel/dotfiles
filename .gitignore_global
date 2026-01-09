@@ -19,3 +19,4 @@ filebrowser.db
 *.trashed
 *.lsmcp/
 *.playwright-mcp/
+tarpaulin-report.json
