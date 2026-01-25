@@ -153,5 +153,8 @@
       "Read(.env.local.*)"
     ],
     "defaultMode": "acceptEdits"
+  },
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true
   }
 }
