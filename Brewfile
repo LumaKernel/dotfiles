@@ -47,10 +47,11 @@ brew "radare2"
 brew "ripgrep"
 brew "tfenv"
 brew "tmux"
+brew "tokei"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
+brew "uv"
 brew "watch"
 brew "wget"
-brwe "uv"
 
 cask "background-music"
 cask "betterdisplay"
