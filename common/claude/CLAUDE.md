@@ -12,6 +12,12 @@ Specifically for refactoring:
 
 **NEVER use Edit, MultiEdit, or Write tools for TypeScript refactoring operations that have a corresponding mcp\__typescript_\* tool.**
 
+## 実験的な実行
+
+`node -e` や `bun -e` を利用しない。ファイルを作成し、shebangを書く。
+chmodと実際の実行は分ける (&& でやらない)。 ./foo.local.ts のように直接実行する。
+また、何度も作り替えず、同じファイルを書き換えて利用せよ。
+
 ## CRITICAL: git commit/push not allowed
 
 Never ask/try to git commit/push. Theses commands are controlled by the user.
