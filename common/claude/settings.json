@@ -29,6 +29,7 @@
       "Bash(gh run list:*)",
       "Bash(git diff:*)",
       "Bash(git fetch:*)",
+      "Bash(git ls-tree:*)",
       "Bash(git merge-base:*)",
       "Bash(git pull:*)",
       "Bash(grep:*)",
