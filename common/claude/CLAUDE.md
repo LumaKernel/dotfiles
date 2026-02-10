@@ -1,36 +1,17 @@
-## CRITICAL: Tool Usage Priority for Refactoring
-
-**When performing refactoring operations (rename, move, etc.) on TypeScript code, ALWAYS use typescript MCP tools (`mcp__typescript_*`) instead of the default Edit/Write tools.**
-
-Specifically for refactoring:
-
-- For renaming symbols: ALWAYS use `mcp__typescript__rename_symbol` instead of Edit/Write
-- For moving files: ALWAYS use `mcp__typescript__move_file` instead of Bash(mv) or Write
-- For moving directories: ALWAYS use `mcp__typescript__move_directory` instead of Bash(mv)
-- For finding references: ALWAYS use `mcp__typescript__find_references` instead of Grep/Bash(grep)
-- For type analysis: ALWAYS use `mcp__typescript__get_type_*` tools
-
-**NEVER use Edit, MultiEdit, or Write tools for TypeScript refactoring operations that have a corresponding mcp\__typescript_\* tool.**
-
 ## 実験的な実行
 
 `node -e` や `bun -e` を利用しない。ファイルを作成し、shebangを書く。
 chmodと実際の実行は分ける (&& でやらない)。 ./foo.local.ts のように直接実行する。
 また、何度も作り替えず、同じファイルを書き換えて利用せよ。
 
+## MCPの利用
+
+- browser/playwright/chrome-devtools mcpはそれぞれすべて別のものです。存在しなくても、指示なしに勝手に他のものを利用しないでください。
+- context7/searchもまた別のものです。勝手に代替しないでください。
+
 ## CRITICAL: git commit/push not allowed
 
 Never ask/try to git commit/push. Theses commands are controlled by the user.
-
-## Gemini Search
-
-`gemini` is google gemini cli. You can use it for web search.
-
-Run web search via Task Tool with `gemini -p 'WebSearch: ...'`.
-
-```bash
-gemini -p "WebSearch: ..."
-```
 
 ## TypeScript Best Practices
 
