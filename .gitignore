@@ -1,3 +1,4 @@
 .apikey
 *.local
+*.local.*
 *.spl
