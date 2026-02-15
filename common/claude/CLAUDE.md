@@ -9,10 +9,6 @@ chmodと実際の実行は分ける (&& でやらない)。 ./foo.local.ts の�
 - browser/playwright/chrome-devtools mcpはそれぞれすべて別のものです。存在しなくても、指示なしに勝手に他のものを利用しないでください。
 - context7/searchもまた別のものです。勝手に代替しないでください。
 
-## CRITICAL: git commit/push not allowed
-
-Never ask/try to git commit/push. Theses commands are controlled by the user.
-
 ## TypeScript Best Practices
 
 - You should not use "as" keyword. You can use type guard functions (no need to write is... because it's now inferred)
