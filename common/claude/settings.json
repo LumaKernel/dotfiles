@@ -51,6 +51,7 @@
       "Bash(npx --no-install tsc:*)",
       "Bash(npx shadcn@latest add:*)",
       "Bash(npx shadcn@latest init)",
+      "Bash(playwright-cli:*)",
       "Bash(rg:*)",
       "Bash(tail:*)",
       "Bash(tee:*)",
@@ -164,5 +165,6 @@
   },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true
-  }
+  },
+  "skipDangerousModePermissionPrompt": true
 }
