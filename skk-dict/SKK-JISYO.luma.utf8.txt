@@ -402,6 +402,8 @@ field /体/
 jring /環/
 jfield /体/
 
+かへんせい /可変性/
+
 iff /⟺/
 iff /⇔/
 iff /↔/
