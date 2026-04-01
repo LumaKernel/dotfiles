@@ -21,3 +21,4 @@ filebrowser.db
 *.playwright-mcp/
 *.playwright-cli/
 tarpaulin-report.json
+.env.keys
