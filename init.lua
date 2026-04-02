@@ -153,6 +153,8 @@ vim.o.hlsearch = true
 vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':<CMD>nohlsearch<CR><ESC>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-c>', ':<CMD>nohlsearch<CR><ESC>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<SPACE>j', ':<CMD>ccl<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<SPACE>o', function() vim.fn.setreg('+', vim.fn.expand('%')) end, { noremap = true, silent = true, desc = 'Copy relative path to clipboard' })
+vim.keymap.set('n', '<SPACE>O', function() vim.fn.setreg('+', vim.fn.expand('%:p')) end, { noremap = true, silent = true, desc = 'Copy absolute path to clipboard' })
 
 vim.cmd('set diffopt+=vertical')
 vim.o.fixendofline = false
