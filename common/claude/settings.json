@@ -145,6 +145,7 @@
       "mcp__typescript__ts_get_diagnostics"
     ],
     "deny": [
+      "Bash(dotenvx get:*)",
       "Bash(fish:*)",
       "Bash(git add .:*)",
       "Bash(git checkout:*)",
