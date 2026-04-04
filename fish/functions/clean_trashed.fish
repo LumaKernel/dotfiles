@@ -14,7 +14,7 @@ function clean_trashed --description '*.trashed ファイル/ディレクトリ�
 
   for target in $targets
     if test -n "$is_force"
-      rm -rf $target
+      trash $target
       echo "削除: $target"
     else
       echo $target
