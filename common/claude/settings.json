@@ -5,6 +5,9 @@
   },
   "permissions": {
     "allow": [
+      "Bash(brew deps:*)",
+      "Bash(brew list:*)",
+      "Bash(brew uses:*)",
       "Bash(cargo clippy:*)",
       "Bash(cargo doc:*)",
       "Bash(cargo fmt:*)",
