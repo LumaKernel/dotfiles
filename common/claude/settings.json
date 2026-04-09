@@ -40,6 +40,7 @@
       "Bash(git merge-base:*)",
       "Bash(git pull:*)",
       "Bash(git push:*)",
+      "Bash(git status:*)",
       "Bash(google-chrome:*)",
       "Bash(grep:*)",
       "Bash(haskell-language-server-wrapper --version)",
