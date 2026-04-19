@@ -67,6 +67,8 @@
       "Bash(takt --help)",
       "Bash(takt --version)",
       "Bash(takt add:*)",
+      "Bash(takt catalog:*)",
+      "Bash(takt workflow:*)",
       "Bash(tail:*)",
       "Bash(tee:*)",
       "Bash(test:*)",
