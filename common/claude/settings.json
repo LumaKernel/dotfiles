@@ -64,6 +64,7 @@
       "Bash(rg:*)",
       "Bash(say:*)",
       "Bash(shuf:*)",
+      "Bash(sort:*)",
       "Bash(takt --help)",
       "Bash(takt --version)",
       "Bash(takt add:*)",
