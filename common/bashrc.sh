@@ -138,6 +138,12 @@ if test -z "$ELAN_HOME"; then
   export PATH="$ELAN_HOME/bin:$PATH"
 fi
 
+# -- coursier (JVM)
+if test -z "$COURSIER_JAVA_HOME_SET"; then
+  export COURSIER_JAVA_HOME_SET=1
+  export JAVA_HOME="/Users/luma/Library/Caches/Coursier/arc/https/github.com/bell-sw/Liberica/releases/download/21%2B37/bellsoft-jdk21%2B37-macos-aarch64-full.zip/jdk-21-full.jdk"
+fi
+
 # -- gem
 # if command -v gem >/dev/null 2>&1; then
 #   if test -z "$GEM_BIN_DIR"; then
