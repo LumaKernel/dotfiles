@@ -25,6 +25,13 @@ local default_configs = {
     ts_lsp_mode = "none",
     hl_mode = "none",
   },
+  metals = {
+    huge_mode = "yes",
+    complete_mode = "metals",
+    lsp_mode = "none",
+    ts_lsp_mode = "none",
+    hl_mode = "treesitter",
+  },
 }
 
 -- huge_mode: "yes" | "no"
