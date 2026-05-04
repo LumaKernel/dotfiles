@@ -313,6 +313,8 @@ complete -C /usr/bin/terraform terraform
 
 if [[ -z $NO_FISH ]] ; then
   export NO_FISH=
+  # Eval tool-appended lines from ~/.bashrc (after the source bash_init line)
+  eval "$(sed -n '/source.*bash_init/,$p' ~/.bashrc | tail -n +2)"
   command -v fish >/dev/null 2>&1 \
     && exec fish
   return

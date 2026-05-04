@@ -6,7 +6,7 @@ case $- in
       *) return;;
 esac
 
-echo "[info/.bashrc] mac mode"
+echo "[info/enter] mac/bash_init.sh"
 export LUMA_IS_MAC=1
 
 if test -x /opt/homebrew/bin/brew; then

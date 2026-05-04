@@ -6,7 +6,7 @@ case $- in
       *) return;;
 esac
 
-echo "[info/enter] linux/.bashrc"
+echo "[info/enter] linux/bash_init.sh"
 
 # ---- dircolors
 eval $(dircolors "$HOME/dotfiles/.dircolors")
