@@ -90,6 +90,7 @@ M.check = function()
   check('ruby', {'ruby', '--version'}, general_ver)
   check('perl', {'perl', '--version'}, general_ver)
   check('fast', {'fast', '--version'}, general_ver)
+  check('moon', {'moon', 'version'}, general_ver)
 
   vim.health.start('Rust tools')
   check('rustc', {'rustc', '--version'}, '\\d+\\.\\d+\\.\\d+')
