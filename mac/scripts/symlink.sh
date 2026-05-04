@@ -7,7 +7,12 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 source "${HOME}/dotfiles/common/symlink.sh"
 
 sudo ln -sf "$HOME"/dotfiles/mac/.bash_profile "$HOME"/.bash_profile
-sudo ln -sf "$HOME"/dotfiles/mac/.bashrc "$HOME"/.bashrc
+# .bashrc is copied (not symlinked) so that tools can append to it
+if [ ! -f "$HOME"/.bashrc ]; then
+  cp "$HOME"/dotfiles/mac/bashrc.template "$HOME"/.bashrc
+else
+  echo "[info] ~/.bashrc already exists, skipping copy. To reset: cp ~/dotfiles/mac/bashrc.template ~/.bashrc"
+fi
 sudo ln -sf "$HOME"/dotfiles/mac/.yabairc "$HOME"/.yabairc
 sudo ln -sf "$HOME"/dotfiles/mac/.skhdrc "$HOME"/.skhdrc
 

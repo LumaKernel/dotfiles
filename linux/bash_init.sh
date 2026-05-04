@@ -33,4 +33,4 @@ if [[ -n "$is_WSL" ]] && command -v wslpath >/dev/null 2>/dev/null; then
 fi
 
 
-source "${HOME}/dotfiles/common/bashrc.sh"
+source "${HOME}/dotfiles/common/bash_init.sh"

@@ -1,0 +1,5 @@
+# shellcheck shell=bash
+# This file is generated from dotfiles/mac/bashrc.template.
+# Tools may freely append to this file.
+
+source "${HOME}/dotfiles/mac/bash_init.sh"

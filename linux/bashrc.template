@@ -1,0 +1,5 @@
+# shellcheck shell=bash
+# This file is generated from dotfiles/linux/bashrc.template.
+# Tools may freely append to this file.
+
+source "${HOME}/dotfiles/linux/bash_init.sh"

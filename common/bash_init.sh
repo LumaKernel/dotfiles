@@ -4,7 +4,7 @@
 # - /etc/skel/.bashrc
 # - http://www.unixuser.org/~euske/doc/bashtips/bashrc.html
 
-echo "[info/enter] common/bashrc.sh"
+echo "[info/enter] common/bash_init.sh"
 
 # local profile
 LOCAL_PROFILE_FILEPATH="$HOME/local_profile.sh"

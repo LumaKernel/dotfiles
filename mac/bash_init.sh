@@ -15,7 +15,7 @@ else
   echo "[warn/.bashrc] Brew not installed"
 fi
 
-source "${HOME}/dotfiles/common/bashrc.sh"
+source "${HOME}/dotfiles/common/bash_init.sh"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
