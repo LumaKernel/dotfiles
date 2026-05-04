@@ -48,6 +48,11 @@
           "formattingProvider": "ormolu"
         }
       }
+    },
+    "moonbit": {
+      "command": "moonbit-lsp",
+      "filetypes": ["moonbit"],
+      "rootPatterns": ["moon.mod.json"]
     }
     // "protobuf": {
     //   "command": "protocol-buffers-language-server",
