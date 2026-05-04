@@ -52,6 +52,7 @@ brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "uv"
 brew "watch"
 brew "wget"
+brew "witr"
 
 cask "background-music"
 cask "betterdisplay"
