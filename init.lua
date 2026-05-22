@@ -303,12 +303,6 @@ for _, wincmd in ipairs({ 'h', 'j', 'k', 'l' }) do
 end
 
 vim.keymap.set('n', '<Leader>y', '<CMD>%y+<CR>', { noremap = true, silent = true })
-
-vim.keymap.set('n', 'gx', function()
-  local url = vim.fn.expand('<cfile>')
-  vim.fn.setreg('+', url)
-  vim.notify('Copied: ' .. url)
-end, { noremap = true, silent = true, desc = 'Copy URL under cursor to clipboard' })
 vim.keymap.set('n', '<Leader>v', 'ggVGs<ESC>"+P', { noremap = true, silent = true })
 
 vim.keymap.set({'n', 'v', 'o', 'x'}, '*', '<Plug>(asterisk-z*)')

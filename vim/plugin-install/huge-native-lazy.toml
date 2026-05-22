@@ -1,12 +1,3 @@
-# Open Browser
-[[plugins]]
-repo = 'tyru/open-browser.vim'
-on_map = "<Plug>(openbrowser"
-hook_add = '''
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
-'''
-
 [[plugins]]
 repo = 'itchyny/vim-gitbranch'
 if = "has('patch-8.2.0001') || has('nvim')"
