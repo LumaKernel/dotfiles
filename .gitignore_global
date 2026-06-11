@@ -22,3 +22,5 @@ filebrowser.db
 *.playwright-cli/
 tarpaulin-report.json
 .env.keys
+.claude/settings.local.json
+*.ignore.*
