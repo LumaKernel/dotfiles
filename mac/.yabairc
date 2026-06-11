@@ -54,6 +54,9 @@ yabai -m rule --add app='^Adobe ' opacity=1.0
 yabai -m rule --add app='^Obsidian$' title='^Obsidian$' manage=off
 yabai -m rule --add app='^Obsidian$' opacity=1.0
 
+# O+Connect Screencast
+yabai -m rule --add app='Screencast' sticky=on
+
 indices=$(yabai -m rule --list | jq '.[].index')
 for index in $indices; do
   yabai -m rule --apply $index
