@@ -2,4 +2,5 @@
 *.local
 *.local.*
 *.spl
-.claude/
+.claude/*
+!.claude/skills/
