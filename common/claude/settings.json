@@ -24,6 +24,7 @@
       "Bash(deno run --allow-read=.)",
       "Bash(deno run)",
       "Bash(diff:*)",
+      "Bash(du:*)",
       "Bash(docker compose logs:*)",
       "Bash(find:*)",
       "Bash(gemini:*)",
@@ -191,7 +192,17 @@
     "defaultMode": "acceptEdits"
   },
   "enabledPlugins": {
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "common@optimind-skills": true,
+    "dev@optimind-skills": true
+  },
+  "extraKnownMarketplaces": {
+    "optimind-skills": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/Optimind-llc/claude-skills.git"
+      }
+    }
   },
   "skipDangerousModePermissionPrompt": true
 }
