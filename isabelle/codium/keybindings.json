@@ -1,0 +1,10 @@
+[
+  {
+    "key": "ctrl+k shift+,",
+    "command": "editor.action.insertSnippet",
+    "when": "editorTextFocus && editorLangId == isabelle",
+    "args": {
+      "snippet": "‹$1›$0"
+    }
+  }
+]
