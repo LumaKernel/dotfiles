@@ -24,6 +24,7 @@
       "Bash(deno run --allow-read=.)",
       "Bash(deno run)",
       "Bash(diff:*)",
+      "Bash(du:*)",
       "Bash(docker compose logs:*)",
       "Bash(find:*)",
       "Bash(gemini:*)",
@@ -33,6 +34,7 @@
       "Bash(gh run list:*)",
       "Bash(ghcup list:*)",
       "Bash(git add:*)",
+      "Bash(git branch:*)",
       "Bash(git commit:*)",
       "Bash(git diff:*)",
       "Bash(git fetch:*)",
@@ -40,8 +42,11 @@
       "Bash(git merge-base:*)",
       "Bash(git pull:*)",
       "Bash(git push:*)",
+      "Bash(git reset --soft:*)",
+      "Bash(git restore:*)",
       "Bash(git rm:*)",
       "Bash(git status:*)",
+      "Bash(git switch:*)",
       "Bash(google-chrome:*)",
       "Bash(grep:*)",
       "Bash(iconv:*)",
@@ -173,7 +178,7 @@
       "Bash(git add .:*)",
       "Bash(git checkout:*)",
       "Bash(git push --force:*)",
-      "Bash(git reset:*)",
+      "Bash(git reset --hard:*)",
       "Bash(kill:*)",
       "Bash(killall:*)",
       "Bash(pkill:*)",
@@ -191,7 +196,17 @@
     "defaultMode": "acceptEdits"
   },
   "enabledPlugins": {
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "frontend-design@claude-code-plugins": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-code-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-code"
+      }
+    }
   },
   "skipDangerousModePermissionPrompt": true
 }
