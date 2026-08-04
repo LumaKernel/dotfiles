@@ -25,6 +25,11 @@ end
 
 nvm use 22
 
+# -- shadowenv
+if command -q shadowenv
+  shadowenv init fish | source
+end
+
 set -g fish_key_bindings fish_user_key_bindings
 
 # -- color
