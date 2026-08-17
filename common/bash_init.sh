@@ -36,6 +36,9 @@ fi
 # shell name
 export SHELL_NAME=bash
 
+# ---- editor
+export EDITOR=nvim
+
 # ---- vim の環境変数を削除
 unset VIM
 unset VIMRUNTIME
