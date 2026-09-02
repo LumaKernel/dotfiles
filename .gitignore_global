@@ -25,3 +25,4 @@ tarpaulin-report.json
 .claude/settings.local.json
 *.ignore.*
 .shadowenv.d/
+.claude/worktrees/
