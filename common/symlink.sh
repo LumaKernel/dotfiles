@@ -34,6 +34,9 @@ mkdir -p "$HOME"/.config/powerline-shell
 test ! -d "$HOME"/.config/powerline-shell/config.json
 sudo ln -sf "$HOME"/dotfiles/powerline-shell/config.json "$HOME"/.config/powerline-shell/config.json
 
+mkdir -p "$HOME"/.config/herdr
+sudo ln -sf "$HOME"/dotfiles/common/herdr/config.toml "$HOME"/.config/herdr/config.toml
+
 mkdir -p "$HOME"/.config/nayvy
 test ! -d "$HOME"/.config/nayvy/import_config.nayvy
 sudo ln -sf "$HOME"/dotfiles/nayvy/import_config.nayvy "$HOME"/.config/nayvy/import_config.nayvy

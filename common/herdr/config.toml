@@ -1,0 +1,63 @@
+onboarding = false
+# Herdr config — migrated from .tmux.conf
+
+[keys]
+# Prefix: C-k (same as tmux)
+prefix = "ctrl+k"
+
+# Splits (tmux: prefix+\ and prefix+-)
+split_vertical = ["prefix+\\", "alt+\\"]
+split_horizontal = ["prefix+minus", "alt+minus"]
+
+# Pane navigation (vim-like hjkl)
+focus_pane_left = ["prefix+h", "alt+h"]
+focus_pane_down = ["prefix+j", "alt+j"]
+focus_pane_up = ["prefix+k", "alt+k"]
+focus_pane_right = ["prefix+l", "alt+l"]
+
+# Pane resize (tmux: Alt+Ctrl+hjkl for small, prefix+HJKL for large)
+resize_pane_left = ["prefix+shift+h", "ctrl+alt+h"]
+resize_pane_down = ["prefix+shift+j", "ctrl+alt+j"]
+resize_pane_up = ["prefix+shift+k", "ctrl+alt+k"]
+resize_pane_right = ["prefix+shift+l", "ctrl+alt+l"]
+
+# Tab navigation (tmux: prefix+n/p, Alt+n/p)
+next_tab = ["prefix+n", "alt+n"]
+previous_tab = ["prefix+p", "alt+p"]
+new_tab = "prefix+c"
+
+# Tab jump by number
+switch_tab = "prefix+1..9"
+
+# Copy mode (vi keys, same as tmux)
+copy_mode = "prefix+["
+
+# Zoom (tmux: prefix+z)
+zoom = "prefix+z"
+
+# Close pane (tmux: prefix+x)
+close_pane = "prefix+x"
+
+# Detach
+detach = "prefix+q"
+
+# Reload config
+# herdr server reload-config (no keybind needed, but handy)
+
+# Popup commands
+[[keys.command]]
+key = "prefix+alt+g"
+type = "popup"
+command = "lazygit"
+description = "lazygit"
+width = "80%"
+height = "80%"
+
+[theme]
+name = "terminal"
+
+[ui]
+tab_bar_right = [
+  { type = "datetime", format = "%H:%M" },
+]
+agent_panel_sort = "spaces"
