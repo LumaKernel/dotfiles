@@ -75,3 +75,7 @@ tagged union + `useState` より `useReducer` のほうが自然なケース:
 high は「実際に不正状態に陥るコードパスが存在する」もの。medium は「型上は許容されるが現状のコードでは不正状態にならない」もの。
 
 各コメントの末尾に `🤖 Made by Claude` を付与する。
+
+## 完了条件
+
+- 全 finding を報告フォーマットで出した

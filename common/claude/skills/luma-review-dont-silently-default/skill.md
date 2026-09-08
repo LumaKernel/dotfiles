@@ -130,3 +130,7 @@ const amount = Math.round(price * 100) / 100;
 - **優先度**: high（データ損失・セキュリティ）/ medium（バグ検出の遅延）/ low（改善推奨）
 
 各コメントの末尾に `🤖 Made by Claude` を付与する。
+
+## 完了条件
+
+- 全 silent default を報告フォーマットで出した

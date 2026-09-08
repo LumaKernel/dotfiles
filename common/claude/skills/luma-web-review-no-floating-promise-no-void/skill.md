@@ -86,3 +86,7 @@ npx eslint --no-warn-ignored '**/*.ts' '**/*.tsx'
 - `void` → `await` に変えた箇所の数
 - `void` → `consumePromise` に変えた箇所の数と、選んだ実装方針
 - 判断に迷った箇所があれば列挙
+
+## 完了条件
+
+- eslint が 0 error & void 式がゼロ

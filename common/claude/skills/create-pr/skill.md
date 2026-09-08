@@ -33,3 +33,7 @@ PRを作成する。`gh pr view` はProjects Classic廃止の影響で使えな�
 - Test Plan セクションは **書かない**
 - 本文はHEREDOCで渡す（フォーマット崩れ防止）
 - 作成後、PRのURLを返す
+
+## 完了条件
+
+- PR が作成され、URL を返した
