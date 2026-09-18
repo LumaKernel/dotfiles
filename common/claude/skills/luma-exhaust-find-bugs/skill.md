@@ -45,4 +45,6 @@ luma-exhaust のツリーに加え、「発見済みバグ」セクションを�
   - 証明: [test-bug-002.ignore.ts](./test-bug-002.ignore.ts)
 ```
 
+各バグの記述は、見る人が同等にどのような具体的なコードや検証をもとに進捗ファイルだけ読んで独立して理解できるようにする。
+
 深刻度: Critical / Major / Minor
