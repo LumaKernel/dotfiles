@@ -4,7 +4,7 @@ description: プロジェクトのすべてのgit trackedファイルを網羅�
 allowed-tools: Read, Glob, Grep, Agent, Bash, Edit, Write, WebFetch, WebSearch
 ---
 
-luma-exhaust の派生。まず luma-exhaust のスキル定義を必ず読む。進捗ファイルは `exhaust-find-bugs-{date}-{commit}.ignore.md`。
+luma-exhaust の派生。まず luma-exhaust のスキル定義を必ず読む。進捗ファイルは `exhaust-find-bugs-{date}-{commit}.ignore/report.md`。
 
 ## 作業内容
 
@@ -14,8 +14,9 @@ luma-exhaust の派生。まず luma-exhaust のスキル定義を必ず読む�
 
 バグを見つけたら、必ず以下のいずれかで証明してから報告する:
 
-- A. 既存テストフレームワークにテスト追加 → 実行して失敗確認
-- B. 再現スクリプト作成 → `test-bug-NNN.ignore.{ts,py,sh,...}` にアサーション付きで書き、実行して失敗確認
+- A. (優先) 自動テスト追加 → 実行して失敗確認
+- B. 再現スクリプト作成 → `exhaust-find-bugs-{date}-{commit}.ignore/test-bug-NNN.{ts,py,sh,...}` にアサーション付きで書き、実行して失敗確認
+  - スクリプトの置き場所が重要ならこの場所に限らず `{name}.ignore.{ext}` を任意の場所に置いてよい。
 
 ### ローカルで再現できない場合の工夫
 
