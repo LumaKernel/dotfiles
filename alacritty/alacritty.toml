@@ -10,3 +10,17 @@ normal = { family = "UDEV Gothic 35HS", style = "Regular" }
 key = "Slash"
 mods = "Control"
 chars = "\u001f"
+
+[hints]
+alphabet = "jfkdls;ahgurieowpq"
+
+[[hints.enabled]]
+command = "open"
+hyperlinks = true
+post_processing = true
+persist = false
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|nntp:|sftp:|ssh:|telnet://|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.mouse]
+enabled = true
+mods = "Command"
