@@ -141,7 +141,9 @@ allowed-tools: Read, Glob, Grep, Agent, Bash, Edit, Write
 - 既存セクションに属するタスクなら、そのセクション内の適切な位置に追加
 - 新しいカテゴリが必要なら、セクションを新設
 - 「差し込みタスク」セクションが適切な場合はそこに追加
-- **ステータスは未着手で追加する**（勝手に実装しない）
+- ステータスは未着手（draft）で追加する（勝手に実装しない）
+- ステータスフロー: `draft → design → implementing → testing → QA✓ → review✓ → meta-review✓ → done`
+  - ✓ = 不合格時は design/implementing に差し戻し（必ず別ショットで。ついでにやらない）
 
 #### 記述フォーマット
 
