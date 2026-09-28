@@ -1,7 +1,8 @@
 {
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "600000",
-    "BASH_MAX_TIMEOUT_MS": "900000"
+    "BASH_MAX_TIMEOUT_MS": "900000",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "permissions": {
     "allow": [
@@ -83,6 +84,7 @@
       "Bash(rustc:*)",
       "Bash(say:*)",
       "Bash(sed:*)",
+      "Bash(shadowenv:*)",
       "Bash(shuf:*)",
       "Bash(sort:*)",
       "Bash(stat:*)",
@@ -193,6 +195,10 @@
     ],
     "deny": [
       "Bash(dotenvx get:*)",
+      "Bash(gh repo fork:*)",
+      "Bash(gh repo create --template:*)",
+      "mcp__github__fork_repository",
+      "mcp__github__create_fork",
       "Bash(fish:*)",
       "Bash(git add .:*)",
       "Bash(git checkout:*)",
@@ -212,12 +218,39 @@
       "Read(.env.keys)",
       "Read(.env.local.*)"
     ],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "auto"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/luma/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "deno run --allow-env=TOOL_INPUT '/Users/luma/.claude/hooks/pre-tool-use.ts'",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
   },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
-    "frontend-design@claude-code-plugins": true
+    "frontend-design@claude-code-plugins": true,
+    "claude-tmux-hop@claude-tmux-hop": true
   },
   "extraKnownMarketplaces": {
     "claude-code-plugins": {
@@ -225,7 +258,15 @@
         "source": "github",
         "repo": "anthropics/claude-code"
       }
+    },
+    "claude-tmux-hop": {
+      "source": {
+        "source": "github",
+        "repo": "unsafe9/claude-tmux-hop"
+      }
     }
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true,
+  "teammateMode": "in-process"
 }
