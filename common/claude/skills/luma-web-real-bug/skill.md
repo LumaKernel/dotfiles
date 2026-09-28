@@ -16,6 +16,49 @@ allowed-tools: Read, Glob, Grep, Agent, Bash, Edit, Write, LSP, AskUserQuestion
 
 したがって、ソースコードの静的解析だけに頼らず、呼び出し者のブラウザコンソールでスクリプトを実行してもらい、その出力を受け取ることで状況を把握する。
 
+## 調査状態の管理
+
+調査が長引く場合や中断・再開に備え、状態をファイルに書き出す。会話コンテキストに依存せず、状態ファイルが single source of truth。
+
+ファイル名: `debug-{slug}.ignore.md`（例: `debug-sidebar-scroll.ignore.md`）
+
+```markdown
+# Debug: [バグの短い説明]
+
+## Phase
+
+reproduce | investigate | hypothesize | fix | verify | prevent
+
+## Confirmed Facts
+
+- [ランタイムで確認した事実。コンソール出力の要約、DOM状態など]
+
+## Rejected Hypotheses
+
+- [棄却した仮説と、棄却の根拠]
+
+## Open Questions
+
+- [未解決の疑問]
+
+## Attempted Fixes
+
+- [試した修正と結果]
+```
+
+各フェーズで得た知見は必ずこのファイルに書き出す。推論や中間的な考察は会話に残すだけでなく、結論を状態ファイルに反映すること。再開時はこのファイルだけで状況を完全に復元できる状態を保つ。
+
+## 最初のショット
+
+skill 呼び出し直後の最初のショットでは、実際の調査・修正作業を開始しない。以下の整理のみを行う:
+
+1. バグの概要を確認し、状態ファイル (`debug-{slug}.ignore.md`) を作成する
+2. 調査方針（コンソールスクリプトの方向性、playwright-cli を使うか）を決定する
+3. 関連しそうなファイル・コンポーネントの当たりをつける
+4. 次のショットで実行するアクションを明示する
+
+整理が完了したら、ユーザーに確認を取ってから次のショットで作業を開始する。
+
 ## 手順
 
 ### 1. 状況ヒアリングと調査方針の決定
