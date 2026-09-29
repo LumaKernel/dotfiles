@@ -26,6 +26,7 @@ mkdir -p "$HOME"/.claude
 sudo ln -sf "$HOME"/dotfiles/common/claude/CLAUDE.md "$HOME"/.claude/CLAUDE.md
 sudo ln -sf "$HOME"/dotfiles/common/claude/settings.json "$HOME"/.claude/settings.json
 sudo ln -sfn "$HOME"/dotfiles/common/claude/skills "$HOME"/.claude/skills
+sudo ln -sfn "$HOME"/dotfiles/common/claude/hooks "$HOME"/.claude/hooks
 
 mkdir -p "$HOME"/.config/fish
 sudo ln -sf "$HOME"/dotfiles/fish/config.fish "$HOME"/.config/fish/config.fish
