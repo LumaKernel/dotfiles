@@ -37,10 +37,16 @@ it("deactivateAt を過ぎたユーザーが deactivated になる", async () =>
       { "name": "Charlie", "status": "active", "deactivateAt": "2025-10-01" },
     ]
   `);
+  expect(
+    (await dumpUsers()).find((u) => u.name === "Alice")?.status,
+    "deactivateAt が null の Alice は active のまま",
+  ).toBe("active");
 });
 ```
 
 Given と Then が同じ構造なので、何が変わり何が変わらなかったかを比較して読める。
+
+snapshotのなにに着目すべきかは、コメントではなく後続する expect + メッセージで書く。
 
 ## 検出パターン
 
@@ -76,6 +82,8 @@ expect(userA?.role).toBe("admin");
 const userB = getUser("b");
 expect(userB).not.toBeUndefined();
 expect(userB?.name).toBe("Bob");
+const userC = getUser("c");
+expect(userC).toBeUndefined();
 
 // GOOD: dumpUsers() のようなユーティリティを作って一括 snapshot
 expect(await dumpUsers()).toMatchInlineSnapshot(`
@@ -84,6 +92,10 @@ expect(await dumpUsers()).toMatchInlineSnapshot(`
     { "id": "b", "name": "Bob", "role": "member" },
   ]
 `);
+expect(
+  (await dumpUsers()).find((u) => u.id === "c"),
+  "削除済みユーザー c は含まれない",
+).toBeUndefined();
 ```
 
 テスト用の一括取得・ダンプユーティリティがなければ作成を提案する。
