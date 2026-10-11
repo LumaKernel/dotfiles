@@ -26,3 +26,5 @@ tarpaulin-report.json
 *.ignore.*
 .shadowenv.d/
 .claude/worktrees/
+*.ai-state.md
+*.ai-state/

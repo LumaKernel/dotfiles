@@ -1,10 +1,10 @@
 ---
 name: luma-exhaust
-description: プロジェクトのすべてのgit trackedファイルを網羅的に確認しながら、指示された作業を実行する。進捗は exhaust-{name}.ignore.md で管理し、中断・再開が可能。
+description: プロジェクトのすべてのgit trackedファイルを網羅的に確認しながら、指示された作業を実行する。進捗は exhaust-{name}.ai-state.md で管理し、中断・再開が可能。
 allowed-tools: Read, Glob, Grep, Agent, Bash, Edit, Write
 ---
 
-プロジェクトのすべてのgit trackedファイルを対象に、指示された作業を網羅的に実行する。進捗状態を `exhaust-{name}.ignore.md`（例: `exhaust-type-review.ignore.md`）で管理し、見落としゼロを保証する。
+プロジェクトのすべてのgit trackedファイルを対象に、指示された作業を網羅的に実行する。進捗状態を `exhaust-{name}.ai-state.md`（例: `exhaust-type-review.ai-state.md`）で管理し、見落としゼロを保証する。
 
 ## 入力
 
@@ -25,7 +25,7 @@ git ls-files
 
 ### 2. 進捗管理ファイルの作成・確認
 
-プロジェクトルートに `exhaust-{name}.ignore.md` を作成する（既に存在すれば読み込んで続行）。
+プロジェクトルートに `exhaust-{name}.ai-state.md` を作成する（既に存在すれば読み込んで続行）。
 
 #### フォーマット
 
@@ -44,7 +44,7 @@ git ls-files
 ## Loop
 
 \`\`\`
-/loop 10m /luma-exhaust exhaust-{name}.ignore.md の続きをやる: [作業の要約]
+/loop 10m /luma-exhaust exhaust-{name}.ai-state.md の続きをやる: [作業の要約]
 \`\`\`
 
 ## ツリー
@@ -90,9 +90,9 @@ git ls-files
 
 ### 3. 中断・再開
 
-会話が切れても `exhaust-{name}.ignore.md` が状態を保持している。再開時は:
+会話が切れても `exhaust-{name}.ai-state.md` が状態を保持している。再開時は:
 
-1. `exhaust-{name}.ignore.md` を読む
+1. `exhaust-{name}.ai-state.md` を読む
 2. 展開済みの未完了ファイル (`[ ]`) があればそこから続行
 3. なければ次の折りたたみディレクトリを展開して続行
 
@@ -102,19 +102,23 @@ skill 呼び出し直後の最初のショットでは、実際の作業を開�
 
 1. 作業内容とスコープを確認する
 2. `git ls-files` でファイルリストを取得する
-3. 進捗ファイル (`exhaust-{name}.ignore.md`) を作成し、トップレベルのツリーを列挙する
+3. 進捗ファイル (`exhaust-{name}.ai-state.md`) を作成し、トップレベルのツリーを列挙する
 4. 作業の進め方（順序、スキップ基準など）を明示する
 
-整理が完了したら、ユーザーに確認を取ってから次のショットで作業を開始する。
+整理が完了したら、以下のloopプロンプトを提示し、loopを設定してよいか確認する。承認されたらloopを設定し、そのまま作業を開始する。
+
+```
+/loop 10m /luma-exhaust exhaust-{name}.ai-state.md の続きをやる: [作業の要約]
+```
 
 ## 注意事項
 
-- `exhaust-*.ignore.md` は `.gitignore` に追加する必要はない。`*.ignore.*` パターンでgitにtrackされない想定（プロジェクトの `.gitignore` を確認し、必要なら追加を提案すること）
+- `exhaust-*.ai-state.md` は `.gitignore` に追加する必要はない。`*.ai-state.md` パターンでgitにtrackされない想定（グローバル gitignore で設定済み）
 - 作業完了の判断は厳密に: ファイルを Read で確認せずに `[x]` にしない
 - スキップする場合は理由を書く: 対象外と判断したファイル（バイナリ、自動生成、lock fileなど）は `[x] path  # skip: 理由` で残す
-- `exhaust-{name}.ignore.md` 自体が進捗のsingle source of truth: 他に状態を持たない
+- `exhaust-{name}.ai-state.md` 自体が進捗のsingle source of truth: 他に状態を持たない
 - ツリーは常にコンパクトに保つ: 完了ディレクトリは折りたたむ。未着手ディレクトリは展開しない。ファイルに同時に見えるのは「作業中の展開部分」だけ
 
 ## 完了条件
 
-- `exhaust-{name}.ignore.md` のすべてのトップレベル項目が `[x]` になっている
+- `exhaust-{name}.ai-state.md` のすべてのトップレベル項目が `[x]` になっている
