@@ -33,6 +33,26 @@ git tracked ファイルをすべて見た後、以下のようなファイル�
 
 該当するものが見つかったら進捗ファイルの「ファイル外の調査」セクションに記録する。
 
+## アプリ・ランタイムの使用量調査
+
+対象範囲がルートの場合、インストール済みアプリやランタイムの容量と最終利用日も調査する。
+
+調査手段 (macOS):
+- `/Applications` 配下: `du -sh` でサイズ、`mdls -name kMDItemLastUsedDate` で最終利用日
+- Homebrew: `brew list --formula` / `brew list --cask` の一覧、`brew autoremove --dry-run` で不要な依存
+- ランタイムバージョン管理 (mise, asdf, nvm, pyenv 等): 古いバージョンが残っていないか。`mise ls` や該当ツールで確認
+- Xcode 関連: `~/Library/Developer/` 配下のシミュレータ、アーカイブ、DerivedData
+
+調査手段 (Linux):
+- パッケージマネージャ: `dpkg-query -W --showformat='${Installed-Size}\t${Package}\n' | sort -rn | head -30` 等
+- snap / flatpak: `snap list`, `flatpak list --app`
+
+行動基準:
+- 最終利用日が取得できたものは記録する。長期間未使用のものは削除候補として提案
+- アプリ本体の削除は提案に留め、勝手に実行しない（関連ファイルの取りこぼし、ライセンス管理等の問題がある）
+- `brew uninstall`, `mise uninstall` 等パッケージマネージャ経由で安全に消せるものはコマンドを提示する
+- パッケージマネージャを経由しないもの（.app 直置き等）は AppCleaner 等の利用を提案する
+
 ## 進捗ファイルの追加要素
 
 luma-exhaust のツリーに加え、以下のセクションを持つ:
@@ -54,6 +74,14 @@ luma-exhaust のツリーに加え、以下のセクションを持つ:
 - [ ] ビルド成果物
 - [ ] Git 履歴
 - [x] OS固有  # skip: .DS_Store なし
+
+## アプリ・ランタイム (ルートスコープ時のみ)
+
+| 名前 | サイズ | 最終利用日 | 判定 |
+|------|--------|-----------|------|
+| GarageBand.app | 1.2GB | 2023-01-15 | 削除候補 |
+| node v18.17.0 (mise) | 85MB | — | v22 に移行済み。`mise uninstall node 18.17.0` |
+| iOS 16.4 Simulator | 5.8GB | 2024-02-01 | 削除候補。`xcrun simctl delete unavailable` |
 
 ## 発見事項
 
