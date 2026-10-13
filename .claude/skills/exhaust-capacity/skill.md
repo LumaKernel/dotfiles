@@ -53,6 +53,31 @@ git tracked ファイルをすべて見た後、以下のようなファイル�
 - `brew uninstall`, `mise uninstall` 等パッケージマネージャ経由で安全に消せるものはコマンドを提示する
 - パッケージマネージャを経由しないもの（.app 直置き等）は AppCleaner 等の利用を提案する
 
+## cloneリポジトリの棚卸し
+
+対象範囲がルートの場合、ghq 管理下やその他のclone済みリポジトリを調査し、削除候補をスコアリングで提案する。
+
+調査対象の特定:
+- `ghq root` で ghq のルートを取得し、配下を走査
+- ghq を使っていない場合は `~/src`, `~/repos`, `~/projects`, `~/dev` 等の慣習的なパスを確認
+
+各リポジトリについて以下を収集:
+- サイズ: `du -sh` (`.git/` 含む全体)
+- clean 度: `git status --porcelain` の出力行数。0 なら clean、少なければ near-clean
+- 最終利用日: `stat -f '%m' .git/FETCH_HEAD` or `.git/HEAD` の mtime、`git log -1 --format='%ci'` の最終コミット日
+- リモートの存在: `git remote get-url origin` が有効か (アーカイブ済み・削除済みリポジトリの検出)
+
+スコアリング (削除しやすさの指標、高いほど削除候補):
+- サイズが大きい → +
+- clean or near-clean → + (未コミットの作業がない)
+- 最終利用日が古い → +
+- リモートが生きている → + (再clone可能)
+
+行動基準:
+- スコア順にソートして提案。削除は勝手に実行しない
+- unclean なリポジトリは未プッシュの作業がある可能性を明示
+- 削除コマンドは `trash` を使った形で提示
+
 ## 進捗ファイルの追加要素
 
 luma-exhaust のツリーに加え、以下のセクションを持つ:
@@ -82,6 +107,14 @@ luma-exhaust のツリーに加え、以下のセクションを持つ:
 | GarageBand.app | 1.2GB | 2023-01-15 | 削除候補 |
 | node v18.17.0 (mise) | 85MB | — | v22 に移行済み。`mise uninstall node 18.17.0` |
 | iOS 16.4 Simulator | 5.8GB | 2024-02-01 | 削除候補。`xcrun simctl delete unavailable` |
+
+## cloneリポジトリ棚卸し (ルートスコープ時のみ)
+
+| リポジトリ | サイズ | 最終利用 | clean | リモート | スコア |
+|-----------|--------|---------|-------|---------|--------|
+| github.com/foo/large-repo | 2.1GB | 2023-06-01 | yes | alive | 5/5 削除候補 |
+| github.com/bar/old-project | 340MB | 2024-01-15 | yes | alive | 4/5 削除候補 |
+| github.com/baz/wip-fork | 180MB | 2024-08-01 | no (3 files) | alive | 2/5 要確認 |
 
 ## 発見事項
 
