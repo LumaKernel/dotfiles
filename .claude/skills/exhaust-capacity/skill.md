@@ -53,6 +53,35 @@ git tracked ファイルをすべて見た後、以下のようなファイル�
 - `brew uninstall`, `mise uninstall` 等パッケージマネージャ経由で安全に消せるものはコマンドを提示する
 - パッケージマネージャを経由しないもの（.app 直置き等）は AppCleaner 等の利用を提案する
 
+## CLI・ツールの棚卸し
+
+対象範囲がルートの場合、各パッケージマネージャでインストールされたCLI・ツールを調査し、削除候補をスコアリングで提案する。
+
+調査対象:
+- Homebrew: `brew list --formula` — セラーのサイズは `brew info --json=v2 <pkg> | jq '.formulae[].installed[].installed_as_dependency'` で依存かどうかも判別
+- npm global: `npm ls -g --depth=0`、インストール先は `npm root -g`
+- uv/pip: `uv tool list` or `pip list --user`
+- cargo: `cargo install --list`、`~/.cargo/bin/` 配下のバイナリサイズ
+- go: `ls ~/go/bin/`、バイナリの mtime
+
+各ツールについて以下を収集:
+- サイズ: バイナリ or セラーの `du -sh`
+- 最終利用日: `stat -f '%a'` (atime) でバイナリの最終アクセス日。atime が無効な環境では mtime で代替
+- 依存元: 他のパッケージから依存されているか (`brew uses --installed`, etc.)
+- dotfiles 管理下か: Brewfile, package.json (global), Cargo.toml 等に記載があるか検索する
+
+スコアリング (削除しやすさの指標、高いほど削除候補):
+- 最終利用日が古い → +
+- 他から依存されていない → +
+- 非推奨・アーカイブ済み、またはよく知られた上位互換がある → + (例: eza > exa, fd > find 的な関係)
+- サイズが大きい → +
+
+行動基準:
+- スコア順にソートして提案。削除は勝手に実行しない
+- dotfiles の管理ファイル (Brewfile 等) に含まれている場合はその旨を明示し、ツールの削除と合わせて管理ファイルからの削除もするか確認する
+- 依存されているものは依存元を明示し、単独では消せないことを示す
+- 削除コマンドは各パッケージマネージャの uninstall を提示
+
 ## cloneリポジトリの棚卸し
 
 対象範囲がルートの場合、ghq 管理下やその他のclone済みリポジトリを調査し、削除候補をスコアリングで提案する。
@@ -107,6 +136,14 @@ luma-exhaust のツリーに加え、以下のセクションを持つ:
 | GarageBand.app | 1.2GB | 2023-01-15 | 削除候補 |
 | node v18.17.0 (mise) | 85MB | — | v22 に移行済み。`mise uninstall node 18.17.0` |
 | iOS 16.4 Simulator | 5.8GB | 2024-02-01 | 削除候補。`xcrun simctl delete unavailable` |
+
+## CLI・ツール棚卸し (ルートスコープ時のみ)
+
+| ツール | マネージャ | サイズ | 最終利用 | dotfiles管理 | スコア |
+|--------|-----------|--------|---------|-------------|--------|
+| exa | brew | 1.2MB | 2023-09-01 | Brewfile L42 | 5/5 削除候補 (archived, eza が後継) |
+| prettier | npm -g | 48MB | 2025-01-15 | — | 3/5 npx で代替可能 |
+| cargo-edit | cargo | 12MB | 2024-03-01 | — | 4/5 cargo 1.62+ で `cargo add` ネイティブ化 |
 
 ## cloneリポジトリ棚卸し (ルートスコープ時のみ)
 
