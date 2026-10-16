@@ -1,10 +1,10 @@
 ---
 name: luma-extract-spec
-description: アクションの仕様を抽出し、specファイルとして記述する。非自明な要素のみに集中し、箇条書きで結論だけを書く。
+description: 指定された対象の仕様を抽出し、specファイルとして記述する。非自明な要素のみに集中し、箇条書きで結論だけを書く。
 allowed-tools: Read, Glob, Grep, Bash, Write, Edit, AskUserQuestion, Agent
 ---
 
-$ARGUMENTS で指定されたアクション（機能・コマンド・エンドポイント・ワークフロー等）の仕様を、specファイルとして記述する。
+$ARGUMENTS で指定された対象の仕様を、specファイルとして記述する。
 
 ## specファイルの配置
 
