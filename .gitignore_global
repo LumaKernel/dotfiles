@@ -24,6 +24,7 @@ tarpaulin-report.json
 .env.keys
 .claude/settings.local.json
 *.ignore.*
+*.ignore/
 .shadowenv.d/
 .claude/worktrees/
 *.ai-state.md
