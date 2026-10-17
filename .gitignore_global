@@ -23,6 +23,7 @@ filebrowser.db
 tarpaulin-report.json
 .env.keys
 .claude/settings.local.json
+.claude/scheduled_tasks.lock
 *.ignore.*
 *.ignore/
 .shadowenv.d/
