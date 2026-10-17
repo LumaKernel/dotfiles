@@ -16,17 +16,6 @@
             {
               "key_code": "japanese_kana"
             }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.googlecode\\.iterm2$",
-                "^com\\.apple\\.Terminal$",
-                "^org\\.alacritty$",
-                "^com\\.mitchellh\\.ghostty$"
-              ]
-            }
           ]
         },
         {
