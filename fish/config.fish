@@ -23,7 +23,10 @@ if test -z "$LUMA_WORLD_FISH_COMPLETE"
   set -g fish_complete_path "$LUMA_WORLD_FISH_COMPLETE" $fish_complete_path
 end
 
-nvm use 22
+# -- fnm (node version manager)
+if command -q fnm
+  fnm env --use-on-cd --shell fish | source
+end
 
 # -- shadowenv
 if command -q shadowenv
