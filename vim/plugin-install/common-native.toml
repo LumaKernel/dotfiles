@@ -172,6 +172,7 @@ endfunction
 
 let g:startify_commands = [
       \   ':echo "hi"',
+      \   ':checkhealth',
       \   ':call dein#recache_runtimepath()',
       \   ':call dein#check_update()',
       \   ':call dein#update()',
