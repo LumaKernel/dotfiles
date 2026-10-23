@@ -37,6 +37,8 @@ luma-exhaust の派生。まず luma-exhaust のスキル定義を必ず読む�
 luma-exhaust のツリーに加え、「発見済みバグ」セクションを持つ:
 
 ```markdown
+Loop: 0
+
 ## 発見済みバグ
 
 - #1 [Critical] [src/auth.ts:42](./src/auth.ts) — JWT検証でalg=noneを許容
