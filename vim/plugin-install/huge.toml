@@ -25,11 +25,6 @@ let g:localrc_filename = 'local_init.vim'
 '''
 
 [[plugins]]
-repo = 'gamoutatsumi/dps-ghosttext.vim'
-depends = ['denops.vim']
-
-
-[[plugins]]
 repo = 'lambdalisue/vim-findent'
 hook_add = '''
 silent! EditorConfigDisable

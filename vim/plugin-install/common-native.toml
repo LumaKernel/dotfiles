@@ -100,6 +100,7 @@ function! s:hijack_directory() abort
   endif
   exe 'Fern' path
 endfunction
+
 '''
 
 [[plugins]]
@@ -169,52 +170,20 @@ function! s:MyColorSelections()
   return map(copy(names), {_, colo -> {'line': colo, 'cmd': printf('SwitchColorScheme %s', colo)}})
 endfunction
 
-function! s:MyRefs()
-  return [
-        \   { 'line': 'GNU Make Manual' , 'cmd': 'Ref lynx https://www.gnu.org/software/make/manual/make.html' },
-        \   { 'line': 'ECMA262' , 'cmd': 'Ref lynx https://tc39.es/ecma262/' },
-        \ ]
-endfunction
-
-function! s:MyLinks()
-  let l:res = [
-        \   { 'line': 'カラースキーム一覧' , 'url': 'http://colorswat.ch/vim/list?p=2&o=star' },
-        \   { 'line': 'カラースキーム一覧' , 'url': 'http://vimcolors.com/' },
-        \   { 'line': 'Nerd Fonts チートシート' , 'url': 'https://www.nerdfonts.com/cheat-sheet' },
-        \ ]
-
-  for el in l:res
-    if has_key(el, 'url')
-      let el.line ..= ' : ' .. el.url
-      let el.cmd = ':OpenBrowser ' .. el.url
-      unlet el.url
-    endif
-  endfor
-
-  return l:res
-endfunction
-
-
 let g:startify_commands = [
       \   ':echo "hi"',
-      \   ':GhostTextEnable',
       \   ':call dein#recache_runtimepath()',
       \   ':call dein#check_update()',
       \   ':call dein#update()',
-      \   ":call dein#update(['ddc-file','ddc-tabnine','ddc-run','ddc-coc-patched','ddc-registers-words'])",
       \   ':call dein#build()',
       \   ':call dein#remote_plugins()',
       \   ':DeinClean',
-      \   ':CocConfig',
       \   ':History',
-      \   ':Colors',
       \ ]
 
 let g:startify_lists = [
       \ { 'type': 'commands',  'header': ["   :: コマンド"] },
       \ { 'type': function('s:MyColorSelections'),  'header': ["   // カラーテーマ"] },
-      \ { 'type': function('s:MyRefs'),  'header': ["   <> リファレンス"] },
-      \ { 'type': function('s:MyLinks'),  'header': ["   !! 便利リンク"] },
       \ ]
 
 nnoremap <silent> ,s :<C-u>Startify \| only<CR>
@@ -226,5 +195,6 @@ augroup init_vim
   au User StartifyReady silent! nunmap <buffer> t
   au User StartifyReady silent! nunmap <buffer> T
   au User StartifyReady silent! nunmap <buffer> T
+  au User StartifyReady nnoremap <buffer> . :<C-u>Fern .<CR>
 augroup END
 '''

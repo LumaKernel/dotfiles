@@ -772,36 +772,6 @@ on_cmd = [
 ]
 
 [[plugins]]
-repo = 'subnut/nvim-ghost.nvim'
-if = 'has("nvim")'
-merged = 0
-on_cmd = 'GhostTextEnable'
-hook_add = '''
-let g:nvim_ghost_disabled = 1
-'''
-hook_post_source = '''
-function! s:setup_ghost(amatch) abort
-  if get(g:, 'nvim_ghost_disabled', 0)
-    return
-  endif
-  if &buftype !=# 'nofile'
-    return
-  endif
-  if &ft !=# ''
-    return
-  endif
-  exe 'file' matchlist(a:amatch, '[^/\\]*$')[0]
-endfunction
-augroup nvim_ghost_user_autocommands
-  au!
-  au User www.reddit.com,www.stackoverflow.com ++nested set filetype=markdown
-  au User www.reddit.com,www.github.com ++nested set filetype=markdown
-  au User *github.com ++nested set filetype=markdown
-  au User *.com,*.net,*.io,*.jp,*.org ++nested call <SID>setup_ghost(expand("<amatch>"))
-augroup END
-'''
-
-[[plugins]]
 repo = 'lambdalisue/suda.vim'
 on_event = 'BufRead'
 hook_add = '''

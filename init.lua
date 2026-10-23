@@ -1,4 +1,4 @@
--- mode_preset: "huge" | "light" | "compe"
+-- mode_preset: "huge" | "light"
 local mode_preset = os.getenv("VIM_MODE_PRESET") or "huge"
 vim.g.mode_preset = mode_preset
 
@@ -6,42 +6,16 @@ vim.g.switch_color_scheme_save_file = vim.fn.expand('~/.config/nvim/vim-color-sc
 local default_configs = {
   huge = {
     huge_mode = "yes",
-    complete_mode = "coc",
-    lsp_mode = "coc",
-    ts_lsp_mode = "none",
     hl_mode = "treesitter",
   },
   light = {
     huge_mode = "no",
-    complete_mode = "none",
-    lsp_mode = "none",
-    ts_lsp_mode = "none",
     hl_mode = "none",
-  },
-  compe = {
-    huge_mode = "yes",
-    complete_mode = "ddc",
-    lsp_mode = "nvim-lsp",
-    ts_lsp_mode = "none",
-    hl_mode = "none",
-  },
-  metals = {
-    huge_mode = "yes",
-    complete_mode = "metals",
-    lsp_mode = "none",
-    ts_lsp_mode = "none",
-    hl_mode = "treesitter",
   },
 }
 
 -- huge_mode: "yes" | "no"
 vim.g.huge_mode = os.getenv("VIM_HUGE_MODE") or default_configs[mode_preset].huge_mode
--- complete_mode: "none" | "ddc" | "coc"
-vim.g.complete_mode = os.getenv("VIM_COMPLETE_MODE") or default_configs[mode_preset].complete_mode
--- lsp_mode: "none" | "nvim-lsp" | "coc"
-vim.g.lsp_mode = os.getenv("VIM_LSP_MODE") or default_configs[mode_preset].lsp_mode
--- ts_lsp_mode: "none" | "lsp" | "tsu"
-vim.g.ts_lsp_mode = os.getenv("VIM_TS_LSP_MODE") or "none"
 -- hl_mode: "none" | "treesitter"
 vim.g.hl_mode = os.getenv("VIM_HL_MODE") or default_configs[mode_preset].hl_mode
 
@@ -309,72 +283,6 @@ vim.keymap.set({'n', 'v', 'o', 'x'}, '*', '<Plug>(asterisk-z*)')
 vim.keymap.set({'n', 'v', 'o', 'x'}, '#', '<Plug>(asterisk-z*)N')
 vim.keymap.set({'n', 'v', 'o', 'x'}, 'g*', '<Plug>(asterisk-gz*)')
 vim.keymap.set({'n', 'v', 'o', 'x'}, 'g#', '<Plug>(asterisk-gz*)N')
-
-if vim.g.lsp_mode == 'nvim-lsp' then
-  vim.keymap.set('n', '[g', function()
-    -- TODO: 0.11
-    -- vim.diagnostic.jump({count= -1,float = true})
-    vim.diagnostic.goto_prev()
-  end)
-  vim.keymap.set('n', ']g', function()
-    -- TODO: 0.11
-    -- vim.diagnostic.jump({count= 1,float = true})
-    vim.diagnostic.goto_next()
-  end)
-
-  vim.keymap.set("n", "gr", function()
-    local cmdId
-    cmdId = vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
-      once = true,
-      callback = function()
-        local key = vim.api.nvim_replace_termcodes("<C-f>", true, false, true)
-        vim.api.nvim_feedkeys(key, "c", false)
-        vim.api.nvim_feedkeys("0", "n", false)
-        cmdId = nil
-        return true
-      end,
-    })
-    vim.lsp.buf.rename()
-    vim.defer_fn(function()
-      if cmdId then
-        vim.api.nvim_del_autocmd(cmdId)
-      end
-    end, 500)
-  end, {})
-  vim.diagnostic.config({
-    underline = true,
-    virtual_text = true,
-    signs = false,
-    update_in_insert = false,
-  })
-
-  vim.keymap.set("n", "gd", function()
-    vim.lsp.buf.definition()
-  end, { noremap = true, silent = true })
-
-  local my_lsp_config_group = vim.api.nvim_create_augroup('my-lsp-config', { clear = true })
-  vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    pattern = {
-      "*.rs",
-    },
-    group = my_lsp_config_group,
-    callback = function()
-      vim.lsp.buf.format()
-    end
-  })
-
-  vim.keymap.set("n", "Q", function()
-    vim.lsp.buf.code_action({
-      filter = function(x)
-        return x.isPreferred and x.kind == "quickfix"
-      end,
-      apply = true,
-    })
-  end)
-  vim.keymap.set("n", "<SPACE>q", function()
-    vim.lsp.buf.code_action()
-  end)
-end
 
 _G.n_GTGT = function()
   local smartindent_save = vim.o.smartindent

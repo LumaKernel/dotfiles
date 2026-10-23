@@ -139,13 +139,6 @@ nmap <SPACE>an <Plug>(altr-forward)
 '''
 
 [[plugins]]
-repo = 'Quramy/tsuquyomi'
-if = "g:ts_lsp_mode is# 'tsu'"
-hook_add = '''
-let g:tsuquyomi_disable_quickfix = 1
-'''
-
-[[plugins]]
 repo = 'Yggdroot/indentLine'
 hook_add = '''
 let g:indentLine_setConceal = 0
