@@ -26,7 +26,6 @@ tarpaulin-report.json
 .claude/scheduled_tasks.lock
 *.ignore
 *.ignore.*
-*.ignore/
 .shadowenv.d/
 .claude/worktrees/
 *.ai-state.md
