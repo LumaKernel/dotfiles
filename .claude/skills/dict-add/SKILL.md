@@ -6,7 +6,13 @@ allowed-tools: Read, Edit, Bash, WebSearch, AskUserQuestion
 
 # SKK辞書追加スキル
 
-SKK辞書 `skk-dict/SKK-JISYO.luma.utf8.txt` に単語を追加する。
+SKK辞書に単語を追加する。書き出し先は内容に応じて異なる。
+
+- 絵文字系のエントリ → `/Users/luma/ghq/github.com/LumaKernel/skk-emoji-jisyo/SKK-JISYO.emoji.utf8`
+- それ以外 → `skk-dict/SKK-JISYO.luma.utf8.txt`
+
+絵文字系とは、変換候補に絵文字・顔文字を含むエントリのこと。提案時にどちらの辞書に追加するか明示する。
+emoji-jisyo リポジトリが未cloneの場合は `ghq get LumaKernel/skk-emoji-jisyo` を提案する。
 
 ## 手順
 
@@ -14,6 +20,7 @@ SKK辞書 `skk-dict/SKK-JISYO.luma.utf8.txt` に単語を追加する。
    - ユーザーが `$ARGUMENTS` で単語を指定
    - 読み方が不明な場合は WebSearch で調べる
    - 読み方は平仮名のみ使用
+   - 絵文字系の場合、読みはデフォルトでアルファベット（英語名）と推論する（例: `fire /🔥/`, `heart /❤️/`）
 
 2. **送り仮名バリエーションの判定**
    - 動詞・形容詞などの活用語の場合、送り仮名のバリエーションを自動生成
