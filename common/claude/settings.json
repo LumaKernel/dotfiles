@@ -204,7 +204,6 @@
       "Bash(git checkout:*)",
       "Bash(git push --force:*)",
       "Bash(git reset --hard:*)",
-      "Bash(kill:*)",
       "Bash(killall:*)",
       "Bash(pkill:*)",
       "Bash(rm:*)",
