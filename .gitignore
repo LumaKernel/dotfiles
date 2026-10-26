@@ -4,3 +4,4 @@
 *.spl
 .claude/*
 !.claude/skills/
+/common/claude/skills/synced/
