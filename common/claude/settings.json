@@ -266,7 +266,8 @@
     }
   },
   "skipDangerousModePermissionPrompt": true,
+  "fileCheckpointingEnabled": false,
   "teammateMode": "in-process",
   "skipAutoPermissionPrompt": true,
-  "fileCheckpointingEnabled": false
+  "tui": "fullscreen"
 }
