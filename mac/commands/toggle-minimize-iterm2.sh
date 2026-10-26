@@ -1,4 +1,5 @@
 #!/bin/bash
+export PATH=/opt/homebrew/bin:"$PATH"
 
 iterm2_window_json=$(yabai -m query --windows | jq '[.[] | select(.["app"] == "iTerm2")][0]')
 iterm2_window_id=$(echo "$iterm2_window_json" | jq '.id')

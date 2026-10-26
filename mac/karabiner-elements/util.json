@@ -16,7 +16,7 @@
           },
           "to": [
             {
-              "shell_command": "bash --login -c '\"$HOME\"/dotfiles/mac/commands/toggle-minimize-iterm2.sh'"
+              "shell_command": "$HOME/dotfiles/mac/commands/toggle-minimize-iterm2.sh"
             }
           ]
         }
