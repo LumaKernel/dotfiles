@@ -266,6 +266,7 @@
     }
   },
   "skipDangerousModePermissionPrompt": true,
+  "teammateMode": "in-process",
   "skipAutoPermissionPrompt": true,
-  "teammateMode": "in-process"
+  "fileCheckpointingEnabled": false
 }
