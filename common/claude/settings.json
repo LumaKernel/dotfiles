@@ -269,5 +269,6 @@
   "fileCheckpointingEnabled": false,
   "teammateMode": "in-process",
   "skipAutoPermissionPrompt": true,
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "terminalTitle": false
 }
