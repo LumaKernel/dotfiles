@@ -30,3 +30,5 @@ tarpaulin-report.json
 .claude/worktrees/
 *.ai-state.md
 *.ai-state/
+
+**/.claude/.cc-writes/
