@@ -98,7 +98,6 @@ M.check = function()
 
   vim.health.start('AI tools')
   check('claude', {'claude', '--version'}, '\\d+\\.\\d+\\.\\d+')
-  check('gemini', {'gemini', '--version'}, '\\d+\\.\\d+\\.\\d+')
 
   vim.health.start('my: OCaml Environment')
   check('opam', {'opam', '--version'}, '\\d+\\.\\d+\\.\\d+')
@@ -111,6 +110,7 @@ M.check = function()
   check('eza', {'eza', '--version'}, general_ver)
   check('procs', {'procs', '--version'}, general_ver)
   check('fd', {{'fd', '--version'}, {'fdfind', '--version'}}, general_ver)
+  check('overscroll-emit', {'/Applications/OverscrollEmit.app/Contents/Helpers/overscroll-emit', '--version'}, general_ver, is_mac)
 
   vim.health.start('my: SKK-JISHO')
   local base_path
