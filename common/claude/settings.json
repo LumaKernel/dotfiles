@@ -268,5 +268,6 @@
   "skipDangerousModePermissionPrompt": true,
   "fileCheckpointingEnabled": false,
   "teammateMode": "in-process",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "tui": "default"
 }
