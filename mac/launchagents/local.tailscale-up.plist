@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Installed by mac/scripts/install_launchagents.sh -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>local.tailscale-up</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/sh</string>
+    <string>-c</string>
+    <!-- Wait up to 60s for tailscaled (brew services LaunchDaemon) before running up -->
+    <string>for i in $(seq 60); do /opt/homebrew/bin/tailscale status --json >/dev/null 2>&amp;1 &amp;&amp; break; sleep 1; done; /opt/homebrew/bin/tailscale up</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>/tmp/local.tailscale-up.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/local.tailscale-up.log</string>
+</dict>
+</plist>

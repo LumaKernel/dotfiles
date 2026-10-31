@@ -15,6 +15,9 @@ fi
 # -- symlink の設定
 "$HOME/dotfiles/mac/scripts/symlink.sh"
 
+# -- LaunchAgent の設定 (ユーザーの gui ドメインに登録するため root では実行しない)
+sudo -u "$SUDO_USER" "$HOME/dotfiles/mac/scripts/install_launchagents.sh"
+
 # -- git の設定
 "$HOME/dotfiles/mac/scripts/git-config.sh"
 
