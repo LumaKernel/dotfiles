@@ -163,6 +163,7 @@ skill 呼び出し直後の最初のショットでは、影響分析やタス�
 - ステータスは未着手（draft）で追加する（勝手に実装しない）
 - ステータスフロー: `draft → design → implementing → testing → QA✓ → review✓ → meta-review✓ → done`
   - ✓ = 不合格時は design/implementing に差し戻し（必ず別ショットで。ついでにやらない）
+  - このフローを変えたら `luma-create-loop-prompt` の標準形も合わせて更新する
 
 #### 記述フォーマット
 
