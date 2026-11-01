@@ -46,3 +46,5 @@ if ! is_symlink_mac "$TO"; then
 else
   echo "[warn] $TO already exists and not symlink"
 fi
+
+defaults write com.ameba.SwiftBar PluginDirectory "$HOME/dotfiles/mac/swiftbar"
