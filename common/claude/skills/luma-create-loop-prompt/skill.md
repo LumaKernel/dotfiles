@@ -27,7 +27,7 @@ allowed-tools: Read, Glob, Grep, Write, Edit, AskUserQuestion
 以下を標準形として、プロジェクトに合わせてパスや詳細を調整する:
 
 ```
-/loop 5m dev/ 配下のドキュメントと {tasks md} を読め。次にやるべきことの洗い出し・タスク分解・ステート管理は /luma-web-insert-task を使え。ステータスは draft → design → implementing → testing → QA✓ → review✓ → meta-review✓ → done の順に遷移させ、✓ が不合格なら design か implementing に差し戻せ（差し戻しは別の実行で行い、ついでに直さない）。未完了タスクがあればその中で最優先の 1 つを 1 ステート分だけ進めよ。完了後 {tasks md} と {tasks done md} を更新し、変更があればコミットせよ。
+/loop 5m {dev docs} 配下のドキュメントと {tasks md} を読め。次にやるべきことの洗い出し・タスク分解・ステート管理は /luma-web-insert-task を使え（自動では読み込まれないので、毎回スキルの内容を確認せよ）。ステータスは draft → design → implementing → testing → QA✓ → review✓ → meta-review✓ → done の順に遷移させ、✓ が不合格なら design か implementing に差し戻せ（差し戻しは別の実行で行い、ついでに直さない）。未完了タスクがあればその中で最優先の 1 つを 1 ステート分だけ進めよ。完了後 {tasks md} と {tasks done md} を更新し、変更があればコミットせよ。
 ```
 
 ### 構成要素
@@ -35,8 +35,8 @@ allowed-tools: Read, Glob, Grep, Write, Edit, AskUserQuestion
 | 要素 | 説明 |
 |---|---|
 | `/loop 5m` | 5分間隔で繰り返し実行 |
-| ドキュメント読み込み | `dev/` 配下のドキュメントと {tasks md} を毎回読む |
-| タスク管理 | `/luma-web-insert-task` ({より詳細な参照箇所}) でタスクの洗い出し・分解・ステート管理 |
+| ドキュメント読み込み | {dev docs} 配下のドキュメントと {tasks md} を毎回読む |
+| タスク管理 | `/luma-web-insert-task` ({より詳細な参照箇所}) でタスクの洗い出し・分解・ステート管理。スキルは自動参照されないため、毎回確認するよう明記する |
 | ステータス遷移 | `/luma-web-insert-task` のステータスフローと差し戻し規則を明記する。スキル側を変更したらここと標準形も合わせて更新する |
 | 実装範囲 | 未完了タスクの最優先 1 つを 1 ステート分だけ |
 | 進捗更新 | 完了後に {tasks md} のステータスを更新し、done になったタスクは {tasks done md} へ移す |
@@ -44,7 +44,7 @@ allowed-tools: Read, Glob, Grep, Write, Edit, AskUserQuestion
 
 ## 調整のポイント
 
-- ドキュメントディレクトリのパス（`dev/` → `docs/`, `design/` 等）
+- {dev docs} のパス（`dev/`, `docs/`, `design/` 等）
 - {tasks md} と {tasks done md} のパス（既存のタスク管理ファイルがあればそれを使う）
 - `/luma-web-insert-task` に渡す参照箇所の具体化（タスクリストファイル、設計書等のパス）
 - ループ間隔（`5m` は標準。タスク粒度に応じて調整）
