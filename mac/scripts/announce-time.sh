@@ -5,7 +5,7 @@
 # Used by:
 #   mac/swiftbar/announce-time.1m.sh                (menu bar UI)
 #   mac/launchagents/local.announce-time-on.plist     (on at login)
-#   mac/launchagents/local.announce-time-resume.plist (resume-if-due every 60s; catches up after sleep)
+#   mac/launchagents/local.announce-time-resume.plist (resume-if-due every 15min; catches up after sleep)
 
 set -euo pipefail
 

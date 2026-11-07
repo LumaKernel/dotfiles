@@ -13,7 +13,7 @@
   </array>
   <!-- Polling (not a one-shot timer) so a resume time passed during sleep is applied right after wake -->
   <key>StartInterval</key>
-  <integer>60</integer>
+  <integer>900</integer>
   <key>StandardOutPath</key>
   <string>/tmp/local.announce-time-resume.log</string>
   <key>StandardErrorPath</key>
