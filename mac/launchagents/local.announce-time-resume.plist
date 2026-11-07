@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Installed by mac/scripts/install_launchagents.sh -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>local.announce-time-resume</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>-c</string>
+    <string>"$HOME"/dotfiles/mac/scripts/announce-time.sh resume-if-due</string>
+  </array>
+  <!-- Polling (not a one-shot timer) so a resume time passed during sleep is applied right after wake -->
+  <key>StartInterval</key>
+  <integer>60</integer>
+  <key>StandardOutPath</key>
+  <string>/tmp/local.announce-time-resume.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/local.announce-time-resume.log</string>
+</dict>
+</plist>

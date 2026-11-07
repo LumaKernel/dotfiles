@@ -5,6 +5,7 @@
 # <swiftbar.hideDisablePlugin>true</swiftbar.hideDisablePlugin>
 
 HELPER="$HOME/dotfiles/mac/scripts/announce-time.sh"
+resume_at="$("$HELPER" resume-at)"
 
 if [ "$("$HELPER" status)" = "true" ]; then
   echo "| sfimage=clock.badge.checkmark"
@@ -14,6 +15,15 @@ if [ "$("$HELPER" status)" = "true" ]; then
 else
   echo "| sfimage=clock.badge.xmark"
   echo "---"
-  echo "Announce the time: Off"
+  if [ -n "$resume_at" ]; then
+    echo "Announce the time: Off until $(date -r "$resume_at" '+%m/%d %H:%M')"
+  else
+    echo "Announce the time: Off"
+  fi
   echo "Turn On | bash=$HELPER param1=on terminal=false refresh=true"
 fi
+
+echo "---"
+for d in 3h 8h 24h 2d; do
+  echo "Turn Off for $d | bash=$HELPER param1=off-for param2=$d terminal=false refresh=true"
+done
