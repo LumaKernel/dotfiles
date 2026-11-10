@@ -287,5 +287,6 @@
   "fileCheckpointingEnabled": false,
   "teammateMode": "in-process",
   "skipAutoPermissionPrompt": true,
+  "language": "japanese",
   "tui": "default"
 }
