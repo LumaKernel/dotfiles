@@ -56,9 +56,8 @@ yabai -m rule --add app='^Obsidian$' opacity=1.0
 # O+Connect Screencast
 yabai -m rule --add app='Screencast' sticky=on
 
-# Slack huddle を管理対象外にする (判定は scripts 側)
-yabai -m signal --add label=slack_huddle_unmanage event=window_created app='^Slack$' \
-  action='~/dotfiles/mac/scripts/yabai_unmanage_slack_huddle.sh "$YABAI_WINDOW_ID"'
+# Slack huddle: 作成時のタイトルが "Slack - Huddle Preview" で、その後チャンネル名などに変わる (rule は作成時に判定される)
+yabai -m rule --add app='^Slack$' title='Huddle Preview' manage=off
 
 indices=$(yabai -m rule --list | jq '.[].index')
 for index in $indices; do
